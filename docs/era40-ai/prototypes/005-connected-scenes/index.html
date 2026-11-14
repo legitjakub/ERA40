@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ERA40 — Z člověka do Evropy · návrh 005</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="/_vendor/gsap.min.js" defer></script>
+  <script src="scene.js" defer></script>
+</head>
+<body>
+  <header class="lab-intro">
+    <div class="brand">ERA40<span>1987—2027</span></div>
+    <div><p class="eyebrow">Návrh pohybu · 005 · ke společné revizi</p><h1>Jeden člověk. Celá Evropa.</h1></div>
+    <p class="intro-note">Plynulá předávka mezi příběhy a mapou.<br>Scrollujte nebo přehrajte ukázku.</p>
+  </header>
+
+  <main>
+    <section class="experience" aria-label="Prototyp přechodu z příběhu do mapy">
+      <div class="sticky">
+        <div class="lab-bar">
+          <span class="chapter-label">04 Příběhy <span aria-hidden="true">→</span> 05 Evropa</span>
+          <div class="people-switch" role="group" aria-label="Ukázkový příběh">
+            <button data-person="tereza" aria-pressed="true">Tereza · ven</button>
+            <button data-person="ines" aria-pressed="false">Inês · k nám</button>
+          </div>
+          <button id="reduce" aria-pressed="false">Omezit pohyb</button>
+        </div>
+
+        <div class="scene" id="scene">
+          <div class="sky" aria-hidden="true"></div>
+          <div class="source-copy">
+            <p class="eyebrow">Modelový příběh · ilustrační</p>
+            <p class="journey" data-copy="journey">Olomouc → Valencie</p>
+            <h2 data-copy="name">Tereza</h2>
+            <blockquote data-copy="quote">„Poprvé jsem musela říct nahlas, co si myslím, a v cizím jazyce.“</blockquote>
+            <p class="story-meta" data-copy="meta">Architektura · 2019</p>
+          </div>
+
+          <div class="map-heading" aria-hidden="true"><p class="eyebrow">05 / Evropa</p><h2>Blíž, než se zdá.</h2><p>Cesty ven. Cesty k nám.</p></div>
+          <div class="map-surface" aria-hidden="true"><img src="/_map/europe-land.svg" alt="" width="840" height="870"></div>
+          <svg class="route-layer" aria-hidden="true">
+            <path class="route-base" fill="none"></path>
+            <path class="route-active" fill="none" pathLength="1"></path>
+            <circle class="origin" r="4"></circle><circle class="destination" r="4"></circle>
+            <circle class="traveller" r="8"></circle>
+            <text class="origin-label"></text><text class="destination-label"></text>
+          </svg>
+
+          <figure class="shared-photo">
+            <img id="portrait" src="/_media/ph-train-window-woman.jpg" alt="Ilustrační fotografie mladé ženy u okna vlaku" width="1200" height="800">
+          </figure>
+          <span class="photo-label">Ilustrační snímek</span>
+          <div class="map-caption" aria-hidden="true">
+            <p class="eyebrow">Modelový příběh · ilustrační</p>
+            <h3 data-copy="journey">Olomouc → Valencie</h3>
+            <p class="caption-name" data-copy="name">Tereza</p>
+            <p class="caption-quote" data-copy="quote">„Poprvé jsem musela říct nahlas, co si myslím, a v cizím jazyce.“</p>
+          </div>
+          <div class="source-station"><span data-copy="from">Olomouc</span><span data-copy="to">Valencie</span></div>
+          <div class="static-fallback">Příběh a místo zůstávají propojené stejnou fotografií.</div>
+        </div>
+
+        <div class="controls">
+          <button id="play">Přehrát přechod <span aria-hidden="true">↗</span></button>
+          <div class="scrubber"><label for="progress">Průběh přechodu <output id="percentage" for="progress">0 %</output></label><input type="range" id="progress" min="0" max="1000" step="1" value="0" aria-valuetext="Příběh, začátek přechodu"></div>
+          <div class="frame-switch" role="group" aria-label="Zastavené kompozice"><button data-frame="0">Příběh</button><button data-frame="0.52">Předávka</button><button data-frame="1">Mapa</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="direction-note">
+      <p class="eyebrow">Princip pro celý web</p>
+      <h2>Příběh mění měřítko.<br>Člověk zůstává.</h2>
+      <p>Fotografie se neztratí při střihu. Přejde do menšího rámu a kolem ní se otevře mapa. Jedna konkrétní zkušenost dostane evropský rozměr.</p>
+      <div class="note-grid"><div><h3>Co je k posouzení</h3><p>Směr pohybu, změna měřítka a návaznost stejné fotografie. Ukázka používá existující modelové příběhy a ilustrační snímky.</p></div><div><h3>Co navazuje</h3><p>Rok → člověk. Mapa → porovnání. Dělicí čára → osa čísel. V závěru pokračuje otevřená Trasa k vašemu příběhu.</p></div><div><h3>Mobil a omezený pohyb</h3><p>Dvě čitelné kompozice bez přeletu fotografie. Žádné přebírání kolečka, dotykových gest ani dlouhé připnutí.</p></div></div>
+      <p class="proposal-status">Izolovaný návrh 005. Současný web zůstává beze změny. Schválení této ukázky ještě není schválením její produkční integrace.</p>
+    </section>
+  </main>
+  <noscript><p class="no-js">Statický návrh příběhu. Pro přehrání přechodu zapněte JavaScript.</p></noscript>
+</body>
+</html>

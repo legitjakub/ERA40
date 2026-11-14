@@ -1,0 +1,66 @@
+[
+  {
+    "width": 1440,
+    "axe": [
+      {
+        "value": 0,
+        "violations": []
+      },
+      {
+        "value": 1,
+        "violations": []
+      }
+    ],
+    "errors": [],
+    "play": {
+      "mid": 0.324696,
+      "paused": 0.330767,
+      "still": 0.33109567901234566,
+      "passed": true
+    },
+    "finished": 1,
+    "reverse": 0.5064043209876543,
+    "fastForward": 1,
+    "beforeResize": 0.8092849794238683,
+    "resize": {
+      "p": 0.8092849794238683,
+      "overflow": false
+    }
+  },
+  {
+    "width": 390,
+    "axe": [
+      {
+        "value": 0,
+        "violations": []
+      },
+      {
+        "value": 1,
+        "violations": []
+      }
+    ],
+    "errors": [],
+    "mobileEnd": 1,
+    "mobileStart": 0
+  },
+  {
+    "allowlist": [
+      {
+        "url": "/data/kontakty.ndjson",
+        "status": 404
+      },
+      {
+        "url": "/../../web/data/kontakty.ndjson",
+        "status": 404
+      },
+      {
+        "url": "/_media/not-allowed.jpg",
+        "status": 404
+      },
+      {
+        "url": "/serve.py",
+        "status": 404
+      }
+    ]
+  }
+]

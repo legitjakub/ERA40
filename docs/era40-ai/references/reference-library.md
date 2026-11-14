@@ -22,4 +22,4 @@ Každá nová reference od Jakuba dostane soubor `reference-analysis/<slug>.md` 
 
 | Datum | Reference | Analýza | Stav překladu do ERA40 |
 |---|---|---|---|
-| — | (zatím žádná nová) | — | — |
+| 14. 11. 2026 | ChatGPT reference + živá revize Extrafazant, Floema, Inkwell, Getty a dalších | [Syntéza a míra ověření](reference-analysis/2026-11-14-chatgpt-motion-synthesis.md) | [Návrh 005](../motion/specs/005-connected-scenes-direction.md), izolovaný prototyp; bez schválené produkční integrace |

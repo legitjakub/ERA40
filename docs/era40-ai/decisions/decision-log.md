@@ -39,3 +39,10 @@ Formát: ID · datum · rozhodnutí · důvod · kdo. Nová rozhodnutí přidáv
 - ⚠️ PageIntro na podstránkách má `line-height: 0.95`, háček Č se dotýká řádku nad (pozorováno 14. 11.).
 - ℹ️ Lenis + ScrollTrigger: chybí `gsap.ticker.lagSmoothing(0)` doporučené v README Lenisu. Ověřit, zda je to záměr.
 - ℹ️ `networkidle` na desktopu trvá 7–13 s kvůli stahování videa. Neznamená to LCP, změřit `shoot.mjs`.
+# Vizuální návrh 005 — poznámky Codexu, 14. 11. 2026
+
+**Není schváleným designovým rozhodnutím.** Návrh všech kapitol a izolovaná předávka Příběhy → Evropa jsou v `motion/specs/005-connected-scenes-direction.md`; čekají na Jakubovu vizuální revizi. Produkční komponenty se neměnily.
+
+Poučení z prototypu: podklad je nutné usadit dříve než nadpis, jinak mezisnímek ztrácí kontrast; popisek fotografie nesmí škálovat do nečitelné velikosti; na mobilu se nesmí původní linka nechat procházet přes citaci. Scroll a resize mají oddělené plánování a měření musí resetovat vlastní transformaci mapy. Důkazy a limity: `prototypes/005-connected-scenes/QA.md`.
+
+Věcná oprava podkladů: mapa už obsahuje skutečné příchozí i odchozí cesty. Původní návrh 002 má pozastavenou implementaci do opravy koncepce; nevymýšlet návrat ke každému příběhu. Aktuální výrazně dlouhý desktopový rail potřebuje samostatný návrh tempa, nikoli prosté několikanásobné zrychlení textů.

@@ -47,3 +47,14 @@ Typ: **OD** oficiální dokumentace · **TUT** praktický tutoriál · **KOM** k
 - https://threejs.org/manual/en/cleanup.html — při této kontrole 404.
 
 Rozsah a limity: `SETUP-VERIFICATION.md`.
+
+## Návrh propojených scén — Codex, 14. 11. 2026
+
+| Zdroj | Typ | Stav / rozsah | Shrnutí |
+|---|---|---|---|
+| ChatGPT: „Reference pro web Erasmu“, „Přenos kontextu projektu“ | interní | 🟡 načtené relevantní chaty, dlouhé zprávy mají limit konektoru | `references/reference-analysis/2026-11-14-chatgpt-motion-synthesis.md` |
+| Extrafazant, Floema, Inkwell, Tracing Art | živé reference | ✅ zobrazené stavy, dávky kolečka, návrat a mobil; nejde o kompletní audit každé stránky | stejná syntéza + `references/screenshots/2026-11-14-motion-synthesis/` |
+| Persepolis, The Watch, Stanford, Paper Planes | živé reference | 🟡 rozsah a omezení jednotlivě v syntéze | stejná syntéza |
+| Telefónica 100, 100 Lost Species | živé reference | ❌ výroční zážitek přesměrovaný / prázdná scéna | stejná syntéza |
+| [Atelier UI — Codrops](https://tympanus.net/codrops/2026/10/21/atelier-ui-webgl-dom/) | TUT / primární autor | ✅ text článku přes Firecrawl, bez spuštění všech vložených ukázek | `tutorials/implementation-notes/shared-image-scene-handoff.md` |
+| [GSAP Flip](https://gsap.com/docs/v3/Plugins/Flip/) | OD | 🟡 příslušné API, omezení a React caveats přes Firecrawl | stejná implementační poznámka |

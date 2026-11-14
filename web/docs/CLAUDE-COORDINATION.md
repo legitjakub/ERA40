@@ -154,3 +154,15 @@ Jakub nechtěl kolo „40 → ∞“ ani kolo „jízdenka a vlak“. Obojí je 
 - koncepční karta v `DESIGN.md`.
 
 Ponechané opravy, které nejsou vizuální: přejmenování `.route` na `.trasa` v Trase pod railem, protože `.route` používá dialog, a výpočet skoku při fokusu v railu. Typecheck, lint i `qa-checks` 15/15 prošly a build a restart :3000 jsou hotové.
+
+## Codex — návrh propojených scén, 14. 11. 2026
+
+Na Jakubovu žádost o návrh pohybu jsou nové podklady v `docs/era40-ai/motion/specs/005-connected-scenes-direction.md` a `references/reference-analysis/2026-11-14-chatgpt-motion-synthesis.md`. Izolovaná fotografická předávka Příběhy → Evropa je v `docs/era40-ai/prototypes/005-connected-scenes/`, náhled :3070. Produkční `web/src`, závislosti ani kontaktní data se v tomto kole nemění. :3000 nebyl restartován.
+
+**Stav: návrh, nikoli schválená integrace.** Prototyp není oprávnění předělávat hero, přidat další piny nebo obnovit dříve odmítnuté dekorace. Před produkční prací potřebuje konkrétní integrační specifikaci a Jakubovo výslovné schválení dle Fáze 11.
+
+Upřesnění auditu: `EuropeMap` již používá skutečné `coords.from → coords.to` a obsahuje příchozí Lisabon → Praha; nepřidávat domnělé zpáteční cesty. `ThenNow` má vedený scrollový náběh pouze do první ruční interakce. Desktopový rail je výrazně delší než obecný pin budget, proto jeho případné zkrácení musí zachovat čitelnost osmi příběhů a projít samostatným návrhem.
+
+## Codex — realizace a průběžný main, 14. 11. 2026
+
+**Novější pokyn Jakuba autorizuje realizaci návrhu 005 na homepage i doladění podstránek a průběžný push ověřených dávek do `main`.** Předchozí status „bez schválené integrace“ je tím nahrazen v uvedeném rozsahu. Aktuálně Codex přebírá `people/PeopleStories.*`, `people/StoryDistortion.tsx`, `people/distortion.ts`, `map/EuropeMap.*`, nový koordinátor předávky, homepage a společné české statusy / `PageIntro.*`. Žádný druhý agent teď nemá rozpracované změny v těchto souborech. Build a restarty provádí pouze Codex. Kontaktní data zůstávají mimo práci i Git.

@@ -68,7 +68,7 @@ Stav ✅ = implementováno, 🟡 = částečně, ⬜ = návrh (nevyvíjet bez sc
 - Směr ⬜: ověřit, že distorze zůstává pod prahem čitelnosti a vypíná se na mobilu a při reduced motion.
 
 ### 05 Mapa Evropy
-- ✅ scrub kreslení tras z Prahy, body destinací, seznam tlačítek.
+- ✅ scrub kreslení skutečných tras jednotlivých příběhů (`coords.from → coords.to`), včetně Lisabon → Praha, body destinací, seznam tlačítek. Upřesněno po kontrole zdrojů 14. 11.; starší tvrzení „vše z Prahy“ neplatí.
 - Směr ⬜ (kandidát na signature): „kamera jede po Trase“. SVG viewBox se posouvá po cestě (`getPointAtLength`) a fotky příběhů podél trasy zaostří při průjezdu. Je to 2D varianta Blender camera path, bez three.js.
 
 ### 06 Tehdy a teď

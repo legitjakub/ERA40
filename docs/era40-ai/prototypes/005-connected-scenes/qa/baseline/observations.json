@@ -1,0 +1,112 @@
+[
+  {
+    "width": 1440,
+    "ranges": {},
+    "sections": [
+      {
+        "id": "hero",
+        "kind": "hero",
+        "top": 0,
+        "height": 900
+      },
+      {
+        "id": "pribehy-intro",
+        "kind": "prolog",
+        "top": 2250,
+        "height": 1159
+      },
+      {
+        "id": "historie",
+        "kind": "historie",
+        "top": 3409.015625,
+        "height": 3150
+      },
+      {
+        "id": "pribehy",
+        "kind": "pribehy",
+        "top": 6559.015625,
+        "height": 900
+      },
+      {
+        "id": "mapa",
+        "kind": "evropa",
+        "top": 17539.015625,
+        "height": 1154
+      },
+      {
+        "id": "tehdy-ted",
+        "kind": "tehdy-ted",
+        "top": 18692.671875,
+        "height": 1494
+      },
+      {
+        "id": "cisla",
+        "kind": "cisla",
+        "top": 20186.671875,
+        "height": 1451
+      },
+      {
+        "id": "budoucnost",
+        "kind": "budoucnost",
+        "top": 21637.46875,
+        "height": 910
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 390,
+    "ranges": {},
+    "sections": [
+      {
+        "id": "hero",
+        "kind": "hero",
+        "top": 0,
+        "height": 743
+      },
+      {
+        "id": "pribehy-intro",
+        "kind": "prolog",
+        "top": 742.71875,
+        "height": 682
+      },
+      {
+        "id": "historie",
+        "kind": "historie",
+        "top": 1425.078125,
+        "height": 3999
+      },
+      {
+        "id": "pribehy",
+        "kind": "pribehy",
+        "top": 5424.125,
+        "height": 1305
+      },
+      {
+        "id": "mapa",
+        "kind": "evropa",
+        "top": 6728.953125,
+        "height": 1336
+      },
+      {
+        "id": "tehdy-ted",
+        "kind": "tehdy-ted",
+        "top": 8064.53125,
+        "height": 819
+      },
+      {
+        "id": "cisla",
+        "kind": "cisla",
+        "top": 8883.046875,
+        "height": 1611
+      },
+      {
+        "id": "budoucnost",
+        "kind": "budoucnost",
+        "top": 10494.53125,
+        "height": 872
+      }
+    ],
+    "errors": []
+  }
+]
