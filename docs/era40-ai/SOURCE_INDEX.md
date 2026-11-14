@@ -58,3 +58,43 @@ Rozsah a limity: `SETUP-VERIFICATION.md`.
 | Telefónica 100, 100 Lost Species | živé reference | ❌ výroční zážitek přesměrovaný / prázdná scéna | stejná syntéza |
 | [Atelier UI — Codrops](https://tympanus.net/codrops/2026/10/21/atelier-ui-webgl-dom/) | TUT / primární autor | ✅ text článku přes Firecrawl, bez spuštění všech vložených ukázek | `tutorials/implementation-notes/shared-image-scene-handoff.md` |
 | [GSAP Flip](https://gsap.com/docs/v3/Plugins/Flip/) | OD | 🟡 příslušné API, omezení a React caveats přes Firecrawl | stejná implementační poznámka |
+
+
+## Codex — technické poznámky 15. 11.
+
+| Zdroj | Stav a rozsah | Poznámky |
+|---|---|---|
+| [Three.js WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html) | Otevřeno 15. 11. 2026 — relevantní část: WebGL2, info, velikost rendereru; bez spuštění dema | [01, 14](technical/notes/01-scroll-driven-webgl.md) |
+| [Three.js Curve](https://threejs.org/docs/pages/Curve.html) | Otevřeno 15. 11. 2026 — relevantní část: getPointAt a parametrizace křivky; bez spuštění dema | [02](technical/notes/02-scroll-camera.md) |
+| [Three.js ShaderMaterial](https://threejs.org/docs/pages/ShaderMaterial.html) | Otevřeno 15. 11. 2026 — relevantní část: uniformy a vlastní shadery; bez spuštění dema | [04, 06](technical/notes/04-shader-transitions.md) |
+| [Three.js MeshStandardMaterial](https://threejs.org/docs/pages/MeshStandardMaterial.html) | Otevřeno 15. 11. 2026 — relevantní část: vertex displacement, datové mapy; bez spuštění dema | [05](technical/notes/05-displacement.md) |
+| [Three.js BufferGeometry](https://threejs.org/docs/pages/BufferGeometry.html) | Otevřeno 15. 11. 2026 — relevantní část: morphAttributes, GPU geometrie a dispose; bez spuštění dema | [07, 14](technical/notes/07-organic-morphing.md) |
+| [Three.js Material](https://threejs.org/docs/pages/Material.html) | Otevřeno 15. 11. 2026 — relevantní část: dispose a průhlednost; bez spuštění dema | [14](technical/notes/14-three-performance.md) |
+| [Three.js Texture](https://threejs.org/docs/pages/Texture.html) | Otevřeno 15. 11. 2026 — relevantní část: vlastnictví textury, rozměry a dispose; bez spuštění dema | [14](technical/notes/14-three-performance.md) |
+| [Three.js GLTFLoader](https://threejs.org/docs/pages/GLTFLoader.html) | Otevřeno 15. 11. 2026 — relevantní část: glTF 2.0, připojení dekodérů; bez spuštění dema | [16](technical/notes/16-3d-assets.md) |
+| [Three.js KTX2Loader](https://threejs.org/docs/pages/KTX2Loader.html) | Otevřeno 15. 11. 2026 — relevantní část: Basis transkódování a detectSupport; bez spuštění dema | [16](technical/notes/16-3d-assets.md) |
+| [Three.js DRACOLoader](https://threejs.org/docs/pages/DRACOLoader.html) | Otevřeno 15. 11. 2026 — relevantní část: komprese geometrie a cena dekódování; bez spuštění dema | [16](technical/notes/16-3d-assets.md) |
+| [Three.js TextGeometry](https://threejs.org/docs/pages/TextGeometry.html) | Otevřeno 15. 11. 2026 — relevantní část: extruze a typeface.json; bez spuštění dema | [09](technical/notes/09-3d-typography.md) |
+| [R3F Scaling performance](https://r3f.docs.pmnd.rs/advanced/scaling-performance) | Otevřeno 15. 11. 2026 — relevantní část: demand/invalidate a sdílení zdrojů; bez spuštění dema | [01, 14](technical/notes/01-scroll-driven-webgl.md) |
+| [GSAP ScrollTrigger](https://gsap.com/docs/v3/Plugins/ScrollTrigger/) | Otevřeno 15. 11. 2026 — relevantní část: scrub, pin a containerAnimation; bez spuštění dema | [12, 13](technical/notes/12-pinned-storytelling.md) |
+| [GSAP MorphSVG](https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/) | Otevřeno 15. 11. 2026 — relevantní část: morfování SVG cest; bez spuštění dema | [07](technical/notes/07-organic-morphing.md) |
+| [GSAP matchMedia](https://gsap.com/docs/v3/GSAP/gsap.matchMedia()/) | Otevřeno 15. 11. 2026 — relevantní část: responzivní sestavení a revert; bez spuštění dema | [17](technical/notes/17-responsive-motion.md) |
+| [Lenis README](https://github.com/darkroomengineering/lenis) | Otevřeno 15. 11. 2026 — relevantní část: ticker integrace a infinite režim; bez spuštění dema | [08](technical/notes/08-infinite-scroll.md) |
+| [MDN WebGL best practices](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_best_practices) | Otevřeno 15. 11. 2026 — relevantní část: paměť, rozlišení a runtime náklady; bez spuštění dema | [15](technical/notes/15-mobile-webgl.md) |
+| [MDN getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) | Otevřeno 15. 11. 2026 — relevantní část: geometrie vůči viewportu; bez spuštění dema | [03](technical/notes/03-dom-webgl-sync.md) |
+| [MDN webglcontextlost](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/webglcontextlost_event) | Otevřeno 15. 11. 2026 — relevantní část: událost ztráty kontextu; bez spuštění dema | [18](technical/notes/18-fallbacks.md) |
+| [MDN webglcontextrestored](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/webglcontextrestored_event) | Otevřeno 15. 11. 2026 — relevantní část: neplatnost starých GPU prostředků; bez spuštění dema | [18](technical/notes/18-fallbacks.md) |
+| [MDN pointer](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) | Otevřeno 15. 11. 2026 — relevantní část: přesnost primárního vstupu; bez spuštění dema | [10](technical/notes/10-cursor-effects.md) |
+| [MDN prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) | Otevřeno 15. 11. 2026 — relevantní část: preference omezeného pohybu; bez spuštění dema | [17](technical/notes/17-responsive-motion.md) |
+| [WebGL Fundamentals: Image Processing](https://webglfundamentals.org/webgl/lessons/webgl-image-processing.html) | Otevřeno 15. 11. 2026 — relevantní část: UV a texturování roviny; bez spuštění dema | [04](technical/notes/04-shader-transitions.md) |
+| [Troika Text](https://protectwise.github.io/troika/troika-three-text/) | Otevřeno 15. 11. 2026 — relevantní část: SDF, fonty, sync a dispose; bez spuštění dema | [09](technical/notes/09-3d-typography.md) |
+| [msdfgen README](https://github.com/Chlumsky/msdfgen) | Otevřeno 15. 11. 2026 — relevantní část: vícekanálové distance fields; bez spuštění dema | [09](technical/notes/09-3d-typography.md) |
+| [React ViewTransition](https://react.dev/reference/react/ViewTransition) | Otevřeno 15. 11. 2026 — relevantní část: spouštění a koordinace přechodů; bez spuštění dema | [11](technical/notes/11-page-transitions.md) |
+| [Next: Designing view transitions](https://nextjs.org/docs/app/guides/view-transitions) | Otevřeno 15. 11. 2026 — relevantní část: App Router, Suspense a sdílené prvky; bez spuštění dema | [11](technical/notes/11-page-transitions.md) |
+| [Three.js r186 package.json](https://raw.githubusercontent.com/mrdoob/three.js/r186/package.json) | Otevřeno 15. 11. 2026 — relevantní část: manifest 0.186.1, nikoli instalace; bez spuštění dema | [verze / evidence](technical/notes/README.md) |
+| [Three.js dev package.json](https://raw.githubusercontent.com/mrdoob/three.js/dev/package.json) | Otevřeno 15. 11. 2026 — relevantní část: manifest 0.187.0 vývojové větve; bez spuštění dema | [verze / evidence](technical/notes/README.md) |
+| [R3F package.json](https://raw.githubusercontent.com/pmndrs/react-three-fiber/master/packages/fiber/package.json) | Otevřeno 15. 11. 2026 — relevantní část: manifest větve 9.8.1; bez spuštění dema | [verze / evidence](technical/notes/README.md) |
+| [Troika package.json](https://raw.githubusercontent.com/protectwise/troika/main/packages/troika-three-text/package.json) | Otevřeno 15. 11. 2026 — relevantní část: manifest větve 0.53.1; bez spuštění dema | [09](technical/notes/09-3d-typography.md) |
+| [Three.js docs rozcestník](https://threejs.org/docs/) | Otevřeno 15. 11. 2026 — relevantní část: staré hash URL vedou na rozcestník, nikoli API detail; bez spuštění dema | [01, 02, 04, 05, 06, 07, 09, 14, 16](technical/notes/01-scroll-driven-webgl.md) |
+| [MDN getContext](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext) | Otevřeno 15. 11. 2026 — relevantní část: jeden typ kontextu na canvas; bez spuštění dema | [01](technical/notes/01-scroll-driven-webgl.md) |
+| [MDN WEBGL_lose_context](https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_lose_context) | Otevřeno 15. 11. 2026 — relevantní část: simulace ztráty a obnovy v WebGL1/2; bez spuštění dema | [18](technical/notes/18-fallbacks.md) |

@@ -16,6 +16,9 @@ Každý pokyn od Master Orchestration Promptu dál. Claude ho aktualizuje po ka�
   - [ ] Dávka B po převzetí spec 007/008: sjednotit štítky „Ilustrační snímek/video“ (jeden tichý styl), zkontrolovat Numbers, ThenNow, archiv, detail a SiteNav.
   - [ ] Závěrečný průchod celého webu na 8 šířkách: nic samoúčelného, nic vývojářského.
 
+## Spodní sekce homepage
+- [ ] **Přepracovat spodní sekce hlavní stránky** (06 Tehdy a teď, 07 Čísla, 08 Budoucnost): „nelíbí se mi, klidně ať se změní, nemusíme pracovat s tím, co máme, můžeme to úplně přeměnit dle plánu“. Spec 009 je napsaná. Realizace: brief CDX-004 po předání 008, nebo Claude při limitu Codexu.
+
 ## Master Orchestration Prompt — fáze
 - [x] Fáze 0: audit, skilly, ověření Codex CLI, struktura dokumentace, chybějící podklady, začátek rešerše (`d8183aa`).
 - [ ] **Fáze 1 („Continue Phase 1“):**

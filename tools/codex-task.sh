@@ -36,6 +36,8 @@ BASELINE="$LOGS/$ID.baseline"
 } > "$BASELINE"
 
 ARGS=(exec --cd "$ROOT" --output-last-message "$REPORT" --json)
+# NETWORK=1 lets a workspace-write task fetch documentation (research briefs only).
+if [ "${NETWORK:-0}" = "1" ]; then ARGS+=(-c sandbox_workspace_write.network_access=true); fi
 case "$MODE" in
   read-only) ARGS+=(--sandbox read-only) ;;
   workspace-write) ARGS+=(--sandbox workspace-write) ;;
