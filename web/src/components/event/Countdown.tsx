@@ -1,20 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { event } from "@/content/event";
+import { event, eventConfirmed } from "@/content/event";
 
-/** A quiet text countdown; before a date exists it says when it will. */
+/** A quiet text countdown; until the date is confirmed it shows the label. */
 export function Countdown({ className }: { className?: string }) {
   const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
-    if (!event.start) return;
+    if (!eventConfirmed()) return;
     const tick = () => setNow(Date.now());
     tick();
     const id = window.setInterval(tick, 30_000);
     return () => window.clearInterval(id);
   }, []);
 
-  if (!event.start) return <p className={className}>{event.dateLabel}</p>;
+  if (!eventConfirmed() || !event.start)
+    return (
+      <p className={className}>
+        {event.dateLabel}
+        {!event.confirmed && " · návrh"}
+      </p>
+    );
   if (now === null) return <p className={className}>&nbsp;</p>;
   const start = Date.parse(event.start);
   const end = event.end ? Date.parse(event.end) : start + 8 * 3600_000;

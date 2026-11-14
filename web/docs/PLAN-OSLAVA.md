@@ -82,3 +82,29 @@ OG obrázek s datem a hlavními jmény, sdílecí texty pro sítě. Strukturovan
 | 4 | Po akci: galerie, aftermovie, „Byli jste tam?“ | po akci |
 
 Každá fáze se ukáže Jakubovi na :3000 před pokračováním.
+
+## Návrh akce (14. 11. 2026, k potvrzení pořadatelem)
+
+Jakub požádal o domyšlení všech údajů podle veřejných informací. Na webu je všechno označené jako **návrh** (`event.confirmed = false`). Do potvrzení zůstává vypnutý soubor .ics i strukturovaná data Event a jména účinkujících jsou jen formáty, ne skutečné kapely.
+
+| Údaj | Návrh | Proč |
+|---|---|---|
+| Datum | sobota 12. 6. 2027, 14–22 h | Program vznikl 15. 6. 1987, to je úterý. Sobota je nejbližší víkendový den. Francouzská národní agentura chystá akce v červnu „kolem data výročí“. Konec ve 22 h kvůli nočnímu klidu na náplavce. |
+| Místo | Náplavka, Rašínovo nábřeží, Praha 2 | Veřejné prostranství pro festivaly a trhy, tisíce lidí, tramvaj Výtoň, metro B Karlovo náměstí, cyklotrasa A2. Podmínky pronájmu a kapacitu potvrdí správce (TCP / Pražské náplavky). |
+| Vstup | zdarma s nepovinnou registrací | Oslava programu z veřejných peněz. Registrace slouží k odhadu počtu lidí a získání kontaktů. |
+| Program | 14:00 stánky, 15:00 debata „Odjezd 1998“, sbor, Příběhy živě, studentské kapely, debata o Erasmu+ od 2014, kapela absolventů, evropský host, společná fotka, hlavní host, DJ set 1987–2027 | Spojuje koncert, absolventy a nábor na výjezdy. |
+| Účinkující | formáty: hlavní host (CZ pop/indie), evropský host, kapela absolventů, studentské kapely (výzva pro školy), mezinárodní sbor, DJ | Skutečná jména až po smlouvách. Vazbu na Erasmus uvádět jen ověřenou. |
+| Čísla | 15. 6. 1987, 1998, 446 200 účastníků z ČR (výzvy 1998–2024, DZS 2/2025), 2014 Erasmus+ | DZS Mozaika jaro 2025, DZS infografika 2024 |
+
+### Zdroje
+- [DZS, Mozaika jaro 2025](https://www.dzs.cz/sites/default/files/mosaic/2025-03/Mozaika_2025-JARO.pdf): 446 200 účastníků 1998–2024
+- [Agence Erasmus+ France, Les 40 ans d’Erasmus+](https://agence.erasmusplus.fr/2026/07/09/les-40-ans-derasmus-se-preparent/): 15. 6. 1987, plán oslav 2027 (leden, květen, červen, říjen Erasmus Days, prosinec)
+- [DZS, 35 let Erasmu](https://www.dzs.cz/clanek/oslavte-s-nami-35-narozeniny-programu-erasmus): oslavy přes Erasmus Days
+- [prague.eu, Náplavka Rašínovo nábřeží](https://prague.eu/cs/objevujte/naplavka-rasinovo-nabrezi/): vymezení a akce
+- [Echo24, až 22 tisíc lidí na náplavce](https://www.echo24.cz/a/wycxc/na-naplavku-chodi-slavit-az-22-tisic-lidi-krnacove-se-omezeni-moc-nezda)
+
+### Před potvrzením ověřit
+1. Termín u DZS a MŠMT, aby nekolidoval s evropskými akcemi k výročí.
+2. Zábor náplavky, hluk, pódium, elektřina, bezbariérovost a toalety se správcem.
+3. Rozpočet a booking hlavního hosta.
+4. Poté nastavit `confirmed: true`. Zapne se odpočet, .ics a schema.org Event.

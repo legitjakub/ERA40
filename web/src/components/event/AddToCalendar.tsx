@@ -1,13 +1,13 @@
 "use client";
 
-import { event } from "@/content/event";
+import { event, eventConfirmed } from "@/content/event";
 
 const stamp = (iso: string) =>
   new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
 
-/** Downloads an .ics file built in the browser; hidden until a date exists. */
+/** Downloads an .ics file built in the browser; hidden until the date is confirmed. */
 export function AddToCalendar({ className }: { className?: string }) {
-  if (!event.start) return null;
+  if (!eventConfirmed() || !event.start) return null;
   function download() {
     const start = event.start!;
     const end = event.end ?? new Date(Date.parse(start) + 8 * 3600_000).toISOString();
