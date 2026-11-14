@@ -18,7 +18,6 @@ export function SiteFooter() {
           </p>
         </div>
         <nav aria-label="Závěrečná navigace">
-          <Link href="/oslava">Oslava 40 let Erasmu</Link>
           <Link href="/pribehy">Všechny příběhy</Link>
           <Link href="/zapojte-se">Zapojte se</Link>
           <Link href="/o-projektu">O projektu</Link>

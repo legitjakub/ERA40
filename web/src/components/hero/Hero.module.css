@@ -81,8 +81,7 @@
 }
 .actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 14px clamp(18px, 2.5vw, 40px);
+  gap: clamp(18px, 2.5vw, 40px);
   align-items: center;
 }
 .primary,
@@ -98,7 +97,6 @@
   color: var(--c-ink);
   padding: 12px 19px;
   text-decoration: none;
-  white-space: nowrap;
 }
 .primary:hover {
   background: white;
@@ -177,43 +175,3 @@
   }
 }
 
-
-/* The event line: what is happening and when, before anything else. */
-.event {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 14px;
-  margin-bottom: clamp(14px, 2.4vh, 26px);
-  padding: 8px 14px;
-  background: var(--c-yellow);
-  color: var(--c-ink);
-  font-size: clamp(0.9rem, 1.05vw, 1.05rem);
-  text-decoration: none;
-}
-.eventLabel {
-  font-weight: 800;
-}
-.eventDate {
-  margin: 0;
-  font-weight: 550;
-}
-@media (max-width: 767px) {
-  .event {
-    gap: 2px 12px;
-    font-size: 0.875rem;
-  }
-  .event > [aria-hidden] {
-    display: none;
-  }
-  .primary {
-    gap: 16px;
-  }
-}
-.event:hover {
-  background: white;
-}
-.event:focus-visible {
-  outline: 2px solid white;
-  outline-offset: 3px;
-}

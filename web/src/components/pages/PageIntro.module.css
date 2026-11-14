@@ -57,7 +57,7 @@
     "wdth" 74,
     "wght" 830;
   letter-spacing: -0.025em;
-  line-height: 1.02;
+  line-height: 0.95;
   animation: rise 1s 0.15s var(--ease-out) both;
 }
 .lead {

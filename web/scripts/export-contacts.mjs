@@ -13,7 +13,7 @@ try {
 }
 const rows = raw.split("\n").filter(Boolean).map((line) => JSON.parse(line));
 const columns = [
-  "receivedAt", "path", "name", "email", "guests", "newsletter", "from", "to", "year",
+  "receivedAt", "path", "name", "email", "newsletter", "from", "to", "year",
   "mobility", "publishConsent", "story", "audience", "destination",
   "organisation", "role", "phone", "message", "privacyVersion", "id",
 ];
