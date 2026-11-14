@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FictionBadge } from "@/components/ui/FictionBadge";
 export default function Placeholders() {
   return (
     <main id="main" className="document-page">
@@ -8,8 +9,7 @@ export default function Placeholders() {
       <p>
         Tereza, Ondřej, Inês, Jakub, Jana, Adéla, Martin, Lucie a Marta jsou
         smyšlené postavy. Jejich příběhy i citace vznikly jako ilustrace různých
-        zkušeností s Erasmem. U každého příběhu je viditelné označení MODEL
-        STORY – FICTIONAL PLACEHOLDER.
+        zkušeností s Erasmem. U každého příběhu je viditelné označení „<FictionBadge />“.
       </p>
       <h2>Ilustrativní fotografie a film</h2>
       <p>

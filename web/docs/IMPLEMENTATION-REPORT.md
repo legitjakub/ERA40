@@ -139,3 +139,11 @@ Nová koordinovaná revize zachovává filmový úvod a závaznou art direction.
 - Neplatný neobjektový JSON v kontaktním API vrací 400. Ověření úspěšného odeslání a jízdenky používá mock API, osobní ani existující testovací kontakty nebyly změněny.
 
 Na žádost uživatele byly do obou agentů nainstalovány oficiální GSAP skilly, Awwwards, React a Web Interface Guidelines od Vercelu a společný workflow `cinematic-websites`. Seznam zdrojů a způsob vyvolání jsou v `CREATIVE-SKILLS.md`; root `CLAUDE.md` zajišťuje projektový kontext pro další práci. Instalace nerozšiřuje oprávnění k publikování webu.
+# Průběžná realizace návrhu 005 — 14. 11. 2026
+
+Jakub autorizoval postupné změny hlavní stránky i podstránek a průběžný push do `main`.
+
+**Dávka A:** sjednocené české označení modelových příběhů přes společnou komponentu v homepage, mapě, dialogu, archivu a detailu; bezpečnější řádkování českých nadpisů; podstránkové úvody používají sdílená trvání a menší přiblížení fotografie.
+
+Ověření: lint, typecheck a produkční build úspěšné. Na produkční :3000 prošlo `/`, `/pribehy`, `/pribehy/vymena`, `/zapojte-se`, `/o-projektu` při 1440 × 900 a 390 × 844: žádné JS chyby, přetoky ani nálezy axe ve zvolených WCAG A/AA pravidlech. Prohlédnuté screenshoty jsou ve scratchpadu `/private/tmp/era40-main-20261114/batch-a/`. Kontaktní API bylo blokované, data netknutá.
+

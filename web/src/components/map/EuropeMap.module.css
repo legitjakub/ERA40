@@ -18,7 +18,7 @@
   color: var(--c-eu-blue);
   font-size: clamp(3.6rem, 7vw, 8rem);
   letter-spacing: -0.025em;
-  line-height: 0.95;
+  line-height: 1.04;
   font-variation-settings:
     "wdth" 60,
     "wght" 830;

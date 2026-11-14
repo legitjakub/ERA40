@@ -15,6 +15,7 @@ import {
 import { loadFlip, gsap, registerGsap } from "@/lib/gsap/setup";
 import { stories, storyPhoto } from "@/content/stories";
 import type { Story } from "@/content/types";
+import { StoryLabel } from "@/components/archive/StoryLabel";
 import styles from "./PeopleStories.module.css";
 
 type FlipPlugin = typeof import("gsap/Flip").Flip;
@@ -40,13 +41,7 @@ export function useOpenStory() {
   return open;
 }
 
-export function StoryStatus({ story }: { story: Story }) {
-  return story.status === "model-story" ? (
-    <span>MODEL STORY – FICTIONAL PLACEHOLDER</span>
-  ) : (
-    <a href={story.source.url}>{story.source.label}</a>
-  );
-}
+export const StoryStatus = StoryLabel;
 
 export function StoryProvider({ children }: { children: ReactNode }) {
   const [story, setStory] = useState<Story | null>(null);

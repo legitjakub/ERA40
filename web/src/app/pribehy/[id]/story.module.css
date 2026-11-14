@@ -47,7 +47,7 @@
     "wdth" 66,
     "wght" 850;
   letter-spacing: -0.025em;
-  line-height: 0.92;
+  line-height: 1.04;
   animation: rise 0.9s var(--ease-out) both;
 }
 .quote {
@@ -175,7 +175,7 @@
     "wdth" 66,
     "wght" 850;
   letter-spacing: -0.025em;
-  line-height: 0.95;
+  line-height: 1.04;
   transition: transform 0.6s var(--ease-out);
 }
 .nextRoute {

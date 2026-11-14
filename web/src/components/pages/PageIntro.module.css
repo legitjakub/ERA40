@@ -13,11 +13,11 @@
 .media {
   position: absolute;
   inset: 0;
-  animation: curtain 1.4s var(--ease-out) both;
+  animation: curtain var(--dur-l) var(--ease-out) both;
 }
 .media img {
   object-fit: cover;
-  animation: settle 2.4s var(--ease-out) both;
+  animation: settle var(--dur-l) var(--ease-out) both;
 }
 /* Same flat ink scrim as the home film, deeper towards the type. */
 .scrim {
@@ -57,8 +57,9 @@
     "wdth" 74,
     "wght" 830;
   letter-spacing: -0.025em;
-  line-height: 0.95;
-  animation: rise 1s 0.15s var(--ease-out) both;
+  line-height: 1.04;
+  text-wrap: balance;
+  animation: rise var(--dur-m) 0.15s var(--ease-out) both;
 }
 .lead {
   max-width: 46ch;
@@ -66,7 +67,7 @@
   font-size: var(--fs-lead);
   line-height: 1.35;
   font-weight: 450;
-  animation: rise 1s 0.28s var(--ease-out) both;
+  animation: rise var(--dur-m) 0.28s var(--ease-out) both;
 }
 .credit {
   position: absolute;
@@ -87,7 +88,7 @@
   height: 3px;
   background: var(--c-yellow);
   transform-origin: left;
-  animation: draw 1.6s 0.3s var(--ease-out) both;
+  animation: draw var(--dur-l) 0.3s var(--ease-out) both;
 }
 @keyframes curtain {
   from {
@@ -99,7 +100,7 @@
 }
 @keyframes settle {
   from {
-    transform: scale(1.12);
+    transform: scale(1.06);
   }
 }
 @keyframes rise {
