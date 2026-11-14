@@ -35,6 +35,14 @@ Současné 06–08 vypadají jako tři různé šablony za sebou: slider se stoc
   - osmi měst na lince není potřeba: linka jde z rozvětvení dál. Výsledek nesmí působit jako další šablona karet.
 - **Patička** navazuje bez dalšího bloku.
 
+## Upřesnění po review Codexu (CDX-003)
+- **Měřítko 07:** pět oblastí v `content/stats.ts` dává přesně 411 400. Délka větve se měří podél její cesty, se společným lineárním měřítkem. Žádné minimální délky ani rozdílná měřítka větví. Pod grafem musí stát: „Počty účastníků podle oblasti vzdělávání, nikoli počet lidí, které zkušenost nepřímo ovlivnila.“
+- **06 bez vymýšlení:** `story-impact.ts` obsahuje shrnutí pokračování, ne celé dvojice před/po. Použít 2–3 příběhy a texty stavět jen z existujícího modelového obsahu. Žádné nové výsledky ani předstírané archivní fotky.
+- **Perspektiva neúčastníků a institucí:** v 06–08 aspoň jednou ukázat pokračování k lidem, kteří nevyjeli (studenti, kolegové, škola). Kvíz „Na Erasmu: 0 dní“ je pro to vstup.
+- **Formulace čísel:** „86 % účastníků uvedlo, že výjezd přispěl k jejich spokojenosti se životem“ (šetření DZS a STEM/MARK 2022). U příchozích „přibližně 450 000“.
+- **Konflikt s 008B:** předávka mířila na horní hranu `[data-number-stat]`, žlutý dělič a ink kapitolu. V 009 musí mířit na **kořen větvení** a respektovat modrou linku na světlé ploše. 008A nekoliduje.
+- **Převzato z 007:** modelová označení, výběr oblasti, výzva pro vzdělávání dospělých, ruční převzetí slideru. Vizuál závěru 007 se nahrazuje.
+
 ## Choreografie (desktop)
 | Prvek | Role | Spouštěč | Pohyb | Reverse |
 |---|---|---|---|---|

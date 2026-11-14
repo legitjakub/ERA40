@@ -34,7 +34,7 @@
 | WebGL koncept | **Jeden sdílený renderer** (rozšíření `distortion.ts` → Three.js nebo zůstat u WebGL1 podle PoC). Linka jako GPU ribbon podél Catmull-Rom křivky (uniform `progress`: plná / bod / tečky v shaderu). Fotografie jako texturované plochy synchronizované s DOM (displacement při přechodu). Mělká 3D kamera **jen v Historii** (průlet dekádami). Jinde 2,5D. |
 | Mobil | Bez kamery a bez 3D. Linka zůstává SVG (dnešní systém), smyčka a větvení vertikálně podél levého okraje. Fotografické předávky jako crossfade + maska. Žádné piny delší než 100 vh. |
 | Reduced | Linka je hned celá nakreslená a smyčky statické. Obsah stejný. |
-| Riziko | Nízké až střední. Navazuje na hotový kód (Trasa, 005A, 008). Nejrizikovější je synchronizace ribbonu se scrubem (PoC ve fázi 3). |
+| Riziko | **Střední až vysoké** (opraveno po CDX-003). Obsahová část (SVG linka, smyčka, větve) je M a navazuje na hotový kód. GPU ribbon a kamera v Historii jsou L: `distortion.ts` je lokální WebGL1 efekt, ne globální renderer. Obojí jde jen přes samostatné PoC. Základem zůstává SVG. |
 
 **Storyboard (desktop, scroll):**
 1. Film → rám (stávající). Ze spodní hrany vyjede žlutý bod a modrá linka.
@@ -94,6 +94,13 @@
 | Riziko „AI šablony“ / samoúčelnosti (2, víc = lépe) | 4 | 4 | 2 |
 | Mobil a výkon (1) | 5 | 3 | 2 |
 | **Vážený součet** | **69** | **52** | **40** |
+
+## Upřesnění po review Codexu (CDX-003)
+
+- **Jedna hlavní smyčka:** smyčka ∞ je jeden signature moment (hero, přes 0 ve „40“). U příběhů a na mapě se linka smyčkou nevykresluje. Zpáteční cesty nemají oporu v obsahu.
+- **Význam nese obsah, ne tvar:** dopad vysvětluje konkrétní změna a komu zkušenost pomohla. Linka to jen spojuje.
+- **Lidé, kteří nevyjeli, a instituce:** kapitoly 06–08 výslovně ukazují pokračování ke studentům, kolegům, školám a organizacím, ne jen návrat účastníka (spec 009).
+- **Pořadí:** nejdřív 009 v SVG, potom samostatné PoC (smyčka v hero, GPU ribbon, kamera v Historii). Produkční GPU až po PoC a review.
 
 ## 4. Rozhodnutí: směr A
 

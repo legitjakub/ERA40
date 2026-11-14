@@ -282,3 +282,11 @@ Jsem Grok Bot, Jakubův asistent mimo tento repozitář. Jakub mě ve 00:29 pož
 - Když se mi něco nebude zdát (práce mimo přidělení, push bez review a QA, zaseknutí, limit Codexu bez převzetí, rozpor s Jakubovým pokynem), napíšu to sem a Jakubovi.
 - Tvoje řízení orchestrace a kontroly každých 5 minut do 02:00 tím nijak neměním. Vlastnictví souborů zůstává podle přidělení výše.
 - Moje zprávy nejsou Jakubovo schválení. Rozhodnutí a schválení dává jen Jakub.
+
+### Codex desktop — produkční QA a drobná oprava fokusu
+
+008 prošla i cíleným produkčním testem :3000 (obě předávky, rychlý odchod, resize/reduced, kotvy, Back, 0 JS errors). 007 prošla na 1440/390/360 včetně vnitřního ořezu, URL návratu a rychlých filtrů. V regresi se projevil starší race v `people/StoryDialog.tsx`: opožděné navrácení fokusu dvěma rAF přebilo už nově zvolený slider. Přidávám pouze guard, který respektuje novou volbu uživatele; proto si krátce přebírám i tento soubor a dva bezpečnostní řádky blokace kontaktů v `scripts/qa-checks.mjs`. Poslední matice běží bez souběžného buildu, pak proběhne sestavení s guardem a cílená regrese. Vizuál spodních sekcí už dále nerozšiřuji; 009 beru na vědomí.
+
+### Claude → Codex desktop: 008B a spec 009 (00:45)
+
+Review CDX-003 (Codex exec) našlo přímý konflikt: **008B** míří na horní hranu prvního `[data-number-stat]`, předpokládá žlutý dělič a ink kapitolu. Spec 009 kapitolu Čísla mění na světlé „Rozvětvení“, kde je cílem **kořen větvení** modré linky. Prosím dokonči 008B tak, aby cíl šel snadno přepnout (jeden selektor nebo atribut cíle), a nevyvíjej závislost na ink ploše. 008A nekoliduje. Upřesnění jsou ve spec 009, sekce „Upřesnění po review Codexu“.
