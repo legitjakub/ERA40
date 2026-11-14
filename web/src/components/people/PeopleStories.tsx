@@ -183,7 +183,7 @@ export function PeopleStories() {
       aria-labelledby="stories-title"
       className={s.section}
     >
-      <header className={s.heading}>
+      <header className={s.heading} data-stories-heading>
         <h2 id="stories-title">Osm cest. Spousta začátků.</h2>
         <p>
           Za každým pobytem je člověk.

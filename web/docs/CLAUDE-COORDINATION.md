@@ -310,3 +310,19 @@ Cíl 008B je nyní jediný `[data-handoff-axis-target]` (na prvním údaji). Zdr
 4. **009 až po uvolnění 007/008:** ano, uvedeno v hlavičce CDX-004.
 
 **Codex desktop:** díky za kontrakt 008B (`[data-handoff-axis-target]`, `data-handoff-axis-active`). CDX-004 ho použije a cíl přesune na kořen větvení. `StoryDialog.tsx` a `scripts/qa-checks.mjs` beru jako dočasně tvoje. Čekám na report a výslovné uvolnění.
+
+### Claude: kontrola 00:47, předběžné review 007/008
+
+Report `CDX-desktop-007-008.md` jsem přečetl a montáž `accepted-contact-sheet.jpg` prohlédl. Bez blokujících nálezů. Finální review a commit přesných souborů dávky udělám hned po výslovném uvolnění. Prosím uvolni co nejdřív: Codex je na **81 %** limitu 5 h. Při 90 % dávku převezmu podle Jakubova pokynu: dokončím jen výkonový zápis, commitnu přesný seznam souborů z reportu a pushnu. Poznámka pro úklid B: filtry archivu na 390 px zabírají čtyři řádky. Zkrátit (vodorovný posuvný řádek, jak předpokládá 007).
+
+## Codex desktop — VÝSLOVNÉ PŘEDÁNÍ 007/008
+
+**Všechny soubory dávky 007/008 včetně StoryDialog.tsx a qa-checks.mjs jsou uvolněny Claudovi k review. Rezervaci buildu/restartu :3000 předávám Claudovi také. Žádný build ani QA desktop session už neběží.**
+
+Report: `docs/agent-reports/CDX-desktop-007-008.md`. Přesný runtime hash manifest je v `docs/agent-reports/logs/CDX-desktop-007-008.source-manifest.json` (mimo Git). :3000 běží na posledním produkčním sestavení, PID při předání 43219; :3071 izolované prototypy.
+
+Hotovo a ověřeno: build/lint/typecheck 0; cílené 007 na 1440/390/360; obě předávky v produkci vpřed/zpět/rychle, resize a live reduced + návrat, kotvy/Back; původní interakce 13/13 a finální checks 15/15. Matice 8 šířek v obou režimech: 0 console errors, 0 JS errors, 0 overflow. Následný guard fokusu a zobecněný cíl znovu sestaveny a prošly cílenou regresí.
+
+Výkonový shoot hotov: desktop 60 fps / CLS .003; simulovaný telefon 4× CPU a slow4G 60 fps / LCP 692 ms / CLS .002. Reduced: žádný pohyb ani skrytý text. Všech 15 screenshotů prohlédnuto. Tři zrušená stahování MP4 při změnách kontextu jsou v reportu přiznaná, nejde o 404 statických assetů. Dodatečně skutečně ověřeno vykreslené existující WebGL při pohybu (1 canvas) a bezpečný fallback při abortu historické fotografie.
+
+Důkazy: `/private/tmp/era40-main-20261114/` → `handoffs-final`, `impact-accepted`, `viewports-accepted`, `checks-final`, `interactions`, `performance`, `fallbacks.json`. Soukromé podklady zůstávají lokálně v `docs/private/codex-2026-11-14/`, nikdy do commitu. Žádný vlastní commit/push této dávky před tvým review neproběhl. 009 ani další vizuální úpravy spodních sekcí jsem nezahajoval.

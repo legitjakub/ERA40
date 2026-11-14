@@ -69,7 +69,7 @@ export function createDistortion(
   function draw() {
     frame = 0;
     if (disposed || document.hidden) return;
-    if (section.dataset.handoff === "true") {
+    if (section.dataset.handoff === "true" || section.dataset.entryHandoff === "true") {
       canvas.style.opacity = "0";
       previous = scrollY;
       velocity = 0;

@@ -94,6 +94,7 @@ try {
       locale: "cs-CZ",
     });
     const page = await ctx.newPage();
+    await page.route("**/api/kontakty", (route) => route.abort());
     page.setDefaultTimeout(3500);
     await page.goto(values.url, { waitUntil: "load" });
     await page.evaluate(() => document.fonts.ready);
@@ -182,6 +183,7 @@ try {
   const page = await browser.newPage({
     viewport: { width: 1440, height: 900 },
   });
+  await page.route("**/api/kontakty", (route) => route.abort());
   const res = await page.goto(values.url);
   const markup = await res.text();
   const modernMarkup = markup.replace(

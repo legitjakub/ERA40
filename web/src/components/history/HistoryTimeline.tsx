@@ -230,11 +230,11 @@ export function HistoryTimeline() {
       </h2>
       <div data-stage className={styles.stage}>
         <div className={styles.stageInner}>
-          <p className={styles.title} aria-hidden="true">
+          <p className={styles.title} aria-hidden="true" data-history-copy>
             Dvě linie, jedna cesta
           </p>
           <div className={styles.scene}>
-            <div className={styles.narrative}>
+            <div className={styles.narrative} data-history-copy>
               <span className={styles.trackLabel}>
                 {stations[active].line === "cz" ? "Česko" : "Evropa"}
               </span>
@@ -268,7 +268,7 @@ export function HistoryTimeline() {
               </div>
             </div>
             <figure className={styles.figure}>
-              <div className={styles.stack} data-grain>
+              <div className={styles.stack} data-grain data-history-frame>
                 {stations.map((station, i) => (
                   <div
                     key={station.year}
@@ -283,7 +283,7 @@ export function HistoryTimeline() {
               <figcaption>Ilustrační snímek</figcaption>
             </figure>
           </div>
-          <div ref={routes} className={styles.routes}>
+          <div ref={routes} className={styles.routes} data-history-copy>
             <svg
               viewBox={`0 0 ${routeWidth} 70`}
               preserveAspectRatio="none"

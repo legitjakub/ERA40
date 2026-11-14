@@ -19,6 +19,7 @@ const darkHeroPages = [
   "/zapojte-se",
   "/o-projektu",
   "/ochrana-osobnich-udaju",
+  "/tvoje-era",
 ];
 const pages = [
   ["/pribehy", "Všechny příběhy"],

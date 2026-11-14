@@ -56,9 +56,9 @@ export function ThenNow() {
       aria-labelledby="then-now-title"
       className={s.section}
     >
-      <div className={s.scene}>
+      <div className={s.scene} data-handoff-stage>
         <div className={s.inner}>
-          <header className={s.header}>
+          <header className={s.header} data-handoff-copy>
             <h2 id="then-now-title" className={s.title}>
               Tehdy a teď.
             </h2>
@@ -68,6 +68,7 @@ export function ThenNow() {
           </header>
           <div
             className={s.options}
+            data-handoff-copy
             role="group"
             aria-label="Vyberte téma porovnání"
           >
@@ -112,7 +113,7 @@ export function ThenNow() {
                 <span>Tehdy</span>
                 <span>Teď</span>
               </div>
-              <div className={s.divider} aria-hidden="true">
+              <div className={s.divider} aria-hidden="true" data-handoff-axis-source>
                 <span>‹ ›</span>
               </div>
               <input
@@ -140,6 +141,25 @@ export function ThenNow() {
               />
             </div>
             <figcaption>
+              <div className={s.positions} role="group" aria-label="Zobrazení porovnání">
+                {[
+                  { label: "Tehdy", value: 100 },
+                  { label: "Obojí", value: 50 },
+                  { label: "Teď", value: 0 },
+                ].map((item) => (
+                  <button
+                    type="button"
+                    key={item.value}
+                    aria-pressed={position === item.value}
+                    onClick={() => {
+                      manual.current = true;
+                      setPosition(item.value);
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
               <div
                 key={pair.topic}
                 className={s.captions}

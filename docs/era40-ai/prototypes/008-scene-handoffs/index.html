@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>ERA40 — návaznost scén, návrh 008</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="/_vendor/gsap.min.js" defer></script>
+  <script src="scene.js" defer></script>
+</head>
+<body>
+  <header class="intro">
+    <a class="brand" href="http://127.0.0.1:3000/">ERA40 <span>1987–2027</span></a>
+    <div><p>Izolovaný návrh 008 · ke společné revizi</p><h1>Scény patří k sobě.</h1></div>
+    <button id="reduce" type="button" aria-pressed="false">Omezit pohyb</button>
+  </header>
+  <main>
+    <div class="choices" role="group" aria-label="Ukázka přechodu">
+      <button type="button" data-mode="history" aria-pressed="true">03 → 04 · Z roku k člověku</button>
+      <button type="button" data-mode="axis" aria-pressed="false">06 → 07 · Z rozdílu k dopadu</button>
+    </div>
+
+    <section class="study" aria-label="Vizuální revize předávky">
+      <div id="stage" class="stage" data-mode="history" data-static="true" role="group" aria-label="Historický rám předává místo prvnímu lidskému příběhu">
+        <div class="history-scene">
+          <div class="panel history-source">
+            <div class="history-copy">
+              <p class="small-title">Dvě linie, jedna cesta</p>
+              <div class="history-narrative"><p>Evropa</p><p class="year">2027</p><h2>Čtyřicet let Erasmu</h2><p>Od vzniku evropského programu uplyne čtyřicet let. České zapojení má za sebou dvacet devět let.</p></div>
+            </div>
+            <figure class="native-photo"><img src="/_media/ph-train-luggage.jpg" alt="Cestující se zavazadly ve vlaku"><figcaption>Ilustrační snímek</figcaption></figure>
+            <div class="history-rail" aria-hidden="true"><span>1987</span><span>1998</span><span>2004</span><span>2014</span><span>2020</span><span>2021</span><span>2027</span></div>
+          </div>
+          <div class="panel person-target">
+            <h2 class="people-heading">Osm cest. Spousta začátků.</h2>
+            <figure class="native-photo"><img src="/_media/ph-train-window-woman.jpg" alt="Mladá žena u okna vlaku"><figcaption>Ilustrační snímek</figcaption></figure>
+            <div class="person-copy"><p class="status">Modelový příběh – ilustrační</p><p>Olomouc ⟶ Valencie</p><h3>Tereza</h3><blockquote>„Poprvé jsem musela říct nahlas, co si myslím, a v cizím jazyce.“</blockquote><p>Semestr architektury ve Valencii. Ateliér, kde se kritizuje otevřeně, a kuchyně na koleji, kde se vařilo v pěti jazycích.</p><p class="status">Architektura, 2019</p></div>
+          </div>
+          <div class="photo-frame" aria-hidden="true"><img id="archive" src="/_media/ph-train-luggage.jpg" alt=""><div class="portrait-layer"><img id="portrait" src="/_media/ph-train-window-woman.jpg" alt=""></div></div>
+          <span class="photo-label" aria-hidden="true">Ilustrační snímek</span>
+        </div>
+        <div class="axis-scene">
+          <div class="panel comparison-source">
+            <header><h2>Tehdy a teď.</h2><p>Jak najít cestu, ozvat se domů a uchovat si vzpomínku na pobyt?</p></header>
+            <figure class="comparison"><div class="comparison-images"><img src="/_media/ph-map-pins.jpg" alt="Špendlíky na papírové mapě Evropy"><img class="now-image" src="/_media/navigation.jpg" alt="Telefon s navigací"><div class="tags"><span>Tehdy</span><span>Teď</span></div></div><figcaption>Trasa na papírové mapě <span>Mapa v telefonu</span><small>Ilustrační snímky z Pexels</small></figcaption></figure>
+          </div>
+          <div class="panel numbers-target">
+            <h2>Erasmus v číslech.</h2>
+            <div class="metrics"><div class="metric first-metric"><strong>411 400</strong><p>účastníků vyjelo z Česka do zahraničí</p><small>Výzvy 1998–2023, stav k 31. 12. 2023.<br>DZS, 20 let vzdělávání se s EU (PDF)</small></div><div class="metric"><span class="qualifier">Přibližně</span><strong>450 000</strong><p>účastníků přijelo ze zahraničí do Česka</p><small>Od roku 1998 do 31. 12. 2023.<br>DZS, 20 let vzdělávání se s EU (PDF)</small></div></div>
+          </div>
+          <svg class="axis-line" aria-hidden="true"><line></line></svg>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="play" type="button">Přehrát přechod ↗</button>
+        <button id="reverse" type="button">Zpět</button>
+        <div class="scrubber"><label for="progress">Průběh <output for="progress">0 %</output></label><input type="range" id="progress" min="0" max="1000" value="0" step="1" aria-valuetext="Začátek přechodu"></div>
+        <div class="frames" role="group" aria-label="Zastavené kompozice"><button type="button" data-frame="0">Začátek</button><button type="button" data-frame="0.5">Předávka</button><button type="button" data-frame="1">Konec</button></div>
+        <label class="split-control" hidden>Výchozí poloha děliče <input id="split" type="range" min="10" max="90" value="50"> <output id="split-output">50 %</output></label>
+      </div>
+    </section>
+    <p class="fallback-note" hidden>Na telefonu a při omezeném pohybu jsou obě kompozice vidět v přirozeném pořadí, bez přeletu a připnutí.</p>
+    <div class="notes"><div><h2>Jedna věc přetrvá.</h2><p>V prvním přechodu zůstává rám. Ve druhém Trasa. Rok, člověk, zkušenost a doložený dopad tak tvoří jednu cestu.</p></div><div><h2>Co posuzujeme</h2><p>Čitelnost v polovině pohybu, rytmus a návrat zpět. Posuňte průběh, zkuste kolečko přímo ve scéně nebo přehrávání. Mobil ukazuje klidné pořadí obou kompozic.</p><p class="status">Prototyp neověřuje integraci s piny a WebGL homepage. Její schválení následuje samostatně podle Fáze 11.</p></div></div>
+  </main>
+  <noscript><p class="no-js">Zapněte JavaScript pro přehrání. Text a oba snímky jsou dostupné ve výchozím návrhu.</p></noscript>
+</body>
+</html>

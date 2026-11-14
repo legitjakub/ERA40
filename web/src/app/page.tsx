@@ -9,6 +9,7 @@ import { ThenNow } from "@/components/then-now/ThenNow";
 import { Numbers } from "@/components/numbers/Numbers";
 import { Future } from "@/components/future/Future";
 import { JourneySequence } from "@/components/people/JourneySequence";
+import { SceneHandoffs } from "@/components/scenes/SceneHandoffs";
 
 export default function HomePage() {
   return (
@@ -30,13 +31,15 @@ export default function HomePage() {
       <StoryProvider>
         <Hero />
         <PeopleIntro />
-        <HistoryTimeline />
-        <JourneySequence>
-          <PeopleStories />
-          <EuropeMap land={<MapLand />} />
-        </JourneySequence>
-        <ThenNow />
-        <Numbers />
+        <SceneHandoffs>
+          <HistoryTimeline />
+          <JourneySequence>
+            <PeopleStories />
+            <EuropeMap land={<MapLand />} />
+          </JourneySequence>
+          <ThenNow />
+          <Numbers />
+        </SceneHandoffs>
         <Future />
       </StoryProvider>
     </main>

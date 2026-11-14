@@ -51,3 +51,11 @@ Formát: ID · datum · rozhodnutí · důvod · kdo. Nová rozhodnutí přidáv
 Poučení z prototypu: podklad je nutné usadit dříve než nadpis, jinak mezisnímek ztrácí kontrast; popisek fotografie nesmí škálovat do nečitelné velikosti; na mobilu se nesmí původní linka nechat procházet přes citaci. Scroll a resize mají oddělené plánování a měření musí resetovat vlastní transformaci mapy. Důkazy a limity: `prototypes/005-connected-scenes/QA.md`.
 
 Věcná oprava podkladů: mapa už obsahuje skutečné příchozí i odchozí cesty. Původní návrh 002 má pozastavenou implementaci do opravy koncepce; nevymýšlet návrat ke každému příběhu. Aktuální výrazně dlouhý desktopový rail potřebuje samostatný návrh tempa, nikoli prosté několikanásobné zrychlení textů.
+
+## QA Codex desktop — 007/008, 15. 11. 2026
+
+Jakub výslovně schválil oba koncepty a integraci 008. Přechody jsou implementované v existujících hranicích bez nových pinů. Produkční build, lint, typecheck, regrese 15/15 a 13/13, cílené 007/008 a čistá matice osmi šířek prošly. Report a předání: `docs/agent-reports/CDX-desktop-007-008.md`.
+
+Poučení: (1) konec předávky musí respektovat skutečný scroll-margin-top kotvy; (2) vnitřní ořez gridu od min-height/aspect-ratio neodhalí pouhé document.scrollWidth; (3) očekávané přerušení ViewTransition.ready vyžaduje obsluhu AbortError; (4) opožděný návrat fokusu nesmí přebít novou volbu uživatele; (5) dvě různé ilustrační tváře se ve sdíleném rámu lépe oddělí střihem než prolínáním.
+
+Naměřeno headless: 60 fps desktop, simulovaný telefon 4× CPU/slow4G LCP 692 ms, CLS .002 a 60 fps. Nejde o měření fyzického telefonu. Existující WebGL skutečně vykreslen při pohybu; při nedostupné fotografii zůstává původní obsah viditelný. Žádné kontakty nebyly odeslány ani čteny.

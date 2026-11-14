@@ -89,10 +89,11 @@
   stroke-width: 2;
 }
 .route .openStop {
-  fill: var(--c-sky);
+  fill: var(--c-yellow);
   stroke: var(--c-eu-blue);
   stroke-width: 2;
 }
+.route .futurePath { stroke-dasharray: 4 9; stroke-linecap: round; }
 .city,
 .yours {
   position: absolute;

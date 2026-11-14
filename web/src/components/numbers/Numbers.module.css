@@ -140,8 +140,51 @@
 .track i {
   display: block;
   height: 100%;
-  background: #ffed00;
+  background: var(--c-eplus);
+  transition: background-color var(--dur-xs);
 }
+.bars li[data-selected="true"] .track i { background: var(--c-yellow); }
+.sectorButton {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 44px;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 0;
+  border: 0;
+  background: none;
+  color: white;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.sectorButton:focus-visible { outline: 2px solid var(--c-yellow); outline-offset: 5px; }
+.sectorButton[aria-pressed="true"] { color: var(--c-yellow); }
+.explore { max-width: 31ch; margin: 24px 0 0; line-height: 1.5; }
+.example {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  margin-top: clamp(36px, 6vw, 80px);
+  background: var(--c-sky);
+  color: var(--c-ink);
+  animation: example var(--dur-xs) var(--ease-out);
+}
+.examplePhoto { position: relative; min-width: 0; min-height: 320px; margin: 0; }
+.examplePhoto img { object-fit: cover; }
+.examplePhoto figcaption { position: absolute; bottom: 12px; left: 12px; padding: 3px 8px; font-size: 0.8125rem; background: var(--c-ink); color: white; }
+.exampleText { min-width: 0; padding: clamp(24px, 4vw, 56px); }
+.exampleLabel { font-size: 0.8125rem; line-height: 1.5; color: var(--c-mute); margin: 0 0 20px; }
+.exampleText h4 { font-size: clamp(2rem, 4vw, 4.3rem); font-variation-settings: "wdth" 64, "wght" 820; letter-spacing: -0.025em; line-height: 1.05; color: var(--c-eu-blue); margin: 0 0 24px; }
+.exampleText > a { display: inline-flex; gap: 24px; align-items: center; min-height: 44px; font-weight: 650; color: var(--c-eplus-ink); text-underline-offset: 5px; }
+.exampleText:only-child { grid-column: 1 / -1; max-width: 65ch; }
+@keyframes example { from { opacity: 0; } }
+@media (max-width: 700px) {
+  .example { grid-template-columns: minmax(0, 1fr); }
+  .examplePhoto { min-height: 0; aspect-ratio: 1.5; }
+}
+@media (prefers-reduced-motion: reduce) { .example { animation: none; } }
 .screenReaderOnly {
   position: absolute;
   width: 1px;

@@ -1,0 +1,33 @@
+.sequence { position: relative; }
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  visibility: hidden;
+}
+.overlay[data-active="true"] { visibility: visible; }
+.frame { position: absolute; inset: 0; overflow: hidden; }
+.image {
+  position: absolute;
+  inset: 0 auto auto 0;
+  max-width: none;
+  transform-origin: 0 0;
+}
+.label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 4px 8px;
+  background: rgb(11 27 51 / .85);
+  color: white;
+  font-size: .875rem;
+  line-height: 1.2;
+}
+.axis { width: 100%; height: 100%; overflow: visible; }
+.axis line { stroke: var(--c-yellow); stroke-width: 2; }
+:global(body:has(dialog[open])) .overlay { visibility: hidden; }
+@media (max-width:1023px), (max-height:619px), (prefers-reduced-motion:reduce) {
+  .overlay { display: none; }
+}
+@media (max-height:679px) { .axis { display: none; } }

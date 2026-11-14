@@ -151,7 +151,13 @@ export function StoryProvider({ children }: { children: ReactNode }) {
         );
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          if (!el.open) returnTo?.focus({ preventScroll: true });
+          const active = document.activeElement;
+          // Closing may already restore focus natively. Do not steal a new
+          // keyboard/pointer choice made while the two-frame cleanup settles.
+          if (!el.open && returnTo?.isConnected &&
+            (active === document.body || active === returnTo || (active && el.contains(active)))) {
+            returnTo.focus({ preventScroll: true });
+          }
         });
       });
       opener.current = null;

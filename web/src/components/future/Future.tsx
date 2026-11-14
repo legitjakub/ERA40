@@ -24,13 +24,12 @@ function finalRoute(width: number) {
   }));
   const open = Math.round(bendAt + bend + Math.min(90, width * 0.08));
   return {
-    d: `M8 ${top}H${bendAt}C${bendAt + bend / 2} ${top} ${bendAt + bend / 2} ${low} ${bendAt + bend} ${low}H${width + 8}`,
+    d: `M8 ${top}H${bendAt}C${bendAt + bend / 2} ${top} ${bendAt + bend / 2} ${low} ${bendAt + bend} ${low}H${open}`,
+    future: `M${open} ${low}H${width + 8}`,
     top,
     low,
     stops,
     open,
-    // Share of the path drawn when the line reaches a point on the top run.
-    at: (x: number) => x / (width + bend * 0.4),
   };
 }
 
@@ -74,15 +73,18 @@ export function Future() {
         .fromTo(
           "[data-final-route]",
           { drawSVG: "0%" },
-          { drawSVG: "100%", ease: "none", duration: 1 },
+          { drawSVG: "100%", ease: "none", duration: 0.8 },
           0,
         );
       const geometry = finalRoute(journey.current?.clientWidth ?? 1280);
+      const length = root.current
+        ?.querySelector<SVGPathElement>("[data-final-route]")?.getTotalLength()
+        ?? geometry.open;
       gsap.utils
         .toArray<SVGElement>("[data-final-stop]", root.current)
         .forEach((stop, i) => {
           const label = root.current?.querySelectorAll("[data-final-city]")[i];
-          const at = geometry.at(geometry.stops[i]?.x ?? 0);
+          const at = 0.8 * ((geometry.stops[i]?.x ?? 8) - 8) / length;
           timeline.fromTo(
             stop,
             { scale: 0, transformOrigin: "50% 50%" },
@@ -102,6 +104,12 @@ export function Future() {
         { autoAlpha: 0 },
         { autoAlpha: 1, duration: 0.1, ease: "none" },
         0.72,
+      );
+      timeline.fromTo(
+        "[data-final-future]",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.2, ease: "none" },
+        0.8,
       );
       mm.add("(pointer:fine)", () => {
         const cta = root.current?.querySelector<HTMLElement>("[data-magnetic]");
@@ -126,7 +134,7 @@ export function Future() {
       });
       return () => mm.revert();
     },
-    { scope: root, dependencies: [reduced], revertOnUpdate: true },
+    { scope: root, dependencies: [reduced, routeWidth], revertOnUpdate: true },
   );
 
   async function share() {
@@ -178,6 +186,7 @@ export function Future() {
             preserveAspectRatio="none"
           >
             <path data-final-route d={route.d} />
+            <path data-final-future className={s.futurePath} d={route.future} />
             <circle cx="8" cy={route.top} r="6" />
             {route.stops.map((stop) => (
               <circle

@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { RouteMap } from "@/components/archive/RouteMap";
 import { StoryLabel } from "@/components/archive/StoryLabel";
+import { StoryImpact } from "@/components/archive/StoryImpact";
 import { storyDetails } from "@/content/story-details";
 import {
   getStory,
@@ -133,6 +134,7 @@ async function StoryContent({
             <RouteMap story={story} />
           </aside>
           <div className={s.text}>
+            <StoryImpact story={story} />
             <p className={s.lead}>{story.excerpt}</p>
             {body.map((paragraph) => (
               <p key={paragraph.slice(0, 24)}>{paragraph}</p>

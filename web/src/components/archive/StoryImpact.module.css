@@ -1,0 +1,32 @@
+.impact {
+  border-top: 2px solid var(--c-eu-blue);
+  padding-top: 20px;
+  margin-bottom: 32px;
+}
+.impact .label {
+  margin: 0 0 10px;
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: var(--c-eu-blue);
+}
+.impact .summary {
+  margin: 0 0 15px;
+  color: var(--c-ink);
+  font-size: clamp(1.2rem, 1.8vw, 1.65rem);
+  line-height: 1.4;
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+}
+.links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--c-eplus-ink);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-underline-offset: 5px;
+}

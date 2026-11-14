@@ -14,6 +14,7 @@ import {
 } from "@/content/stories";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { StoryLabel } from "./StoryLabel";
+import { impactThemes, storyImpact, type ImpactTheme } from "@/content/story-impact";
 import s from "./StoryArchive.module.css";
 
 /*
@@ -41,30 +42,33 @@ function subscribeLocation(update: () => void) {
 const locationSnapshot = () => window.location.search;
 const serverSnapshot = () => "";
 
-type Filters = { kind: StoryKind | "all"; direction: Direction; view: View };
+type Filters = { kind: StoryKind | "all"; direction: Direction; view: View; impact: ImpactTheme | "all" };
 
 function readFilters(search: string): Filters {
   const params = new URLSearchParams(search);
   const kind = params.get("typ");
   const direction = params.get("smer");
+  const impact = params.get("dopad");
   return {
     kind: storyKinds.some((item) => item.id === kind) ? kind as StoryKind : "all",
     direction: direction === "in" || direction === "out" ? direction : "all",
     view: params.get("pohled") === "index" ? "index" : "photos",
+    impact: impactThemes.some((item) => item.id === impact) ? impact as ImpactTheme : "all",
   };
 }
 
 export function StoryArchive() {
   const reduced = usePrefersReducedMotion();
   const search = useSyncExternalStore(subscribeLocation, locationSnapshot, serverSnapshot);
-  const { kind, direction, view } = readFilters(search);
+  const { kind, direction, view, impact } = readFilters(search);
   const [preview, setPreview] = useState(0);
 
   const shown = stories.filter(
     (story) =>
       (kind === "all" || storyKind(story) === kind) &&
       (direction === "all" ||
-        (direction === "in" ? isIncoming(story) : !isIncoming(story))),
+        (direction === "in" ? isIncoming(story) : !isIncoming(story))) &&
+      (impact === "all" || storyImpact(story)?.themes.includes(impact)),
   );
 
   // The panel shows the hovered or focused story, or the first one shown.
@@ -82,6 +86,7 @@ export function StoryArchive() {
         ["typ", next.kind, "all"],
         ["smer", next.direction, "all"],
         ["pohled", next.view, "photos"],
+        ["dopad", next.impact, "all"],
       ];
       entries.forEach(([key, value, fallback]) => {
         if (value === fallback) query.delete(key);
@@ -92,13 +97,18 @@ export function StoryArchive() {
       window.dispatchEvent(new Event("era40-archive-change"));
     };
     const doc = document as Document & {
-      startViewTransition?: (cb: () => void) => unknown;
+      startViewTransition?: (cb: () => void) => { ready: Promise<void> };
     };
     if (reduced || !doc.startViewTransition) {
       update();
       return;
     }
-    doc.startViewTransition(() => flushSync(update));
+    const transition = doc.startViewTransition(() => flushSync(update));
+    // Rapid filter changes legitimately skip the previous visual transition.
+    // Its update still runs; only this expected cancellation is handled here.
+    void transition.ready.catch((error) => {
+      if (!(error instanceof DOMException && error.name === "AbortError")) throw error;
+    });
   }
 
   return (
@@ -144,12 +154,32 @@ export function StoryArchive() {
             Rejstřík
           </button>
         </div>
+        <div className={`${s.filters} ${s.themes}`} role="group" aria-label="Co pokračuje dál">
+          <span className={s.filterLabel}>Co pokračuje dál</span>
+          {[{ id: "all", label: "Všechna témata" } as const, ...impactThemes].map((item) => (
+            <button key={item.id} type="button" aria-pressed={impact === item.id}
+              onClick={() => change({ impact: item.id })}>
+              {item.label}
+            </button>
+          ))}
+        </div>
       </div>
-      <p className={s.count} aria-live="polite">
-        {shown.length === stories.length
-          ? `${shown.length} příběhů`
-          : `Zobrazeno ${shown.length} z ${stories.length}`}
-      </p>
+      <div className={s.results}>
+        <p className={s.count} aria-live="polite" role="status">
+          {shown.length === stories.length
+            ? `${shown.length} příběhů`
+            : `Zobrazeno ${shown.length} z ${stories.length}`}
+        </p>
+        {(kind !== "all" || direction !== "all" || impact !== "all") && (
+          <button
+            className={s.reset}
+            type="button"
+            onClick={() => change({ kind: "all", direction: "all", impact: "all" })}
+          >
+            Zrušit filtry
+          </button>
+        )}
+      </div>
 
       {shown.length === 0 && (
         <p className={s.empty}>

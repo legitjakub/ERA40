@@ -28,7 +28,7 @@
 }
 .toolbar button {
   appearance: none;
-  min-height: 40px;
+  min-height: 44px;
   padding: 8px 14px;
   border: 1px solid var(--c-line);
   border-radius: var(--radius-control, 2px);
@@ -61,6 +61,36 @@
   font-size: 0.9375rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
+}
+.themes {
+  flex-basis: 100%;
+  align-items: center;
+}
+.filterLabel {
+  color: var(--c-mute);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding-right: 12px;
+  white-space: nowrap;
+}
+.results {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+}
+.reset {
+  min-height: 44px;
+  border: 0;
+  background: none;
+  color: var(--c-eplus-ink);
+  padding: 8px 0;
+  font: inherit;
+  font-size: 0.9375rem;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  cursor: pointer;
+  white-space: nowrap;
 }
 .empty {
   font-size: var(--fs-lead);
