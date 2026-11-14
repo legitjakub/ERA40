@@ -74,3 +74,13 @@ To je trend, který **ERA40 nepřebírá**: hero s filmem okamžitě a bez brán
 | 10 | Squarespace Foundations | Typografie jako prostorový objekt. Vzor pro „40“ a čísla. |
 
 Starší knihovna (Getty Tracing Art, Persepolis, Inkwell, Paper Planes, The Watch) dál platí jako principy (`docs/04-top-10-references.md`).
+
+## Druhý průchod za vstupní bránou (ověřená pozorování)
+
+- **Hubtown:** svítící **linky (ribbony) protékají scénou** jako „síť“ („We work with a network of experts“). Kamera jede, kostka je dominanta. Přímý precedens pro GPU ribbon Trasy (MOTION_BIBLE P1): jedna linka jako vypravěč ve 3D.
+- **Why Zero:** gesto opravdu kreslí kružnici (nulu) kolem ostrova a tím posouvá příběh. Potvrzuje M02 jako interakci, ne dekoraci.
+- **/nk 20 años:** „archiv inspirace“ = prostorová stěna karet lidí (portrét, jméno, krátký titulek) v mírné perspektivě. Precedens pro archiv příběhů a pro „40 let, 40 příběhů“.
+- **FC Porto Memorial:** velké číslo („2594 títulos“) s dokumentární fotografií a jedna věta na obrazovku. Vzor typografie pro Čísla (spec 009): číslo + člověk, ne graf.
+- **Ten Years Away:** obálka komiksu mezi letopočty 2015 / 2025 přes celou šířku. Letopočty jako rám kompozice (pro 1987 / 2027).
+- **21 hrs on the Moon:** terén s hotspoty archivu a lištou kapitol dole. Navigace kapitolami ve 3D prostoru.
+- **OceanX, Tuscan Journey:** po kliknutí se v headless prohlížeči nepohnuly dál (brána se zvukem nebo vyžaduje skutečnou interakci). Pozorování je omezené na vstup.
