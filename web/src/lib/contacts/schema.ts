@@ -1,9 +1,14 @@
 /**
  * Contact collection for the ERA40 anniversary.
- * Three paths share one record shape so they can be exported to a single
+ * Four paths share one record shape so they can be exported to a single
  * table and later imported into the publisher's CRM.
  */
 export const contactPaths = [
+  {
+    id: "oslava",
+    label: "Přijdu na oslavu",
+    lead: "Zaregistrujte se na oslavu 40 let Erasmu. Pošleme vám datum, místo a program, jakmile je zveřejníme.",
+  },
   {
     id: "pribeh",
     label: "Byl(a) jsem na Erasmu",
@@ -63,6 +68,8 @@ export type ContactRecord = {
   role?: string;
   phone?: string;
   message?: string;
+  // oslava
+  guests?: number;
   // all
   newsletter: boolean;
   privacyConsent: true;
@@ -105,7 +112,12 @@ function text(input: Record<string, unknown>, key: string) {
 export function validateContact(input: Record<string, unknown>): Result {
   const errors: Record<string, string> = {};
   const path = input.path;
-  if (path !== "pribeh" && path !== "vyjet" && path !== "organizace")
+  if (
+    path !== "oslava" &&
+    path !== "pribeh" &&
+    path !== "vyjet" &&
+    path !== "organizace"
+  )
     errors.path = "Vyberte, co je vám nejblíž.";
   const name = text(input, "name");
   const email = text(input, "email");
@@ -131,6 +143,9 @@ export function validateContact(input: Record<string, unknown>): Result {
     if (!story || story.length < 20)
       errors.story = "Pár vět stačí, alespoň jednu myšlenku.";
   }
+  const guests = Number(input.guests ?? 1);
+  if (path === "oslava" && (!Number.isInteger(guests) || guests < 1 || guests > 4))
+    errors.guests = "Počet osob 1 až 4.";
   if (path === "organizace" && !text(input, "organisation"))
     errors.organisation = "Doplňte název školy nebo organizace.";
 
@@ -153,6 +168,7 @@ export function validateContact(input: Record<string, unknown>): Result {
       role: path === "organizace" ? text(input, "role") : undefined,
       phone: path === "organizace" ? text(input, "phone") : undefined,
       message: path === "organizace" ? message : undefined,
+      guests: path === "oslava" ? guests : undefined,
       newsletter: input.newsletter === true,
       privacyConsent: true,
       privacyVersion: PRIVACY_VERSION,

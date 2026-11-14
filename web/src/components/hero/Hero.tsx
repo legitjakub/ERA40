@@ -5,6 +5,9 @@ import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap } from "@/lib/gsap/setup";
 import { flexAxes } from "@/lib/gsap/presets";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import Link from "next/link";
+import { Countdown } from "@/components/event/Countdown";
+import { event } from "@/content/event";
 import { FilmCaptions } from "./FilmCaptions";
 import styles from "./Hero.module.css";
 
@@ -235,6 +238,11 @@ export function Hero() {
         <div className={styles.scrim} />
       </div>
       <div className={styles.copy} data-film-copy>
+        <Link className={styles.event} href="/oslava">
+          <span className={styles.eventLabel}>{event.title}</span>
+          <Countdown className={styles.eventDate} />
+          <span aria-hidden="true">↗</span>
+        </Link>
         <p className={styles.context}>
           <span className={styles.station} /> Erasmus v Česku{" "}
           <span className={styles.dates}>
@@ -254,11 +262,14 @@ export function Hero() {
           Česko je u toho od roku 1998.
         </p>
         <div className={styles.actions}>
-          <a className={styles.primary} data-magnetic href="#pribehy">
-            Objevovat příběhy <span aria-hidden="true">↗</span>
-          </a>
-          <a className={styles.history} href="#historie">
-            Jak to začalo
+          <Link className={styles.primary} data-magnetic href="/zapojte-se#oslava">
+            Chci přijít <span aria-hidden="true">↗</span>
+          </Link>
+          <Link className={styles.history} href="/oslava">
+            Program oslavy
+          </Link>
+          <a className={styles.history} href="#pribehy">
+            Příběhy
           </a>
         </div>
       </div>

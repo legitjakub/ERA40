@@ -15,12 +15,14 @@ import {
 import styles from "./SiteNav.module.css";
 
 const darkHeroPages = [
+  "/oslava",
   "/pribehy",
   "/zapojte-se",
   "/o-projektu",
   "/ochrana-osobnich-udaju",
 ];
 const pages = [
+  ["/oslava", "Oslava 40 let Erasmu"],
   ["/pribehy", "Všechny příběhy"],
   ["/zapojte-se", "Zapojte se"],
   ["/o-projektu", "O projektu"],
@@ -167,11 +169,14 @@ export function SiteNav() {
             </span>
           )}
           {home && <span id="current-chapter" className="visually-hidden">Kapitola {active + 1} z 8: {chapters[active].label}</span>}
+          <Link className={styles.archiveLink} href="/oslava" aria-current={pathname === "/oslava" ? "page" : undefined}>
+            Oslava
+          </Link>
           <Link className={styles.archiveLink} href="/pribehy" aria-current={pathname === "/pribehy" ? "page" : undefined}>
             Archiv
           </Link>
-          <Link href="/zapojte-se" className={styles.cta} aria-current={pathname === "/zapojte-se" ? "page" : undefined}>
-            Zapojte se <span aria-hidden="true">↗</span>
+          <Link href="/zapojte-se#oslava" className={styles.cta} aria-current={pathname === "/zapojte-se" ? "page" : undefined}>
+            Chci přijít <span aria-hidden="true">↗</span>
           </Link>
           <button className={styles.menu} type="button" aria-label={home ? `Kapitoly ${String(active + 1).padStart(2, "0")} / 08` : "Kapitoly"} aria-describedby={home ? "current-chapter" : undefined} data-home={home} aria-haspopup="dialog" aria-expanded={menuOpen} aria-controls="chapter-menu" onClick={open}>
             <span className={styles.menuLabel}>Kapitoly</span>

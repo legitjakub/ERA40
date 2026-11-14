@@ -11,6 +11,7 @@ import {
 } from "@/lib/contacts/schema";
 import { downloadTicket } from "./downloadTicket";
 import { Ticket } from "./Ticket";
+import { AddToCalendar } from "@/components/event/AddToCalendar";
 import s from "./JoinForm.module.css";
 
 /*
@@ -35,6 +36,7 @@ const empty: Values = {
   role: "",
   phone: "",
   message: "",
+  guests: "1",
   website: "",
   publishConsent: false,
   newsletter: false,
@@ -42,6 +44,11 @@ const empty: Values = {
 };
 
 const nextSteps: Record<ContactPath, string[]> = {
+  oslava: [
+    "Registraci jsme uložili.",
+    "Jakmile zveřejníme datum, místo a program, pošleme vám je e-mailem.",
+    "Pokud se nebudete moci zúčastnit, stačí nám odepsat.",
+  ],
   pribeh: [
     "Příběh si přečte redakce výročí.",
     "Pokud ho budeme chtít zveřejnit, ozveme se a pošleme vám upravený text ke schválení.",
@@ -180,12 +187,20 @@ export function JoinForm() {
       >
         <p className={s.doneKicker}>Odesláno</p>
         <h2 className={s.doneTitle}>
-          {path === "pribeh"
+          {path === "oslava"
+            ? "Děkujeme. Počítáme s vámi."
+            : path === "pribeh"
             ? "Děkujeme. Vaše cesta je na trase."
             : path === "vyjet"
               ? "Děkujeme. Ozveme se s první zastávkou."
               : "Děkujeme. Brzy se ozveme."}
         </h2>
+        {path === "oslava" && (
+          <p className={s.doneLinks}>
+            <AddToCalendar className={s.secondary} />
+            <Link href="/oslava">Program oslavy</Link>
+          </p>
+        )}
         {path === "pribeh" && (
           <div className={s.doneTicket}>
             <Ticket data={ticket} />
@@ -256,7 +271,9 @@ export function JoinForm() {
           <fieldset className={s.fields} key={path} disabled={status === "sending"}>
             <legend className={s.legend}>
               <span className={s.stepNo}>2</span>
-              {path === "pribeh"
+              {path === "oslava"
+                ? "Vaše registrace"
+                : path === "pribeh"
                 ? "Vaše cesta"
                 : path === "vyjet"
                   ? "Kam vám máme psát"
@@ -370,6 +387,22 @@ export function JoinForm() {
                   </span>
                 </label>
               </>
+            )}
+
+            {path === "oslava" && (
+              <div className={s.row}>
+                <div className={s.label}>
+                  <label htmlFor={`${uid}-guests`}>Počet osob</label>
+                  <select {...field("guests")}>
+                    {[1, 2, 3, 4].map((n) => (
+                      <option key={n} value={n}>
+                        {n}
+                      </option>
+                    ))}
+                  </select>
+                  {error("guests")}
+                </div>
+              </div>
             )}
 
             {path === "vyjet" && (

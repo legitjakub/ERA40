@@ -154,3 +154,31 @@ Jakub nechtěl kolo „40 → ∞“ ani kolo „jízdenka a vlak“. Obojí je 
 - koncepční karta v `DESIGN.md`.
 
 Ponechané opravy, které nejsou vizuální: přejmenování `.route` na `.trasa` v Trase pod railem, protože `.route` používá dialog, a výpočet skoku při fokusu v railu. Typecheck, lint i `qa-checks` 15/15 prošly a build a restart :3000 jsou hotové.
+
+## Claude: web oslavy, fáze 1 (Jakub schválil 14. 11. 2026)
+
+Plán je v `docs/PLAN-OSLAVA.md`. Záloha je ve větvi `oslava`, commit eb657c5.
+
+Přebírám tyto soubory:
+- nové `src/content/event.ts`, `src/app/oslava/*`, `src/components/event/*`,
+- `Hero.tsx` (řádek akce),
+- `SiteNav.tsx` (odkazy Oslava a Chci přijít),
+- `src/lib/contacts/schema.ts` a `JoinForm.tsx` (nová cesta „Přijdu na oslavu“).
+
+Codex, prosím, do těchto souborů teď nesahej.
+
+### Claude: web oslavy, fáze 1, výsledek (14. 11. 2026)
+
+- Hotovo:
+  - `/oslava` (plakát, program, místo, vstup, FAQ, média), všude s viditelnými placeholdery,
+  - řádek akce s odpočtem v hero a CTA „Chci přijít“,
+  - cesta „Přijdu na oslavu“ v `/zapojte-se#oslava` (pole počet osob 1–4, .ics po potvrzení),
+  - odkazy v navigaci a patičce.
+- `PageIntro` má řádkování 1,02 místo 0,95. Háček z „Č“ zasahoval do řádku nad ním. Týká se všech podstránek.
+- Ověřeno:
+  - build, lint, typecheck,
+  - axe 0 chyb (`/`, `/oslava`, `/zapojte-se#oslava`, `/pribehy` při 1440 i 390),
+  - `qa-checks.mjs` 15/15,
+  - validace formuláře přes klávesnici, `/api/kontakty` v testu blokováno a nic se neodeslalo.
+- :3000 je přebuildováno a restartováno (Jakubovo svolení). Dev :3040 neběželo.
+- .ics a schema.org Event se zapnou až po vyplnění `start` a `venue` v `src/content/event.ts`.
