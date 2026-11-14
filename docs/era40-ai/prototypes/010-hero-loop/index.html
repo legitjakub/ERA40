@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERA40 — prototyp M02: smyčka přes nulu</title>
+<style>
+  @font-face {
+    font-family: "Roboto Flex Variable";
+    src: url("/web/public/fonts/roboto-flex-latin-ext.woff2") format("woff2-variations");
+    font-weight: 100 1000; font-stretch: 25% 151%;
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  @font-face {
+    font-family: "Roboto Flex Variable";
+    src: url("/web/public/fonts/roboto-flex-latin.woff2") format("woff2-variations");
+    font-weight: 100 1000; font-stretch: 25% 151%;
+  }
+  :root { --blue:#004494; --eplus:#007fc7; --yellow:#ffed00; --ink:#0b1b33; --sky:#eaf3fa; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--sky); color: var(--ink); font-family: "Roboto Flex Variable", Roboto, Arial, sans-serif; }
+  .note { position: fixed; z-index: 10; top: 12px; left: 12px; right: 12px; display: flex; justify-content: space-between; gap: 12px; font-size: 12px; color: #4f5b6e; pointer-events: none; }
+  .note label { pointer-events: auto; }
+  .film { height: 100vh; display: grid; place-items: end start; padding: 0 6vw 10vh; background: linear-gradient(#0b1b33cc, #0b1b33), url("/web/public/media/hero/hero-desktop.avif") center/cover; color: white; }
+  .film h1 { margin: 0; font-size: clamp(3rem, 8vw, 8rem); line-height: .95; font-variation-settings: "wdth" 60, "wght" 860; }
+  .film p { margin: 18px 0 0; font-size: 1.1rem; }
+  .stage { position: relative; height: 260vh; }
+  .sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; place-items: center; }
+  .forty { position: relative; text-align: center; line-height: .8; }
+  .num { display: inline-block; font-size: clamp(9rem, 34vw, 30rem); color: var(--blue); font-variation-settings: "wdth" 100, "wght" 900; letter-spacing: -0.04em; }
+  .num span { display: inline-block; }
+  .sub { margin-top: 1.6em; font-size: clamp(1.1rem, 2.4vw, 2rem); font-variation-settings: "wdth" 80, "wght" 650; }
+  .years { margin-top: .5em; font-size: clamp(.95rem, 1.4vw, 1.15rem); color: #4f5b6e; font-variant-numeric: tabular-nums; }
+  .years b { color: var(--blue); }
+  svg.route { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .route path { fill: none; stroke: var(--eplus); stroke-width: 3; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+  .route .future { stroke-dasharray: 1 10; opacity: .8; }
+  .route circle { fill: var(--yellow); stroke: var(--blue); stroke-width: 2; }
+  .after { min-height: 100vh; padding: 12vh 6vw; background: white; }
+  .after h2 { margin: 0; font-size: clamp(2.4rem, 6vw, 5.5rem); line-height: 1.02; color: var(--ink); font-variation-settings: "wdth" 70, "wght" 840; max-width: 14ch; }
+  .after p { max-width: 46ch; font-size: 1.2rem; line-height: 1.5; }
+  .label { font-size: .8rem; color: #4f5b6e; }
+</style>
+</head>
+<body>
+<div class="note"><span>Prototyp M02 (směr A) · mimo produkci · ilustrační</span><label><input type="checkbox" id="rm"> Omezit pohyb</label></div>
+<section class="film" aria-label="Zástupný hero (ve webu běží schválený film)">
+  <div>
+    <h1>Některé cesty<br>změní všechno.</h1>
+    <p>Scrollujte dolů: linka odjede, obkrouží nulu a vrátí se.</p>
+  </div>
+</section>
+<section class="stage" id="stage">
+  <div class="sticky">
+    <div class="forty">
+      <div class="num" id="num" aria-label="40"><span>4</span><span id="zero">0</span></div>
+      <div class="sub">let Erasmu mění životy.</div>
+      <div class="years"><b id="year">1987</b> → 2027 · Česko od roku 1998</div>
+    </div>
+    <svg class="route" id="route" aria-hidden="true">
+      <path id="past" />
+      <path id="future" class="future" />
+      <circle id="dot" r="9" />
+    </svg>
+  </div>
+</section>
+<section class="after">
+  <p class="label">Další kapitola (prolog)</p>
+  <h2>Cesta končí. Zkušenost pokračuje.</h2>
+  <p>Smyčka je cesta tam a zpátky domů. Teprve po návratu linka pokračuje dál, k dalším lidem. Proto je ve webu jediná a nese význam.</p>
+</section>
+<script src="/web/node_modules/gsap/dist/gsap.min.js"></script>
+<script src="/web/node_modules/gsap/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const svg = document.getElementById("route"), past = document.getElementById("past"),
+  future = document.getElementById("future"), dot = document.getElementById("dot"),
+  zero = document.getElementById("zero"), yearEl = document.getElementById("year"),
+  stage = document.getElementById("stage"), rm = document.getElementById("rm"), num = document.getElementById("num");
+const osReduced = matchMedia("(prefers-reduced-motion: reduce)");
+let length = 0, tl;
+
+// Geometry in the sticky box: enter low-left, wrap once around the 0 (closing the loop
+// where it entered = "home"), then leave to the lower right and continue (dotted).
+function build() {
+  const box = svg.getBoundingClientRect(), z = zero.getBoundingClientRect(), n = num.getBoundingClientRect();
+  const W = box.width, H = box.height;
+  const cx = z.left - box.left + z.width / 2, cy = z.top - box.top + z.height * 0.5;
+  const rx = z.width * 0.6, ry = z.height * 0.5;
+  const by = n.bottom - box.top + Math.max(10, z.height * 0.06);   // track just under the numerals
+  const home = cx - rx * 0.35;                                       // where the journey leaves and returns
+  const exitX = Math.min(W - 24, n.right - box.left + (W - n.right + box.left) * 0.45);
+  const d = [
+    `M -20 ${by}`,
+    `L ${home} ${by}`,
+    // one loop around the zero: up the right side, over the top, down the left, back home
+    `C ${cx + rx * 1.15} ${by}, ${cx + rx * 1.2} ${cy - ry * 1.15}, ${cx} ${cy - ry * 1.12}`,
+    `C ${cx - rx * 1.2} ${cy - ry * 1.1}, ${cx - rx * 1.15} ${by - ry * 0.02}, ${home + rx * 0.45} ${by}`,
+    // after the return: the line continues onward and leaves the frame
+    `L ${exitX} ${by}`,
+    `C ${exitX + 60} ${by}, ${W - 10} ${by + 40}, ${W - 4} ${H - 30}`,
+  ].join(" ");
+  past.setAttribute("d", d);
+  future.setAttribute("d", `M ${W - 4} ${H - 30} L ${W - 2} ${H + 40}`);
+  length = past.getTotalLength();
+}
+
+function place(p) {
+  const pt = past.getPointAtLength(length * p);
+  dot.setAttribute("cx", pt.x); dot.setAttribute("cy", pt.y);
+  past.style.strokeDasharray = `${length} ${length}`;
+  past.style.strokeDashoffset = String(length * (1 - p));
+  future.style.opacity = p > 0.97 ? "0.8" : "0";
+  yearEl.textContent = String(Math.round(1987 + 40 * Math.min(1, p / 0.92)));
+}
+
+function reduced() { return osReduced.matches || rm.checked; }
+
+function setup() {
+  tl?.scrollTrigger?.kill(); tl?.kill();
+  build();
+  if (reduced()) { place(1); return; }
+  const state = { p: 0 };
+  tl = gsap.to(state, {
+    p: 1, ease: "none",
+    onUpdate: () => place(state.p),
+    scrollTrigger: { trigger: stage, start: "top top", end: "bottom bottom", scrub: 0.5 },
+  });
+  place(0);
+}
+
+document.fonts.ready.then(setup);
+addEventListener("resize", () => { setup(); ScrollTrigger.refresh(); });
+rm.addEventListener("change", setup);
+osReduced.addEventListener?.("change", setup);
+</script>
+</body>
+</html>
