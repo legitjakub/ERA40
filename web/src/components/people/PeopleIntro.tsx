@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap } from "@/lib/gsap/setup";
-import { routeDraw } from "@/lib/gsap/presets";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { TrainSequence } from "./TrainSequence";
 import styles from "./PeopleIntro.module.css";
@@ -68,14 +67,6 @@ export function PeopleIntro() {
               { opacity: 1, duration: 0.18 },
               "-=0.1",
             );
-          const bend = section.querySelector<SVGPathElement>("[data-bend]");
-          if (bend)
-            routeDraw(bend, {
-              trigger: section.querySelector("figure"),
-              start: "top 98%",
-              end: "center 55%",
-              scrub: true,
-            });
         },
       );
       return () => media.revert();
@@ -108,21 +99,6 @@ export function PeopleIntro() {
         </p>
       </div>
       <div className={styles.transition}>
-        <svg
-          className={styles.bend}
-          viewBox="0 0 120 140"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            data-bend
-            d="M 120,2 H 58 Q 22,2 22,38 V 140"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
         <TrainSequence reduced={reduced} />
       </div>
     </section>

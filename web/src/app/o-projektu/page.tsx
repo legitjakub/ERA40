@@ -20,9 +20,9 @@ export default function AboutPage() {
         title="Čtyřicet let cest."
         lead="Erasmus v Česku je digitální výstava k 40 letům evropského programu Erasmus (1987–2027). Česko je jeho součástí od roku 1998."
         image={{
-          src: "/media/hero/hero-desktop.avif",
-          alt: "Odjezdová tabule a nástupiště nádraží",
-          position: "50% 40%",
+          src: "/media/placeholders/ph-group.jpg",
+          alt: "Skupina lidí v rozhovoru na schodech",
+          position: "50% 50%",
         }}
       />
       <div className={s.body}>

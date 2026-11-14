@@ -19,11 +19,6 @@
 .inner p {
   margin: 5px 0;
 }
-.note {
-  font-size: 0.86rem;
-  color: #d4e5f8;
-  max-width: 38ch;
-}
 .inner nav {
   display: grid;
   gap: 10px;
@@ -53,12 +48,6 @@
 }
 .partner strong {
   font-weight: 650;
-}
-.partners .pending {
-  flex-basis: 100%;
-  margin: 0;
-  font-size: 0.8125rem;
-  color: #d4e5f8;
 }
 .plate {
   display: grid;

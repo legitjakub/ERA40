@@ -16,7 +16,7 @@ Před veřejným uvedením potvrdit vhodnost zobrazení osob v kontextu programu
 
 ## Branding a vydavatel
 
-Typografický nápis Erasmus+ v záhlaví je pracovní wordmark. Oficiální finální logotyp je potřeba dodat nebo potvrdit podle manuálu. Patička podle `DESIGN.md` ukazuje pás „Vydává Dům zahraniční spolupráce“ a „Spolufinancováno Evropskou unií“ s místními soubory z `public/brand/`. Pás nese viditelnou poznámku, že jde o návrh k potvrzení. Před uvedením potvrdit vydavatele, financování tohoto konkrétního webu a dodat oficiální soubory logotypů (DZS a varianta „Spolufinancováno Evropskou unií“ podle manuálu EU). Pak poznámku odstranit v `src/components/layout/SiteFooter.tsx`.
+Typografický nápis Erasmus+ v záhlaví je pracovní wordmark. Oficiální finální logotyp je potřeba dodat nebo potvrdit podle manuálu. Patička podle `DESIGN.md` ukazuje pás „Vydává Dům zahraniční spolupráce“ a „Spolufinancováno Evropskou unií“ s místními soubory z `public/brand/`. Potvrzení vydavatele, financování a logotypů zůstává otevřené i po odstranění interních poznámek z veřejné patičky. Před uvedením potvrdit vydavatele, financování tohoto konkrétního webu a dodat oficiální soubory logotypů (DZS a varianta „Spolufinancováno Evropskou unií“ podle manuálu EU).
 
 ## Sběr kontaktů a příběhů
 

@@ -10,14 +10,6 @@
   text-shadow: 0 1px 6px #001a34b3;
   pointer-events: none;
 }
-.stamp {
-  margin: 0 0 6px;
-  color: var(--c-yellow);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-}
 .line {
   margin: 0;
   overflow: clip;
@@ -55,9 +47,6 @@
     bottom: 22px;
     width: calc(100% - 210px);
     text-align: left;
-  }
-  .stamp {
-    display: none;
   }
   .line {
     font-size: 0.9375rem;

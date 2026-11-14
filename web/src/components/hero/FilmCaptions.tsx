@@ -33,9 +33,6 @@ const mobile: Cue[] = [
   [26.5, 30, "Domů se vrací někdo trochu jiný."],
 ];
 
-const stamp = (seconds: number) =>
-  "00:" + String(Math.floor(seconds)).padStart(2, "0");
-
 export function FilmCaptions({
   video,
   portrait,
@@ -76,10 +73,9 @@ export function FilmCaptions({
     };
   }, [video, cues]);
 
-  const [start, , text] = cues[index] ?? cues[0];
+  const [, , text] = cues[index] ?? cues[0];
   return (
     <div className={s.captions} data-controls aria-hidden="true">
-      <p className={s.stamp}>{stamp(start)}</p>
       <p className={s.line} key={text}>
         <span>{text}</span>
       </p>

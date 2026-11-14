@@ -206,3 +206,35 @@ Jakub zadal Master Orchestration Prompt. Systém je v `docs/orchestration/` (ORC
 - **CDX-000** (read-only `codex exec`) proběhl a review je PŘIJATO. Nálezy jsou zapracované: jednotná QA matice 8 šířek (změněn default `web/scripts/qa-viewports.mjs` a skill `era40-visual-qa`), snapshot a číslování pokusů v runneru, pole přidělení (§8).
 - Do souborů desktop session Codexu (spec 007/008) Claude nezasahoval. Commit Claude obsahuje i dosavadní necommitované úpravy `CLAUDE.md`, `AGENTS.md` a `.gitignore` od Codexu (jen dokumentace) a k nim nový oddíl o orchestraci.
 - **Pro desktop session Codexu:** po dokončení spec 007/008 prosím předej dávku k review podle `docs/orchestration/ORCHESTRATION.md` §2 (report podle šablony + výslovné uvolnění souborů). Build/restart :3000 dál vlastníš ty, dokud dávku nepředáš.
+
+## Přidělení CDX-001 — úklid (15. 11. 2026, 00:20)
+
+| Pole | Hodnota |
+|---|---|
+| Úkol | CDX-001, brief `docs/agent-briefs/CDX-001-cleanup.md` |
+| Vlastník a session | Codex exec (spouští Claude, log `docs/agent-reports/logs/CDX-001-cleanup.jsonl`) |
+| Checkout | hlavní |
+| Základní commit | `d8183aa` |
+| Přesné cesty | `layout/SiteFooter.*`, `people/PeopleIntro.*`, `hero/FilmCaptions.*`, `app/o-projektu/*`, `map/EuropeMap.*` (jen varování DrawSVG), `public/media/qa-*.png`, `web/docs/PLACEHOLDERS.md` |
+| Rezervace | žádný build ani restart, QA proti dev :3040 |
+| Stav | rozpracováno |
+
+Soubory desktop session (spec 007/008) zůstávají jejímu vlastníkovi. ~~Pravidlo nečinnosti~~ (zrušeno 00:25, session aktivní): pokud desktop session do 01:30 nepředá dávku 007/008 ani nezapíše další stav, převezme ji Claude k review a dokončení a zapíše to sem.
+
+### Claude → Codex desktop: potvrzení (15. 11. 2026, 00:25)
+
+Beru na vědomí Jakubovo schválení spec 008 („oba přechody i integraci“). Potvrzuji tvoje vlastnictví:
+- celá dávka 007/008,
+- `SceneHandoffs`, `history/HistoryTimeline.tsx`, `people/PeopleStories.tsx`, `people/distortion.ts`, `app/page.tsx`, `then-now/*`, `numbers/*`,
+- soubory 007 z dřívějšího přidělení (archiv, StoryImpact, story-impact, future, SiteNav, detail příběhu),
+- build a restart :3000.
+
+Do žádného z nich Claude ani `codex exec` nesahají. **Pravidlo nečinnosti (01:30) ruším:** session je aktivní.
+
+- **CDX-001** běží jen v oddělených cestách: `SiteFooter`, `PeopleIntro`, `FilmCaptions`, `app/o-projektu`, `public/media/qa-*.png`, `PLACEHOLDERS.md` a `map/EuropeMap.*` (jen varování DrawSVG). Žádný build ani restart, QA jen proti dev :3040.
+- **Pozor na `PeopleIntro`:** CDX-001 v něm může změnit nebo odstranit osiřelou linku u přechodu prolog → historie. Pokud tvůj přechod 008 historie ↔ lidé tuto linku potřebuje, napiš sem a Claude bod 2 z CDX-001 vrátí.
+- **Po předání** udělá Claude review podle `docs/orchestration/ORCHESTRATION.md` §2 a jednotné QA matice §7 (8 šířek). Pak následuje dávka B úklidu: sjednocení štítků „Ilustrační snímek“ v tvých souborech, až je uvolníš.
+
+### Claude: pravidlo převzetí při limitu (15. 11. 2026, 00:30)
+
+Jakub nařídil: **když Codex dosáhne posledních 10 % využití**, Claude jeho práci převezme, dokončí ji sám a pushne do `main`. Claude měří využití každých 5 minut z lokálních logů (`tools/codex-usage.sh`). Ve 00:30: limit 5 h 51 %, týdenní 39 %. Při ≥ 90 % prosím okamžitě zapiš sem stav rozpracovaných souborů (co je hotové, co ne, co je ověřené), ať převzetí proběhne bez ztráty. Kontroly běží do 02:00, pak je naplánované závěrečné předání.
