@@ -3,6 +3,9 @@ import Link from "next/link";
 import { PageIntro } from "@/components/pages/PageIntro";
 import { AddToCalendar } from "@/components/event/AddToCalendar";
 import { Countdown } from "@/components/event/Countdown";
+import { CountUp } from "@/components/event/CountUp";
+import { DayPlanner } from "@/components/event/DayPlanner";
+import { LineupPoster } from "@/components/event/LineupPoster";
 import { event, eventConfirmed } from "@/content/event";
 import s from "./oslava.module.css";
 
@@ -11,11 +14,7 @@ export const metadata: Metadata = {
   description: event.lead,
 };
 
-const soon = <span className={s.soon}>Jméno oznámíme</span>;
-
 export default function EventPage() {
-  const headliners = event.performers.filter((p) => p.headliner);
-  const guests = event.performers.filter((p) => !p.headliner);
   const jsonLd = eventConfirmed()
     ? {
         "@context": "https://schema.org",
@@ -76,61 +75,19 @@ export default function EventPage() {
         </p>
       </PageIntro>
 
-      <section className={s.poster} aria-labelledby="lineup-title">
-        <div className={s.inner}>
-          <h2 id="lineup-title" className={s.kicker}>
-            Účinkující
-          </h2>
-          <ul className={s.headliners}>
-            {headliners.map((p) => (
-              <li key={p.id}>
-                <span className={s.name}>
-                  {p.name}
-                  {p.placeholder && soon}
-                </span>
-                <span className={s.meta}>
-                  {[p.time, p.genre].filter(Boolean).join(" · ")}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <ul className={s.guests}>
-            {guests.map((p) => (
-              <li key={p.id}>
-                <span className={s.name}>{p.name}</span>
-                <span className={s.meta}>
-                  {[p.time, p.genre].filter(Boolean).join(" · ")}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <p className={s.posterNote}>
-            Navržená dramaturgie. Konkrétní jména zveřejníme po podpisu
-            smluv s účinkujícími.
-          </p>
-        </div>
-      </section>
+      <LineupPoster />
 
       <section id="program" className={s.section} aria-labelledby="program-title">
         <div className={s.inner}>
           <header className={s.head}>
-            <h2 id="program-title">Program</h2>
+            <h2 id="program-title">Den na náplavce</h2>
             <p>
               {event.confirmed
                 ? event.dateLabel
-                : "Návrh podoby dne. Finální program zveřejníme s účinkujícími."}
+                : "Klikněte na místo, posuňte čas, uložte si hvězdičkou. Program je návrh."}
             </p>
           </header>
-          <ol className={s.program}>
-            {event.program.map((item) => (
-              <li key={item.title}>
-                <span className={s.time}>{item.time ?? "Čas upřesníme"}</span>
-                <span className={s.stage}>{item.stage}</span>
-                <span className={s.programTitle}>{item.title}</span>
-                <span className={s.programText}>{item.text}</span>
-              </li>
-            ))}
-          </ol>
+          <DayPlanner />
         </div>
       </section>
 
@@ -177,7 +134,9 @@ export default function EventPage() {
             {event.facts.map((f) => (
               <div key={f.value}>
                 <dt>{f.label}</dt>
-                <dd>{f.value}</dd>
+                <dd>
+                  <CountUp value={f.value} />
+                </dd>
               </div>
             ))}
           </dl>

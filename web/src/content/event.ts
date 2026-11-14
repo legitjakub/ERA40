@@ -23,13 +23,21 @@ export type Performer = {
   placeholder?: boolean;
 };
 
+export type Stage = "Hlavní pódium" | "Debaty" | "Příběhy živě" | "Stánky";
+
 export type ProgramItem = {
   time?: string;
-  stage: string;
+  /** Explicit end; otherwise the next item on the same stage, at most 60 min. */
+  end?: string;
+  stage: Stage;
   title: string;
   text: string;
+  /** Performer shown on the poster, linked from the line-up. */
+  performer?: string;
   placeholder?: boolean;
 };
+
+export const stages: Stage[] = ["Hlavní pódium", "Debaty", "Příběhy živě", "Stánky"];
 
 export const event = {
   /** Flip to true once the organiser confirms date, place and entry. */
@@ -70,17 +78,17 @@ export const event = {
   ] as Performer[],
   /** A proposed shape of the day; names follow once bookings are signed. */
   program: [
-    { time: "14:00", stage: "Celá náplavka", title: "Otevíráme", text: "Stánky škol, Domu zahraniční spolupráce a studentských spolků radí, kam a jak vyjet.", placeholder: true },
+    { time: "14:00", end: "20:00", stage: "Stánky", title: "Kam vyjet", text: "Stánky škol, Domu zahraniční spolupráce a studentských spolků radí, kam a jak vyjet.", placeholder: true },
     { time: "15:00", stage: "Debaty", title: "Odjezd 1998", text: "První čeští účastníci Erasmu vyprávějí, jaké bylo vyjet před vstupem do EU.", placeholder: true },
-    { time: "15:30", stage: "Hlavní pódium", title: "Mezinárodní sbor", text: "Zahraniční studenti, kteří jsou v Česku na Erasmu, zpívají ve svých jazycích.", placeholder: true },
-    { time: "16:00", stage: "Příběhy živě", title: "Vaše cesta na mapě", text: "Přineste fotku nebo vzpomínku, zapíšeme ji a ukážeme na velké mapě cest.", placeholder: true },
-    { time: "16:30", stage: "Hlavní pódium", title: "Studentské kapely", text: "Kapely ze škol zapojených do Erasmu+, vybrané ve výzvě před oslavou.", placeholder: true },
+    { time: "15:30", stage: "Hlavní pódium", title: "Mezinárodní sbor", performer: "guest-3", text: "Zahraniční studenti, kteří jsou v Česku na Erasmu, zpívají ve svých jazycích.", placeholder: true },
+    { time: "16:00", end: "20:00", stage: "Příběhy živě", title: "Vaše cesta na mapě", text: "Přineste fotku nebo vzpomínku, zapíšeme ji a ukážeme na velké mapě cest.", placeholder: true },
+    { time: "16:30", stage: "Hlavní pódium", title: "Studentské kapely", performer: "guest-2", text: "Kapely ze škol zapojených do Erasmu+, vybrané ve výzvě před oslavou.", placeholder: true },
     { time: "17:00", stage: "Debaty", title: "Nejen pro vysokoškoláky", text: "Učni, učitelé, sportovci a pracovníci s mládeží o tom, kam s Erasmem+ vyjeli od roku 2014.", placeholder: true },
-    { time: "18:00", stage: "Hlavní pódium", title: "Kapela absolventů", text: "Muzikanti, kteří se potkali na Erasmu, hrají spolu znovu.", placeholder: true },
-    { time: "19:15", stage: "Hlavní pódium", title: "Evropský host", text: "Koncert kapely z jiné země programu Erasmus+.", placeholder: true },
+    { time: "18:00", stage: "Hlavní pódium", title: "Kapela absolventů", performer: "guest-1", text: "Muzikanti, kteří se potkali na Erasmu, hrají spolu znovu.", placeholder: true },
+    { time: "19:15", stage: "Hlavní pódium", title: "Evropský host", performer: "headliner-2", text: "Koncert kapely z jiné země programu Erasmus+.", placeholder: true },
     { time: "20:15", stage: "Hlavní pódium", title: "Společná fotka 40 let", text: "Všichni, kdo kdy vyjeli, na jedné fotce. Vezměte si vlajku své destinace.", placeholder: true },
-    { time: "20:30", stage: "Hlavní pódium", title: "Hlavní host večera", text: "Večerní koncert.", placeholder: true },
-    { time: "21:30", stage: "Hlavní pódium", title: "DJ set 1987–2027", text: "Hity ze všech čtyřiceti let do konce večera ve 22:00.", placeholder: true },
+    { time: "20:30", stage: "Hlavní pódium", title: "Hlavní host večera", performer: "headliner-1", text: "Večerní koncert.", placeholder: true },
+    { time: "21:30", stage: "Hlavní pódium", title: "DJ set 1987–2027", performer: "guest-4", text: "Hity ze všech čtyřiceti let do konce večera ve 22:00.", placeholder: true },
   ] as ProgramItem[],
   /** Verified public figures; see docs/CONTENT-FACTS.md for sources. */
   facts: [
