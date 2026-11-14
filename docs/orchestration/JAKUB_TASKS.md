@@ -17,7 +17,7 @@ Každý pokyn od Master Orchestration Promptu dál. Claude ho aktualizuje po ka�
   - [ ] Závěrečný průchod celého webu na 8 šířkách: nic samoúčelného, nic vývojářského.
 
 ## Spodní sekce homepage
-- [ ] **Přepracovat spodní sekce hlavní stránky** (06 Tehdy a teď, 07 Čísla, 08 Budoucnost): „nelíbí se mi, klidně ať se změní, nemusíme pracovat s tím, co máme, můžeme to úplně přeměnit dle plánu“. Spec 009 je napsaná. Realizace: brief CDX-004 po předání 008, nebo Claude při limitu Codexu.
+- [ ] **Přepracovat spodní sekce hlavní stránky** (06 Tehdy a teď, 07 Čísla, 08 Budoucnost): „nelíbí se mi, klidně ať se změní, nemusíme pracovat s tím, co máme, můžeme to úplně přeměnit dle plánu“. Spec 009 je napsaná a brief `CDX-004-lower-chapters.md` je připravený. Spustí se po předání 008, nebo při limitu Codexu udělá práci Claude.
 
 ## Master Orchestration Prompt — fáze
 - [x] Fáze 0: audit, skilly, ověření Codex CLI, struktura dokumentace, chybějící podklady, začátek rešerše (`d8183aa`).
