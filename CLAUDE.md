@@ -28,7 +28,7 @@ Skilly pomáhají provedení. Nemění schválený brief ani identitu: Erasmus+ 
 - Jedna instance Lenisu, GSAP z `src/lib/gsap/setup.ts`, scény přes `useScene`. Zachovej osm kapitol, kotvy a přímé odkazy.
 - `web/data/` obsahuje osobní údaje. Nic z něj necommituj ani nemaž. Při QA používej oddělené testovací úložiště nebo mock.
 - Lokální ukládání kontaktů není CRM ani rozesílka. Neprezentuj neimplementované externí služby jako funkční.
-- Bez nového pokynu nepublikuj, nenasazuj ani nepushuj projekt.
+- Nenasazuj ani nepublikuj web bez Jakubova pokynu. Push ověřených dávek do `main` je povolený (Jakub 15. 11. 2026: „Yes, allow pushes“), až po review podle `docs/orchestration/ORCHESTRATION.md`. Neověřenou práci nepushuj.
 
 ## Kreativní vývoj: znalostní báze a skilly (od 14. 11. 2026)
 
