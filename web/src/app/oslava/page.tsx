@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: event.lead,
 };
 
-const soon = <span className={s.soon}>Jméno oznámíme</span>;
+const soon = <span className={s.soon}>Oznámíme brzy</span>;
 
 export default function EventPage() {
   const headliners = event.performers.filter((p) => p.headliner);
@@ -58,13 +58,6 @@ export default function EventPage() {
             <dd className={s.factValue}>{event.entry.label}</dd>
           </div>
         </dl>
-        {!event.confirmed && (
-          <p className={s.proposal}>
-            <strong>Návrh.</strong> Termín, místo a program jsou zatím
-            návrhem pro pořadatele a mohou se změnit. Registrovaným dáme
-            vědět jako prvním.
-          </p>
-        )}
         <p className={s.actions}>
           <Link className={s.primary} href="/zapojte-se#oslava">
             Chci přijít <span aria-hidden="true">↗</span>
@@ -83,30 +76,21 @@ export default function EventPage() {
           </h2>
           <ul className={s.headliners}>
             {headliners.map((p) => (
-              <li key={p.id}>
-                <span className={s.name}>
-                  {p.name}
-                  {p.placeholder && soon}
-                </span>
-                <span className={s.meta}>
-                  {[p.time, p.genre].filter(Boolean).join(" · ")}
-                </span>
+              <li key={p.id} data-placeholder={p.placeholder || undefined}>
+                {p.name}
+                {p.placeholder && soon}
               </li>
             ))}
           </ul>
           <ul className={s.guests}>
             {guests.map((p) => (
-              <li key={p.id}>
-                <span className={s.name}>{p.name}</span>
-                <span className={s.meta}>
-                  {[p.time, p.genre].filter(Boolean).join(" · ")}
-                </span>
+              <li key={p.id} data-placeholder={p.placeholder || undefined}>
+                {p.name}
               </li>
             ))}
           </ul>
           <p className={s.posterNote}>
-            Navržená dramaturgie. Konkrétní jména zveřejníme po podpisu
-            smluv s účinkujícími.
+            Jména účinkujících zveřejníme s programem.
           </p>
         </div>
       </section>
@@ -115,11 +99,7 @@ export default function EventPage() {
         <div className={s.inner}>
           <header className={s.head}>
             <h2 id="program-title">Program</h2>
-            <p>
-              {event.confirmed
-                ? event.dateLabel
-                : "Návrh podoby dne. Finální program zveřejníme s účinkujícími."}
-            </p>
+            <p>Návrh podoby dne. Časy doplníme s finálním programem.</p>
           </header>
           <ol className={s.program}>
             {event.program.map((item) => (
@@ -140,17 +120,9 @@ export default function EventPage() {
             <div>
               <h2 id="place-title">Místo a doprava</h2>
               <p className={s.big}>{event.venue.name}</p>
-              {event.venue.address && <p>{event.venue.address}</p>}
-              <ul className={s.list}>
-                {event.venue.transport.map((line) => (
-                  <li key={line}>{line}</li>
-                ))}
-              </ul>
               <p>
-                <strong>Přístupnost.</strong> {event.venue.access}
-              </p>
-              <p>
-                <strong>S sebou.</strong> {event.venue.bring}
+                Adresu, dopravu, informace o bezbariérovém přístupu a co si
+                vzít s sebou doplníme s místem konání.
               </p>
             </div>
             <div>
@@ -164,23 +136,6 @@ export default function EventPage() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className={s.section} data-tone="ink" aria-labelledby="facts-title">
-        <div className={s.inner}>
-          <header className={s.head}>
-            <h2 id="facts-title">Proč slavíme</h2>
-            <p>Ověřená čísla z Domu zahraniční spolupráce a Evropské komise.</p>
-          </header>
-          <dl className={s.numbers}>
-            {event.facts.map((f) => (
-              <div key={f.value}>
-                <dt>{f.label}</dt>
-                <dd>{f.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
 
