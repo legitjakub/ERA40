@@ -1,0 +1,120 @@
+/* Editorial two-column sections used by the project and privacy pages. */
+.page {
+  background: var(--c-paper);
+  color: var(--c-ink);
+}
+.body {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(56px, 10vh, 120px) clamp(24px, 6vw, 92px)
+    clamp(80px, 14vh, 160px);
+}
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: clamp(20px, 5vw, 96px);
+  padding: clamp(36px, 7vh, 80px) 0;
+  border-top: 1px solid var(--c-line);
+}
+.section h2 {
+  margin: 0;
+  color: var(--c-eu-blue);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-variation-settings:
+    "wdth" 72,
+    "wght" 800;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+.text {
+  max-width: 64ch;
+}
+.text p,
+.text li {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+.text p {
+  margin: 0 0 1em;
+}
+.text ul {
+  margin: 0 0 1em;
+  padding-left: 1.2em;
+}
+.text li {
+  margin: 0.35em 0;
+}
+.text a {
+  color: var(--c-eplus-ink);
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 48px);
+  margin: 0 0 clamp(24px, 5vh, 56px);
+  padding: 0;
+  list-style: none;
+}
+.facts li {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding-top: 18px;
+  border-top: 2px solid var(--c-eu-blue);
+}
+.facts strong {
+  color: var(--c-eu-blue);
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-variation-settings:
+    "wdth" 62,
+    "wght" 850;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.facts span {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.facts small {
+  color: var(--c-mute);
+  font-size: 0.8125rem;
+}
+.draft {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin: 0 0 clamp(24px, 5vh, 48px);
+  padding: 18px 20px;
+  background: #fff8b3;
+  border-left: 4px solid var(--c-eu-blue);
+  color: var(--c-ink);
+  font-weight: 550;
+  line-height: 1.45;
+}
+.todo {
+  padding: 1px 6px;
+  background: var(--c-sky);
+  color: var(--c-eu-blue);
+  font-weight: 650;
+}
+.cta {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 14px 22px;
+  background: var(--c-eu-blue);
+  color: white !important;
+  font-weight: 650;
+  text-decoration: none;
+}
+.cta:hover {
+  background: var(--c-ink);
+}
+@media (max-width: 1023px) {
+  .section {
+    grid-template-columns: 1fr;
+  }
+  .facts {
+    grid-template-columns: 1fr;
+  }
+}

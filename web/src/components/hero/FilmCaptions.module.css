@@ -1,0 +1,78 @@
+/* Film captions: quiet, right-aligned above the film controls. */
+.captions {
+  position: absolute;
+  z-index: 2;
+  right: 5vw;
+  bottom: calc(7.5vh + 64px);
+  width: min(320px, 26vw);
+  color: white;
+  text-align: right;
+  text-shadow: 0 1px 6px #001a34b3;
+  pointer-events: none;
+}
+.stamp {
+  margin: 0 0 6px;
+  color: var(--c-yellow);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+.line {
+  margin: 0;
+  overflow: clip;
+  font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+  font-weight: 560;
+  line-height: 1.3;
+}
+.line span {
+  display: block;
+  animation: cue 0.7s var(--ease-out) both;
+}
+.progress {
+  display: block;
+  height: 2px;
+  margin-top: 14px;
+  background: #ffffff40;
+}
+.progress span {
+  display: block;
+  height: 100%;
+  background: var(--c-yellow);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+@keyframes cue {
+  from {
+    transform: translateY(105%);
+    opacity: 0;
+  }
+}
+@media (max-width: 1023px) {
+  .captions {
+    right: auto;
+    left: 20px;
+    bottom: 22px;
+    width: calc(100% - 210px);
+    text-align: left;
+  }
+  .stamp {
+    display: none;
+  }
+  .line {
+    font-size: 0.9375rem;
+  }
+  .progress {
+    margin-top: 8px;
+  }
+}
+@media (max-height: 620px) and (min-width: 650px) {
+  .captions {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .line span {
+    animation: none;
+  }
+}

@@ -1,0 +1,165 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Suspense } from "react";
+import { notFound } from "next/navigation";
+import { RouteMap } from "@/components/archive/RouteMap";
+import { StoryLabel } from "@/components/archive/StoryLabel";
+import { storyDetails } from "@/content/story-details";
+import {
+  getStory,
+  stories,
+  storyKind,
+  storyKinds,
+  storyPhoto,
+} from "@/content/stories";
+import s from "./story.module.css";
+
+export function generateStaticParams() {
+  return stories.map((story) => ({ id: story.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const story = getStory(id);
+  if (!story) return {};
+  return {
+    title: `${story.name}: ${story.from} – ${story.to} — Erasmus v Česku`,
+    description: `„${story.quote}“ Modelový příběh k 40 letům Erasmu.`,
+  };
+}
+
+// URL data stays behind Suspense so the shared App Shell can be prefetched;
+// the eight stories are still fully prerendered via generateStaticParams.
+export default function StoryPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  return (
+    <main id="main" className={s.page}>
+      <Suspense
+        fallback={
+          <div className={s.hero} aria-hidden="true">
+            <div className={s.heroText} />
+            <div className={s.photo} />
+          </div>
+        }
+      >
+        <StoryContent params={params} />
+      </Suspense>
+    </main>
+  );
+}
+
+async function StoryContent({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const story = getStory(id);
+  if (!story) notFound();
+  const index = stories.indexOf(story);
+  const next = stories[(index + 1) % stories.length];
+  const photo = storyPhoto(story);
+  const nextPhoto = storyPhoto(next);
+  const kind = storyKinds.find((k) => k.id === storyKind(story))?.label;
+  const body = storyDetails[story.id] ?? [];
+
+  return (
+    <>
+      <article>
+        <header className={s.hero}>
+          <div className={s.heroText}>
+            <p className={s.back}>
+              <Link href="/pribehy">Všechny příběhy</Link>
+              <span>
+                {String(index + 1).padStart(2, "0")} /{" "}
+                {String(stories.length).padStart(2, "0")}
+              </span>
+            </p>
+            <p className={s.route}>
+              {story.from} <span aria-hidden="true">⟶</span> {story.to}
+            </p>
+            <h1 className={s.name}>{story.name}</h1>
+            <blockquote className={s.quote}>„{story.quote}“</blockquote>
+            <p className={s.label}>
+              <StoryLabel story={story} />
+            </p>
+          </div>
+          <figure className={s.photo} data-grain>
+            <Image
+              src={photo.file}
+              alt={photo.alt}
+              fill
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+            />
+            <figcaption>Ilustrační snímek</figcaption>
+          </figure>
+        </header>
+
+        <div className={s.body}>
+          <aside className={s.aside}>
+            <dl className={s.facts}>
+              <div>
+                <dt>Typ pobytu</dt>
+                <dd>{story.mobility}</dd>
+              </div>
+              <div>
+                <dt>Obor</dt>
+                <dd>{story.field}</dd>
+              </div>
+              <div>
+                <dt>Rok</dt>
+                <dd>{story.year}</dd>
+              </div>
+              <div>
+                <dt>Cíl</dt>
+                <dd>
+                  {story.to}, {story.toCountry}
+                </dd>
+              </div>
+              {kind && (
+                <div>
+                  <dt>Skupina</dt>
+                  <dd>{kind}</dd>
+                </div>
+              )}
+            </dl>
+            <RouteMap story={story} />
+          </aside>
+          <div className={s.text}>
+            <p className={s.lead}>{story.excerpt}</p>
+            {body.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+            ))}
+            <p className={s.disclaimer}>
+              Postava, jméno i citace jsou modelové. Fotografie je ilustrační a
+              nezobrazuje skutečného účastníka.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <Link href={`/pribehy/${next.id}`} className={s.next}>
+        <span className={s.nextLabel}>Další cesta</span>
+        <span className={s.nextName}>{next.name}</span>
+        <span className={s.nextRoute}>
+          {next.from} <span aria-hidden="true">⟶</span> {next.to}
+        </span>
+        <span className={s.nextPhoto} data-grain aria-hidden="true">
+          <Image src={nextPhoto.file} alt="" fill sizes="40vw" />
+        </span>
+      </Link>
+
+      <aside className={s.invite}>
+        <p>Máte podobnou zkušenost?</p>
+        <Link href="/zapojte-se#pribeh">Přidat svůj příběh</Link>
+            </aside>
+    </>
+  );
+}

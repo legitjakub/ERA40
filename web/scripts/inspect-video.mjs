@@ -1,0 +1,4 @@
+import {chromium} from '@playwright/test';
+const b=await chromium.launch();const p=await b.newPage({viewport:{width:1440,height:900}});await p.goto('http://127.0.0.1:3040');await p.waitForTimeout(1200);
+async function log(label){console.log(label,await p.locator('video').evaluate(v=>({error:v.error?.message,code:v.error?.code,paused:v.paused,src:v.currentSrc,html:v.outerHTML,controls:v.closest('section').querySelector('[data-controls]')?.outerHTML,open:document.querySelector('dialog[open]')?.textContent,pins:document.querySelectorAll('.pin-spacer').length,stored:localStorage.getItem('era40-reduce-motion')})));}
+await log('Before');await p.emulateMedia({reducedMotion:'reduce'});await p.waitForTimeout(500);await p.evaluate(()=>scrollTo(0,0));await log('After');await p.screenshot({path:'qa/inspection/video-reduced.png'});await b.close();

@@ -1,0 +1,110 @@
+.prolog {
+  position: relative;
+  color: var(--c-ink, #0b1b33);
+  background: var(--c-paper, white);
+  padding: clamp(5rem, 15vh, 12rem) 0 0;
+}
+.body,
+.transition {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(24px, 6vw, 92px);
+}
+.body h2 {
+  margin: 0;
+  max-width: 19ch;
+  font-size: clamp(3.35rem, 6.8vw, 7rem);
+  font-weight: 820;
+  font-variation-settings:
+    "wght" 820,
+    "wdth" 60;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+.ending {
+  display: inline-block;
+  position: relative;
+}
+.ending i {
+  position: absolute;
+  height: 2px;
+  left: 0.02em;
+  right: 0.025em;
+  bottom: -0.015em;
+  background: var(--c-eu-blue, #004494);
+  transform-origin: left center;
+}
+.note {
+  margin-block: clamp(28px, 4.5vh, 52px) 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--c-mute, #4f5b6e);
+}
+.note a {
+  color: var(--c-eplus-ink, #006ba8);
+  text-underline-offset: 0.18em;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+.transition {
+  position: relative;
+  padding-top: clamp(42px, 6.5vw, 100px);
+}
+.bend {
+  position: absolute;
+  left: 0;
+  top: 10%;
+  width: clamp(26px, 5vw, 80px);
+  height: 90%;
+  color: var(--c-eu-blue, #004494);
+}
+.sequence {
+  margin: 0;
+  position: relative;
+}
+.window {
+  position: relative;
+  aspect-ratio: 3.45;
+  width: 100%;
+  background: var(--c-sky, #eaf3fa);
+  overflow: hidden;
+}
+.window img,
+.window canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sequence figcaption {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 0.25rem 0.55rem;
+  background: rgba(11, 27, 51, 0.55);
+  color: white;
+  font-size: 0.875rem;
+}
+@media (max-width: 1023px) {
+  .prolog {
+    padding-top: clamp(68px, 10vh, 110px);
+  }
+  .body,
+  .transition {
+    padding-inline: 16px;
+  }
+  .body h2 {
+    max-width: 20ch;
+    font-size: clamp(2.75rem, 8.3vw, 5rem);
+  }
+  .window {
+    aspect-ratio: 2;
+  }
+  .bend {
+    width: 16px;
+  }
+  .note {
+    max-width: 52ch;
+  }
+}

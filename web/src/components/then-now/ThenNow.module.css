@@ -1,0 +1,232 @@
+.section {
+  background: #fff;
+  color: #0b1b33;
+  position: relative;
+  font-family: var(--font-brand, "Roboto Flex", Roboto, Arial, sans-serif);
+}
+.scene {
+  background: #fff;
+  padding: clamp(4rem, 8vw, 8rem) 0;
+}
+.inner {
+  width: min(91%, 1320px);
+  margin: auto;
+}
+.header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.4rem;
+}
+.title {
+  margin: 0;
+  color: #004494;
+  font-size: clamp(3.4rem, 7.8vw, 8rem);
+  font-variation-settings:
+    "wdth" 52,
+    "wght" 845;
+  font-weight: 845;
+  letter-spacing: -0.025em;
+  line-height: 0.95;
+}
+.header p {
+  max-width: 27rem;
+  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.35;
+}
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.options button {
+  appearance: none;
+  padding: 0.7rem 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: #4f5b6e;
+  font: inherit;
+  font-size: 0.97rem;
+  cursor: pointer;
+}
+.options button[aria-pressed="true"] {
+  color: #004494;
+  font-weight: 700;
+  border-color: currentColor;
+}
+.figure {
+  margin: 0;
+}
+.comparison {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #0b1b33;
+  height: clamp(16rem, 36vw, 32rem);
+}
+.image {
+  object-fit: cover;
+}
+.reveal {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 0 var(--divider));
+}
+.tags {
+  position: absolute;
+  inset: 0.9rem 0.9rem auto;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.tags span {
+  padding: 0.35rem 0.65rem;
+  color: #fff;
+  background: #0b1b33;
+  font-weight: 650;
+  font-size: 0.94rem;
+}
+.divider {
+  position: absolute;
+  inset: 0 auto 0 var(--divider);
+  width: 2px;
+  background: #ffed00;
+  pointer-events: none;
+}
+.divider span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  background: #ffed00;
+  color: #0b1b33;
+  font-size: 1.5rem;
+  font-weight: 700;
+  white-space: pre;
+}
+.slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  touch-action: pan-y;
+  appearance: none;
+  background: transparent;
+}
+.slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 2px;
+  height: 100%;
+}
+.slider::-moz-range-thumb {
+  border: 0;
+  width: 2px;
+  height: 100%;
+}
+.comparison:has(.slider:focus-visible) {
+  outline: 3px solid #004494;
+  outline-offset: 3px;
+}
+.comparison:has(.slider:focus-visible) .divider span {
+  outline: 3px solid #0b1b33;
+}
+.captions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 0.95rem;
+  animation: caption 0.24s ease-out;
+}
+.captions div {
+  display: flex;
+  gap: 0.8rem;
+  align-items: baseline;
+  font-size: clamp(1rem, 1.65vw, 1.5rem);
+  line-height: 1.24;
+}
+.captions b {
+  font-size: 0.86rem;
+  color: #004494;
+}
+.notes {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem 2rem;
+  margin-top: 0.85rem;
+  color: #4f5b6e;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.notes a {
+  color: #006ba8;
+  text-decoration: underline;
+}
+@keyframes caption {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (min-width: 1024px) and (min-height: 680px) {
+  .section[data-pinned] {
+    min-height: 166svh;
+  }
+  .section[data-pinned] .scene {
+    position: sticky;
+    top: 0;
+    min-height: 100svh;
+    display: grid;
+    align-items: center;
+    padding: 4rem 0 2.5rem;
+  }
+  .section[data-pinned] .comparison {
+    height: clamp(14rem, 43svh, 33rem);
+  }
+}
+@media (max-width: 680px) {
+  .header {
+    display: grid;
+    gap: 1rem;
+  }
+  .header p {
+    max-width: 28ch;
+  }
+  .comparison {
+    height: min(60svh, 22rem);
+  }
+  .captions div {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .notes {
+    flex-direction: column;
+  }
+  .options {
+    gap: 0.75rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .captions {
+    animation: none;
+  }
+}

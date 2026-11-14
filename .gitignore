@@ -1,0 +1,5 @@
+# QA screenshots, videos and reports (large, regenerable)
+/web/qa/
+# packaged copy of docs/
+/ERA40-creative-docs.zip
+.DS_Store

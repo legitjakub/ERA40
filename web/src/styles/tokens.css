@@ -1,0 +1,61 @@
+/* ERA40 design tokens — source of truth: docs/DESIGN.md §2.
+   Identity: Erasmus+ visual guidelines 2021–27. Do not add colours outside this file. */
+:root {
+  /* Colour */
+  --c-eu-blue: #004494; /* EU emblem blue: primary dark surface, headings on light */
+  --c-eplus: #007fc7; /* Erasmus+ blue: large text ≥24px, graphics. Not small text on white (4.3:1) */
+  --c-eplus-ink: #006ba8; /* links / small text on white (5.7:1) */
+  --c-yellow: #ffed00; /* EU yellow: accent only, on blue/ink. Never text on white */
+  --c-ink: #0b1b33;
+  --c-paper: #ffffff;
+  --c-sky: #eaf3fa;
+  --c-white: #ffffff;
+  --c-mute: #4f5b6e;
+  --c-line: #c9d6e3;
+  --c-scrim: rgb(11 27 51 / 0.45);
+
+  /* Type */
+  --font-brand:
+    "Roboto Flex Variable", "Roboto Flex", Roboto, Arial, sans-serif;
+  --fs-display-xl: clamp(4.5rem, 2.2rem + 11vw, 13.75rem);
+  --fs-display: clamp(3.25rem, 1.9rem + 6vw, 7rem);
+  --fs-h2: clamp(2.25rem, 1.6rem + 3vw, 4rem);
+  --fs-lead: clamp(1.375rem, 1.15rem + 0.9vw, 1.875rem);
+  --fs-body: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem);
+  --fs-meta: 0.8125rem;
+  --lh-display: 0.9;
+  --lh-body: 1.55;
+  --wdth-display: 40; /* Roboto Flex width axis for display type */
+  --wght-display: 860;
+
+  /* Layout */
+  --max-w: 1440px;
+  --gutter: 24px;
+  --cols: 12;
+  --section-pad: clamp(96px, 14vh, 200px);
+  --radius-control: 2px;
+
+  /* Motion (mirror of src/motion/presets.ts) */
+  --dur-xs: 0.3s;
+  --dur-s: 0.6s;
+  --dur-m: 0.9s;
+  --dur-l: 1.4s;
+  --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  /* Trasa motif */
+  --trasa-stroke: 2px;
+  --trasa-station: 10px;
+
+  /* Layers */
+  --z-canvas: 0;
+  --z-content: 1;
+  --z-header: 50;
+  --z-overlay: 100;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --gutter: 16px;
+    --trasa-stroke: 1.5px;
+  }
+}

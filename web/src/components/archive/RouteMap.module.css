@@ -1,0 +1,47 @@
+.map {
+  margin: 0;
+}
+.map svg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--c-sky);
+}
+.route {
+  fill: none;
+  stroke: var(--c-eu-blue);
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.6s 0.5s var(--ease-out) forwards;
+}
+.stop circle {
+  fill: white;
+  stroke: var(--c-eu-blue);
+}
+.stop[data-role="to"] circle {
+  fill: var(--c-eu-blue);
+}
+.stop text {
+  fill: var(--c-eu-blue);
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: var(--c-sky);
+  stroke-width: 3px;
+}
+.map figcaption {
+  margin-top: 8px;
+  color: var(--c-mute);
+  font-size: 0.8125rem;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

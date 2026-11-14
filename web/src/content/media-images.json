@@ -1,0 +1,87 @@
+[
+  {
+    "id": "ph-train-window-woman",
+    "file": "/media/placeholders/ph-train-window-woman.jpg",
+    "alt": "Mladá žena se dívá z okna vlaku"
+  },
+  {
+    "id": "ph-backpack-station",
+    "file": "/media/placeholders/ph-backpack-station.jpg",
+    "alt": "Mladí cestovatelé s batohy na nádraží"
+  },
+  {
+    "id": "ph-platform-woman",
+    "file": "/media/placeholders/ph-platform-woman.jpg",
+    "alt": "Studentka s batohem a knihou na nástupišti"
+  },
+  {
+    "id": "ph-prague-station",
+    "file": "/media/placeholders/ph-prague-station.jpg",
+    "alt": "Nástupiště pražského hlavního nádraží"
+  },
+  {
+    "id": "ph-prague-street",
+    "file": "/media/placeholders/ph-prague-street.jpg",
+    "alt": "Ulice na Starém Městě v Praze"
+  },
+  {
+    "id": "ph-library",
+    "file": "/media/placeholders/ph-library.jpg",
+    "alt": "Studenti v univerzitní knihovně"
+  },
+  {
+    "id": "ph-group",
+    "file": "/media/placeholders/ph-group.jpg",
+    "alt": "Studenti na schodech před univerzitou"
+  },
+  {
+    "id": "ph-friends-evening",
+    "file": "/media/placeholders/ph-friends-evening.jpg",
+    "alt": "Přátelé při západu slunce nad Lisabonem"
+  },
+  {
+    "id": "ph-dorm",
+    "file": "/media/placeholders/ph-dorm.jpg",
+    "alt": "Přátelé na koleji"
+  },
+  {
+    "id": "ph-workshop",
+    "file": "/media/placeholders/ph-workshop.jpg",
+    "alt": "Mistr ukazuje učni postup v dílně"
+  },
+  {
+    "id": "ph-classroom",
+    "file": "/media/placeholders/ph-classroom.jpg",
+    "alt": "Výuka ve třídě s mapou a glóbusem"
+  },
+  {
+    "id": "ph-youth",
+    "file": "/media/placeholders/ph-youth.jpg",
+    "alt": "Skupina mladých lidí při diskusi"
+  },
+  {
+    "id": "ph-diary",
+    "file": "/media/placeholders/ph-diary.jpg",
+    "alt": "Deník, fotografie, mapa a fotoaparát na stole"
+  },
+  {
+    "id": "ph-scrapbook",
+    "file": "/media/placeholders/ph-scrapbook.jpg",
+    "alt": "Cestovní deník ve vintage stylu"
+  },
+  {
+    "id": "ph-lisbon-tram",
+    "file": "/media/placeholders/ph-lisbon-tram.jpg",
+    "alt": "Tramvaj v Lisabonu"
+  },
+  {
+    "id": "ph-train-luggage",
+    "file": "/media/placeholders/ph-train-luggage.jpg",
+    "alt": "Cestující ukládají zavazadla ve vlaku"
+  },
+  {
+    "id": "ph-map-pins",
+    "file": "/media/placeholders/ph-map-pins.jpg",
+    "alt": "Špendlíky na mapě Evropy"
+  }
+]

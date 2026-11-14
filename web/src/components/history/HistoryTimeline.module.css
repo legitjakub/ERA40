@@ -1,0 +1,327 @@
+.history {
+  position: relative;
+  background: var(--c-paper, white);
+  color: var(--c-eu-blue, #004494);
+}
+.srTitle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.stage {
+  display: none;
+}
+.history[data-enhanced] .static {
+  display: none;
+}
+.history[data-enhanced] .stage {
+  display: grid;
+  align-content: center;
+  height: 100svh;
+  color: var(--c-eu-blue, #004494);
+  background: var(--c-paper, white);
+}
+.stage[data-dark="true"],
+.static li[data-dark="true"] {
+  background: var(--c-eu-blue, #004494) !important;
+  color: var(--c-white, white) !important;
+}
+.stageInner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(70px, 8.5vh, 100px) clamp(54px, 6vw, 90px)
+    clamp(25px, 4vh, 60px);
+}
+.title,
+.staticTitle {
+  color: inherit;
+  margin: 0;
+  font-size: clamp(2rem, 3.3vw, 3.2rem);
+  font-weight: 790;
+  font-variation-settings:
+    "wdth" 65,
+    "wght" 790;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+.scene {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(36px, 6vw, 100px);
+  align-items: center;
+  margin-block: clamp(22px, 5vh, 65px) 12px;
+}
+.narrative {
+  min-width: 0;
+}
+.trackLabel {
+  font-size: 0.93rem;
+  font-weight: 600;
+}
+.date {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.5rem;
+  margin-block: 0.55rem 1.4rem;
+}
+.date > span:first-child,
+.staticDate {
+  font-size: clamp(6.8rem, min(13vw, 20vh), 12.7rem);
+  font-weight: 870;
+  font-variation-settings:
+    "wght" 870,
+    "wdth" 65;
+  letter-spacing: -0.025em;
+  line-height: 0.84;
+  font-variant-numeric: tabular-nums;
+}
+.endYear {
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 700;
+  line-height: 1;
+}
+.captionStack {
+  display: grid;
+}
+.caption {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+.caption[data-active="true"] {
+  visibility: visible;
+}
+.caption h3,
+.staticText h3 {
+  font-size: clamp(1.6rem, 2.7vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  font-weight: 770;
+  font-variation-settings:
+    "wdth" 70,
+    "wght" 770;
+  margin: 0 0 0.6rem;
+  overflow: hidden;
+}
+.caption h3 span {
+  display: inline-block;
+}
+.caption p,
+.staticText p {
+  margin: 0 0 0.85rem;
+  max-width: 43ch;
+  color: var(--c-ink, #0b1b33);
+  font-size: clamp(1rem, 1.27vw, 1.2rem);
+  line-height: 1.48;
+}
+.stage[data-dark="true"] .caption p,
+.static li[data-dark="true"] p {
+  color: inherit;
+}
+.source {
+  color: inherit;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+.figure {
+  margin: 0;
+  min-width: 0;
+}
+.stack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.57;
+  background: var(--c-sky, #eaf3fa);
+  overflow: hidden;
+}
+.stage .stack {
+  max-height: 47vh;
+}
+.photo {
+  position: absolute;
+  inset: 0;
+}
+.photo:not(:first-child) {
+  clip-path: inset(100% 0% 0% 0%);
+}
+.figure img {
+  object-fit: cover;
+}
+.figure figcaption {
+  margin: 0.35rem 0 0;
+  text-align: right;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: inherit;
+}
+.routes {
+  position: relative;
+  margin: 0 18px;
+  padding-top: 59px;
+}
+.routes svg {
+  width: 100%;
+  height: 70px;
+  position: absolute;
+  inset: 0 0 auto;
+  overflow: visible;
+}
+.routes path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2px;
+}
+.routes .rail {
+  opacity: 0.2;
+}
+.routes .czTrace {
+  stroke: var(--c-eplus, #007fc7);
+}
+/* Names of the two lines, set where each line begins. */
+.lineLabel {
+  position: absolute;
+  left: 0;
+  top: 30px;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  line-height: 1;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.lineLabel[data-line="cz"] {
+  top: -12px;
+  color: var(--c-eplus-ink, #006ba8);
+}
+.stage[data-dark="true"] .lineLabel[data-line="cz"] {
+  color: var(--c-yellow, #ffed00);
+}
+.stage[data-dark="true"] .czTrace {
+  stroke: var(--c-yellow, #ffed00);
+}
+.stops {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+.stops li {
+  width: 0;
+  display: flex;
+  justify-content: center;
+}
+.stops button {
+  position: relative;
+  flex: none;
+  appearance: none;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 550;
+  padding: 12px 5px 5px;
+  cursor: pointer;
+}
+.stops button::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: 50%;
+  top: -1px;
+  transform: translate(-50%, -50%);
+  border: solid 2px currentColor;
+  border-radius: 50%;
+  background: white;
+}
+.stage[data-dark="true"] .stops button::before {
+  background: var(--c-eu-blue, #004494);
+}
+.stops button[aria-current] {
+  font-weight: 800;
+}
+.stops button[aria-current]::before,
+.stage[data-dark="true"] .stops button[aria-current]::before {
+  background: currentColor;
+}
+.stops button:focus-visible,
+.source:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+.staticTitle {
+  font-size: clamp(2.7rem, 6vw, 5rem);
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: clamp(60px, 11vh, 108px) 5vw 1.4rem;
+}
+.static ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.static li {
+  padding: 0 5vw;
+}
+.staticInner {
+  max-width: 1100px;
+  margin: auto;
+  position: relative;
+  border-left: 1.5px solid currentColor;
+  padding: 2.25rem 0 2.25rem clamp(22px, 5vw, 92px);
+}
+.staticInner::before {
+  content: "";
+  position: absolute;
+  top: 2.25rem;
+  left: -5.75px;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: currentColor;
+}
+.staticDate {
+  font-size: clamp(3.4rem, 8vw, 6.8rem);
+  margin: 1.2rem 0 1.1rem;
+}
+.staticText h3 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+}
+@media (min-width: 900px) {
+  .staticInner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 0 4rem;
+  }
+  .staticInner .figure {
+    grid-row: span 2;
+  }
+  .staticDate {
+    align-self: end;
+  }
+}
+@media (max-width: 640px) {
+  .staticTitle {
+    padding-inline: 16px;
+  }
+  .static li {
+    padding-inline: 19px 16px;
+  }
+  .staticInner {
+    padding-top: 1.6rem;
+  }
+  .staticInner::before {
+    top: 1.6rem;
+  }
+  .source,
+  .figure figcaption {
+    font-size: 0.875rem;
+  }
+}

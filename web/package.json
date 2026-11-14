@@ -1,0 +1,35 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "qa:shots": "node scripts/qa-shots.mjs",
+    "media:fetch": "node scripts/fetch-media.mjs",
+    "media:hero": "bash scripts/build-hero.sh",
+    "qa:checks": "node scripts/qa-checks.mjs",
+    "kontakty:export": "node scripts/export-contacts.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/roboto-flex": "^5.3.0",
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.15.1",
+    "lenis": "^1.3.27",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "typescript": "^5"
+  }
+}

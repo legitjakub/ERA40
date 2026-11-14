@@ -1,0 +1,177 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  height: 100svh;
+  min-height: 620px;
+  overflow: clip;
+  background: white;
+}
+.frame,
+.media,
+.scrim,
+.trail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.frame {
+  overflow: hidden;
+  background: var(--c-ink);
+}
+.media {
+  object-fit: cover;
+  object-position: 50% 47%;
+}
+.scrim {
+  background: rgb(6 18 33 / 0.6);
+}
+.copy {
+  position: absolute;
+  left: clamp(24px, 6vw, 112px);
+  right: 4vw;
+  bottom: clamp(65px, 8vh, 105px);
+  color: white;
+}
+.context {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 0 0 clamp(16px, 3vh, 38px);
+  font-size: clamp(0.93rem, 1.3vw, 1.2rem);
+  font-weight: 570;
+}
+.station {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c-yellow);
+}
+.dates {
+  margin-left: 10px;
+  padding-left: 20px;
+  border-left: 1px solid #fff9;
+  font-variant-numeric: tabular-nums;
+}
+.title {
+  color: white;
+  font-family: var(--font-brand);
+  font-size: clamp(6rem, 9.6vw, 11.7rem);
+  font-variation-settings:
+    "wdth" 78,
+    "wght" 815;
+  letter-spacing: -0.025em;
+  line-height: 0.96;
+  margin: 0;
+}
+.title > span {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.075em;
+  margin-bottom: -0.075em;
+}
+.title > span > span {
+  display: block;
+}
+.intro {
+  margin: clamp(18px, 3vh, 36px) 0 22px;
+  line-height: 1.4;
+  font-size: clamp(1rem, 1.3vw, 1.28rem);
+  font-weight: 500;
+}
+.actions {
+  display: flex;
+  gap: clamp(18px, 2.5vw, 40px);
+  align-items: center;
+}
+.primary,
+.history {
+  font-size: 1rem;
+  font-weight: 650;
+}
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 27px;
+  background: var(--c-yellow);
+  color: var(--c-ink);
+  padding: 12px 19px;
+  text-decoration: none;
+}
+.primary:hover {
+  background: white;
+}
+.history,
+.history:hover {
+  color: white;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+}
+.controls {
+  position: absolute;
+  right: 5vw;
+  bottom: 7.5vh;
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 550;
+  text-shadow: 0 1px 4px #001a34;
+}
+.controls button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #fff9;
+  border-radius: 50%;
+  background: #0b1b3380;
+  color: white;
+  cursor: pointer;
+}
+.track {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background: var(--c-yellow);
+  width: 100%;
+}
+.trail {
+  pointer-events: none;
+  color: var(--c-eu-blue);
+}
+@media (max-width: 1023px) {
+  .hero {
+    height: 88svh;
+    min-height: min(620px, 100svh);
+  }
+  .title {
+    font-size: clamp(3.05rem, 8.9vw, 6.5rem);
+  }
+  .copy {
+    bottom: 78px;
+    right: 18px;
+  }
+  .controls {
+    bottom: 16px;
+    right: 20px;
+  }
+  .context {
+    margin-bottom: 18px;
+  }
+}
+@media (max-height: 620px) and (min-width: 650px) {
+  .hero {
+    min-height: 450px;
+  }
+  .title {
+    font-size: clamp(3.5rem, 6.7vw, 6rem);
+  }
+  .copy {
+    bottom: 25px;
+  }
+  .context,
+  .intro {
+    margin: 6px 0;
+  }
+}
+
