@@ -69,6 +69,12 @@ export function createDistortion(
   function draw() {
     frame = 0;
     if (disposed || document.hidden) return;
+    if (section.dataset.handoff === "true") {
+      canvas.style.opacity = "0";
+      previous = scrollY;
+      velocity = 0;
+      return;
+    }
     const delta = scrollY - previous;
     previous = scrollY;
     velocity = velocity * 0.78 + Math.max(-2, Math.min(2, delta * 0.04)) * 0.22;

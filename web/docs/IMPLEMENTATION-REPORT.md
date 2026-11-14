@@ -146,4 +146,3 @@ Jakub autorizoval postupné změny hlavní stránky i podstránek a průběžný
 **Dávka A:** sjednocené české označení modelových příběhů přes společnou komponentu v homepage, mapě, dialogu, archivu a detailu; bezpečnější řádkování českých nadpisů; podstránkové úvody používají sdílená trvání a menší přiblížení fotografie.
 
 Ověření: lint, typecheck a produkční build úspěšné. Na produkční :3000 prošlo `/`, `/pribehy`, `/pribehy/vymena`, `/zapojte-se`, `/o-projektu` při 1440 × 900 a 390 × 844: žádné JS chyby, přetoky ani nálezy axe ve zvolených WCAG A/AA pravidlech. Prohlédnuté screenshoty jsou ve scratchpadu `/private/tmp/era40-main-20261114/batch-a/`. Kontaktní API bylo blokované, data netknutá.
-

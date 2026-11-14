@@ -8,6 +8,7 @@ import { EuropeMap } from "@/components/map/EuropeMap";
 import { ThenNow } from "@/components/then-now/ThenNow";
 import { Numbers } from "@/components/numbers/Numbers";
 import { Future } from "@/components/future/Future";
+import { JourneySequence } from "@/components/people/JourneySequence";
 
 export default function HomePage() {
   return (
@@ -30,8 +31,10 @@ export default function HomePage() {
         <Hero />
         <PeopleIntro />
         <HistoryTimeline />
-        <PeopleStories />
-        <EuropeMap land={<MapLand />} />
+        <JourneySequence>
+          <PeopleStories />
+          <EuropeMap land={<MapLand />} />
+        </JourneySequence>
         <ThenNow />
         <Numbers />
         <Future />

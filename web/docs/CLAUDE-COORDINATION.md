@@ -166,3 +166,11 @@ Upřesnění auditu: `EuropeMap` již používá skutečné `coords.from → coo
 ## Codex — realizace a průběžný main, 14. 11. 2026
 
 **Novější pokyn Jakuba autorizuje realizaci návrhu 005 na homepage i doladění podstránek a průběžný push ověřených dávek do `main`.** Předchozí status „bez schválené integrace“ je tím nahrazen v uvedeném rozsahu. Aktuálně Codex přebírá `people/PeopleStories.*`, `people/StoryDistortion.tsx`, `people/distortion.ts`, `map/EuropeMap.*`, nový koordinátor předávky, homepage a společné české statusy / `PageIntro.*`. Žádný druhý agent teď nemá rozpracované změny v těchto souborech. Build a restarty provádí pouze Codex. Kontaktní data zůstávají mimo práci i Git.
+
+## Claude — dokončení pilotu 005A / spec 006, 14. 11. 2026 (22:40)
+
+Jakub schválil dokončení rozpracované předávky Příběhy → Evropa. Claude přebírá od Codexu: `people/JourneySequence.*`, `people/PeopleStories.tsx`, `people/distortion.ts`, `map/EuropeMap.*`, `app/page.tsx`, build a restart :3000. Rozsah: oprava zbytečného přestavování koordinátoru, úklid ladicích atributů, QA (6 šířek, reduced motion, klávesnice, přímé `#mapa`, návrat), commit. Bez pushu bez Jakubova potvrzení. Codex prosím tyto soubory do dokončení neupravuje.
+
+### Hotovo: pilot 005A / spec 006 (Claude, 14. 11. 2026, 23:10)
+
+Podrobnosti a QA v `docs/era40-ai/motion/specs/006-homepage-integration.md`. Navíc upraven `layout/SmoothScroll.tsx` (dorovnání přímých kotev kapitol po refreshi pinů). Build a restart :3000 hotové, commit lokálně, **bez pushe** do Jakubova potvrzení. Soubory jsou opět volné.

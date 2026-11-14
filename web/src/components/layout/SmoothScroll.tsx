@@ -21,6 +21,30 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     if (!ready || pathname !== "/") return;
     registerGsap();
     let alive = true;
+    // The browser jumps to a chapter anchor (/#mapa) before the pinned scenes
+    // add their spacers, which later pushes the chapter thousands of pixels
+    // down. Re-align once per refresh until the reader scrolls on their own.
+    const chapter = document
+      .getElementById(decodeURIComponent(location.hash.slice(1)))
+      ?.closest<HTMLElement>("[data-section]");
+    let readerMoved = !chapter;
+    const settle = () => {
+      if (readerMoved || !chapter) return;
+      const top = chapter.getBoundingClientRect().top + scrollY;
+      if (Math.abs(top - scrollY) > 2) window.scrollTo({ top, behavior: "instant" });
+    };
+    const release = () => {
+      readerMoved = true;
+    };
+    const intents = ["wheel", "touchstart", "keydown", "pointerdown"] as const;
+    if (chapter) {
+      intents.forEach((type) => addEventListener(type, release, { passive: true, once: true }));
+      ScrollTrigger.addEventListener("refresh", settle);
+    }
+    const unsettle = () => {
+      intents.forEach((type) => removeEventListener(type, release));
+      ScrollTrigger.removeEventListener("refresh", settle);
+    };
     document.fonts.ready.then(() => {
       if (alive)
         requestAnimationFrame(() => {
@@ -33,6 +57,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     if (reduced)
       return () => {
         alive = false;
+        unsettle();
       };
     const mm = gsap.matchMedia();
     mm.add("(min-width: 1024px) and (pointer: fine)", () => {
@@ -80,6 +105,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     });
     return () => {
       alive = false;
+      unsettle();
       mm.revert();
     };
   }, [reduced, ready, pathname]);

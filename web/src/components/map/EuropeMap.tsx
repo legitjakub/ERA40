@@ -1,17 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap } from "@/lib/gsap/setup";
+import { DUR, EASE } from "@/lib/gsap/presets";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { stories, storyPhoto } from "@/content/stories";
 
 import { StoryStatus, useOpenStory } from "@/components/people/StoryDialog";
 import { project, routeArc } from "@/lib/geo/europe";
+import { useJourney } from "@/components/people/JourneySequence";
 import s from "./EuropeMap.module.css";
 
-const prague = project([14.42, 50.08]);
 const destinations = stories.map((story) => ({
   story,
   point: project(story.id === "praha-in" ? story.coords.from : story.coords.to),
@@ -20,11 +21,14 @@ const route = routeArc;
 
 export function EuropeMap({ land }: { land: ReactNode }) {
   const root = useRef<HTMLElement>(null);
-  const [active, setActive] = useState(0);
+  const { mapIndex: active, selectMapStory: setActive } = useJourney();
+  const activeRoute = useRef<SVGPathElement>(null);
+  const traveller = useRef<SVGCircleElement>(null);
   const reduced = usePrefersReducedMotion();
   const open = useOpenStory();
   const selected = destinations[active].story,
     photo = storyPhoto(selected);
+  const from = project(selected.coords.from), to = project(selected.coords.to);
   useGSAP(
     () => {
       registerGsap();
@@ -48,19 +52,38 @@ export function EuropeMap({ land }: { land: ReactNode }) {
       gsap.from("[data-city]", {
         scale: 0,
         transformOrigin: "center",
-        duration: 0.6,
+        duration: DUR.s,
         stagger: 0.05,
-        ease: "back.out(1.6)",
+        ease: EASE.out,
         scrollTrigger: { trigger: root.current, start: "top 55%" },
       });
     },
     { scope: root, dependencies: [reduced], revertOnUpdate: true },
   );
+  useGSAP(() => {
+    if (reduced || !activeRoute.current || !traveller.current) return;
+    const path = activeRoute.current, dot = traveller.current;
+    const length = path.getTotalLength();
+    const progress = { value: 0 };
+    const place = () => {
+      const point = path.getPointAtLength(length * progress.value);
+      dot.setAttribute("cx", String(point.x));
+      dot.setAttribute("cy", String(point.y));
+    };
+    const timeline = gsap.timeline({
+      scrollTrigger: { trigger: root.current, start: "top 35%", once: true },
+    });
+    timeline.fromTo(path, { drawSVG: "0%" }, { drawSVG: "100%", duration: DUR.l, ease: "none" }, 0)
+      .to(progress, { value: 1, duration: DUR.l, ease: "none", onUpdate: place }, 0)
+      .fromTo(dot, { opacity: 0 }, { opacity: 1, duration: DUR.xs, ease: EASE.out }, 0);
+    place();
+  }, { scope: root, dependencies: [reduced, active] });
   return (
     <section
       ref={root}
       id="mapa"
       data-section="evropa"
+      data-active-story={selected.id}
       aria-labelledby="map-title"
       className={s.section}
     >
@@ -87,21 +110,29 @@ export function EuropeMap({ land }: { land: ReactNode }) {
               </defs>
               <g clipPath="url(#europe-bounds)">
                 {land}
-                {destinations.map(({ story }, i) => (
+                {destinations.map(({ story }) => (
                   <path
                     data-route
                     key={story.id}
                     className={s.route}
-                    data-active={active === i}
                     d={route(project(story.coords.from), project(story.coords.to))}
                     aria-hidden="true"
                   />
                 ))}
-                <g aria-hidden="true" className={s.prague}>
-                  <circle cx={prague[0]} cy={prague[1]} r="8" />
-                  <text x={prague[0] + 13} y={prague[1] + 27}>
-                    Praha
-                  </text>
+                <path
+                  ref={activeRoute}
+                  className={s.activeRoute}
+                  d={route(from, to)}
+                  aria-hidden="true"
+                />
+                <g aria-hidden="true" className={s.endpoint}>
+                  <circle cx={from[0]} cy={from[1]} r="5" />
+                  {selected.id !== "praha-in" && (
+                    <text x={from[0] - 12} y={from[1] + 24} textAnchor="end">{selected.from}</text>
+                  )}
+                  {selected.id === "praha-in" && (
+                    <><circle cx={to[0]} cy={to[1]} r="5" /><text x={to[0] + 13} y={to[1] + 23}>Praha</text></>
+                  )}
                 </g>
                 {destinations.map(({ story, point }, i) => (
                   <g
@@ -146,6 +177,12 @@ export function EuropeMap({ land }: { land: ReactNode }) {
                     </text>
                   </g>
                 ))}
+                <circle
+                  ref={traveller}
+                  className={s.traveller}
+                  cx={to[0]} cy={to[1]} r="7"
+                  aria-hidden="true"
+                />
               </g>
             </svg>
             <a
@@ -177,7 +214,7 @@ export function EuropeMap({ land }: { land: ReactNode }) {
                 </button>
               ))}
             </div>
-            <div className={s.photo} data-grain>
+            <div className={s.photo} data-grain data-map-photo data-flip-id={"story-photo-" + selected.id}>
               <Image
                 src={photo.file}
                 alt={photo.alt}

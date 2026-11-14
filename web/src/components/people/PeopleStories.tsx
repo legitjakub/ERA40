@@ -10,6 +10,7 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { stories, storyPhoto } from "@/content/stories";
 import { StoryStatus, useOpenStory } from "./StoryDialog";
 import { StoryDistortion } from "./StoryDistortion";
+import { useJourney } from "./JourneySequence";
 import s from "./PeopleStories.module.css";
 
 // Each story is a station named after the place where the stay happened.
@@ -23,16 +24,30 @@ export function PeopleStories() {
   const route = useRef<HTMLElement>(null);
   const pinned = useRef<ScrollTrigger | null>(null);
   const [active, setActive] = useState(0);
+  const activeIndex = useRef(0);
+  const linked = useRef(0);
+  const { selectRailStory } = useJourney();
   const last = stories.length - 1;
 
   // The Trasa under the stories mirrors the reader's position: a yellow
   // fill runs from the first to the last station and the nearest station
   // becomes active. On desktop the pinned rail drives it, on touch the
   // native horizontal scroll does.
-  function follow(progress: number) {
+  // `reading` is false when ScrollTrigger recalculates the pin while the
+  // reader is elsewhere (e.g. on the map); that must not override a person
+  // the reader picked on the map.
+  function follow(progress: number, reading = true) {
     route.current?.style.setProperty("--progress", progress.toFixed(4));
     const next = Math.round(progress * last);
-    setActive((current) => (current === next ? current : next));
+    if (activeIndex.current !== next) {
+      activeIndex.current = next;
+      setActive(next);
+      if (reading) link(next);
+    }
+  }
+  function link(index: number) {
+    linked.current = index;
+    selectRailStory(index);
   }
 
   useEffect(() => {
@@ -90,7 +105,16 @@ export function PeopleStories() {
             pin: true,
             invalidateOnRefresh: true,
             anticipatePin: 1,
-            onUpdate: (self) => follow(self.progress),
+            onUpdate: (self) => follow(self.progress, self.isActive),
+            // Lenis can report a programmatic jump as a brief enter/leave pair
+            // although the reader never returned to the rail; trust the position.
+            onEnterBack: (self) => {
+              if (self.scroll() <= self.end) link(Math.round(self.progress * last));
+            },
+            // Leaving downwards departs from the last story, even after a fast jump.
+            onLeave: () => {
+              if (linked.current !== last) link(last);
+            },
           },
         });
         pinned.current = movement.scrollTrigger ?? null;
@@ -170,7 +194,7 @@ export function PeopleStories() {
         </p>
       </header>
       <div className={s.viewport}>
-        <div ref={rail} className={s.rail}>
+        <div ref={rail} className={s.rail} data-story-rail>
           {stories.map((story, i) => {
             const photo = storyPhoto(story);
             return (
@@ -195,7 +219,7 @@ export function PeopleStories() {
                   />
                   <span className={s.caption}>Ilustrační snímek</span>
                 </div>
-                <div className={s.text}>
+                <div className={s.text} data-story-copy>
                   <p className={s.kicker}>
                     <StoryStatus story={story} />
                   </p>

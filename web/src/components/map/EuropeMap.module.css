@@ -59,9 +59,11 @@
   opacity: 0.28;
   vector-effect: non-scaling-stroke;
 }
-.route[data-active="true"] {
+.activeRoute {
+  fill: none;
+  stroke: var(--c-eu-blue);
   stroke-width: 2.5;
-  opacity: 1;
+  vector-effect: non-scaling-stroke;
 }
 .city {
   fill: var(--c-eu-blue);
@@ -90,15 +92,20 @@
   stroke: white;
   stroke-width: 3;
 }
-.prague {
-  fill: var(--c-ink);
-  font-size: 17px;
-  font-weight: 750;
-}
-.prague circle {
+.endpoint {
   fill: var(--c-eu-blue);
-  stroke: var(--c-yellow);
-  stroke-width: 4;
+}
+.endpoint text {
+  font: 650 15px var(--font-brand);
+  paint-order: stroke;
+  stroke: var(--c-sky);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+.traveller {
+  fill: var(--c-yellow);
+  stroke: var(--c-eu-blue);
+  stroke-width: 2;
 }
 .credit {
   font-size: 0.875rem;
@@ -211,7 +218,7 @@
   .city text {
     font-size: 19px;
   }
-  .prague text {
+  .endpoint text {
     font-size: 19px;
   }
   .selection button {
