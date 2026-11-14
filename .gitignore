@@ -4,5 +4,7 @@
 /ERA40-creative-docs.zip
 .DS_Store
 
-# Interní podklady zadavatele (DZS) — repo je veřejné, nikdy necommitovat
+# Interní podklady zadavatele (DZS) — lokální pracovní kontext, necommitovat
 /docs/private/
+# Codex exec event logs (large, regenerable)
+/docs/agent-reports/logs/

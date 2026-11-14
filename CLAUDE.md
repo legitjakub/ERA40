@@ -8,6 +8,12 @@ Tento projekt je filmová digitální výstava ke 40 letům evropského programu
 
 Reference a jejich význam: `docs/04-top-10-references.md`, `web/docs/REFERENCE-NOTES.md` a `web/MOTION-REFERENCE-ANALYSIS.md`. Getty Tracing Art = orientace a redakční rytmus; Persepolis = filmový vstup a kapitoly; Inkwell = návaznost scén; Paper Planes = propojení lidí a míst. Přebírej principy a řemeslo, ne cizí vizuální identitu.
 
+## Nezávisle přečtené podklady (14. 11. 2026)
+
+Nový úplný kontext: `docs/private/codex-2026-11-14/CONTEXT.md` + tvůj `docs/private/2026-11-14-podklady-DZS.md`. ZIP obsahuje čtyři prezentace (100 slidů) a jeden DOCX, k tomu tři PDF (8 stran). Originály, úplné texty a obrazy zůstávají lokálně mimo Git. API ověřilo repozitář jako **PRIVATE**; dřívější předpoklad PUBLIC neplatí. Interní soubory přesto necommitovat.
+
+Příští návaznost: `docs/era40-ai/motion/specs/007-interactive-impact.md`. Důraz na předání zkušenosti dalším lidem a neúčastníkům. Zachovat modelová označení; žádné smyšlené násobitele dopadu, termíny akcí ani automatické přebírání konceptových obrazů jako schválené identity. Jakubův novější pokyn autorizoval postupnou realizaci a průběžný push ověřených dávek do main.
+
 ## Skilly používané pro tento typ práce
 
 Pro filmové/immersive weby nejprve načti `~/.claude/skills/cinematic-websites/SKILL.md`. Podle konkrétní úpravy použij nainstalované `awwwards`, `frontend-design`, oficiální `gsap-scrolltrigger`, `gsap-react`, `gsap-performance`, `react-best-practices` a `web-design-guidelines`. Výběr, zdroje a použití jsou v `web/docs/CREATIVE-SKILLS.md`.
@@ -46,3 +52,12 @@ Při počátečním studiu, auditu a nastavování neměň produkční komponent
 Nová významná animace jde přes skutečně prohlédnutou referenci → technický rozbor → původní ERA40 choreografii → izolovaný prototyp → vizuální revizi → výslovné schválení konkrétní specifikace → úpravu existujícího webu → prohlížečové QA → poučení. Schválení prototypu není schválení produkční integrace. Instalovaný skill ani přečtený tutoriál nejsou důkazem zvládnutého a ověřeného 3D efektu.
 
 Číslo 40 a „navždy“ smějí podporovat příběh. Dosavadní odmítnutí dekorativního ∞ není zákaz nového smysluplného konceptu navždy; významná změna motivu ale vyžaduje nový schválený návrh. Odkaz na koordinaci: `web/docs/CLAUDE-COORDINATION.md` (alias `Codex-COORDINATION.md`).
+
+## Orchestrace Claude × Codex (od 15. 11. 2026)
+
+Claude je kreativní ředitel a orchestrátor, Codex hlavní implementační inženýr. Systém práce je v `docs/orchestration/ORCHESTRATION.md`:
+- briefy patří do `docs/agent-briefs/`,
+- Codex se spouští přes `tools/codex-task.sh` (`codex exec`, nikdy bez sandboxu),
+- reporty jsou v `docs/agent-reports/`, review v `docs/qa/`.
+
+Úkol je hotový teprve po Claudově review s verdiktem PŘIJATO. Jednotná QA matice je v §7, pravidla souběhu a worktree v §8. Audit a chybějící podklady: `docs/orchestration/PROJECT_AUDIT.md` a `MISSING_INPUTS.md`. Ve fázi 1 (kreativní směry) zastavit a nechat Jakuba vybrat.

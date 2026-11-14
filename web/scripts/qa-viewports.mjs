@@ -1,10 +1,10 @@
 // Visual QA matrix for motion work (docs/era40-ai/workflows/visual-qa.md).
-// Six widths × scroll positions forward and back, a fast scroll, reduced motion,
+// Eight widths (docs/orchestration/ORCHESTRATION.md §7) × scroll positions forward and back, a fast scroll, reduced motion,
 // console errors and horizontal overflow. Screenshots are evidence to LOOK AT.
 // The contact API is blocked so QA never stores personal data.
 //
 //   node scripts/qa-viewports.mjs --url http://127.0.0.1:3000 --path / --out qa/viewports
-//   options: --widths 1440,1280,1024,390,375,360  --stops 0,0.15,0.3,0.5,0.7,0.9,1
+//   options: --widths 1920,1440,1280,1024,768,390,375,360  --stops 0,0.15,0.3,0.5,0.7,0.9,1
 import { chromium } from "@playwright/test";
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -15,12 +15,12 @@ const { values } = parseArgs({
     url: { type: "string", default: "http://127.0.0.1:3000" },
     path: { type: "string", default: "/" },
     out: { type: "string", default: "qa/viewports" },
-    widths: { type: "string", default: "1440,1280,1024,390,375,360" },
+    widths: { type: "string", default: "1920,1440,1280,1024,768,390,375,360" },
     stops: { type: "string", default: "0,0.15,0.3,0.5,0.7,0.9,1" },
   },
 });
 
-const heights = { 1440: 900, 1280: 800, 1024: 768, 390: 844, 375: 812, 360: 780 };
+const heights = { 1920: 1080, 1440: 900, 1280: 800, 1024: 768, 768: 1024, 390: 844, 375: 812, 360: 780 };
 const widths = values.widths.split(",").map(Number);
 const stops = values.stops.split(",").map(Number);
 const dest = resolve(values.out);

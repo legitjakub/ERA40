@@ -10,7 +10,7 @@ Vykonává `era40-visual-qa`. Animace není hotová, dokud ji někdo neviděl v 
 ## Povinná matice
 | Kontrola | Nástroj |
 |---|---|
-| 1440, 1280, 1024, 390, 375, 360 × scroll dolů i nahoru | `node scripts/qa-viewports.mjs --url … --path …` |
+| 1920, 1440, 1280, 1024, 768, 390, 375, 360 × scroll dolů i nahoru (matice: `docs/orchestration/ORCHESTRATION.md` §7) | `node scripts/qa-viewports.mjs --url … --path …` |
 | Rychlý scroll a návrat | tamtéž (`*-fast-return.jpg`) |
 | Reduced motion | tamtéž (`*-reduced-*`) a přepínač „Omezit pohyb“ v menu |
 | Konzole, page errors, overflow | `report.json` |

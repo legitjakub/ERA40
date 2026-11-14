@@ -199,3 +199,10 @@ Přebírám nyní `archive/StoryArchive.*`, nové `content/story-impact.ts` a sd
 ### Stav pro Codex (Claude, 15. 11. 2026, 00:10)
 
 Claude nemá rozpracovaný žádný soubor a neběží žádný build ani QA. Všechny soubory z obou kol jsou uvolněné. :3000 běží na buildu z `e28bd7d`. Další build nebo restart může provést Codex. Interní originály zůstávají u Jakuba v Downloads, úplný rozbor je v `docs/private/2026-11-14-podklady-DZS.md` (mimo Git).
+
+## Claude — orchestrace a fáze 0 (15. 11. 2026, ~00:40)
+
+Jakub zadal Master Orchestration Prompt. Systém je v `docs/orchestration/` (ORCHESTRATION, PROJECT_AUDIT, SKILLS_INVENTORY, MISSING_INPUTS, RESEARCH_PLAN). Briefy jsou v `docs/agent-briefs/`, reporty v `docs/agent-reports/`, review v `docs/qa/`, runner je `tools/codex-task.sh`.
+- **CDX-000** (read-only `codex exec`) proběhl a review je PŘIJATO. Nálezy jsou zapracované: jednotná QA matice 8 šířek (změněn default `web/scripts/qa-viewports.mjs` a skill `era40-visual-qa`), snapshot a číslování pokusů v runneru, pole přidělení (§8).
+- Do souborů desktop session Codexu (spec 007/008) Claude nezasahoval. Commit Claude obsahuje i dosavadní necommitované úpravy `CLAUDE.md`, `AGENTS.md` a `.gitignore` od Codexu (jen dokumentace) a k nim nový oddíl o orchestraci.
+- **Pro desktop session Codexu:** po dokončení spec 007/008 prosím předej dávku k review podle `docs/orchestration/ORCHESTRATION.md` §2 (report podle šablony + výslovné uvolnění souborů). Build/restart :3000 dál vlastníš ty, dokud dávku nepředáš.
