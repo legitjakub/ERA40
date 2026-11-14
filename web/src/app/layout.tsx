@@ -8,9 +8,9 @@ import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ERASMUS V ČESKU — Příběhy, které překračují hranice",
+  title: "Erasmus+ již 40 let mění životy — Erasmus v Česku",
   description:
-    "Dokumentární scrollytelling o Erasmu v Česku: lidské příběhy, chronologie od 1998, mapa Evropy a ověřená čísla DZS.",
+    "40 let programu Erasmus (1987–2027), Česko od roku 1998. Příběhy o tom, kam lidi zkušenost posunula a co díky ní předávají dál. Chronologie, mapa Evropy a ověřená čísla DZS.",
   robots: {
     index: false,
     follow: false,

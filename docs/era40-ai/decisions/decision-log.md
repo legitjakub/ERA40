@@ -6,6 +6,7 @@ Formát: ID · datum · rozhodnutí · důvod · kdo. Nová rozhodnutí přidáv
 
 | ID | Datum | Rozhodnutí | Důvod | Kdo |
 |---|---|---|---|---|
+| D-014 | 14. 11. 2026 | Podle podkladů zadavatele (interní, mimo Git v `docs/private/`) sladěn claim webu („Erasmus+ již 40 let mění životy“, „Cesta končí. Zkušenost pokračuje.“) a přidán kvíz `/tvoje-era` (6 typů v jazyce Trasy, nálepka PNG, bez osobních údajů). Hero titulek beze změny (D-002). Motiv nekonečné linie z KV zadavatele **čeká na Jakuba** (konflikt s D-005). | Jakub: materiály + „udělej plán a udělej to“ | Jakub / Claude |
 | D-013 | 14. 11. 2026 | Pilot 005A / spec 006 (fotografie Příběhy → Evropa) dokončen a ověřen na :3000. Opraveny přestavování triggeru, falešné zrušení ruční volby a přímé kotvy kapitol. Specifikace 001–004 se automaticky neimplementují. | Jakub: „Yes, finish 005A“ | Jakub / Claude |
 | D-012 | 14. 11. 2026 | Jakub vybral specifikaci 001 k prototypu. Prototyp v1 zveřejněn jako soukromá stránka, produkce beze změny. | Jakub: „001 Gramatika Trasy“ | Jakub / Claude |
 | D-011 | 14. 11. 2026 | Fáze 11: mapa schopností, kreativní jazyk (gramatika Trasy), audit přechodů a specifikace 001–004 ve stavu **návrh**. Produkční komponenty beze změny. Vlastní kurzor, druhý WebGL canvas a scrub hero filmu záměrně nenavrženy. | Pokyn Jakuba (Fáze 11), DESIGN §7, Global UI | Claude, čeká na Jakuba |

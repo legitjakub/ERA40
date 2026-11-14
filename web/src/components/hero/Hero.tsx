@@ -249,7 +249,7 @@ export function Hero() {
           ))}
         </h1>
         <p className={styles.intro}>
-          40 let evropského programu Erasmus.
+          Erasmus+ již 40 let mění životy.
           <br />
           Česko je u toho od roku 1998.
         </p>

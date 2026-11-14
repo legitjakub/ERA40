@@ -3,3 +3,6 @@
 # packaged copy of docs/
 /ERA40-creative-docs.zip
 .DS_Store
+
+# Interní podklady zadavatele (DZS) — repo je veřejné, nikdy necommitovat
+/docs/private/

@@ -153,7 +153,7 @@ export function Future() {
       className={s.section}
     >
       <div className={s.inner}>
-        <p className={s.lead}>Jedna zkušenost může změnit směr.</p>
+        <p className={s.lead}>Cesta končí. Zkušenost pokračuje.</p>
         <h2 id="future-title" className={s.title} data-velocity-type>
           <span>
             <span data-future-line>Další cesta</span>
@@ -216,6 +216,7 @@ export function Future() {
           </span>
         </div>
         <div className={s.links}>
+          <Link href="/tvoje-era">Jaké je tvoje ERA?</Link>
           <a href="https://www.dzs.cz/program/erasmus">Vyrazit s Erasmus+</a>
           <a href="https://erasmus-plus.ec.europa.eu/">O programu Erasmus+</a>
           <button type="button" onClick={share}>

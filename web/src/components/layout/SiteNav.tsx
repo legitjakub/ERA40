@@ -23,6 +23,7 @@ const darkHeroPages = [
 const pages = [
   ["/pribehy", "Všechny příběhy"],
   ["/zapojte-se", "Zapojte se"],
+  ["/tvoje-era", "Jaké je tvoje ERA?"],
   ["/o-projektu", "O projektu"],
 ] as const;
 

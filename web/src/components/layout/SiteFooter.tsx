@@ -12,7 +12,7 @@ export function SiteFooter() {
       <div className={s.inner}>
         <div>
           <p className={s.brand}>Erasmus v Česku</p>
-          <p>Příběhy, které překračují hranice.</p>
+          <p>Erasmus+ již 40 let mění životy. 1987–2027.</p>
           <p className={s.note}>
             Obsahový prototyp ke 40 letům evropského programu Erasmus.
           </p>
@@ -20,6 +20,7 @@ export function SiteFooter() {
         <nav aria-label="Závěrečná navigace">
           <Link href="/pribehy">Všechny příběhy</Link>
           <Link href="/zapojte-se">Zapojte se</Link>
+          <Link href="/tvoje-era">Jaké je tvoje ERA?</Link>
           <Link href="/o-projektu">O projektu</Link>
           <Link href="/ochrana-osobnich-udaju">Ochrana osobních údajů</Link>
           <Link href="/credits">Zdroje a obrazové kredity</Link>

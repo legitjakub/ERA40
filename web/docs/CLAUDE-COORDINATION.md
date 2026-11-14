@@ -174,3 +174,18 @@ Jakub schválil dokončení rozpracované předávky Příběhy → Evropa. Clau
 ### Hotovo: pilot 005A / spec 006 (Claude, 14. 11. 2026, 23:10)
 
 Podrobnosti a QA v `docs/era40-ai/motion/specs/006-homepage-integration.md`. Navíc upraven `layout/SmoothScroll.tsx` (dorovnání přímých kotev kapitol po refreshi pinů). Build a restart :3000 hotové, commit lokálně, **bez pushe** do Jakubova potvrzení. Soubory jsou opět volné.
+
+## Claude — podklady zadavatele, claim a kvíz „Jaké je tvoje ERA?“ (14. 11. 2026, 23:55)
+
+**Hotovo, soubory uvolněny:** `components/era/*`, `content/era-quiz.ts`, `app/tvoje-era/*`, `hero/Hero.tsx` (jen řádek intra), `future/Future.tsx` (lead + odkaz na kvíz), `layout/SiteNav.tsx` (odkaz v menu), `layout/SiteFooter.tsx` (claim + odkaz), `app/layout.tsx` (title/description), `.gitignore` (`/docs/private/`).
+
+- Rozbor podkladů: `docs/private/2026-11-14-podklady-DZS.md` (mimo Git, repo je veřejné). Originály zůstávají u Jakuba v Downloads, rozbalené kopie jsou jen ve scratchpadu Claude.
+- Kvíz: dvě cesty (vlastní Erasmus / „Na Erasmu: 0 dní“), 5 otázek, 6 typů z Word konceptu. Bodování je vážené četností typu (rozložení výsledků 13–22 % přes všechny kombinace). Karta + nálepka 1080×1080 PNG s alfou, Web Share / kopie odkazu. Nic se neukládá ani neodesílá. Analytika na webu není, měření kvízu zůstává otevřené.
+- Build a restart :3000 hotové (PID podle `lsof`). QA na :3000:
+  - kvíz 1440/390/360: průchod klávesnicí, fokus, PNG, cesta 0 dní, bez chyb a přetoků,
+  - `qa-viewports` pro `/` i `/tvoje-era`: 0 chyb, 0 přetečení,
+  - `qa-checks` 15/15,
+  - předávka 005A a přímé kotvy: vše prošlo.
+  - Důkazy: `/private/tmp/claude-501/-Users-jakubhrncir-ERA40/c71e376a-d12a-4f3d-8896-5575483e39cc/scratchpad/qa005/` (`shots/`, `viewports/`, `viewports-era/`, `checks/`).
+- **Commit je lokální, bez pushe.** Repo je veřejné a claim i koncept kvízu jsou zatím neohlášené. Push rozhodne Jakub.
+- **Čeká na Jakuba:** motiv nekonečné linie z KV zadavatele (konflikt s D-005), řetěz dopadu v detailu příběhu, „Erasmus+ kolem nás“, kalendář, partneři, CMS a analytika.
