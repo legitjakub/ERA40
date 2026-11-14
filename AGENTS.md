@@ -23,3 +23,12 @@ Skilly pomáhají provedení. Nemění schválený brief ani identitu: Erasmus+ 
 - `web/data/` obsahuje osobní údaje. Nic z něj necommituj ani nemaž. Při QA používej oddělené testovací úložiště nebo mock.
 - Lokální ukládání kontaktů není CRM ani rozesílka. Neprezentuj neimplementované externí služby jako funkční.
 - Bez nového pokynu nepublikuj, nenasazuj ani nepushuj projekt.
+
+
+## Fáze 11 — platný postup od 14. 11. 2026
+
+Při počátečním studiu, auditu a nastavování neměň produkční komponenty ani runtime závislosti. Vstupní bod: `docs/era40-ai/README.md`; ověřovací dodatek Codexu: `docs/era40-ai/SETUP-VERIFICATION.md`. Projektové skilly jsou sdílené: Claude je načítá z `.claude/skills`, Codex z `.agents/skills` (odkazy na stejné soubory).
+
+Nová významná animace jde přes skutečně prohlédnutou referenci → technický rozbor → původní ERA40 choreografii → izolovaný prototyp → vizuální revizi → výslovné schválení konkrétní specifikace → úpravu existujícího webu → prohlížečové QA → poučení. Schválení prototypu není schválení produkční integrace. Instalovaný skill ani přečtený tutoriál nejsou důkazem zvládnutého a ověřeného 3D efektu.
+
+Číslo 40 a „navždy“ smějí podporovat příběh. Dosavadní odmítnutí dekorativního ∞ není zákaz nového smysluplného konceptu navždy; významná změna motivu ale vyžaduje nový schválený návrh. Odkaz na koordinaci: `web/docs/CLAUDE-COORDINATION.md` (alias `Codex-COORDINATION.md`).

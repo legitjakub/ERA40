@@ -6,6 +6,8 @@ Formát: ID · datum · rozhodnutí · důvod · kdo. Nová rozhodnutí přidáv
 
 | ID | Datum | Rozhodnutí | Důvod | Kdo |
 |---|---|---|---|---|
+| D-012 | 14. 11. 2026 | Jakub vybral specifikaci 001 k prototypu. Prototyp v1 zveřejněn jako soukromá stránka, produkce beze změny. | Jakub: „001 Gramatika Trasy“ | Jakub / Claude |
+| D-011 | 14. 11. 2026 | Fáze 11: mapa schopností, kreativní jazyk (gramatika Trasy), audit přechodů a specifikace 001–004 ve stavu **návrh**. Produkční komponenty beze změny. Vlastní kurzor, druhý WebGL canvas a scrub hero filmu záměrně nenavrženy. | Pokyn Jakuba (Fáze 11), DESIGN §7, Global UI | Claude, čeká na Jakuba |
 | D-010 | 14. 11. 2026 | Zřízena znalostní báze `docs/era40-ai/`, projektové skilly a workflow s povinným schválením před produkční změnou | Pokyn Jakuba (AI Creative Development System) | Jakub / Claude |
 | D-009 | 14. 11. 2026 | Web oslavy (stránka `/oslava`, řádek akce, registrace, navržený program, interaktivní plánovač) **vrácen** revert commity b22f71b, 4c97a78, 0064e14 | Jakub: „tohle všechno vrať“ | Jakub |
 | D-008 | 14. 11. 2026 | Nepoužívat Animaxxing „full treatment“ ani `style-animaxxing` | Jeden hlavní pohyb na kapitolu, vlastní identita | Claude (podle DESIGN §4) |
@@ -25,6 +27,8 @@ Formát: ID · datum · rozhodnutí · důvod · kdo. Nová rozhodnutí přidáv
 4. Restart produkce: ukončit proces **podle PID** z `lsof -tiTCP:3000`. `pkill -f "next start"` nechal starou instanci nad novým buildem, a ta vracela chyby 500.
 5. Display nadpisy s diakritikou: line-height ≥ 1,0 (háček Č zasahoval do řádku nad).
 6. Klikání Playwrightem během Lenis/hash scrollu je nespolehlivé. Pro formuláře používat `focus()` + klávesu.
+
+7. Google Fonts nedodá variabilní osy Roboto Flex (vrací statický 400). V prototypech vkládat woff2 projektu.
 
 ## QA nálezy (výchozí stav 14. 11. 2026, `qa-viewports.mjs` na :3000)
 

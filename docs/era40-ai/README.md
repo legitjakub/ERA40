@@ -21,6 +21,10 @@ Trvalá znalostní báze pro vylepšování **existujícího** webu ERA40 (40 le
 | `technical/` | GSAP, ScrollTrigger, Three.js, WebGL, shadery, Playwright |
 | `workflows/` | Reference → specifikace → schválení → implementace → QA |
 | `decisions/` | Rozhodnutí, poučení, QA nálezy |
+| `technical/capability-map.md` | Fáze 11: šest disciplín → technika → stav znalostí |
+| `motion/creative-language.md` | Motivy (40, navždy, propojení, cesta, lidé, proměna, čas) a gramatika Trasy |
+| `motion/audit-2026-11-14.md` | Audit přechodů kapitol, nálezy, co zamítnuto |
+| `motion/specs/` | Specifikace ke schválení (001–004) |
 
 ## Vlastní skilly (`/.claude/skills/era40-*`)
 `era40-reference-analyst` → `era40-motion-director` → (Jakub schválí) → `era40-creative-developer` → `era40-visual-qa` → `era40-creative-refinement`.
@@ -30,3 +34,7 @@ Trvalá znalostní báze pro vylepšování **existujícího** webu ERA40 (40 le
 - Necitovat celé tutoriály. Odkaz + shrnutí + krátké vzory.
 - Zastaralé věci označ ⚠️ a před použitím ověř aktuální docs.
 - Opakovanou chybu oprav i ve skillu, ne jen v kódu.
+
+## Ověření obou agentů
+
+[SETUP-VERIFICATION.md](SETUP-VERIFICATION.md) rozlišuje převzatou práci Claude, kontrolu Codexu, skutečně otestovaný prototyp a neověřené 3D schopnosti. Codex načítá stejné projektové skilly přes `.agents/skills`; Claude přes `.claude/skills`.

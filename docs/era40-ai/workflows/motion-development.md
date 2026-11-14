@@ -14,6 +14,18 @@ Každý krok má vlastníka (skill) a výstup. **Do produkčních komponent se n
 | 7 | Refinement | `era40-creative-refinement` | Seznam vylepšení, opravené časování |
 | 8 | Learn | všechny | Zápis do `decision-log.md`, `motion/*`, skillů |
 
+## Standard kvality (Fáze 11), povinný u každé významné animace
+1. Najdi relevantní oceněné reference (`references/`) a projdi je v prohlížeči.
+2. Pochop původní techniku (oficiální docs, `technical/capability-map.md`).
+3. Prostuduj tutoriál, pokud technika není v bázi (`tutorials/`).
+4. Vytvoř **původní** interpretaci ERA40 (`motion/creative-language.md`).
+5. Definuj celou choreografii (šablona níže).
+6. Prototypuj izolovaně.
+7. Posuď vizuálně (screenshoty a scrub při 0,25×).
+8. Implementuj až po schválení.
+9. Otestuj v reálném prohlížeči (`era40-visual-qa`).
+10. Ladit, dokud to nedosáhne záměru. První funkční verze není hotová verze (`era40-creative-refinement`).
+
 ## Šablona specifikace
 
 ```md

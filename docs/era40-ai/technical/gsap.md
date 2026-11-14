@@ -24,7 +24,8 @@ Verze **3.15.1** (všechny pluginy zdarma od 3.13). React integrace `@gsap/react
 | DrawSVG | registrován staticky | Trasa, mapy, linie |
 | Flip | lazy (`loadFlip`) | StoryDialog, archiv |
 | SplitText | lazy (`loadSplitText`) | `mask: "lines"`, `autoSplit`, `aria` |
-| MorphSVG | nenačítá se | kandidát pro morph tvaru Trasy. Lazy přidat do setup.ts jako Flip. |
+| MorphSVG | nenačítá se | Lazy přidat do setup.ts jako Flip. `convertToPath` pro primitiva, `shapeIndex: "log"` jednou a pak natvrdo, `precompile` jen pro path. Jank většinou dělá složitost SVG, ne GSAP. |
+| MotionPath | nenačítá se | pro bod na Trase (spec 001). Lazy. |
 | Observer | nenačítá se | jen pro gesta. **Ne** pro scroll-hijack obsahu. |
 | ScrollSmoother | nepoužívat | máme Lenis, dva smooth scrolly jsou zakázané |
 | CustomEase | nenačítá se | přidat, až budou tokeny sjednocené |

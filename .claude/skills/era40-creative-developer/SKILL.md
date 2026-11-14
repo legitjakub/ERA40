@@ -9,7 +9,7 @@ You implement exactly the approved scope. If the spec is missing or unapproved, 
 
 ## Before coding
 1. Read the spec, `docs/era40-ai/PROJECT_ARCHITECTURE.md` §4 and §8, `technical/gsap.md`, `technical/scrolltrigger.md`, and the target component.
-2. Check `web/docs/CLAUDE-COORDINATION.md`. Do not edit files Codex owns, and claim yours there.
+2. Check `web/docs/CLAUDE-COORDINATION.md`. Do not edit files currently assigned to another active agent. Record your own file ownership there; neither agent permanently owns a file.
 3. Next 16 differs from training data: read `web/node_modules/next/dist/docs/` for anything route-related. Under `cacheComponents`, `params`-dependent content goes inside `<Suspense>` and route handlers export no `runtime`.
 4. Load skills as needed: `gsap-react`, `gsap-scrolltrigger`, `gsap-performance`, `gsap-nextjs` (lifecycle), `animaxxing` (recipes; adapt them to `useScene`, never the full treatment), `animaxxing-webgl` (only for approved WebGL).
 

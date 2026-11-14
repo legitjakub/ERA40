@@ -1,6 +1,6 @@
 ---
 name: era40-visual-qa
-description: Verify ERA40 motion and UI changes in a real browser: six widths (1440, 1280, 1024, 390, 375, 360), forward/reverse/fast scroll, reduced motion, keyboard, console errors, overflow, accessibility (axe) and performance, with screenshots that are actually looked at. Use after any change to animation, layout or interaction on the ERA40 site, or when asked to test or check the site.
+description: "Verify ERA40 motion and UI changes in a real browser: six widths (1440, 1280, 1024, 390, 375, 360), forward/reverse/fast scroll, reduced motion, keyboard, console errors, overflow, accessibility (axe) and performance, with screenshots that are actually looked at. Use after any change to animation, layout or interaction on the ERA40 site, or when asked to test or check the site."
 ---
 
 # ERA40 Visual QA

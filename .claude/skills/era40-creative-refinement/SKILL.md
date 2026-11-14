@@ -23,5 +23,7 @@ QA screenshots (or take new ones), the spec in `docs/era40-ai/motion/specs/`, `m
 7. **Craft details.** Diacritics clearance, no layout shift on variable-font axes, no overshoot at viewport edges, hover gated by `(hover:hover)`, focus mirrors hover.
 8. **Restraint vs. Jakub's history.** Read `decisions/decision-log.md`. If this resembles a rejected round, say so first.
 
+9. **Not done at first working version.** Compare against the spec's references and the prototype; iterate timing, easing, rhythm and composition until it reads as intended. A technically working animation is not automatically a good one.
+
 ## Output (Czech)
 A table: Před → Po → Proč, with `file:line` and exact values pulled from tokens. Then a verdict: **Schválit / Doladit / Odstranit**. When feel can't be judged from stills, say which moment to scrub frame by frame or watch at 0.25× speed. Then record the lessons in `motion/motion-patterns.md` or the relevant skill so the mistake does not repeat.

@@ -19,6 +19,9 @@ Typ: **OD** oficiální dokumentace · **TUT** praktický tutoriál · **KOM** k
 | [Codrops: Scroll-Revealed WebGL Gallery (Mazouni, 2. 2. 2026)](https://tympanus.net/codrops/2026/02/02/building-a-scroll-revealed-webgl-gallery-with-gsap-three-js-astro-and-barba-js/) | TUT | ✅ | 14. 11. 2026 | `tutorials/implementation-notes/scroll-revealed-webgl-gallery.md` |
 | [Codrops: Cinematic 3D Scroll Experiences (Santamaria, 19. 11. 2025)](https://tympanus.net/codrops/2025/11/19/how-to-build-cinematic-3d-scroll-experiences-with-gsap/) | TUT | ✅ | 14. 11. 2026 | `tutorials/implementation-notes/cinematic-3d-scroll.md` |
 | [Codrops: Scroll-Driven 3D Gallery, Blender Camera Path (Hedde, 7. 7. 2026)](https://tympanus.net/codrops/2026/07/07/building-a-scroll-driven-3d-gallery-using-a-blender-camera-path-with-three-js-and-gsap/) | TUT | ✅ | 14. 11. 2026 | `tutorials/implementation-notes/blender-camera-path-gallery.md` |
+| [Codrops: OPTIKKA scroll-synchronized animation (Zajno, 16. 10. 2025)](https://tympanus.net/codrops/2025/10/16/creating-smooth-scroll-synchronized-animation-for-optikka-from-html5-video-to-frame-sequences/) | TUT (case study) | ✅ | 14. 11. 2026 | `tutorials/implementation-notes/scroll-video-frame-sequence.md` |
+| [GSAP MorphSVGPlugin docs](https://gsap.com/docs/v3/Plugins/MorphSVGPlugin/) | OD | ✅ | 14. 11. 2026 | `technical/capability-map.md`, `technical/gsap.md` |
+| Vlastní kurzor a přístupnost: [21st.dev](https://21st.dev/blog/custom-cursor-react), [Adrian Roselli](https://adrianroselli.com/2025/09/custom-carets-and-users-when-the-caret-is-no-longer-a-stick-yes-thats-a-poor-attempt-at-a-pun.html) | NÁZOR / KOM | 🟡 shrnutí z vyhledávání | 14. 11. 2026 | `technical/capability-map.md` §3 |
 | [Codrops: Infinite GSAP Scroll Gallery with Parallax and Flip (30. 7. 2026)](https://tympanus.net/codrops/2026/07/30/building-an-infinite-gsap-scroll-gallery-with-parallax-and-flip-transitions/) | TUT | ❌ zatím nečteno | — | `tutorials/tutorial-library.md` (fronta) |
 | [Codrops: Scroll-Reactive 3D Gallery with Velocity (9. 3. 2026)](https://tympanus.net/codrops/2026/03/09/building-a-scroll-reactive-3d-gallery-with-three-js-velocity-and-mood-based-backgrounds/) | TUT | ❌ zatím nečteno | — | fronta |
 | [Codrops: Seamless 3D Transitions with Webflow, GSAP, Three.js (18. 3. 2026)](https://tympanus.net/codrops/2026/03/18/building-seamless-3d-transitions-with-webflow-gsap-and-three-js/) | TUT | ❌ zatím nečteno | — | fronta |
@@ -33,3 +36,14 @@ Typ: **OD** oficiální dokumentace · **TUT** praktický tutoriál · **KOM** k
 - Nekopírovat celé tutoriály. Ukládat odkaz, shrnutí vlastními slovy, techniku a krátké vzory.
 - Když je zdroj starší než verze knihovny v projektu, označ ho ⚠️ a před použitím ověř aktuální dokumentaci (Context7 nebo oficiální web).
 - Když zdroj nebyl dostupný, napiš to. Nepředstírej, že byl přečten.
+
+## Opětovná kontrola Codexu — 14. 11. 2026
+
+- https://gsap.com/docs/v3/Plugins/ScrollTrigger/ — oficiální dokumentace otevřena; pin/scrub/cleanup.
+- https://r3f.docs.pmnd.rs/advanced/scaling-performance — oficiální dokumentace otevřena; demand rendering a sdílení zdrojů. Bez instalace R3F.
+- https://playwright.dev/docs/emulation — oficiální dokumentace otevřena; viewport není fyzický telefon. Prototyp potřeboval viewport meta.
+- https://github.com/darkroomengineering/lenis — README otevřeno; jediný scroll owner, ne druhý Lenis.
+- Tři Codrops články agents/gallery/SVG: obsah dostupný ve výňatcích vyhledávání, přímé URL při této kontrole 403. Nové úplné přečtení se netvrdí.
+- https://threejs.org/manual/en/cleanup.html — při této kontrole 404.
+
+Rozsah a limity: `SETUP-VERIFICATION.md`.

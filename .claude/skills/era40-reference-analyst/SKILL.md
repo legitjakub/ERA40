@@ -9,15 +9,15 @@ You inspect real reference sites and turn what you see into principles ERA40 can
 
 ## Steps
 1. **Check the knowledge base.** Search `docs/era40-ai/references/` and `SOURCE_INDEX.md` for the site. If an analysis exists, update it instead of starting over.
-2. **Open the live site** in Claude in Chrome (the user's browser; built-in browser is for localhost only). If it fails or blocks automation, say so plainly and stop guessing. Never describe a site you did not see.
+2. **Open the live site** using the available browser tools for the active agent; inspect the tool documentation first. If it fails or blocks automation, say so plainly and stop guessing. Never describe a site you did not see.
 3. **Capture states.**
    - Screenshot the first frame, 25/50/75 % scroll, any hover/click interaction, the reverse scroll, and the phone width (resize to 390×844).
    - Save to `docs/era40-ai/references/screenshots/<slug>/`.
-4. **Probe technique read-only** with `javascript_tool`:
+4. **Probe technique read-only** with the browser API actually available in this session:
    - `window.gsap?.version`, `ScrollTrigger?.getAll?.().length`,
    - `!!document.querySelector('canvas')` and the WebGL context type, `getComputedStyle(el).clipPath` / `mask`,
    - Lenis (`document.documentElement.classList.contains('lenis')`), `document.fonts` families.
-   - Never modify the page or submit forms.
+   - Never modify the page or submit forms. A canvas alone does not prove WebGL or a particular library. Do not call getContext on a third-party canvas merely to identify it: that may create a context. Bundle names and observed behavior are evidence of differing strength; record the distinction.
 5. **Write the analysis** with the template from the workflow file. Every claim goes under **Ověřeno** (seen, with screenshot path) or **Předpoklad** (inferred, with the reason). Timings you estimate are labelled "odhad".
 6. **Translate.**
    - Map each technique to one of the eight chapters (`web/src/content/chapters.ts`) or say it does not fit.

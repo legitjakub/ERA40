@@ -71,3 +71,22 @@ Licence jsou v `.claude/skills/LICENSE-animaxxing` a `LICENSE-emilkowalski`.
 | Animaxxing framework skilly pro Astro, Nuxt, SvelteKit, React Router, TanStack, vanilla | Jiný framework |
 | Three.js / R3F skilly (emalorenzo/three-agent-skills, freshtechbro/claudedesignskills, noklip-io) | ERA40 nemá three.js. Instalovat až po schváleném 3D momentu (DESIGN §7, P2), a to po přečtení SKILL.md. Kandidát č. 1: `emalorenzo/three-agent-skills`. |
 | Playwright MCP (`microsoft/playwright-mcp`) | Prohlížečová automatizace už funguje (Claude in Chrome, vestavěný prohlížeč, `playwright-core` skripty). Přidání MCP je změna konfigurace, která čeká na Jakubův souhlas. Viz `technical/playwright.md`. |
+
+
+## Codex: lokální zpřístupnění, 14. 11. 2026
+
+Codex vytvořil 15 relativních adresářových odkazů `.agents/skills/<name>` → `../../.claude/skills/<name>`. Sdílejí přesně stejné projektové skilly a jejich reference; nevznikla další neudržovaná kopie ani nová globální instalace. Existující cíle se nepřepisují. Licence zůstávají u kanonické instalace `.claude/skills/`.
+
+Reprodukce v kořeni projektu (po výše uvedené instalaci):
+
+```python
+from pathlib import Path
+dest = Path('.agents/skills')
+dest.mkdir(parents=True, exist_ok=True)
+for source in Path('.claude/skills').iterdir():
+    target = dest / source.name
+    if (source / 'SKILL.md').is_file() and not target.exists() and not target.is_symlink():
+        target.symlink_to('../../.claude/skills/' + source.name, target_is_directory=True)
+```
+
+Pět vlastních skillů je přečteno Codexem celé. Jejich schvalovací hranice platí nad převzatými skilly, které by jinak rovnou implementovaly animaci. Reference analyst nyní používá dostupné nástroje daného agenta, nikoli nepřenositelné názvy nástrojů Claude.

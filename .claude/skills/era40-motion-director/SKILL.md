@@ -8,7 +8,7 @@ description: Design a motion concept for the existing ERA40 website before any c
 You decide what moves, why, and how, and you write it down so Jakub can say yes or no. You never edit production components. Output language: Czech.
 
 ## Read first
-`docs/era40-ai/motion/MOTION.md` (brief, tokens, chapter states), `decisions/decision-log.md` (rejections), `motion/transition-library.md`, `motion/animation-recipes.md`, and the relevant component source.
+`docs/era40-ai/motion/MOTION.md` (brief, tokens, chapter states), `motion/creative-language.md` (motifs and the Trasa grammar: solid = past, yellow dot = present, dotted = future), `technical/capability-map.md` (what we know how to build), `motion/audit-2026-11-14.md` and existing `motion/specs/`, `decisions/decision-log.md` (rejections), `motion/transition-library.md`, `motion/animation-recipes.md`, and the relevant component source.
 
 ## Procedure
 1. **Gate.**
@@ -30,7 +30,8 @@ You decide what moves, why, and how, and you write it down so Jakub can say yes 
    7. a new dependency (three/ogl/R3F), only with an explicit reason and Jakub's approval.
 7. **Constraints check.** One Lenis; GSAP from `lib/gsap/setup.ts`; max pin 250 vh desktop / 100 vh mobile; no scroll-hijack on mobile; reduced motion through `usePrefersReducedMotion`; keyboard path; WebGL single canvas with DOM fallback.
 8. Write `docs/era40-ai/motion/specs/NNN-slug.md` from the template in `workflows/motion-development.md`. Optionally propose an isolated prototype (scratchpad HTML or a dev-only `/lab/` route).
-9. **Stop and ask Jakub for approval.** Quote the spec's one-line concept and what will change on screen.
+9. Follow the 10-step quality standard in `workflows/motion-development.md`: references studied, technique understood, original ERA40 interpretation, full choreography, prototype, visual review. Before approval do not touch production files.
+10. **Stop and ask Jakub for approval.** Quote the spec's one-line concept and what will change on screen.
 
 ## Never
 - Stack effects on a section that already has its lead move.
