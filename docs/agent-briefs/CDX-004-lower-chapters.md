@@ -15,7 +15,7 @@ Jakub nechce současné spodní kapitoly („nemusíme pracovat s tím, co máme
    - Výběr větve tlačítky (`aria-pressed`).
    - Doprovodné údaje (450 000 příchozích „přibližně“, 86 % se zdrojem a přesnou formulací, rozpočet 2026) klidně typograficky, ne jako karty.
    - Věta: „Počty účastníků podle oblasti vzdělávání, nikoli počet lidí, které zkušenost nepřímo ovlivnila.“
-   - Světlá plocha. Cíl předávky 008B je kořen větvení.
+   - Světlá plocha. Cíl předávky 008B je kořen větvení: přesuň `[data-handoff-axis-target]` na kořen a při `data-handoff-axis-active="true"` skryj vlastní tah (kontrakt ve spec 008).
 3. **08 `#budoucnost` „Pokračování“** (`future/Future.*`):
    - nadpis „Cesta končí. Zkušenost pokračuje.“,
    - linka plná → žlutý bod „Vaše cesta“ → tečky za pravý okraj,
