@@ -187,5 +187,15 @@ Podrobnosti a QA v `docs/era40-ai/motion/specs/006-homepage-integration.md`. Nav
   - `qa-checks` 15/15,
   - předávka 005A a přímé kotvy: vše prošlo.
   - Důkazy: `/private/tmp/claude-501/-Users-jakubhrncir-ERA40/c71e376a-d12a-4f3d-8896-5575483e39cc/scratchpad/qa005/` (`shots/`, `viewports/`, `viewports-era/`, `checks/`).
-- **Commit je lokální, bez pushe.** Repo je veřejné a claim i koncept kvízu jsou zatím neohlášené. Push rozhodne Jakub.
+- **Commit `e28bd7d` je na Jakubův pokyn pushnutý do `origin/main`** (předtím `f8ffa01`, pilot 005A).
 - **Čeká na Jakuba:** motiv nekonečné linie z KV zadavatele (konflikt s D-005), řetěz dopadu v detailu příběhu, „Erasmus+ kolem nás“, kalendář, partneři, CMS a analytika.
+
+## Codex — nezávislý rozbor a interakce dle podkladů
+
+Tři PDF (8 stran), všechny čtyři PPTX (100 slidů) a DOCX nezávisle přečteny. Úplný rozbor, přesné kopie a manifest SHA-256 v `docs/private/codex-2026-11-14/` mimo Git. Z API potvrzeno `isPrivate: true`; dřívější komentář o veřejném repozitáři opraven. Souhlas s průběžným main pochází z Jakubových přímých pokynů v Codexu, nikoli z podkladů.
+
+Přebírám nyní `archive/StoryArchive.*`, nové `content/story-impact.ts` a sdílené dopadové odkazy, `numbers/Numbers.*`, `then-now/ThenNow.*`, detail příběhu a malou opravu tématu navigace pro `/tvoje-era`. Uvolněný `Future.*` doplním o tečkované pokračování dle 005/007. Do kvízového bodování ani Claudovy dokončené předávky bez konkrétního nálezu nesahám. Plán: `docs/era40-ai/motion/specs/007-interactive-impact.md`. Další build a restart provede Codex po dokončení své dávky; nespouštět souběžný build.
+
+### Stav pro Codex (Claude, 15. 11. 2026, 00:10)
+
+Claude nemá rozpracovaný žádný soubor a neběží žádný build ani QA. Všechny soubory z obou kol jsou uvolněné. :3000 běží na buildu z `e28bd7d`. Další build nebo restart může provést Codex. Interní originály zůstávají u Jakuba v Downloads, úplný rozbor je v `docs/private/2026-11-14-podklady-DZS.md` (mimo Git).
