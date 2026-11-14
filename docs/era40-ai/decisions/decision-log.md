@@ -1,0 +1,37 @@
+# Decision log
+
+Formát: ID · datum · rozhodnutí · důvod · kdo. Nová rozhodnutí přidávej nahoru.
+
+## Rozhodnutí
+
+| ID | Datum | Rozhodnutí | Důvod | Kdo |
+|---|---|---|---|---|
+| D-010 | 14. 11. 2026 | Zřízena znalostní báze `docs/era40-ai/`, projektové skilly a workflow s povinným schválením před produkční změnou | Pokyn Jakuba (AI Creative Development System) | Jakub / Claude |
+| D-009 | 14. 11. 2026 | Web oslavy (stránka `/oslava`, řádek akce, registrace, navržený program, interaktivní plánovač) **vrácen** revert commity b22f71b, 4c97a78, 0064e14 | Jakub: „tohle všechno vrať“ | Jakub |
+| D-008 | 14. 11. 2026 | Nepoužívat Animaxxing „full treatment“ ani `style-animaxxing` | Jeden hlavní pohyb na kapitolu, vlastní identita | Claude (podle DESIGN §4) |
+| D-007 | 14. 11. 2026 | **Otevřené:** sjednotit CSS `--ease-out` (easeOutCubic) a GSAP `power3.out` | Dva easingy pro „out“ | čeká na Jakuba |
+| D-006 | 13.–14. 11. 2026 | Odmítnuto kolo „jízdenka a vlak“ (vizuální prvky navíc) | Jakubovi se nelíbilo | Jakub |
+| D-005 | 13. 11. 2026 | Odmítnuto kolo „40 → ∞“ (brána 40 a nekonečná Trasa) a vráceno | Efekty navršené na web | Jakub |
+| D-004 | 13. 11. 2026 | Odstraněna odjezdová tabule přes hero film | Rušila úvod | Jakub |
+| D-003 | 13. 11. 2026 | Podstránky mají vizuálně navazovat na homepage (PageIntro foto/modrá + Trasa) | První generická podoba se nelíbila | Jakub |
+| D-002 | 11.–13. 11. 2026 | Úvod (film, „Některé cesty změní všechno.“) zůstává | Jakub je s ním spokojený | Jakub |
+| D-001 | 11. 11. 2026 | Identita Erasmus+ modrá, Roboto Flex, Trasa, české texty, označené modelové příběhy | Brief | Jakub |
+
+## Poučení (nikdy neopakovat)
+
+1. **Jakub nechce efekty navršené na hotový web.** Tři kola odmítnuta (D-004–D-006) a čtvrté vráceno (D-009). Nové věci jen přes specifikaci a schválení. Malé, řemeslné a s důvodem.
+2. Nepředstírat fakta: data akcí, účinkující, čísla bez zdroje. Návrh vždy viditelně označit.
+3. Před buildem ověřit, že CSS Module selektory obsahují lokální třídu (`[data-x]` samotný neprojde Turbopackem).
+4. Restart produkce: ukončit proces **podle PID** z `lsof -tiTCP:3000`. `pkill -f "next start"` nechal starou instanci nad novým buildem, a ta vracela chyby 500.
+5. Display nadpisy s diakritikou: line-height ≥ 1,0 (háček Č zasahoval do řádku nad).
+6. Klikání Playwrightem během Lenis/hash scrollu je nespolehlivé. Pro formuláře používat `focus()` + klávesu.
+
+## QA nálezy (výchozí stav 14. 11. 2026, `qa-viewports.mjs` na :3000)
+
+- ✅ 0 page errors, 0 chyb konzole, 0 horizontálního přetečení na 1440/1280/1024/390/375/360 a v reduced motion.
+- ⚠️ 360 px: CTA „Objevovat příběhy“ v hero se zalamuje na dva řádky (`360-down-000.jpg`).
+- ℹ️ Štítek modelových příběhů „MODEL STORY – FICTIONAL PLACEHOLDER“ je **záměrný integritní štítek** a neodstraňovat ho. Zda ho počeštit, je otázka pro Jakuba.
+- ⚠️ 1440 px uprostřed railu Příběhů: text předchozího příběhu je ořezaný u levého okraje (`1440-down-050.jpg`). Ověřit, zda je to záměr přechodu.
+- ⚠️ PageIntro na podstránkách má `line-height: 0.95`, háček Č se dotýká řádku nad (pozorováno 14. 11.).
+- ℹ️ Lenis + ScrollTrigger: chybí `gsap.ticker.lagSmoothing(0)` doporučené v README Lenisu. Ověřit, zda je to záměr.
+- ℹ️ `networkidle` na desktopu trvá 7–13 s kvůli stahování videa. Neznamená to LCP, změřit `shoot.mjs`.

@@ -23,3 +23,17 @@ Skilly pomáhají provedení. Nemění schválený brief ani identitu: Erasmus+ 
 - `web/data/` obsahuje osobní údaje. Nic z něj necommituj ani nemaž. Při QA používej oddělené testovací úložiště nebo mock.
 - Lokální ukládání kontaktů není CRM ani rozesílka. Neprezentuj neimplementované externí služby jako funkční.
 - Bez nového pokynu nepublikuj, nenasazuj ani nepushuj projekt.
+
+## Kreativní vývoj: znalostní báze a skilly (od 14. 11. 2026)
+
+Před každou kreativní nebo pohybovou úlohou:
+1. Přečti `docs/era40-ai/README.md`, `docs/era40-ai/motion/MOTION.md` a `docs/era40-ai/decisions/decision-log.md`.
+2. Použij projektové skilly v `.claude/skills/` v tomto pořadí:
+   - `era40-reference-analyst` (nová reference),
+   - `era40-motion-director` (specifikace),
+   - **Jakubovo schválení**,
+   - `era40-creative-developer`,
+   - `era40-visual-qa` (`web/scripts/qa-viewports.mjs`),
+   - `era40-creative-refinement`.
+3. Do produkčních komponent nesahej bez schválené specifikace v `docs/era40-ai/motion/specs/`.
+4. Po dokončení zapiš poučení do znalostní báze (`decision-log.md`, `motion/*`, `technical/*`) a oprav skill, pokud se chyba opakovala.
