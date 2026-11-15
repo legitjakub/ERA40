@@ -11,8 +11,8 @@ Na 390 × 844 má kapitola 07 výšku asi **2 600 px** (velké číslo, strom 5 
 3. Cíl: kapitola ≤ 1 900 px na 390 při zachování všech dat a zdrojů.
 
 ## Co nedělat
-- Žádná nová animace ani pin, scénu 07 (counters, DrawSVG větví, \`data-count\`) neměnit.
-- Neměnit čísla ani \`stats.ts\`. Nesahat na \`Hero*\`, \`FilmCaptions*\`, \`HistoryTimeline*\` ani \`build-hero.sh\` (drží Claude).
+- Žádná nová animace ani pin, scénu 07 (counters, DrawSVG větví, `data-count`) neměnit.
+- Neměnit čísla ani `stats.ts`. Nesahat na `Hero*`, `FilmCaptions*`, `HistoryTimeline*` ani `build-hero.sh` (drží Claude).
 - **Nedělat build ani restart :3000** (drží Claude). Testovat na dev :3040.
 
 ## Hotovo, když
