@@ -164,6 +164,9 @@
 .source a {
   color: var(--c-eplus-ink);
   text-decoration: underline;
+  /* Inline source links: vertical padding enlarges the tap area to ≥ 44 px
+     without changing the line box. */
+  padding-block: 12px;
 }
 .more {
   display: grid;
