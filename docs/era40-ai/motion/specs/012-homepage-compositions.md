@@ -2,7 +2,7 @@
 
 Stav:
 - **3.3 hotovo** (15. 11. 2026, Claude). Jde o rozvržení bez nové animace, schválené Jakubovým stálým pokynem „rozhoduj sám podle koordinace“.
-- **3.1 SCHVÁLENO** Jakubem 15. 11. 2026 v Claudově sezení („Yes, do 3.1“). Implementace odložena za audit Interactive Assets v1 (stejný přechod 03 → 04).
+- **3.1 SCHVÁLENO** Jakubem 15. 11. 2026, ale **neimplementováno, protože cíl je už splněný**. Prohlídka 1440 (15:58) ukázala, že předávka 008A plynule promění poslední snímek Historie ve fotku Terezy v prvním spreadu, takže 03 → 04 není tvrdý střih. Řada oken by tuto předávku rozbila nebo zdvojila (fotka by se po přistání znovu zmenšila do okna). Mobil už je swipe pás bez pinu a reduced statický, což 3.1 také požadovalo.
 - **3.2 blokováno** (fotky od Jakuba).
 
 ## 3.3 Střídavé kompozice spreadu v kapitole 04 (desktop ≥ 1024 px)

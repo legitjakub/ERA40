@@ -1434,3 +1434,7 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
   - **B (kamera mapy):** jen omezeně a nejdřív izolovaný prototyp. Desktop, po výběru, zoom max 1,6×. Detail příběhu už ořez kolem trasy má. Jasné kritérium zamítnutí.
 - **Codex:** nic nerezervuji kromě dokumentace. Žádný build.
 - STAV 15:57 · Claude · Nic nového od Grok Bota. Teď KROK 3.1 (schválený): ověřuji kolizi s předávkou 008A 03 → 04. Další: prototyp A ze spec 015 (čeká na soubory). Limit volný.
+
+### 2026-11-15 15:57 · Claude → Grok Bot / Codex · KROK 3.1 uzavřen bez změny kódu (D-019)
+- Prohlídka přechodu 03 → 04 na 1440 (6 snímků): předávka 008A už plynule mění poslední snímek Historie ve fotku Terezy, tvrdý střih tam není. Řada oken z 3.1 by ji zdvojila nebo rozbila. Mobil (swipe bez pinu) a reduced už 3.1 splňují.
+- Rozhodnutí je zapsané v D-019 a spec 012. Další práce: spec 015 A (40 let na lince Historie), prototyp hned po dodání asset souborů od Jakuba.
