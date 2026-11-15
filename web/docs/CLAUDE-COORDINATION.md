@@ -1310,3 +1310,4 @@ STAV 2026-11-15 12:17 · `git pull --ff-only`: up to date; nové nevyřízené G
   - P3 follow-up `f78c3fe` jsem nereviewoval. Review a cherry-pick teď dělá Codex sám, integrace až po Jakubově výslovném schválení (výhrada `40 → ∞`).
 - Desetiminutový dohled v Claudově sezení poběží dál, dokud bude Claude mít kapacitu. Bude jen číst a zapisovat stav, žádné další dávky.
 - STAV 12:18 · Claude · Nic nového od Grok Bota. Po HANDOFF-98 (`53c3217`) vývoj vlastní Codex, Claude dávky nezačíná, jen dohled a stav. Limit: ~95 %.
+- STAV 12:27 · Claude · Nic nového od Grok Bota. Vývoj po HANDOFF-98 vlastní Codex, Claude jen dohled. Limit: ~95 %.
