@@ -1,5 +1,7 @@
 # Nové úvodní video — plán
 
+**Stav 15. 11. 11:20: hotovo.** Střih je v `web/scripts/build-hero.sh`, titulky ve `FilmCaptions.tsx`. Záběr 5 (večer s přáteli) a balení pochází z předchozího filmu, ostatní z Mixkit Free. ffmpeg byl použit jako `ffmpeg-static` mimo projekt (`FFMPEG=… bash scripts/build-hero.sh`).
+
 15. 11. 2026, 04:10 · Claude. Jakubův úkol (01:40): „udělat lepší video ve vibu jako cestování, parta, zážitky, vzdělání… ve stylu Erasmu“.
 
 ## Proč současný film nestačí

@@ -5,35 +5,31 @@ import s from "./FilmCaptions.module.css";
 
 /*
  * Documentary captions for the hero film, timed to the cuts in
- * docs/HERO-VIDEO-SHOTLIST.md (desktop 36 s, mobile 30 s). They narrate the
- * journey the site tells, without naming places the footage does not show.
- * A thin line under them follows the film's progress.
+ * scripts/build-hero.sh (desktop 28.9 s, mobile 28.1 s; shotlist in
+ * docs/orchestration/HERO_VIDEO_PLAN.md). They narrate the journey the site
+ * tells — packing, studying, friends, return, passing it on — without naming
+ * places the footage does not show. A thin line follows the film's progress.
  */
 type Cue = [start: number, end: number, text: string];
 
-// The desktop edit opens and closes on a station departure board, a motif
-// Jakub rejected (D-004). Until a new film exists, the loop plays only the
-// window between those two shots; captions are retimed to it.
-const desktopWindow: [start: number, end: number] = [3, 32.2];
-
 const desktop: Cue[] = [
-  [3, 7, "Do kufru se vejde semestr."],
-  [7, 9.5, "Nádraží plné lidí, kteří taky někam jedou."],
-  [9.5, 14.5, "Známá krajina zůstává za oknem."],
-  [14.5, 19.5, "Nové město. První adresa."],
-  [19.5, 23.5, "Přednáška v jiném jazyce."],
-  [23.5, 28.5, "Večeře v pěti jazycích."],
-  [28.5, 36, "Domů se vrací někdo trochu jiný."],
+  [0, 3.8, "Do kufru se vejde semestr."],
+  [3.8, 7.8, "Nová škola, noví lidé."],
+  [7.8, 11.3, "Přednáška v jiném jazyce."],
+  [11.3, 15.8, "Večeře v pěti jazycích."],
+  [15.8, 20.4, "Lidé, které ráno ještě neznáš."],
+  [20.4, 24.4, "Domů se vrací někdo trochu jiný."],
+  [24.4, 40, "A předává to dál."],
 ];
 
 const mobile: Cue[] = [
-  [0, 3, "Den odjezdu."],
-  [3, 7, "Do kufru se vejde semestr."],
-  [7, 12, "Známá krajina zůstává za oknem."],
-  [12, 16.5, "Nové město. První adresa."],
-  [16.5, 21.5, "Lidé, které ráno ještě neznáš."],
-  [21.5, 26.5, "Cesta domů je jiná než cesta tam."],
-  [26.5, 30, "Domů se vrací někdo trochu jiný."],
+  [0, 3.8, "Do kufru se vejde semestr."],
+  [3.8, 7.6, "Nové město. První adresa."],
+  [7.6, 11.1, "Přednáška v jiném jazyce."],
+  [11.1, 15.6, "Večeře v pěti jazycích."],
+  [15.6, 19.6, "Lidé, které ráno ještě neznáš."],
+  [19.6, 23.6, "Domů se vrací někdo trochu jiný."],
+  [23.6, 40, "A předává to dál."],
 ];
 
 export function FilmCaptions({
@@ -44,7 +40,6 @@ export function FilmCaptions({
   portrait: boolean;
 }) {
   const cues = portrait ? mobile : desktop;
-  const range = portrait ? null : desktopWindow;
   const [index, setIndex] = useState(0);
   const progress = useRef<HTMLSpanElement>(null);
 
@@ -53,20 +48,15 @@ export function FilmCaptions({
     if (!player) return;
     let currentCue = -1;
     const read = () => {
-      // Keep playback inside the window (skips the departure-board shots).
-      if (range && Number.isFinite(player.duration) && player.duration > range[1]) {
-        if (player.currentTime < range[0] || player.currentTime >= range[1])
-          player.currentTime = range[0];
-      }
       const t = player.currentTime;
       const at = cues.findIndex(([start, end]) => t >= start && t < end);
       if (at >= 0 && at !== currentCue) {
         currentCue = at;
         setIndex(at);
       }
-      const [from, to] = range ?? [0, player.duration];
-      const fraction = Number.isFinite(to) && to > from
-        ? Math.min(1, Math.max(0, (t - from) / (to - from)))
+      const total = player.duration;
+      const fraction = Number.isFinite(total) && total > 0
+        ? Math.min(1, Math.max(0, t / total))
         : 0;
       if (progress.current)
         progress.current.style.transform = `scaleX(${fraction})`;
@@ -81,7 +71,7 @@ export function FilmCaptions({
       cancelAnimationFrame(initial);
       events.forEach((event) => player.removeEventListener(event, read));
     };
-  }, [video, cues, range]);
+  }, [video, cues]);
 
   const [, , text] = cues[index] ?? cues[0];
   return (

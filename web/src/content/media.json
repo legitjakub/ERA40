@@ -341,5 +341,71 @@
     "sourceUrl": "https://www.pexels.com/video/27874072/",
     "download": "https://www.pexels.com/download/video/27874072/",
     "orientation": "portrait"
+  },
+  {
+    "id": "x-campus-walk",
+    "kind": "video",
+    "file": "/media/placeholders/raw/x-campus-walk.mp4",
+    "alt": "Skupina studentů vychází z univerzity",
+    "status": "illustrative",
+    "credit": "Mixkit",
+    "license": "Mixkit Free License (free use)",
+    "sourceUrl": "https://mixkit.co/free-stock-video/students-walking-on-a-university-campus-4503/",
+    "orientation": "landscape"
+  },
+  {
+    "id": "x-lecture",
+    "kind": "video",
+    "file": "/media/placeholders/raw/x-lecture.mp4",
+    "alt": "Studenti na přednášce",
+    "status": "illustrative",
+    "credit": "Mixkit",
+    "license": "Mixkit Free License (free use)",
+    "sourceUrl": "https://mixkit.co/free-stock-video/university-students-in-a-classroom-with-a-professor-48165/",
+    "orientation": "landscape"
+  },
+  {
+    "id": "x-dinner-garden",
+    "kind": "video",
+    "file": "/media/placeholders/raw/x-dinner-garden.mp4",
+    "alt": "Večeře přátel na zahradě",
+    "status": "illustrative",
+    "credit": "Mixkit",
+    "license": "Mixkit Free License (free use)",
+    "sourceUrl": "https://mixkit.co/free-stock-video/a-group-of-friends-having-dinner-in-the-garden-23131/",
+    "orientation": "landscape"
+  },
+  {
+    "id": "x-dinner-home",
+    "kind": "video",
+    "file": "/media/placeholders/raw/x-dinner-home.mp4",
+    "alt": "Večeře přátel doma",
+    "status": "illustrative",
+    "credit": "Mixkit",
+    "license": "Mixkit Free License (free use)",
+    "sourceUrl": "https://mixkit.co/free-stock-video/friends-dinner-at-home-12134/",
+    "orientation": "portrait"
+  },
+  {
+    "id": "x-train-man",
+    "kind": "video",
+    "file": "/media/placeholders/raw/x-train-man.mp4",
+    "alt": "Cestující u okna vlaku",
+    "status": "illustrative",
+    "credit": "Mixkit",
+    "license": "Mixkit Free License (free use)",
+    "sourceUrl": "https://mixkit.co/free-stock-video/man-face-by-the-train-window-14780/",
+    "orientation": "landscape"
+  },
+  {
+    "id": "x-lab",
+    "kind": "video",
+    "file": "/media/placeholders/raw/x-lab.mp4",
+    "alt": "Vyučující ukazuje postup v laboratoři",
+    "status": "illustrative",
+    "credit": "Mixkit",
+    "license": "Mixkit Free License (free use)",
+    "sourceUrl": "https://mixkit.co/free-stock-video/professor-showing-students-a-lab-procedure-24232/",
+    "orientation": "landscape"
   }
 ]

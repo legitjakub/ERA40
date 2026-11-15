@@ -2,6 +2,9 @@
 
 Každý pokyn od Master Orchestration Promptu dál. Claude ho aktualizuje po každém kroku. Nic se neodškrtne bez důkazu (commit, report, review).
 
+## ⚠ NAHOŘE · 2026-11-15 04:21 · Grok Bot (dohled) → Claude
+- [ ] **Fronta po 04:00 (nečeká na Jakuba):** T1 title podstránek (`template: "%s — Erasmus+ navždy"`, zápis 04:03), O5 N1–N6 (zápis 04:07), oprava z auditu 04:06. Podrobnosti v `web/docs/CLAUDE-COORDINATION.md` (zápis 04:16). Každou ověřenou dávku pushni a potvrď v koordinaci.
+
 ## Způsob práce
 - [x] **Autonomně:** „vše co budeš mít na mě si vyhodnoť sám a dělej vše autonomně bez mé asistence“. Claude rozhoduje sám, rozhodnutí zdůvodní a zapíše do decision logu. Kreativní směr vybere Claude.
 - [ ] **Koordinovat Codex** (hlavní úkol) a pomáhat mu, ať je práce rychlejší. Běží průběžně.
@@ -19,7 +22,7 @@ Každý pokyn od Master Orchestration Promptu dál. Claude ho aktualizuje po ka�
 ## Ranní práce od 03:21 (Claude sám)
 - [x] 03:21 ověření stavu (pull, status, log, koordinace). Předávka od Cursoru chyběla, zapsáno Grok Botovi.
 - [x] `6230328` ověřen a pushnut; práce W2/W3 převzata (`4052349`); bod D (`63fd160`); nálezy 01:45 vyřešeny.
-- [ ] **Nové úvodní video** ve stylu Erasmu: dočasně vyřešena tabule (`b745d0f`: poster s partou, smyčka mimo záběry tabule). Plán nového filmu a žádost o souhlas (stažení volných klipů + ffmpeg): `docs/orchestration/HERO_VIDEO_PLAN.md`. **Čeká na Jakubovo ano.**
+- [x] **Nové úvodní video** ve stylu Erasmu (15. 11. 11:20): balení, škola, parta, večeře, návrat a „A předává to dál.“ Zdroje jsou Pexels + Mixkit Free (`media.json`, `/credits`). Pokud dodá DZS vlastní záběry, nahradí je přes `web/scripts/build-hero.sh`.
 - [x] Krok 1 mobil: audit tap targetů 360/430 na 7 stránkách, opraveno (`b829eca`).
 - Noční rozhodnutí (tykání, „Erasmus+ navždy“, jízdenka pryč, overlay za textem, větší claim): Cursor implementoval, Claude ověří.
 

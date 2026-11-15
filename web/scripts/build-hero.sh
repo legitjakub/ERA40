@@ -18,11 +18,18 @@ render() {
   local concat="$work/$name/shots.ffconcat"
   local master="$work/$name/master.mp4"
   : > "$concat"
-  while read -r shot start duration; do
+  while read -r shot start duration xpos tone; do
     number=$((number + 1))
     frame_count=$(awk -v seconds="$duration" 'BEGIN { print int(seconds*24+0.5) }')
-    filter="fps=24,scale=$width:$height:force_original_aspect_ratio=increase,crop=$width:$height,setsar=1"
+    # Optional fourth column: horizontal crop position 0..1 (default centre).
+    xpos=${xpos:-0.5}
+    filter="fps=24,scale=$width:$height:force_original_aspect_ratio=increase,crop=$width:$height:(iw-ow)*$xpos:(ih-oh)/2,setsar=1"
     grade="eq=saturation=0.93:contrast=1.025,format=yuv420p"
+    # Optional fifth column pulls cool stock footage towards the shared warm grade.
+    case "${tone:-}" in
+      warm) grade="colortemperature=temperature=4300:mix=0.8,eq=saturation=0.8:contrast=1.025,format=yuv420p" ;;
+      warmer) grade="colortemperature=temperature=3800:mix=0.9,eq=saturation=0.75:contrast=1.04,format=yuv420p" ;;
+    esac
     if [[ "$shot" == vm-countryside ]]; then
       # This master is HLG BT.2020. Tone-map before grading with the other SDR shots.
       filter="$filter,zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable,zscale=t=bt709:m=bt709:r=limited"
@@ -49,25 +56,24 @@ render() {
   mv "$work/$basename.mp4" "$work/$basename.webm" "$work/$basename.avif" "$out/"
 }
 
-# The original station clip is only 2.867 seconds. The tail of the edit returns
-# to the opening platform for a continuous loop without a dissolve to black.
-render desktop 1920x1080 810 4000000 0 <<'CUT'
-v-platform-dawn 2 3
-v-packing 4 4
-v-station 0 2.5
-v-train-window 6 5
-vm-train-city 2.5 5
-v-library 2 4
-v-friends 3 5
-v-train-window 21 4
-v-platform-dawn 0 3.5
+# Shotlist: docs/orchestration/HERO_VIDEO_PLAN.md. o-* are the approved shots of the
+# previous film (packing, Prague tram, students, evening friends); x-* are Mixkit clips
+# listed in src/content/media.json. The edit ends on "passing it on" and loops to packing.
+render desktop 1920x1080 810 4000000 18 <<'CUT'
+o-desktop 3.1 3.8
+x-campus-walk 2 4
+x-lecture 1 3.5
+x-dinner-garden 15.5 4.5
+o-desktop 23.7 4.6
+x-train-man 2 4 0.5 warm
+x-lab 5.5 4.5 0.5 warmer
 CUT
-render mobile 720x1280 455 2000000 0 <<'CUT'
-vm-train-night 8.3 3
-vm-suitcase 1 4
-vm-countryside 3 5
-vm-prague-tram 3 4.5
-vm-students 1 5
-vm-train-city 2.5 5
-vm-train-night 4.8 3.5
+render mobile 720x1280 455 2000000 16 <<'CUT'
+o-mobile 3.1 3.8
+o-mobile 12.2 3.8
+x-lecture 1 3.5 0.55
+x-dinner-home 5.3 4.5
+o-mobile 17.2 4
+x-train-man 2 4 0.3 warm
+x-lab 5.5 4.5 0.7 warmer
 CUT

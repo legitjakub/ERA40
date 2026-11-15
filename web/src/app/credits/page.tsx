@@ -9,9 +9,11 @@ export default function Credits() {
         Fotografie a&nbsp;filmové záběry ilustrují prostředí cestování a&nbsp;studia.
         Osoby na fotografiích nepředstavují postavy modelových příběhů.
       </p>
-      <h2>Fotografie a&nbsp;záběry Pexels</h2>
+      <h2>Fotografie a&nbsp;záběry Pexels a&nbsp;Mixkit</h2>
       <p>
         <a href="https://www.pexels.com/license/">Podmínky licence Pexels</a>
+        {" · "}
+        <a href="https://mixkit.co/license/#videoFree">Licence Mixkit Free</a>
       </p>
       <ul>
         {media.map((m) => (
