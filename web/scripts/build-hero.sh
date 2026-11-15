@@ -56,24 +56,25 @@ render() {
   mv "$work/$basename.mp4" "$work/$basename.webm" "$work/$basename.avif" "$out/"
 }
 
-# Shotlist: docs/orchestration/HERO_VIDEO_PLAN.md. o-* are the approved shots of the
-# previous film (packing, Prague tram, students, evening friends); x-* are Mixkit clips
+# Shotlist: docs/orchestration/HERO_VIDEO_PLAN.md. v-*/vm-* are the original Pexels
+# masters of the approved shots (packing, Prague tram, students, evening friends;
+# re-downloaded in full resolution 15. 11. for a sharper phone film); x-* are Mixkit clips
 # listed in src/content/media.json. The edit ends on "passing it on" and loops to packing.
 render desktop 1920x1080 810 4000000 18 <<'CUT'
-o-desktop 3.1 3.8
+v-packing 4.1 3.8
 x-campus-walk 2 4
 x-lecture 1 3.5
 x-dinner-garden 15.5 4.5
-o-desktop 23.7 4.6
+v-friends 3.2 4.6
 x-meadow 6 4 0.5 warm
 x-lab 5.5 4.5 0.5 warmer
 CUT
-render mobile 720x1280 455 2000000 16 <<'CUT'
-o-mobile 3.1 3.8
-o-mobile 12.2 3.8
+render mobile 720x1280 540 2000000 16 <<'CUT'
+vm-suitcase 1.1 3.8
+vm-prague-tram 3.2 3.8
 x-lecture 1 3.5 0.55
 x-dinner-home 5.3 4.5
-o-mobile 17.2 4
+vm-students 1.7 4
 x-meadow 6 4 0.75 warm
 x-lab 5.5 4.5 0.7 warmer
 CUT
