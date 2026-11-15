@@ -6,7 +6,7 @@
   font-variation-settings: "wdth" var(--wdth-display), "wght" var(--wght-display);
   font-weight: var(--wght-display); letter-spacing: -0.025em; line-height: 1.06; margin: 0;
 }
-.title span { display: block; }
+.title > span { display: block; }
 .lead { margin: 28px 0 0; max-width: 49ch; color: var(--c-ink); font-size: clamp(1.125rem, 1.7vw, 1.5rem); line-height: 1.45; }
 .journey { height: 100px; margin: 32px calc(50% - 50vw) 28px; overflow: clip; }
 .desktopRoute, .mobileRoute { width: 100%; height: 100%; overflow: visible; }

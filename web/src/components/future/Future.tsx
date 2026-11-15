@@ -55,7 +55,7 @@ export function Future() {
       <div className={s.inner}>
         <p className={s.kicker}>Pokračování</p>
         <h2 id="future-title" className={s.title}>
-          <span>Cesta končí.</span><span>Zkušenost pokračuje.</span>
+          <span>Cesta končí.</span><span>Zkušenost <span className="hl">pokračuje.</span></span>
         </h2>
         <p className={s.lead}>Zkušenost z&nbsp;Erasmu se předává dál — k&nbsp;dalším lidem, i&nbsp;k&nbsp;těm, kteří nikdy nevyjeli.</p>
         <div className={s.journey} aria-hidden="true">

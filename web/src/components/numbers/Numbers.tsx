@@ -293,7 +293,7 @@ export function Numbers() {
       <div className={s.inner}>
         <header className={s.head}>
           <p className={s.kicker}>Rozvětvení</p>
-          <h2 id="numbers-title">Po návratu se zkušenost větví.</h2>
+          <h2 id="numbers-title">Po návratu se zkušenost <span className="hl">větví.</span></h2>
           <p className={s.lead}>
             Každá oblast vzdělávání je jedna větev. Vyber ji a podívej se,
             jak může zkušenost pokračovat dál.

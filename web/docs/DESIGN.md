@@ -31,7 +31,7 @@ Implementation: SVG `path` + DrawSVGPlugin (or `stroke-dashoffset`), 2 px stroke
 --c-eu-blue:   #004494; /* EU emblem blue — primary dark surface, headings on light */
 --c-eplus:     #007FC7; /* Erasmus+ blue — large text ≥24px, graphics, fills. NOT small text on white (4.3:1) */
 --c-eplus-ink: #006BA8; /* darker Erasmus+ blue for links/small text on white (5.7:1) */
---c-yellow:    #FFED00; /* EU yellow — accent only, on blue/ink backgrounds (7.7:1 on #004494). Never text on white */
+--c-yellow:    #FFED00; /* EU yellow — "you are here" + text highlights on blue/ink backgrounds (7.7:1 on #004494). Never text on white */
 --c-ink:       #0B1B33; /* body text, darkest surface */
 --c-paper:     #FFFFFF; /* main light surface: clean white (warm cream is a known AI-default tell — avoid) */
 --c-sky:       #EAF3FA; /* alternate light surface, a 8 % tint of Erasmus+ blue */
@@ -39,6 +39,8 @@ Implementation: SVG `path` + DrawSVGPlugin (or `stroke-dashoffset`), 2 px stroke
 --c-mute:      #4F5B6E; /* secondary text on white/sky (≥6:1) */
 --c-line:      #C9D6E3; /* hairlines, used sparingly */
 ```
+Text highlights (P0b, Jakub 15. 11. 2026, overrides "yellow only for you-are-here"): one or two key words per block may carry a brand colour via `.hl` (Erasmus+ blue `--c-eplus`, large text ≥ 24 px only, ≥ 3:1 on white/sky; small text uses `--c-eplus-ink`) or `.hl-dark` (EU yellow, only on EU-blue/ink surfaces or behind the hero scrim). Never whole sentences, no animation under reduced motion.
+
 Rules: about 60 % white/sky, 30 % EU-blue and Erasmus+-blue surfaces (the site should read unmistakably as Erasmus+ blue), under 5 % yellow. No gradients between brand colours. A photo overlay may only use a flat `rgba(11,27,51,.35–.55)` ink scrim. Exception (Jakub, 15. 11. 2026): the hero film may use an ink-to-transparent gradient only behind its text, and the transparent header over the hero may use an ink-to-transparent gradient at the top edge. Both must keep text contrast ≥ 4.5:1 on the worst frame.
 
 ### Typography

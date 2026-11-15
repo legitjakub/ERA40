@@ -219,3 +219,13 @@ html[data-reduced-motion="true"]::view-transition-new(*) {
   border: 0;
 }
 
+
+/* P0b (Jakub 11:44, DESIGN.md §2): one or two key words per block carry a
+   brand colour. Light surfaces: Erasmus+ blue, large text only (≥ 24 px,
+   ≥ 3:1). Dark surfaces: EU yellow (7.7:1 on EU blue). Never whole sentences. */
+.hl {
+  color: var(--c-eplus);
+}
+.hl-dark {
+  color: var(--c-yellow);
+}

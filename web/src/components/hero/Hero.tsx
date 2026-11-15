@@ -250,11 +250,14 @@ export function Hero() {
           </span>
         </p>
         <h1 id="hero-title" className={styles.title}>
-          {["Některé cesty", "změní všechno."].map((line) => (
-            <span key={line}>
-              <span data-title-line>{line}</span>
+          <span>
+            <span data-title-line>Některé cesty</span>
+          </span>
+          <span>
+            <span data-title-line>
+              změní <span className="hl-dark">všechno.</span>
             </span>
-          ))}
+          </span>
         </h1>
         <p className={styles.intro}>
           Erasmus+ již 40 let mění životy.

@@ -24,6 +24,7 @@
 .ending {
   display: inline-block;
   position: relative;
+  color: var(--c-eplus); /* P0b brand highlight, large text */
 }
 .ending i {
   position: absolute;
@@ -31,7 +32,7 @@
   left: 0.02em;
   right: 0.025em;
   bottom: -0.015em;
-  background: var(--c-eu-blue, #004494);
+  background: var(--c-eplus);
   transform-origin: left center;
 }
 .reach {
