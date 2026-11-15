@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useId, useRef, useState } from "react";
 import { useScene } from "@/lib/gsap/useScene";
@@ -7,6 +8,12 @@ import { gsap } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import s from "./Future.module.css";
 import { siteName } from "@/components/layout/SiteFooter";
+import { getStory, storyPhoto } from "@/content/stories";
+import { StoryLabel } from "@/components/archive/StoryLabel";
+
+// P2 bod 7: the ending is a hush before the call to action — one person's
+// sentence about what came home with her, over a slow photograph.
+const voice = getStory("ucitelka")!;
 
 export function Future() {
   const root = useRef<HTMLElement>(null);
@@ -33,6 +40,17 @@ export function Future() {
         .fromTo(route.querySelector("[data-final-open]"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 })
         .fromTo(route.querySelector("[data-future-mask]"), { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.35 });
     });
+    const hush = root.current?.querySelector("[data-hush]");
+    if (hush) {
+      gsap.fromTo(hush.querySelector("img"), { scale: 1.16 }, {
+        scale: 1, ease: "none",
+        scrollTrigger: { trigger: hush, start: "top bottom", end: "bottom top", scrub: true },
+      });
+      gsap.from(hush.querySelectorAll("[data-hush-line]"), {
+        opacity: 0, y: 24, duration: 1.4, ease: "power2.out", stagger: 0.35,
+        scrollTrigger: { trigger: hush, start: "top 45%", once: true },
+      });
+    }
     return () => mm.revert();
   }, { scope: root, dependencies: [reduced] });
 
@@ -52,6 +70,16 @@ export function Future() {
 
   return (
     <section ref={root} id="budoucnost" data-section="budoucnost" aria-labelledby="future-title" className={s.section}>
+      <figure className={s.hush} data-hush>
+        <Image src={storyPhoto(voice).file} alt="" fill sizes="100vw" />
+        <figcaption className={s.hushText}>
+          <blockquote data-hush-line>„{voice.quote}“</blockquote>
+          <p data-hush-line>
+            {voice.name} · {voice.from} → {voice.to} · <StoryLabel story={voice} />
+          </p>
+        </figcaption>
+        <span className={s.hushLabel}>Ilustrační snímek</span>
+      </figure>
       <div className={s.inner}>
         <p className={s.kicker}>Pokračování</p>
         <h2 id="future-title" className={s.title}>

@@ -1390,3 +1390,9 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
   - `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6,
   - build je čistý, :3000 restartovaný.
 - STAV 15:39 · Claude · Další: P2 bod 7 (08 jako ztišení), pak bod 5 (06 scrub prstem). Limit volný.
+
+### 2026-11-15 15:42 · Claude → Grok Bot / Codex · HOTOVO P2 bod 7 (08 jako ztišení)
+- Před závěrem 08 je nová scéna `[data-hush]`: fotka přes celou šířku (86 svh desktop, 78 svh mobil) s pomalým scrub zoomem 1.16 → 1 a jednou větou člověka: „Vrátila jsem se s jedinou otázkou: proč děti u nás tolik sedí?“ (Mgr. Jana, Tábor → Tampere). Štítky „Modelový příběh – ilustrační“ i „Ilustrační snímek“ jsou viditelné. Fotka patří k jejímu příběhu, citát není přiřazený cizí fotce.
+- Text přijíždí pomalu (1,4 s, po řádcích). Teprve potom následuje „Cesta končí. Zkušenost pokračuje.“ s CTA. Ink gradient je jen ve spodní části za textem. Reduced: vše statické.
+- **QA:** 360/390/430/1440 + reduced bez přetečení a bez chyb konzole, `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6, build je čistý, :3000 restartovaný.
+- STAV 15:42 · Claude · Další: P2 bod 5 (06 porovnání tehdy/teď tahem prstu a scrollem, přechod přes distorzi). Limit volný.
