@@ -14,7 +14,7 @@ Každý pokyn od Master Orchestration Promptu dál. Claude ho aktualizuje po ka�
 - [ ] **Pročistit šablonu od nesmyslných prvků, „čisté a hezké“.** Zadat Codexu spolu s dalšími úkoly.
   - [x] CDX-001 dávka A: patička, osiřelá linka v prologu, časový kód titulků, tabule na O projektu, QA PNG v `public/` (review PŘIJATO). Varování DrawSVG je v hero, přesunuto do dávky B.
   - [x] Dávka B (Claude po převzetí): filtry archivu na 390 px jako jeden posuvný řádek na skupinu. Sjednocení štítků „Ilustrační snímek“ do tichého stylu **zrušeno**: Jakub tiché popisky v kole „jízdenka“ vrátil a tmavé chipy jsou záměr. Varování DrawSVG v hero ponecháno (jen warning, `preserveAspectRatio="none"` + `non-scaling-stroke`; oprava by měnila schválený hero bez důkazu stejného vzhledu).
-  - [ ] Závěrečný průchod celého webu na 8 šířkách: nic samoúčelného, nic vývojářského.
+  - [x] Závěrečný průchod celého webu na 8 šířkách (15. 11., 01:15): opraven úchyt přes text Dnes na mobilu. Ořez textu uprostřed přejezdu railu Příběhů je známý přechod (audit 14. 11.).
 
 ## Spodní sekce homepage
 - [x] **Přepracovat spodní sekce hlavní stránky** (hotovo 15. 11., review `docs/qa/009-review.md`) (06 Tehdy a teď, 07 Čísla, 08 Budoucnost): „nelíbí se mi, klidně ať se změní, nemusíme pracovat s tím, co máme, můžeme to úplně přeměnit dle plánu“. Spec 009 je napsaná a brief `CDX-004-lower-chapters.md` je připravený. Spustí se po předání 008, nebo při limitu Codexu udělá práci Claude.

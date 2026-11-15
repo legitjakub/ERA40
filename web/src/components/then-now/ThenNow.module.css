@@ -280,7 +280,7 @@
 }
 @media (max-width: 760px) {
   .now {
-    padding: 3.25rem 0.9rem 1rem calc(50% + 0.9rem);
+    padding: 3.25rem 0.9rem 1rem calc(50% + 2rem);
     gap: 0.5rem;
   }
   .nowText {
