@@ -173,7 +173,7 @@
   text-decoration: underline;
   /* Inline source links: vertical padding enlarges the tap area to ≥ 44 px
      without changing the line box. */
-  padding-block: 12px;
+  padding-block: 14px;
 }
 .more {
   display: grid;
