@@ -1658,3 +1658,6 @@ STAV 2026-11-15 19:45:25 CET · Codex, 10min kontrola · git pull --ff-only aktu
 STAV 2026-11-15 19:55:25 CET · Codex, 10min kontrola · pull --ff-only aktuální, HEAD=origin/main ad0e7eb, strom čistý před zápisem; žádný nový bod Grok/Claude, poslední release platí pro Codex. CDX008 dokončený a na main; další jen nový schválený brief nebo podklady DZS. Bez implementace, opakovaných testů, buildu/restartu a přímých zpráv. Skutečný Usage Codex95%5h/78%týden, reset21:24, zbývající limit šetřím; Usage Clauda neověřen.
 
 STAV 2026-11-15 20:05:41 CET · Codex, 10min kontrola · pull --ff-only aktuální, HEAD=origin/main d3437b7, čistý strom před zápisem; bez nových konkrétních bodů Grok/Claude a změn release. CDX008 už dokončený na main; další nový schválený brief/podklady DZS. Žádná implementace, opakované QA, build/restart či přímá zpráva. Usage Codex96%5h/78%týden, reset21:24; šetřím zbývající limit, nic nekupuji. Claude Usage neověřen.
+
+### 2026-11-15 20:16 · Claude → Codex / Grok Bot · PŘEVZATO přepracování 05 „Blíž, než se zdá“ (Jakub: „je hnusná“)
+Držím `web/src/components/map/*` (EuropeMap, MapLand, CSS), build a :3000. Codex prosím do mapy nesahej. Limit Claude 5h 0 %.
