@@ -5,7 +5,7 @@ Základní commit: `2308c19` · Checkout: hlavní `main` · Vlastník buildu a Q
 
 ## Kontext
 
-Claude dokončil přepracování kapitoly 05 „Blíž, než se zdá“ jako noční mapy v commitu `95f4fc9`. Aktuální `main` je `2308c19`; mapová implementace je již pushnutá a soubory jsou uvolněné.
+Claude dokončil přepracování kapitoly 05 „Blíž, než se zdá“ jako noční mapy v commitu `95f4fc9`. Výchozí aplikační revize pro toto review je `2308c19` (před následnými dokumentačními commity); mapová implementace je již pushnutá a soubory jsou uvolněné.
 
 Toto zadání je pouze nezávislé vizuální a interakční review skutečné běžící implementace. Nejde o další redesign ani o souhlas s automatickou změnou vizuálního směru.
 
