@@ -72,11 +72,15 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
+/* N2: answers are pills (≥ 44 px), like the station markers of the Trasa. */
 .answer {
-  min-height: 84px;
-  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  padding: 14px 26px;
+  border-radius: 999px;
   font-size: 1.125rem;
-  line-height: 1.35;
+  line-height: 1.3;
   font-weight: var(--wght-ui);
 }
 @media (hover: hover) {
@@ -334,7 +338,8 @@
     grid-template-columns: 1fr;
   }
   .answer {
-    min-height: 0;
+    min-height: 52px;
+    padding: 12px 22px;
   }
   .card {
     max-width: 420px;
