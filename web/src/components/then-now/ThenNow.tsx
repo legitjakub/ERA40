@@ -122,6 +122,24 @@ export function ThenNow() {
           delete frame.dataset.homeRoute;
         };
       });
+      // P2 bod 5: phones and short screens have no pin, so the comparison
+      // follows the scroll as the photo passes (then → now), until the
+      // reader takes over with a finger, the buttons or the keyboard.
+      media.add(
+        "(max-width: 1023px), (max-height: 679px)",
+        () => {
+          const frame = comparison.current;
+          if (!frame) return;
+          ScrollTrigger.create({
+            trigger: frame,
+            start: "top 70%",
+            end: "bottom 30%",
+            onUpdate: (self) => {
+              if (!manual.current) setPosition(Math.round(84 - self.progress * 68));
+            },
+          });
+        },
+      );
       media.add(
         "(min-width: 1024px) and (min-height: 680px) and (prefers-reduced-motion: no-preference)",
         () => {

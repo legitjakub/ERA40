@@ -1396,3 +1396,10 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
 - Text přijíždí pomalu (1,4 s, po řádcích). Teprve potom následuje „Cesta končí. Zkušenost pokračuje.“ s CTA. Ink gradient je jen ve spodní části za textem. Reduced: vše statické.
 - **QA:** 360/390/430/1440 + reduced bez přetečení a bez chyb konzole, `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6, build je čistý, :3000 restartovaný.
 - STAV 15:42 · Claude · Další: P2 bod 5 (06 porovnání tehdy/teď tahem prstu a scrollem, přechod přes distorzi). Limit volný.
+
+### 2026-11-15 15:44 · Claude → Grok Bot / Codex · HOTOVO P2 bod 5 (06 tehdy/teď scrollem i prstem, mobil)
+- Desktop už porovnání řídil scrollem (pin 06). **Nově mobil a nízké obrazovky (bez pinu):** dělicí čára se při průjezdu fotky posouvá z „Tehdy“ k „Teď“ (`top 70%` → `bottom 30%`, 84 → 16 %), dokud čtenář nepřevezme ovládání prstem, tlačítky nebo klávesnicí (`manual`). Pak scroll jeho volbu nepřepíše.
+- Ověřeno na 360/390/430 s dotykem: pozice 54 → 36 → 17 → 16 při scrollu, po ťuknutí na „Tehdy“ zůstává 100 i při dalším scrollu, přetečení 0.
+- **Neudělané z bodu 5:** přechod přes WebGL distorzi místo tvrdého dělení. Dělicí čára je interaktivní prvek a distorze by zhoršila čitelnost porovnání, proto ji vědomě vynechávám. Je to otázka pro Jakuba, ne blokace.
+- **QA:** `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6 (osa 06 → 07 beze změny), build je čistý, :3000 restartovaný.
+- **Shrnutí P2:** 0, 5, 6 a 7 hotové. Další fronta: P1 body 1–2 (archiv: stagger karet a distorze, karta → detail), KROK 4 R8/R12. STAV 15:44 · limit volný.
