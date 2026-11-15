@@ -75,6 +75,13 @@
 .tip[data-selected="true"] {
   fill: var(--c-yellow);
 }
+/* N1: once a branch is chosen, the others step back so "you are here" reads
+   without an extra outline. */
+.lines:has(.tip[data-selected="true"]) .tip:not([data-selected="true"]),
+.lines:has(.tip[data-selected="true"]) [data-branch]:not([data-selected="true"]) {
+  opacity: 0.35;
+  transition: opacity var(--dur-xs) var(--ease-out);
+}
 .trunk {
   display: grid;
   align-content: start;
@@ -92,7 +99,7 @@
     "wght" var(--wght-display);
 }
 .trunkLabel {
-  font-size: 1.05rem;
+  font-size: var(--fs-lead);
   line-height: 1.35;
   max-width: 18ch;
 }
@@ -170,7 +177,7 @@
 }
 .more {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
   gap: 2rem;
   margin: clamp(3rem, 6vw, 5rem) 0 0;
   padding-top: 2rem;
@@ -223,7 +230,7 @@
 .examplePhoto figcaption { position: absolute; bottom: 12px; left: 12px; padding: 3px 8px; font-size: var(--fs-meta); background: var(--c-ink); color: white; }
 .exampleText { min-width: 0; padding: clamp(24px, 4vw, 56px); }
 .exampleLabel { font-size: var(--fs-meta); line-height: 1.5; color: var(--c-mute); margin: 0 0 20px; }
-.exampleText h4 { font-size: clamp(2rem, 4vw, 4.3rem); font-variation-settings: "wdth" var(--wdth-display), "wght" var(--wght-display); letter-spacing: -0.025em; line-height: 1.05; color: var(--c-eu-blue); margin: 0 0 24px; }
+.exampleText h3 { font-size: clamp(2rem, 4vw, 4.3rem); font-variation-settings: "wdth" var(--wdth-display), "wght" var(--wght-display); letter-spacing: -0.025em; line-height: 1.05; color: var(--c-eu-blue); margin: 0 0 24px; }
 .exampleText > a { display: inline-flex; gap: 24px; align-items: center; min-height: 44px; font-weight: var(--wght-ui); color: var(--c-eplus-ink); text-underline-offset: 5px; }
 .exampleText:only-child { grid-column: 1 / -1; max-width: 65ch; }
 @keyframes example { from { opacity: 0; } }
@@ -260,4 +267,9 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 1.6rem;
   }
+}
+
+/* N4: the first figure leads (the figures stack under 860 px, above). */
+.more > div:first-child .moreValue {
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
 }

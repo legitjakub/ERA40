@@ -32,7 +32,7 @@ export default function Styleguide() {
   // The specimen keeps real, unsplit Czech text so wrapping is easy to assess.
   return (
     <main ref={root} id="main" className="document-page">
-      <h1>Vizuální styl Erasmus v Česku</h1>
+      <h1>Vizuální styl Erasmus+ navždy</h1>
       <label>
         Šířka písma Roboto Flex{" "}
         <input

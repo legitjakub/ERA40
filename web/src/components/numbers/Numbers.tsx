@@ -311,7 +311,12 @@ export function Numbers() {
             <path className={s.root} d={geometry.root} data-handoff-axis-target />
             <path d={geometry.trunk} data-trunk />
             {geometry.branches.map((branch, i) => (
-              <path key={sectorBreakdown[i].id} d={branch.d} data-branch />
+              <path
+                key={sectorBreakdown[i].id}
+                d={branch.d}
+                data-branch
+                data-selected={sectorId === sectorBreakdown[i].id}
+              />
             ))}
             {geometry.branches.map((branch, i) => (
               <circle
@@ -376,7 +381,7 @@ export function Numbers() {
                   {selectedSector.label}<br />
                   <StoryLabel story={example} />
                 </p>
-                <h4>{example.name}</h4>
+                <h3>{example.name}</h3>
                 <StoryImpact story={example} />
                 <Link href={`/pribehy/${example.id}`}>Číst celý příběh <span aria-hidden="true">↗</span></Link>
               </div>
@@ -384,7 +389,7 @@ export function Numbers() {
           ) : (
             <div className={s.exampleText}>
               <p className={s.exampleLabel} role="status">{selectedSector.label}</p>
-              <h4>Patří sem i tvůj příběh.</h4>
+              <h3>Patří sem i tvůj příběh.</h3>
               <p>Příběhy ze vzdělávání dospělých teprve shromažďujeme. Co se díky zahraniční zkušenosti změnilo u tebe?</p>
               <Link href="/zapojte-se#organizace">Zapojit organizaci <span aria-hidden="true">↗</span></Link>
             </div>

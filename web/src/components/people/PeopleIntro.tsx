@@ -8,7 +8,7 @@ import { TrainSequence } from "./TrainSequence";
 import styles from "./PeopleIntro.module.css";
 
 const opening =
-  "Od roku 1998 vyjelo s\u00a0Erasmem do zahraničí přes 411\u00a0000 lidí z\u00a0Česka. Domů se vraceli";
+  "Od roku 1998 vyjelo s\u00a0Erasmem do zahraničí přes 400\u00a0tisíc lidí z\u00a0Česka. Domů se vraceli";
 const ending = "trochu jiní.";
 const source =
   "https://www.dzs.cz/sites/default/files/2024-03/Infografika_20let_finalA4.pdf";
@@ -98,7 +98,7 @@ export function PeopleIntro() {
           nevyjeli: k&nbsp;jejich studentům, kolegům a&nbsp;rodinám.
         </p>
         <p className={styles.note} data-note>
-          DZS eviduje 411&nbsp;400 účastníků z&nbsp;Česka za výzvy 1998–&#8288;2023. Stav k&nbsp;31.&nbsp;12.&nbsp;2023. <a href={source}>Infografika DZS (PDF)</a>
+          Podle DZS za výzvy 1998–&#8288;2023, stav k&nbsp;31.&nbsp;12.&nbsp;2023. Přesné číslo najdeš v&nbsp;kapitole 07. <a href={source}>Infografika DZS (PDF)</a>
         </p>
       </div>
       <div className={styles.transition}>

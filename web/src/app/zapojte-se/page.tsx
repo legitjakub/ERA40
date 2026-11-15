@@ -4,7 +4,7 @@ import { JoinForm } from "@/components/join/JoinForm";
 import s from "./join.module.css";
 
 export const metadata: Metadata = {
-  title: "Zapoj se — Erasmus v Česku",
+  title: "Zapoj se",
   description:
     "Sdílej svou cestu s Erasmem, nech si poslat, jak vyjet, nebo zapoj svou školu či organizaci do 40 let Erasmu.",
 };

@@ -28,7 +28,7 @@ export async function generateMetadata({
   const story = getStory(id);
   if (!story) return {};
   return {
-    title: `${story.name}: ${story.from} – ${story.to} — Erasmus v Česku`,
+    title: `${story.name}: ${story.from} – ${story.to}`,
     description: `„${story.quote}“ Modelový příběh k 40 letům Erasmu.`,
   };
 }

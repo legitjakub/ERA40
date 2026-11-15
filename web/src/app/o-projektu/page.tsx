@@ -4,7 +4,7 @@ import { PageIntro } from "@/components/pages/PageIntro";
 import s from "@/components/pages/Prose.module.css";
 
 export const metadata: Metadata = {
-  title: "O projektu — Erasmus v Česku",
+  title: "O projektu",
   description:
     "Digitální výstava ke 40 letům evropského programu Erasmus. Co je ověřené, co modelové a jak pracujeme s tvými příběhy.",
 };

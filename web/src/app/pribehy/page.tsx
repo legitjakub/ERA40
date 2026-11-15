@@ -7,7 +7,7 @@ import { stories, storyPhoto } from "@/content/stories";
 import s from "@/components/archive/StoryArchive.module.css";
 
 export const metadata: Metadata = {
-  title: "Příběhy — Erasmus v Česku",
+  title: "Příběhy",
   description:
     "Archiv cest: studium, stáže, výuka a výměny mládeže. Modelové příběhy k 40 letům Erasmu.",
 };

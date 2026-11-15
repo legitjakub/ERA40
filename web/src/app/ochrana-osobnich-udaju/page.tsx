@@ -5,7 +5,7 @@ import { PRIVACY_VERSION } from "@/lib/contacts/schema";
 import s from "@/components/pages/Prose.module.css";
 
 export const metadata: Metadata = {
-  title: "Ochrana osobních údajů — Erasmus v Česku",
+  title: "Ochrana osobních údajů",
 };
 
 function Todo({ children }: { children: React.ReactNode }) {

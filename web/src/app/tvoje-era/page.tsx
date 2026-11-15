@@ -4,7 +4,7 @@ import { EraQuiz } from "@/components/era/EraQuiz";
 import s from "./era.module.css";
 
 export const metadata: Metadata = {
-  title: "Jaké je tvoje ERA? — Erasmus+ již 40 let mění životy",
+  title: "Jaké je tvoje ERA?",
   description:
     "Pět otázek o tom, co z Erasmu žije dodnes a komu se to dostalo dál. Výsledkem je nálepka ke stažení a sdílení. Platí i pro ty, kdo na Erasmu nikdy nebyli.",
 };
