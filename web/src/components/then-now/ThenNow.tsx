@@ -205,8 +205,10 @@ export function ThenNow() {
               />
               <div className={s.reveal}>
                 <div className={s.now}>
-                  <p className={s.nowText}>{person.summary}</p>
-                  <p className={s.nowReach}>{person.reach}</p>
+                  <div className={s.nowInside}>
+                    <p className={s.nowText}>{person.summary}</p>
+                    <p className={s.nowReach}>{person.reach}</p>
+                  </div>
                 </div>
               </div>
               <svg className={s.route} aria-hidden="true" focusable="false">
@@ -240,6 +242,11 @@ export function ThenNow() {
                   setPosition(event.target.valueAsNumber);
                 }}
               />
+            </div>
+            {/* Narrow screens: the same "Teď" text below the split; only one copy is ever displayed. */}
+            <div className={s.nowBelow}>
+              <p className={s.nowText}>{person.summary}</p>
+              <p className={s.nowReach}>{person.reach}</p>
             </div>
             <figcaption>
               <div className={s.positions} role="group" aria-label="Zobrazení porovnání">

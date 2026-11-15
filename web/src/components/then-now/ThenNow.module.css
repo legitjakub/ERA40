@@ -313,6 +313,14 @@
   opacity: 0;
   scale: 0.6;
 }
+.nowInside {
+  display: grid;
+  justify-items: start;
+  gap: inherit;
+}
+.nowBelow {
+  display: none;
+}
 @media (max-width: 760px) {
   .now {
     padding: 3.25rem 0.9rem 1rem calc(50% + 2rem);
@@ -323,5 +331,30 @@
   }
   .nowReach {
     font-size: 0.875rem;
+  }
+}
+/* Narrow: the split stays a picture, the "Teď" text continues below it at full width. */
+@media (max-width: 680px) {
+  .comparison {
+    height: min(56svh, 20rem);
+  }
+  .nowInside {
+    display: none;
+  }
+  .nowBelow {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--c-eu-blue);
+    color: white;
+  }
+  .nowBelow .nowText {
+    max-width: none;
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+  .nowBelow .nowReach {
+    max-width: none;
+    font-size: 1rem;
   }
 }
