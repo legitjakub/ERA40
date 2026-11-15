@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/pages/PageIntro";
+import { stats } from "@/content/stats";
+
 import s from "@/components/pages/Prose.module.css";
+
+const outgoingCount = new Intl.NumberFormat("cs-CZ").format(
+  stats.find((stat) => stat.id === "outgoing-cz")?.value ?? 0,
+);
 
 export const metadata: Metadata = {
   title: "O projektu",
@@ -36,7 +42,7 @@ export default function AboutPage() {
             <span>Česko se zapojuje do evropských vzdělávacích programů.</span>
           </li>
           <li>
-            <strong>411 400</strong>
+            <strong>{outgoingCount}</strong>
             <span>účastníků vyjelo z&nbsp;Česka do zahraničí.</span>
             <small>
               Výzvy 1998–&#8288;2023, stav k&nbsp;31.&nbsp;12.&nbsp;2023.{" "}
@@ -50,7 +56,7 @@ export default function AboutPage() {
           <div className={s.text}>
             <p>
               O&nbsp;Erasmu se většinou mluví v&nbsp;číslech. My ho chceme vyprávět
-              přes lidi: přes první přednášku v&nbsp;cizím jazyce, ranní vlak na
+              přes lidi: přes první přednášku v&nbsp;cizím jazyce, ranní cestu na
               stáž nebo kamarádství, které vydrží desítky let.
             </p>
             <p>

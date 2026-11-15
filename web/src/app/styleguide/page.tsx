@@ -98,7 +98,7 @@ export default function Styleguide() {
         }}
       >
         <Image
-          src="/media/placeholders/ph-prague-station.jpg"
+          src="/media/placeholders/ph-prague-street.jpg"
           alt="Ilustrační fotografie pražského nádraží"
           fill
           sizes="(max-width:1000px) 90vw, 950px"

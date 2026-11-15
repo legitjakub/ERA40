@@ -20,7 +20,7 @@ const models = [
     quote: "Poprvé jsem musela říct nahlas, co si myslím, a\u00a0v\u00a0cizím jazyce.",
     excerpt:
       "Semestr architektury ve Valencii. Ateliér, kde se kritizuje otevřeně, a\u00a0kuchyně na koleji, kde se vařilo v\u00a0pěti jazycích.",
-    mediaId: "ph-train-window-woman",
+    mediaId: "ph-dorm",
   },
   {
     id: "lipsko",
@@ -34,8 +34,8 @@ const models = [
     year: "2022",
     quote: "Za tři měsíce jsem se naučil víc němčiny než za šest let ve škole.",
     excerpt:
-      "Stáž v\u00a0projekční kanceláři. Ranní vlak, porady v\u00a0němčině a\u00a0první pracovní reference ze zahraničí.",
-    mediaId: "ph-backpack-station",
+      "Stáž v\u00a0projekční kanceláři. Brzká rána, porady v\u00a0němčině a\u00a0první pracovní reference ze zahraničí.",
+    mediaId: "ph-group",
   },
   {
     id: "praha-in",

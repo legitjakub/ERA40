@@ -58,13 +58,13 @@ export function StoryDetailScene() {
         ({ conditions }) => {
           const blur = conditions?.wide ? "blur(6px)" : "blur(0px)";
           const items = main.querySelectorAll("[data-reveal]");
-          gsap.set(items, { autoAlpha: 0, y: 28, filter: blur });
+          gsap.set(items, { opacity: 0, y: 28, filter: blur });
           ScrollTrigger.batch(items, {
             start: "top 88%",
             once: true,
             onEnter: (entered) =>
               gsap.to(entered, {
-                autoAlpha: 1,
+                opacity: 1,
                 y: 0,
                 filter: "blur(0px)",
                 duration: 0.9,

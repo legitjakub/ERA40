@@ -65,7 +65,7 @@ x-campus-walk 2 4
 x-lecture 1 3.5
 x-dinner-garden 15.5 4.5
 o-desktop 23.7 4.6
-x-train-man 2 4 0.5 warm
+x-meadow 6 4 0.5 warm
 x-lab 5.5 4.5 0.5 warmer
 CUT
 render mobile 720x1280 455 2000000 16 <<'CUT'
@@ -74,6 +74,6 @@ o-mobile 12.2 3.8
 x-lecture 1 3.5 0.55
 x-dinner-home 5.3 4.5
 o-mobile 17.2 4
-x-train-man 2 4 0.3 warm
+x-meadow 6 4 0.75 warm
 x-lab 5.5 4.5 0.7 warmer
 CUT

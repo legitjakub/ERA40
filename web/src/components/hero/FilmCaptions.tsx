@@ -18,7 +18,7 @@ const desktop: Cue[] = [
   [7.8, 11.3, "Přednáška v jiném jazyce."],
   [11.3, 15.8, "Večeře v pěti jazycích."],
   [15.8, 20.4, "Lidé, které ráno ještě neznáš."],
-  [20.4, 24.4, "Domů se vrací někdo trochu jiný."],
+  [20.4, 24.4, "Svět se ti trochu zvětšil."],
   [24.4, 40, "A předává to dál."],
 ];
 
@@ -28,7 +28,7 @@ const mobile: Cue[] = [
   [7.6, 11.1, "Přednáška v jiném jazyce."],
   [11.1, 15.6, "Večeře v pěti jazycích."],
   [15.6, 19.6, "Lidé, které ráno ještě neznáš."],
-  [19.6, 23.6, "Domů se vrací někdo trochu jiný."],
+  [19.6, 23.6, "Svět se ti trochu zvětšil."],
   [23.6, 40, "A předává to dál."],
 ];
 

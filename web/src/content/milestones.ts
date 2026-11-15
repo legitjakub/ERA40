@@ -34,7 +34,7 @@ export const milestones: TimelineMilestone[] = [
     title: "Česko se připojuje",
     text: "Česko se zapojuje do evropských vzdělávacích programů včetně Erasmu. První čeští studenti vyjíždějí v\u00a0akademickém roce 1998/1999. Do vstupu země do Evropské unie zbývá šest let.",
     source: infographic,
-    mediaId: "ph-prague-station",
+    mediaId: "ph-map-pins",
     status: "verified",
   },
   {
@@ -43,7 +43,7 @@ export const milestones: TimelineMilestone[] = [
     title: "Vstup do Evropské unie",
     text: "Česko se stává členem Evropské unie. Studenti z\u00a0českých vysokých škol už mají za sebou první roky zahraničních pobytů.",
     source: infographic,
-    mediaId: "ph-platform-woman",
+    mediaId: "ph-scrapbook",
     status: "verified",
   },
   {
@@ -80,7 +80,7 @@ export const milestones: TimelineMilestone[] = [
     title: "Čtyřicet let Erasmu",
     text: "Od vzniku evropského programu uplyne čtyřicet let. České zapojení má v\u00a0témže roce za sebou dvacet devět let.",
     source: infographic,
-    mediaId: "ph-train-luggage",
+    mediaId: "ph-library",
     status: "verified",
   },
 ];

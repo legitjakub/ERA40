@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
-import { TrainSequence } from "./TrainSequence";
+import { PeopleRow } from "./PeopleRow";
 import styles from "./PeopleIntro.module.css";
 
 const opening =
@@ -102,7 +102,7 @@ export function PeopleIntro() {
         </p>
       </div>
       <div className={styles.transition}>
-        <TrainSequence reduced={reduced} />
+        <PeopleRow reduced={reduced} />
       </div>
     </section>
   );

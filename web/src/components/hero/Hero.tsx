@@ -203,7 +203,7 @@ export function Hero() {
           <source media="(max-width:767px)" srcSet={base + "mobile.avif"} />
           <img
             src={base + "desktop.avif"}
-            alt="Odjezd na cestu do zahraničí"
+            alt="Přátelé večer na studijním pobytu v zahraničí"
             fetchPriority="high"
             className={styles.media}
           />
@@ -224,7 +224,7 @@ export function Hero() {
           onPause={() => setPlaying(false)}
           onLoadedData={() => setFailed(false)}
           onError={(event) => { if (event.currentTarget.error) setFailed(true); }}
-          aria-label="Ilustrační film o cestě vlakem a setkání studentů"
+          aria-label="Ilustrační film o cestě a setkání studentů v zahraničí"
         >
               <source
                 media="(max-width:767px)"

@@ -387,17 +387,6 @@
     "orientation": "portrait"
   },
   {
-    "id": "x-train-man",
-    "kind": "video",
-    "file": "/media/placeholders/raw/x-train-man.mp4",
-    "alt": "Cestující u okna vlaku",
-    "status": "illustrative",
-    "credit": "Mixkit",
-    "license": "Mixkit Free License (free use)",
-    "sourceUrl": "https://mixkit.co/free-stock-video/man-face-by-the-train-window-14780/",
-    "orientation": "landscape"
-  },
-  {
     "id": "x-lab",
     "kind": "video",
     "file": "/media/placeholders/raw/x-lab.mp4",
@@ -406,6 +395,17 @@
     "credit": "Mixkit",
     "license": "Mixkit Free License (free use)",
     "sourceUrl": "https://mixkit.co/free-stock-video/professor-showing-students-a-lab-procedure-24232/",
+    "orientation": "landscape"
+  },
+  {
+    "id": "x-meadow",
+    "kind": "video",
+    "file": "/media/placeholders/raw/x-meadow.mp4",
+    "alt": "Student s notebookem na univerzitním trávníku",
+    "status": "illustrative",
+    "credit": "Mixkit",
+    "license": "Mixkit Free License (free use)",
+    "sourceUrl": "https://mixkit.co/free-stock-video/young-students-hanging-out-on-a-campus-meadow-36084/",
     "orientation": "landscape"
   }
 ]

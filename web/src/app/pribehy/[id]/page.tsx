@@ -88,7 +88,7 @@ async function StoryContent({
             <h1 className={s.title}>
               <span className={s.route}>
                 {story.from} <span aria-hidden="true">⟶</span>
-                <span className="visually-hidden"> do </span> {story.to}
+                <span className="visually-hidden"> – </span> {story.to}
               </span>
               <span className="visually-hidden">, </span>
               <span className={s.name}>{story.name}</span>
@@ -106,9 +106,7 @@ async function StoryContent({
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
-              <figcaption>
-                Ilustrační snímek · {story.to}, {story.year}
-              </figcaption>
+              <figcaption>Ilustrační snímek</figcaption>
             </figure>
           </SharedPhoto>
         </header>
