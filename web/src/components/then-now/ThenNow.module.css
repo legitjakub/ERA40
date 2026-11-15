@@ -24,9 +24,9 @@
   color: #004494;
   font-size: clamp(3.4rem, 7.8vw, 8rem);
   font-variation-settings:
-    "wdth" 52,
-    "wght" 845;
-  font-weight: 845;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
+  font-weight: var(--wght-display);
   letter-spacing: -0.025em;
   line-height: 1.04;
 }
@@ -56,7 +56,7 @@
 }
 .options button[aria-pressed="true"] {
   color: #004494;
-  font-weight: 700;
+  font-weight: var(--wght-heading);
   border-color: currentColor;
 }
 .figure {
@@ -88,14 +88,14 @@
   padding: 0.35rem 0.65rem;
   color: #fff;
   background: #0b1b33;
-  font-weight: 650;
+  font-weight: var(--wght-ui);
   font-size: 0.94rem;
 }
 .divider {
   position: absolute;
   inset: 0 auto 0 var(--divider);
   width: 2px;
-  background: #ffed00;
+  background: white;
   pointer-events: none;
 }
 .divider span {
@@ -108,10 +108,10 @@
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
-  background: #ffed00;
-  color: #0b1b33;
+  background: var(--c-yellow);
+  color: var(--c-ink);
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: var(--wght-heading);
   white-space: pre;
 }
 .slider {
@@ -167,7 +167,7 @@
   line-height: 1.24;
 }
 .captions b {
-  font-size: 0.86rem;
+  font-size: var(--fs-meta);
   color: #004494;
 }
 .notes {
@@ -255,7 +255,7 @@
   margin: 0;
   color: var(--c-yellow);
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: var(--wght-heading);
   letter-spacing: 0.02em;
 }
 .nowText {
@@ -264,8 +264,8 @@
   font-size: clamp(1.4rem, 2.6vw, 2.6rem);
   line-height: 1.12;
   font-variation-settings:
-    "wdth" 78,
-    "wght" 720;
+    "wdth" var(--wdth-figure),
+    "wght" var(--wght-heading);
 }
 .nowReach {
   margin: 0;

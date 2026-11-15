@@ -13,7 +13,7 @@
 .brand {
   font-size: 2rem;
   letter-spacing: -0.025em;
-  font-weight: 740;
+  font-weight: var(--wght-heading);
   margin: 0;
 }
 .inner p {
@@ -47,7 +47,7 @@
   line-height: 1.3;
 }
 .partner strong {
-  font-weight: 650;
+  font-weight: var(--wght-ui);
 }
 .plate {
   display: grid;
@@ -71,7 +71,7 @@
   margin-top: 8px;
   padding-top: 20px;
   border-top: 1px solid #ffffff40;
-  font-size: 0.85rem;
+  font-size: var(--fs-meta);
 }
 @media (max-width: 600px) {
   .inner {

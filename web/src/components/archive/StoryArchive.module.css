@@ -36,7 +36,7 @@
   color: var(--c-eu-blue);
   font: inherit;
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: var(--wght-ui);
   cursor: pointer;
   transition:
     background-color 0.2s,
@@ -59,7 +59,7 @@
   margin: 22px 0 clamp(28px, 5vh, 56px);
   color: var(--c-mute);
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: var(--wght-ui);
   font-variant-numeric: tabular-nums;
 }
 .themes {
@@ -69,7 +69,7 @@
 .filterLabel {
   color: var(--c-mute);
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: var(--wght-ui);
   padding-right: 12px;
   white-space: nowrap;
 }
@@ -174,7 +174,7 @@
   padding: 3px 7px;
   background: #0b1b33d9;
   color: white;
-  font-size: 0.8125rem;
+  font-size: var(--fs-meta);
 }
 .meta {
   display: grid;
@@ -183,7 +183,7 @@
 }
 .route {
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: var(--wght-ui);
   color: var(--c-eu-blue);
 }
 .route span {
@@ -192,8 +192,8 @@
 .name {
   font-size: clamp(2rem, 3.4vw, 3.4rem);
   font-variation-settings:
-    "wdth" 68,
-    "wght" 820;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
   letter-spacing: -0.025em;
   line-height: 1;
   color: var(--c-eu-blue);
@@ -203,7 +203,7 @@
   max-width: 36ch;
   font-size: clamp(1.05rem, 1.3vw, 1.25rem);
   line-height: 1.35;
-  font-weight: 550;
+  font-weight: var(--wght-ui);
 }
 .facts {
   color: var(--c-mute);
@@ -212,7 +212,7 @@
 .label {
   margin: 10px 0 0;
   color: var(--c-mute);
-  font-size: 0.75rem;
+  font-size: var(--fs-meta);
 }
 .card:focus-visible {
   outline: 2px solid var(--c-eplus);
@@ -252,8 +252,8 @@
 .indexName {
   font-size: clamp(2rem, 4vw, 4.2rem);
   font-variation-settings:
-    "wdth" 66,
-    "wght" 820;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
   letter-spacing: -0.025em;
   line-height: 1;
   color: var(--c-eu-blue);
@@ -270,7 +270,7 @@
   outline-offset: -2px;
 }
 .indexRoute {
-  font-weight: 600;
+  font-weight: var(--wght-ui);
   color: var(--c-eu-blue);
 }
 .indexRoute span {
@@ -304,14 +304,14 @@
   color: var(--c-eu-blue);
   font-size: clamp(1.6rem, 2.2vw, 2.2rem);
   font-variation-settings:
-    "wdth" 70,
-    "wght" 820;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
   letter-spacing: -0.02em;
   line-height: 1;
 }
 .panelQuote {
   font-size: 1.0625rem;
-  font-weight: 550;
+  font-weight: var(--wght-ui);
   line-height: 1.4;
 }
 @keyframes swap {
@@ -342,8 +342,8 @@
   margin: 0;
   font-size: clamp(2.4rem, 6vw, 6rem);
   font-variation-settings:
-    "wdth" 68,
-    "wght" 840;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
   letter-spacing: -0.025em;
   line-height: 1;
 }
@@ -352,7 +352,7 @@
   padding: 14px 22px;
   background: var(--c-yellow);
   color: var(--c-ink);
-  font-weight: 650;
+  font-weight: var(--wght-ui);
   text-decoration: none;
 }
 .invite a:hover {
@@ -458,14 +458,14 @@
 .stripName {
   font-size: clamp(1rem, 1.3vw, 1.25rem);
   font-variation-settings:
-    "wdth" 72,
-    "wght" 780;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-heading);
   line-height: 1.05;
 }
 .stripTo {
   color: var(--c-yellow);
-  font-size: 0.8125rem;
-  font-weight: 650;
+  font-size: var(--fs-meta);
+  font-weight: var(--wght-ui);
 }
 @keyframes stripIn {
   from {

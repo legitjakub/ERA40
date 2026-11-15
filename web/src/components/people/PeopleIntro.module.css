@@ -14,10 +14,10 @@
   margin: 0;
   max-width: 19ch;
   font-size: clamp(3.35rem, 6.8vw, 7rem);
-  font-weight: 820;
+  font-weight: var(--wght-display);
   font-variation-settings:
-    "wght" 820,
-    "wdth" 60;
+    "wght" var(--wght-display),
+    "wdth" var(--wdth-display);
   line-height: 1.02;
   letter-spacing: -0.025em;
 }

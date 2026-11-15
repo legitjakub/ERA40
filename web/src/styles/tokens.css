@@ -24,11 +24,16 @@
   --fs-h2: clamp(2.25rem, 1.6rem + 3vw, 4rem);
   --fs-lead: clamp(1.375rem, 1.15rem + 0.9vw, 1.875rem);
   --fs-body: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem);
-  --fs-meta: 0.8125rem;
+  --fs-meta: 0.875rem;
   --lh-display: 0.9;
   --lh-body: 1.55;
-  --wdth-display: 40; /* Roboto Flex width axis for display type */
-  --wght-display: 860;
+  /* Roboto Flex: four weight roles and two widths. Use these, not raw numbers. */
+  --wght-text: 400; /* body, lead, form input */
+  --wght-ui: 600; /* meta, labels, buttons, navigation */
+  --wght-heading: 750; /* subheadings, emphasis, small titles */
+  --wght-display: 840; /* display headings and large figures */
+  --wdth-display: 56; /* condensed display type, DESIGN.md range 25–60 */
+  --wdth-figure: 78; /* figures and wide subheads, never titles */
 
   /* Layout */
   --max-w: 1440px;

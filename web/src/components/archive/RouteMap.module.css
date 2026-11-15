@@ -24,7 +24,7 @@
 }
 .stop text {
   fill: var(--c-eu-blue);
-  font-weight: 700;
+  font-weight: var(--wght-heading);
   paint-order: stroke;
   stroke: var(--c-sky);
   stroke-width: 3px;
@@ -32,7 +32,7 @@
 .map figcaption {
   margin-top: 8px;
   color: var(--c-mute);
-  font-size: 0.8125rem;
+  font-size: var(--fs-meta);
 }
 @keyframes draw {
   to {

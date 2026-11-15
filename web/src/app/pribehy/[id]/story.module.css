@@ -23,7 +23,7 @@
   margin: 0 0 auto;
   padding-bottom: 40px;
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: var(--wght-ui);
   font-variant-numeric: tabular-nums;
 }
 .back a {
@@ -33,7 +33,7 @@
 .route {
   margin: 0 0 12px;
   font-size: clamp(1rem, 1.3vw, 1.2rem);
-  font-weight: 650;
+  font-weight: var(--wght-ui);
   color: var(--c-yellow);
 }
 .route span,
@@ -44,8 +44,8 @@
   margin: 0;
   font-size: clamp(4rem, 9vw, 10rem);
   font-variation-settings:
-    "wdth" 66,
-    "wght" 850;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
   letter-spacing: -0.025em;
   line-height: 1.04;
   animation: rise 0.9s var(--ease-out) both;
@@ -54,7 +54,7 @@
   margin: clamp(20px, 3vh, 36px) 0 0;
   max-width: 24ch;
   font-size: clamp(1.6rem, 2.6vw, 2.8rem);
-  font-weight: 600;
+  font-weight: var(--wght-ui);
   letter-spacing: -0.025em;
   line-height: 1.15;
   animation: rise 0.9s 0.12s var(--ease-out) both;
@@ -62,7 +62,7 @@
 .label {
   margin: 28px 0 0;
   color: #d5e8ff;
-  font-size: 0.8125rem;
+  font-size: var(--fs-meta);
 }
 .photo {
   position: relative;
@@ -93,7 +93,7 @@
   padding: 3px 8px;
   background: #0b1b33d9;
   color: white;
-  font-size: 0.8125rem;
+  font-size: var(--fs-meta);
 }
 .body {
   display: grid;
@@ -126,7 +126,7 @@
 }
 .facts dd {
   margin: 0;
-  font-weight: 600;
+  font-weight: var(--wght-ui);
   color: var(--c-eu-blue);
 }
 .text {
@@ -142,7 +142,7 @@
   font-size: var(--fs-lead);
   line-height: 1.35;
   color: var(--c-eu-blue);
-  font-weight: 550;
+  font-weight: var(--wght-ui);
 }
 .text .disclaimer {
   margin-top: 2.4em;
@@ -165,15 +165,15 @@
 .nextLabel {
   grid-column: 1;
   font-size: 0.9375rem;
-  font-weight: 650;
+  font-weight: var(--wght-ui);
   color: var(--c-mute);
 }
 .nextName {
   grid-column: 1;
   font-size: clamp(3.4rem, 9vw, 9.5rem);
   font-variation-settings:
-    "wdth" 66,
-    "wght" 850;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
   letter-spacing: -0.025em;
   line-height: 1.04;
   transition: transform 0.6s var(--ease-out);
@@ -181,7 +181,7 @@
 .nextRoute {
   grid-column: 1;
   margin-top: 14px;
-  font-weight: 650;
+  font-weight: var(--wght-ui);
 }
 .nextPhoto {
   position: relative;
@@ -220,8 +220,8 @@
   color: var(--c-eu-blue);
   font-size: clamp(2.2rem, 5vw, 5rem);
   font-variation-settings:
-    "wdth" 68,
-    "wght" 840;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
   letter-spacing: -0.025em;
   line-height: 1;
 }
@@ -229,7 +229,7 @@
   padding: 14px 22px;
   background: var(--c-eu-blue);
   color: white;
-  font-weight: 650;
+  font-weight: var(--wght-ui);
   text-decoration: none;
 }
 .invite a:hover {

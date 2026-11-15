@@ -39,7 +39,7 @@
   align-items: center;
   margin: 0 0 clamp(16px, 3vh, 38px);
   font-size: clamp(0.93rem, 1.3vw, 1.2rem);
-  font-weight: 570;
+  font-weight: var(--wght-ui);
 }
 .station {
   width: 10px;
@@ -58,8 +58,8 @@
   font-family: var(--font-brand);
   font-size: clamp(6rem, 9.6vw, 11.7rem);
   font-variation-settings:
-    "wdth" 78,
-    "wght" 815;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
   letter-spacing: -0.025em;
   line-height: 0.96;
   margin: 0;
@@ -77,7 +77,7 @@
   margin: clamp(18px, 3vh, 36px) 0 22px;
   line-height: 1.4;
   font-size: clamp(1rem, 1.3vw, 1.28rem);
-  font-weight: 500;
+  font-weight: var(--wght-text);
 }
 .actions {
   display: flex;
@@ -87,7 +87,7 @@
 .primary,
 .history {
   font-size: 1rem;
-  font-weight: 650;
+  font-weight: var(--wght-ui);
 }
 .primary {
   display: inline-flex;
@@ -115,8 +115,8 @@
   align-items: center;
   gap: 0.75em;
   color: white;
-  font-size: 0.82rem;
-  font-weight: 550;
+  font-size: var(--fs-meta);
+  font-weight: var(--wght-ui);
   text-shadow: 0 1px 4px #001a34;
 }
 .controls button {

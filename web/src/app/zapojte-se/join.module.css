@@ -18,7 +18,7 @@
   background: var(--c-yellow);
   color: var(--c-ink);
   font-size: 1rem;
-  font-weight: 650;
+  font-weight: var(--wght-ui);
   text-decoration: none;
 }
 .start span {

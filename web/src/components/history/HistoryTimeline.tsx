@@ -113,8 +113,8 @@ export function HistoryTimeline() {
             );
             year.textContent = String(value);
             year.style.fontVariationSettings =
-              '"wght" 870, "wdth" ' +
-              (65 - 39 * Math.sin(change * Math.PI)).toFixed(1);
+              '"wght" var(--wght-display), "wdth" ' +
+              (66 - 40 * Math.sin(change * Math.PI)).toFixed(1);
             if (current !== shown) {
               current = shown;
               setActive(shown);

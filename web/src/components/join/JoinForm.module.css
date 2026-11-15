@@ -29,8 +29,8 @@
   color: var(--c-eu-blue);
   font-size: clamp(1.5rem, 2.4vw, 2.2rem);
   font-variation-settings:
-    "wdth" 72,
-    "wght" 800;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
   letter-spacing: -0.02em;
 }
 .stepNo {
@@ -41,7 +41,7 @@
   border: 2px solid currentColor;
   border-radius: 50%;
   font-size: 0.95rem;
-  font-variation-settings: "wght" 750;
+  font-variation-settings: "wght" var(--wght-heading);
   font-variant-numeric: tabular-nums;
 }
 /* Paths are typographic rows, not cards: a station marker on the Trasa. */
@@ -103,8 +103,8 @@
   color: var(--c-eu-blue);
   font-size: clamp(1.6rem, 3.2vw, 3rem);
   font-variation-settings:
-    "wdth" 68,
-    "wght" 820;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
   letter-spacing: -0.025em;
   line-height: 1.05;
   transition: transform 0.45s var(--ease-out);
@@ -130,7 +130,7 @@
   gap: 8px;
   align-content: start;
   font-size: 0.9375rem;
-  font-weight: 650;
+  font-weight: var(--wght-ui);
   color: var(--c-ink);
 }
 .label label {
@@ -140,8 +140,8 @@
 }
 .optional {
   color: var(--c-mute);
-  font-size: 0.8125rem;
-  font-weight: 500;
+  font-size: var(--fs-meta);
+  font-weight: var(--wght-text);
 }
 .label input,
 .label select,
@@ -155,7 +155,7 @@
   color: var(--c-ink);
   font: inherit;
   font-size: 1.0625rem;
-  font-weight: 450;
+  font-weight: var(--wght-text);
   transition:
     border-color 0.2s,
     box-shadow 0.2s;
@@ -177,14 +177,14 @@
 .counter {
   justify-self: end;
   color: var(--c-mute);
-  font-size: 0.8125rem;
-  font-weight: 500;
+  font-size: var(--fs-meta);
+  font-weight: var(--wght-text);
   font-variant-numeric: tabular-nums;
 }
 .error {
   color: #b3261e;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: var(--wght-ui);
 }
 .check {
   display: grid;
@@ -232,7 +232,7 @@
   background: var(--c-eu-blue);
   color: white;
   font: inherit;
-  font-weight: 650;
+  font-weight: var(--wght-ui);
   cursor: pointer;
 }
 .primary:hover {
@@ -253,7 +253,7 @@
   background: white;
   color: var(--c-eu-blue);
   font: inherit;
-  font-weight: 650;
+  font-weight: var(--wght-ui);
   cursor: pointer;
 }
 .secondary:hover {
@@ -262,7 +262,7 @@
 .prototype {
   margin: 0;
   color: var(--c-mute);
-  font-size: 0.8125rem;
+  font-size: var(--fs-meta);
 }
 .side {
   position: sticky;
@@ -274,7 +274,7 @@
   margin: 0;
   color: var(--c-eu-blue);
   font-size: 1.125rem;
-  font-weight: 750;
+  font-weight: var(--wght-heading);
 }
 .sideNote {
   margin: 0;
@@ -319,15 +319,15 @@
 .doneKicker {
   margin: 0 0 12px;
   color: var(--c-mute);
-  font-weight: 650;
+  font-weight: var(--wght-ui);
 }
 .doneTitle {
   margin: 0 0 36px;
   color: var(--c-eu-blue);
   font-size: clamp(2.6rem, 6vw, 6rem);
   font-variation-settings:
-    "wdth" 68,
-    "wght" 840;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
   letter-spacing: -0.025em;
   line-height: 0.98;
 }
@@ -351,7 +351,7 @@
   background: none;
   color: var(--c-eu-blue);
   font: inherit;
-  font-weight: 650;
+  font-weight: var(--wght-ui);
   text-decoration: none;
   cursor: pointer;
 }

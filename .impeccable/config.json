@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "web/src/components/numbers/Numbers.module.css"
+        ],
+        "createdAt": "2026-11-15T00:22:20.104Z",
+        "reason": "agent triage: .track::before is the rounded elbow of the branch line (Trasa motif, spec 009 Rozvětvení), left+bottom border with radius, not a card accent stripe"
+      }
+    ]
+  }
+}

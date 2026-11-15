@@ -16,7 +16,7 @@ const countries = JSON.parse(
   await readFile(new URL("../src/content/europe-map.json", import.meta.url)),
 );
 const paths = countries
-  .map((c) => `<path d="${c.path}"${c.cz ? ' fill="#a9c6df"' : ""}/>`)
+  .map((c) => `<path d="${c.path}"${c.cz ? ' fill="#007fc7"' : ""}/>`)
   .join("");
 await writeFile(
   new URL("../public/media/europe-land.svg", import.meta.url),

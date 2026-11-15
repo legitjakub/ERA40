@@ -1,10 +1,10 @@
 .section { background: var(--c-sky); color: var(--c-eu-blue); overflow: clip; }
 .inner { max-width: 1440px; padding: clamp(80px, 12vh, 160px) clamp(24px, 6vw, 92px) 56px; margin: auto; }
-.kicker { margin: 0 0 24px; font-size: 0.9375rem; font-weight: 600; }
+.kicker { margin: 0 0 24px; font-size: 0.9375rem; font-weight: var(--wght-ui); }
 .title {
   font-size: clamp(3.25rem, 8.5vw, 8rem);
-  font-variation-settings: "wdth" 60, "wght" 850;
-  font-weight: 850; letter-spacing: -0.025em; line-height: 1.06; margin: 0;
+  font-variation-settings: "wdth" var(--wdth-display), "wght" var(--wght-display);
+  font-weight: var(--wght-display); letter-spacing: -0.025em; line-height: 1.06; margin: 0;
 }
 .title span { display: block; }
 .lead { margin: 28px 0 0; max-width: 49ch; color: var(--c-ink); font-size: clamp(1.125rem, 1.7vw, 1.5rem); line-height: 1.45; }
@@ -14,12 +14,12 @@
 .journey path, .journey line { fill: none; stroke: var(--c-eu-blue); stroke-width: 2; vector-effect: non-scaling-stroke; }
 .journey .dotted { stroke-dasharray: 1 10; stroke-linecap: round; }
 .journey .station { fill: var(--c-yellow); stroke: var(--c-eu-blue); stroke-width: 2; vector-effect: non-scaling-stroke; }
-.journey text { fill: var(--c-eu-blue); font-size: 16px; font-weight: 650; }
+.journey text { fill: var(--c-eu-blue); font-size: 16px; font-weight: var(--wght-ui); }
 .actions { display: flex; flex-wrap: wrap; gap: 16px; }
 .primary, .secondary {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 56px; padding: 14px 24px; border: 1px solid var(--c-eu-blue);
-  border-radius: 2px; font-weight: 600; text-decoration: none; text-align: center;
+  border-radius: 2px; font-weight: var(--wght-ui); text-decoration: none; text-align: center;
 }
 .primary { background: var(--c-eu-blue); color: var(--c-white); }
 .secondary { color: var(--c-eu-blue); }

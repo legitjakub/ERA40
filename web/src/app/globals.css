@@ -80,7 +80,7 @@ button {
   background: var(--c-yellow);
   color: var(--c-ink);
   padding: 10px 18px;
-  font-weight: 600;
+  font-weight: var(--wght-ui);
 }
 .skip-link:focus {
   transform: translateY(0);

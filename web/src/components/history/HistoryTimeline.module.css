@@ -41,10 +41,10 @@
   color: inherit;
   margin: 0;
   font-size: clamp(2rem, 3.3vw, 3.2rem);
-  font-weight: 790;
+  font-weight: var(--wght-heading);
   font-variation-settings:
-    "wdth" 65,
-    "wght" 790;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-heading);
   letter-spacing: -0.025em;
   line-height: 1;
 }
@@ -60,7 +60,7 @@
 }
 .trackLabel {
   font-size: 0.93rem;
-  font-weight: 600;
+  font-weight: var(--wght-ui);
 }
 .date {
   display: flex;
@@ -72,17 +72,17 @@
 .date > span:first-child,
 .staticDate {
   font-size: clamp(6.8rem, min(13vw, 20vh), 12.7rem);
-  font-weight: 870;
+  font-weight: var(--wght-display);
   font-variation-settings:
-    "wght" 870,
-    "wdth" 65;
+    "wght" var(--wght-display),
+    "wdth" var(--wdth-display);
   letter-spacing: -0.025em;
   line-height: 0.84;
   font-variant-numeric: tabular-nums;
 }
 .endYear {
   font-size: clamp(1.35rem, 2vw, 2rem);
-  font-weight: 700;
+  font-weight: var(--wght-heading);
   line-height: 1;
 }
 .captionStack {
@@ -100,10 +100,10 @@
   font-size: clamp(1.6rem, 2.7vw, 3rem);
   line-height: 1.08;
   letter-spacing: -0.035em;
-  font-weight: 770;
+  font-weight: var(--wght-heading);
   font-variation-settings:
-    "wdth" 70,
-    "wght" 770;
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-heading);
   margin: 0 0 0.6rem;
   overflow: hidden;
 }
@@ -187,8 +187,8 @@
   position: absolute;
   left: 0;
   top: 30px;
-  font-size: 0.8125rem;
-  font-weight: 650;
+  font-size: var(--fs-meta);
+  font-weight: var(--wght-ui);
   line-height: 1;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
@@ -224,7 +224,7 @@
   color: inherit;
   font: inherit;
   font-size: 0.9rem;
-  font-weight: 550;
+  font-weight: var(--wght-ui);
   padding: 12px 5px 5px;
   cursor: pointer;
 }
@@ -244,7 +244,7 @@
   background: var(--c-eu-blue, #004494);
 }
 .stops button[aria-current] {
-  font-weight: 800;
+  font-weight: var(--wght-display);
 }
 .stops button[aria-current]::before,
 .stage[data-dark="true"] .stops button[aria-current]::before {

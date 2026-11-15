@@ -111,7 +111,7 @@ export function Hero() {
       });
       const title = root.current?.querySelector("h1");
       if (title)
-        flexAxes(title, { wdth: 63, wght: 690 }, { wdth: 78, wght: 815 });
+        flexAxes(title, { wdth: 42, wght: 690 }, { wdth: 56, wght: 840 });
       mm.add("(min-width: 1024px)", () => {
         const tl = gsap.timeline({
           defaults: { ease: "none" },
