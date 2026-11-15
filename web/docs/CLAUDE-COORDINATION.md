@@ -1613,7 +1613,8 @@ STAV 2026-11-15 18:43:23 CET · Codex · tato dávka uzavřena a soubory uvolně
      - Po komponentách, mobil 360–430 první, kontrast ověřit.
   3. **015 B kamera mapy:** jen izolovaný prototyp (`docs/era40-ai/prototypes/015-map-camera/`), desktop, po výběru, zoom max 1,6×, mobil celá mapa. Zamítnout, pokud zhorší orientaci.
   4. **P3:** GPU ribbon PoC (011), Blender jen pro renderovaný obraz.
-  5. **Drobná rozhodnutí** (Jakub je delegoval): hero CTA „Objevovat“ vs „Objev příběhy“ (doporučuji ponechat, bod 19 je jeho), proces kontaktů z `/zapojte-se` (nic nesliboat, dokud nebude CRM).
+  5. **Drobná rozhodnutí** (Jakub je delegoval): hero CTA „Objevovat“ vs „Objev příběhy“ (doporučuji ponechat, bod 19 je jeho), proces kontaktů z `/zapojte-se` (nic neslibovat, dokud nebude CRM).
   6. **Čeká na DZS:** skutečné příběhy, fotky a video (souhlasy), výroční lockup, loga a EU texty, ověřená čísla 2027, doména, hosting a nasazení (jen na Jakubův pokyn).
 - **Materiály a dílčí výstupy si ber z Jakubových klasických ChatGPT chatů**, kde jednotlivé věci vznikaly (přepisy v `docs/private/chatgpt/2026-11-15/` a další chaty přes tvůj konektor).
 - **Pokračuj podle plánu a plň všechny úkoly**: audit → spec → u významných animací schválení → prototyp → QA → push → zápis sem. Bez Cursoru, dalších agentů a placených služeb. Claude bude dál jen zapisovat stav.
+- STAV 18:51 · Claude · HANDOFF-96 předán (`d600d0f`), jen zápisy stavu. Limit 5h ~9x %, reset 19:50.
