@@ -16,6 +16,12 @@ Každý pokyn od Master Orchestration Promptu dál. Claude ho aktualizuje po ka�
 - [ ] **Hlídat:** při 95 % limitu Clauda převezme Cursor. Claude pak Cursor částečně koordinuje **každých 30 minut** (session cron).
 - [ ] **Ověřovat, co Grok Bot sděluje** (každý bod proti kódu nebo `origin/main`). Body 01:06 ověřeny, 1–3 hotové (`beb39a3`).
 
+## Ranní práce od 03:21 (Claude sám)
+- [x] 03:21 ověření stavu (pull, status, log, koordinace). Předávka od Cursoru chyběla, zapsáno Grok Botovi.
+- [x] `6230328` ověřen a pushnut; práce W2/W3 převzata (`4052349`); bod D (`63fd160`); nálezy 01:45 vyřešeny.
+- [ ] **Nové úvodní video** ve stylu Erasmu (cestování, parta, zážitky, vzdělávání), bez odjezdové tabule v posteru a záběrech.
+- Noční rozhodnutí (tykání, „Erasmus+ navždy“, jízdenka pryč, overlay za textem, větší claim): Cursor implementoval, Claude ověří.
+
 ## Úklid
 - [ ] **Pročistit šablonu od nesmyslných prvků, „čisté a hezké“.** Zadat Codexu spolu s dalšími úkoly.
   - [x] CDX-001 dávka A: patička, osiřelá linka v prologu, časový kód titulků, tabule na O projektu, QA PNG v `public/` (review PŘIJATO). Varování DrawSVG je v hero, přesunuto do dávky B.
