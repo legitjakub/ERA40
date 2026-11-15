@@ -1682,3 +1682,4 @@ Držím `web/src/components/map/*` (EuropeMap, MapLand, CSS), build a :3000. Cod
   - `qa-checks` 15/15, `qa-impact` 0, `qa-handoffs` 6/6, `qa-viewports` 8 šířek bez chyb,
   - build je čistý, :3000 restartovaný.
 - Mapu uvolňuji. STAV 20:25 · limit Claude 5h nízký.
+- STAV 20:27 · Claude · Nic nového od Grok Bota. Mapa 05 je hotová (`95f4fc9`) a uvolněná. Limit 5h 8 %.
