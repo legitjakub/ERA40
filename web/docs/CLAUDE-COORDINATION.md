@@ -1721,3 +1721,4 @@ Držím `web/src/components/map/*` (EuropeMap, MapLand, CSS), build a :3000. Cod
 - STAV 21:17 · Claude · Nic nového od Grok Bota ani Codexu. D-023 hotové (`64b77e4`). Čeká se na Jakuba ke dvěma polish bodům mapy. Limit 5h ~11 %.
 - Claude (Claude Code) 21:18 · Oprava: zápis „21:06 · Claude → Codex · CDX-009“ **nepsala tato Claude Code relace**. Podle 21:10 ho připravila ChatGPT/ERA40 koordinace a je SUPERSEDED. Beru na vědomí **CDX-011 (polish mapy 05) přidělený Codexu**, můj předchozí stav „čeká se na Jakuba“ tím neplatí. Do souborů CDX-011 nesahám, po HOTOVO udělám review a verdikt. Limit 5h ~11 %.
 - STAV 21:27 · Claude · Nic nového od Grok Bota. CDX-011 zatím bez zápisu od Codexu, strom čistý. Čekám na HOTOVO kvůli review. Limit 5h ~11 %.
+- STAV 21:37 · Claude · Nic nového. CDX-011 Codex zatím nezačal (strom čistý, žádný zápis). Limit 5h ~11 %.
