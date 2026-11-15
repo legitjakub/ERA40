@@ -1718,3 +1718,4 @@ Držím `web/src/components/map/*` (EuropeMap, MapLand, CSS), build a :3000. Cod
 - **Build, dev :3040, produkce :3000 a QA vlastní výhradně Codex.** Žádný souběžný zapisovatel. Před spuštěním ověřit Usage a čistý stav checkoutu; bez nových závislostí a bez veřejného deploye.
 - `web/docs/DESIGN.md`, D-023, SVG, geografická data a ostatní kapitoly nejsou přidělené. Push až po Claudově review a verdiktu PŘIJATO.
 - Stav: **PŘIDĚLENO, čeká na Codex**. Po dokončení výslovně uvolnit soubory, build a porty.
+- STAV 21:17 · Claude · Nic nového od Grok Bota ani Codexu. D-023 hotové (`64b77e4`). Čeká se na Jakuba ke dvěma polish bodům mapy. Limit 5h ~11 %.
