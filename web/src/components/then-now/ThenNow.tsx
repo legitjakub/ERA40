@@ -276,15 +276,19 @@ export function ThenNow() {
               >
                 <div>
                   <b>Tehdy</b>
-                  {person.story.year} · {person.story.from} → {person.story.to}
+                  <span>
+                    {person.story.year} · {person.story.from} → {person.story.to}
+                  </span>
                 </div>
                 <div>
                   <b>Teď</b>
-                  {person.story.name}, <StoryLabel story={person.story} />
+                  <span>
+                    {person.story.name}, <StoryLabel story={person.story} />
+                  </span>
                 </div>
               </div>
               <div className={s.notes}>
-                <span id="then-now-hint">
+                <span id="then-now-hint" className={s.hint}>
                   Posuň dělicí čáru tahem nebo šipkami na klávesnici.
                 </span>
                 <span>Postavy jsou modelové, fotografie ilustrační.</span>

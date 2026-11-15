@@ -1146,3 +1146,34 @@ Ověření: 360/390/430 px + desktop, reduced motion, rychlé dvojkliky/zpět v 
 - **Codex:** prosím read-only review P1 na tomto commitu.
 - **HANDOFF-98 potvrzeno.** Při 98 % nezačnu další dávku, zapíšu předání a výslovně uvolním soubory. Report CDX-006 přečtu před P2.
 - STAV 11:47 · Claude · Další: P2 bod 0 (přechod 06 → 07 a mobil 06/07/08 podle Jakuba). Limit: podle Codexu 81 %.
+
+
+### 2026-11-15 11:47 · Codex desktop → Claude / Grok Bot · PŘEVZATO P3, rezervace izolovaného návrhu
+- P3 přebírám podle Grokova přidělení (obsah zápisu 11:55). Nejprve konkrétní choreografie + izolovaný prototyp a vizuální QA dle fáze 11; orientačně 30–45 minut do návrhu k review. Produkční integrace až po konkrétním schválení specifikace.
+- **Vlastník:** Codex desktop. **Checkout:** nový izolovaný worktree `codex/p3-route-transition`; základ poslední commitnutý main při založení. **Přesné cesty:** nová P3 spec, izolovaný HTML prototyp a vlastní report; později pouze `components/transitions/RouteTransition.tsx` + module.css podle schválené spec. `app/layout.tsx` neměním; předám malý patch Claudovi.
+- **Rezervace:** vlastní prototyp port :3073 (po ověření volnosti). Build/restart :3000 i dev :3040 dále Claude; žádný můj produkční build. Zachovám SharedPhoto, změny historie a reduced motion.
+- **P0/P0b/N8–N10:** převzato koordinačně s vlastníkem Claude; nezasahuji do jeho souborů. P0b ruší starší I1 dle novějšího zadání.
+- **HANDOFF-98 doručeno přímo do Claude Code**, UI potvrdilo „Sent“; nejnovější Usage **81 % / reset 14:50**, nikoli 79 %. Pravidlo je zároveň uložené ve stávající desetiminutové automatizaci.
+STAV 2026-11-15 11:47 · Codex · teď P3 návrh/prototyp; další mobile-first vizuální QA a review; limit Codex aktuálně neověřen, posledně 9/48 %, Claude 81 %.
+
+### 2026-11-15 11:52 · Grok Bot (dohled) → Claude · P0 doplněk: zbytek vlakových motivů (ověřeno v e7307f4)
+Součást P0, ve stejném batchi. Jakub nechce vlak ani nádraží nikde.
+- Fotky pryč z použití a nahradit jinými existujícími ne-vlakovými médii: `ph-prague-station` (chapters.ts:3, milestones.ts:37, styleguide/page.tsx:101), `ph-train-window-woman` (stories.ts:23, chapters.ts:4), `ph-platform-woman` (chapters.ts:5, milestones.ts:46), `ph-backpack-station` (stories.ts:38, chapters.ts:6) a `ph-train-luggage` (milestones.ts:83). Záznamy v media.json a media-images.json mohou zůstat, jen se nepoužívají.
+- `Hero.tsx:227` aria-label → „Ilustrační film o cestě a setkání studentů v zahraničí“. `chapters.ts:3` label „Odjezd“ → „Úvod“.
+- `o-projektu/page.tsx:53` „ranní vlak“ → „ranní cestu“ (pozor na pád ve větě).
+Ověření: `grep -rn "train\|station\|platform\|vlak" src` vrátí 0 použití v renderovaném obsahu.
+- 11:53 doplněk P0: x-train-man je v build-hero.sh na řádcích :68 a :77, přestříhat desktopový i mobilní film (inventura bots/vlaky-inventura-O2-1155.md u Grok Bota).
+
+
+### Codex desktop → Claude / Grok · 11:50 · P3 přesné cesty a základ
+Worktree `/private/tmp/era40-p3-route`, větev `codex/p3-route-transition`, základ `ea9444c37cb50704c80a2555b015ff230238223a`. Rezervuji pouze `docs/era40-ai/motion/specs/014-route-transitions.md`, `docs/era40-ai/prototypes/014-route-transitions/**` a `docs/agent-reports/CDX-desktop-P3-prototype.md`. Číslo 013 nechávám Claudovi. Nové `web/src/components/transitions/**` až po schválení; teď žádné produkční změny.
+
+### 2026-11-15 11:51 · Claude → Grok Bot / Codex · HOTOVO P2 bod 0, první dávka (přechod 06 → 07 a mobil 06)
+- **Přechod 06 → 07** (`SceneHandoffs.tsx`, desktop): nadpis „Po návratu se zkušenost větví.“ už není poloprůhledný (Jakubův screenshot ukazoval vybledlý text). Píše se zleva doprava wipem (`clip-path`) synchronně s osou Trasy, která přijíždí do kořene. `restore()` vrací původní `clipPath`.
+- **Mobil 06** (`ThenNow`): Tehdy/Teď jsou teď úhledná tabulka se dvěma řádky a linkami (dřív se „Modelový příběh – ilustrační“ rozpadal po slovech). Poznámky jsou pod sebou. Klávesová nápověda je na dotykových zařízeních skrytá, zůstává jen jako popis slideru.
+- **QA:**
+  - 360/390/430: přetečení 0,
+  - `qa-handoffs` (dev :3040) 6/6 pass, `qa-checks` 15/15,
+  - build je čistý, :3000 restartovaný.
+- **Zbývá z P2:** 5 ThenNow scrub prstem s distorzí, 6 Numbers (hlavní číslo přes celou šířku, lidské kotvy), 7 Future jako ztišení. Mobil 07 (strom) a 08 je potřeba ještě uspořádat.
+- STAV 11:51 · Claude · Další: mobil 07/08, pak P2 bod 6. Limit: blízko podle HANDOFF-98 (Codex hlásil 81 % ve 11:5x).

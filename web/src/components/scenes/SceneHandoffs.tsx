@@ -173,6 +173,7 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
       const outgoing = [...comparison.querySelectorAll<HTMLElement>("[data-handoff-copy]")];
       const opacity = new Map([...outgoing, heading].map((el) => [el, el.style.opacity]));
       const sourceVisibility = source.style.visibility, border = target.style.borderTopColor;
+      const headingClip = heading.style.clipPath;
       const anchorInset = Number.parseFloat(getComputedStyle(numbers).scrollMarginTop) || 0;
       const phase = { p: 0 }, ease = gsap.parseEase(EASE.inOut);
       const sourceStyle = getComputedStyle(source), targetStyle = getComputedStyle(target);
@@ -195,6 +196,7 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
         target.style.borderTopColor = border;
         delete target.dataset.handoffAxisActive;
         opacity.forEach((value, element) => { element.style.opacity = value; });
+        heading.style.clipPath = headingClip;
       };
       const render = () => {
         const p = phase.p, native = movement.tween?.scrollTrigger?.progress ?? p;
@@ -228,7 +230,11 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
         target.style.borderTopColor = "transparent";
         target.dataset.handoffAxisActive = "true";
         outgoing.forEach((el) => { el.style.opacity = String(1 - segment(p, .08, .30)); });
-        heading.style.opacity = String(segment(p, .62, .82));
+        // Jakub 11:5x: a half-faded headline read as broken. The headline is
+        // written out left to right as the line arrives at the root instead.
+        const wipe = ease(segment(p, .5, .86));
+        heading.style.opacity = "1";
+        heading.style.clipPath = `inset(-0.2em ${((1 - wipe) * 100).toFixed(2)}% -0.2em 0)`;
         visual.dataset.active = "true";
       };
       movement.tween = gsap.to(phase, {
