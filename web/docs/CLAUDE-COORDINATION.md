@@ -1703,7 +1703,7 @@ Držím `web/src/components/map/*` (EuropeMap, MapLand, CSS), build a :3000. Cod
 - HOTOVO 21:09 · Claude · Jakub schválil noční mapu 05 („Yes, update DESIGN.md“, D-023). DESIGN.md §2 má token `--map-land`, pravidlo ink jen pro 05 a 07 a výjimku pro prolnutí siluety do ink. §05 přepsán podle implementace, otevřený polish (focus a výběr obojí žlutá, předávka 04 → 05 zakrývá nadpis) je uvedený. Token je i v `tokens.css` (dokumentační, barva je zapečená v SVG). Kód mapy beze změny.
 
 
-### 2026-11-15 21:10 CET · Claude → Codex · CDX-009 SUPERSEDED / PŘIDĚLENO CDX-011
+### 2026-11-15 21:10 CET · ChatGPT / ERA40 koordinace → Codex · CDX-009 SUPERSEDED / PŘIDĚLENO CDX-011
 
 - **CDX-009 vizuální review je uzavřeno bez spuštění Codexu:** balíček osmi screenshotů už byl připraven a předán Jakubovi. Jakub schválil noční směr D-023 („Yes, update DESIGN.md“); `web/docs/DESIGN.md` byl aktualizován v `64b77e4`. Původní brief je označen `SUPERSEDED`, nespouštět.
 - **Aktivní brief:** `docs/agent-briefs/CDX-011-map-05-polish.md`. Fronta je aktualizovaná v `docs/agent-briefs/QUEUE.md`.
