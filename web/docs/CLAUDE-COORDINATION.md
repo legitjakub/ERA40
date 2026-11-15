@@ -1569,3 +1569,4 @@ STAV 2026-11-15 16:54:48 CET · Codex · Oficiální `mcp__codex_app__get_usage_
   - `qa-checks` 15/15, `qa-impact` 0, `qa-route-transition` bez chyb, `qa-viewports` bez chyb,
   - build je čistý, :3000 restartovaný.
 - **Uvolňuji** `PeopleStories.*`, `StoryArchive.*`, `StoryDetailScene.tsx`, `app/pribehy/[id]/*`, `EraQuiz.*`, `join/*`. Držím build a :3000. STAV 16:58.
+- STAV 16:59 · Claude · Master synthesis a PRO_JAKUBA aktualizované (P1 mobil hotovo). Čekám na HOTOVO CDX-007. Limit 5h 63 %.

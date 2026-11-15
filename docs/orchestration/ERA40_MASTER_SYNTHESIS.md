@@ -306,8 +306,8 @@ Formát: INITIAL → INTRO → INTERACTION → OUTRO → REVERSE · MOBILE · RE
 | **P0 ✅** | Hero 100 svh na mobilu + safe area (hotovo 15. 11., D-021). Scroll cue vědomě vynechán: „Jak to začalo“ a titulky už zvou dál. | Jakubův hlavní požadavek | S | nízké (LCP poster) | — | schváleno |
 | **P0 ✅** | Historie mobil „Swipe 40 let“ (hotovo 15. 11., D-021) | interaktivita i na mobilu | M | střední (synchronizace) | — | schváleno |
 | **P1 ✅** | Mobilní film z originálů Pexels, 540 kb/s (`6738261`). Dál jen s vyšším rozpočtem nebo DZS záběry. | kvalita obrazu | S–M | nízké | — | — |
-| **P1** | Mobil Příběhy „živá karta“ (§13) | Jakub: příběhy statické | M | nízké | — | ano (nová interakce) |
-| **P1** | Mobilní audit podstránek: archiv (gesta filtrů, aktivní stav), detail (swipe na další příběh), kvíz (haptika není, ale jasná zpětná vazba výběru), zapojte-se (validace a focus) | Jakub: „všechny podstránky“ | M | nízké | — | dílčí návrhy ke schválení |
+| **P1 ✅** | Mobil Příběhy „živá karta“ (`016d9d7`) | Jakub: příběhy statické | M | nízké | — | schváleno |
+| **P1 ✅** | (`1fabb77`: kvíz potvrzení, detail šipky + swipe, archiv sticky filtry; formulář už vyhovoval) Mobilní audit podstránek: archiv (gesta filtrů, aktivní stav), detail (swipe na další příběh), kvíz (haptika není, ale jasná zpětná vazba výběru), zapojte-se (validace a focus) | Jakub: „všechny podstránky“ | M | nízké | — | dílčí návrhy ke schválení |
 | **P1** | Výměna stock za skutečné příběhy, fotky a video | důvěryhodnost, awards | M | nízké | **DZS podklady** | Jakub/DZS |
 | **P1** | Identita: lockup, loga, povinné EU texty | právní a brand | S | nízké | **DZS** | DZS |
 | **P2** | Sjednotit motion presety (draw, wipe, reveal, count) a D-007 easing | konzistence, údržba | M | nízké | — | D-007 Jakub |
@@ -328,7 +328,7 @@ Formát: INITIAL → INTRO → INTERACTION → OUTRO → REVERSE · MOBILE · RE
 4. 015 B: prototyp kamery, nebo odložit?
 5. Kdy dodá DZS skutečné příběhy, fotky, video a identitu? Bez nich zůstává „ilustrační“ vrstva.
 6. ~~Obsah ChatGPT chatů~~ vyřešeno: Codex je přepsal (16:30). Jen pokud existuje nejstarší původní master prompt v jiném chatu, uveď kde.
-7. Mobilní „živá karta“ Příběhů a návrhy pro podstránky: schvaluješ směr (§13, §16)?
+7. ~~Mobilní „živá karta“ a podstránky~~ schváleno a hotovo (`016d9d7`, `1fabb77`).
 
 ---
 

@@ -11,7 +11,7 @@ Seřazeno podle toho, co nejvíc brzdí další práci. Úplný seznam včetně 
 4. ~~Historie na mobilu~~ **schváleno a hotovo** (D-021).
 5. **Hero CTA „Objevovat příběhy“** (tvůj bod 19): ponechat, nebo „Objev příběhy“?
 6. **Kamera mapy (015 B):** zkusit izolovaný prototyp, nebo zatím odložit?
-7. **Mobilní „živá karta“ Příběhů a mobilní vylepšení podstránek** (master synthesis §13 a §16): schvaluješ směr?
+7. ~~Mobilní „živá karta“ a podstránky~~ **schváleno a hotovo.**
 
 ## C. Obsah, který nahradí ilustrační stock
 7. **Skutečné příběhy** se souhlasem (první sada „40 let, 40 příběhů“) a jejich řetěz dopadu: komu zkušenost předali.
