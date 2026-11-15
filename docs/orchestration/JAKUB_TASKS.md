@@ -28,7 +28,7 @@ Každý pokyn od Master Orchestration Promptu dál. Claude ho aktualizuje po ka�
   - [ ] Referenční poznámky k 18 technickým oblastem: co, kdy, jak, knihovny, implementace, limity, odkaz, licence.
   - [x] `CREATIVE_DIRECTIONS.md`: 3 směry, vybrán A (D-016). Každý má art direction, vizuální princip, barevnost, typografii, motiv nekonečna, hero, průběh sekcí, přechody, storyboard, WebGL koncept a mobil. Doporučení vybere Claude (autonomie).
   - [x] Nezávislé review směrů Codexem (CDX-003, výhrady zapracovány).
-- [ ] **Fáze 2:** (MOTION_BIBLE.md hotová 15. 11.) `EXPERIENCE_DESIGN.md`, `MOTION_BIBLE.md`, `COMPONENT_SYSTEM.md`, `ASSET_PLAN.md`. Motion Bible: název, účel, popis, výchozí a konečný stav, spouštěč, scroll rozsah, easing, kamera, shader/DOM, interakce, reverse, mobil, reduced motion.
+- [x] **Fáze 2:** MOTION_BIBLE, EXPERIENCE_DESIGN, COMPONENT_SYSTEM, ASSET_PLAN hotové 15. 11. `EXPERIENCE_DESIGN.md`, `MOTION_BIBLE.md`, `COMPONENT_SYSTEM.md`, `ASSET_PLAN.md`. Motion Bible: název, účel, popis, výchozí a konečný stav, spouštěč, scroll rozsah, easing, kamera, shader/DOM, interakce, reverse, mobil, reduced motion.
 - [ ] **Fáze 3:** `TECHNICAL_ARCHITECTURE.md` (Claude) + nezávislé review Codexu + PoC nejrizikovějšího efektu (scroll ↔ kamera ↔ WebGL přechod). Rizika z CDX-000.
 - [ ] **Fáze 4:** implementace v malých milnících přes briefy CDX-NNN, každý s review.
 - [ ] **Fáze 5:** visual polish.
