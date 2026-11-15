@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>ERA40 — návrh přechodu 014</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/web/src/styles/fonts.css">
+  <link rel="stylesheet" href="/web/src/styles/tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="scene.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="?view=home" class="wordmark" aria-label="Erasmus+ navždy, úvod">Erasmus+<br><span>navždy</span></a>
+    <nav aria-label="Hlavní navigace">
+      <a href="?view=archive">Příběhy</a>
+      <a href="?view=about">O projektu</a>
+      <a href="?view=join">Zapoj se <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="content" tabindex="-1"><noscript><section class="editorial"><h1>Erasmus+<br>navždy.</h1><p class="lead">Toto je izolovaný návrh animace. Pro přehrání zapni JavaScript. Skutečný web musí mít obsah dostupný i bez něj.</p></section></noscript></main>
+  <aside class="prototype" aria-label="Ovládání návrhu">
+    <div class="prototype-title"><strong>Návrh 014</strong><span>Izolovaný prototyp · není součástí webu</span></div>
+    <div class="controls">
+      <button type="button" id="replay">Přehrát přechod <span aria-hidden="true">↻</span></button>
+      <label class="toggle"><input type="checkbox" id="reduced"> Omezit pohyb</label>
+      <label class="toggle"><input type="checkbox" id="fallback"> Bez nativních přechodů</label>
+      <label class="scrubber">Průběh <input type="range" id="progress" min="0" max="100" value="0"><output id="percent" for="progress">0 %</output></label>
+    </div>
+    <p id="status" role="status" aria-live="polite">Přepni stránku nebo přehraj přechod.</p>
+  </aside>
+  <div id="transition" aria-hidden="true">
+    <div class="veil">
+      <span class="transition-label">Erasmus+ navždy</span>
+      <svg class="motif" viewBox="0 0 1000 440" fill="none">
+        <path class="guide" d="M500 220 C405 90 325 70 245 90 C70 125 90 345 250 350 C350 354 405 300 500 220 C595 140 650 84 750 90 C910 95 930 315 755 350 C675 370 595 350 500 220" />
+        <path class="trail" pathLength="1000" d="M500 220 C405 90 325 70 245 90 C70 125 90 345 250 350 C350 354 405 300 500 220 C595 140 650 84 750 90 C910 95 930 315 755 350 C675 370 595 350 500 220" />
+        <g class="anniversary" fill="currentColor" text-anchor="middle">
+          <text class="forty" x="250" y="259">40</text>
+          <text class="years" x="750" y="234">1987–2027</text>
+        </g>
+      </svg>
+      <span class="transition-caption">Další příběh téže cesty.</span>
+    </div>
+  </div>
+  <template id="home">
+    <section class="home editorial">
+      <div class="hero-image"><img src="/web/public/media/placeholders/ph-youth.jpg" alt="Skupina mladých lidí, ilustrační fotografie"><span>Ilustrační snímek</span></div>
+      <div class="hero-copy"><p class="eyebrow">1987–2027 · 40 let programu Erasmus+</p><h1>Některé cesty<br><em>změní všechno.</em></h1><a href="?view=archive" class="cta">Objevovat příběhy <span aria-hidden="true">↗</span></a></div>
+    </section>
+  </template>
+  <template id="archive">
+    <section class="archive editorial"><p class="eyebrow">Za každou cestou je člověk</p><h1>Příběhy,<br>které <em>pokračují.</em></h1>
+      <a href="?view=story" class="story-card" data-shared-photo="praha-in"><figure><img src="/web/public/media/placeholders/ph-prague-street.jpg" alt="Ulice v Praze, ilustrační fotografie"><figcaption>Ilustrační snímek</figcaption></figure><div><p class="eyebrow">Modelový příběh · 2023</p><h2>Inês <span aria-hidden="true">↗</span></h2><p>Lisabon → Praha</p><p>„Praha pro mě nebyla zastávka. Stala se z ní adresa.“</p></div></a>
+    </section>
+  </template>
+  <template id="story">
+    <article class="story editorial"><a class="back" href="?view=archive">← Všechny příběhy</a><p class="eyebrow">Modelový příběh · ilustrační</p><h1>Lisabon → Praha<br><em>Inês.</em></h1><figure data-shared-photo="praha-in"><img src="/web/public/media/placeholders/ph-prague-street.jpg" alt="Ulice v Praze, ilustrační fotografie"><figcaption>Ilustrační snímek</figcaption></figure><blockquote>„Praha pro mě nebyla zastávka. Stala se z ní adresa.“</blockquote><p>Postava, jméno i citace jsou modelové.</p><a href="?view=join" class="cta">Přidat svůj příběh <span aria-hidden="true">↗</span></a></article>
+  </template>
+  <template id="about">
+    <section class="about editorial"><p class="eyebrow">Evropa od roku 1987 · Česko od roku 1998</p><h1>Zkušenost<br><em>nekončí návratem.</em></h1><p class="lead">Erasmus+ navždy je digitální výstava ke 40 letům evropského programu Erasmus+.</p><div class="quiet-route" aria-hidden="true"><i></i><b></b><i></i></div><a href="?view=archive" class="cta">Poznat příběhy <span aria-hidden="true">↗</span></a></section>
+  </template>
+  <template id="join">
+    <section class="join editorial"><p class="eyebrow">Další cesta může začít u tebe</p><h1>Co pokračuje<br><em>díky tobě?</em></h1><p class="lead">Každá zkušenost má další kapitolu.</p><a href="?view=archive" class="cta">Najít inspiraci <span aria-hidden="true">↗</span></a><p class="note">Náhled navigace. Formulář je až na skutečném webu.</p></section>
+  </template>
+</body>
+</html>
