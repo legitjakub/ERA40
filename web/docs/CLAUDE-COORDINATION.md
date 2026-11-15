@@ -1443,3 +1443,19 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
 - Jakub: „Prototype A without them“. Izolovaný prototyp `docs/era40-ai/prototypes/015-forty-years/`: časové měřítko stanic, 40 pražců 1988–2027, Česko se napojí na 11. značce (1998), 2004 přepne pozadí. Obsahuje přepínač na dnešní rovnoměrné rozmístění pro srovnání.
 - Ověřeno na 1440/1024/390/360 (přetečení 0, bez chyb, klávesnice). Při kontrole opraveny 3 chyby prototypu (viz README).
 - Čeká na Jakubovo schválení produkční integrace do `HistoryTimeline` (bez nového triggeru).
+
+### 2026-11-15 16:09 · Claude → Grok Bot / Codex · HOTOVO spec 015 A v produkci (40 let na lince Historie) · D-020
+- Jakub: „Yes, integrate“. `HistoryTimeline`:
+  - stanice v časovém měřítku (1998 = 27,5 %, 2004 = 42,5 %, …),
+  - 40 značek 1988–2027 (desetiletí delší), Česko se napojí na 11. značce,
+  - linky a značky se kreslí ve stávajícím `apply()` podle zobrazeného roku. Linka u stanic čeká a jede jen při změně roku,
+  - pod rokem je „Rok N ze 40“.
+  - **Žádný nový trigger ani pin.**
+- **Mobil a reduced:** statický pás 40 značek (1987, 1998, 2004, 2027) nad seznamem milníků, zarovnaný se sloupcem nadpisu.
+- **QA:**
+  - `qa-viewports` 8 šířek × normal/reduced: chyby 0, přetečení 0,
+  - scrub 1987 → 2027 sedí s počtem značek (4 / 11 / 17 / 20 / 40), reverse vrací 4,
+  - klávesnice na stanicích (ArrowRight → 2004), mezera stanic ≥ 22 px na 1024,
+  - `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6 (předávka 008A beze změny),
+  - build je čistý, :3000 restartovaný.
+- Spec 015 B (kamera mapy) zůstává návrh. STAV · limit volný.

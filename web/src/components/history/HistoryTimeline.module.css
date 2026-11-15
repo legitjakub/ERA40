@@ -209,14 +209,17 @@
 .stage[data-dark="true"] .czTrace {
   stroke: var(--c-yellow, #ffed00);
 }
+/* 015 A: stations sit at their year on a 40-year scale (left set inline). */
 .stops {
+  position: relative;
+  min-height: 44px;
   padding: 0;
   margin: 0;
   list-style: none;
-  display: flex;
-  justify-content: space-between;
 }
 .stops li {
+  position: absolute;
+  top: 0;
   width: 0;
   display: flex;
   justify-content: center;
@@ -330,4 +333,75 @@
   .figure figcaption {
     font-size: 0.875rem;
   }
+}
+
+/* 015 A: 40 year marks (1988–2027) under the European line. Quiet until
+   travelled; every tenth year is a little longer. */
+.mark {
+  stroke: #9fb2c6;
+  stroke-width: 1.5px;
+}
+.mark[data-decade] {
+  stroke-width: 2px;
+}
+.stage[data-dark="true"] .mark {
+  stroke: rgb(255 255 255 / 0.38);
+}
+.mark[data-past="true"],
+.stage[data-dark="true"] .mark[data-past="true"] {
+  stroke: currentColor;
+}
+.yearCount {
+  flex-basis: 100%;
+  margin-top: 0.35rem;
+  font-size: 1rem;
+  font-weight: var(--wght-ui);
+  opacity: 0.72;
+}
+/* Mobile / reduced: the same 40 years as a static strip above the milestones. */
+/* Same column as the static title (max 1250 px, 5vw gutters). */
+.forty {
+  max-width: 1250px;
+  margin: 0 auto 2.2rem;
+  padding: 0 5vw;
+}
+.fortyInner {
+  position: relative;
+  padding-bottom: 22px;
+}
+.forty svg {
+  display: block;
+  width: 100%;
+  height: 24px;
+  overflow: visible;
+}
+.forty path {
+  fill: none;
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+}
+.fortyEu {
+  stroke: var(--c-eu-blue, #004494);
+}
+.fortyCz {
+  stroke: var(--c-eplus, #007fc7);
+}
+.forty .mark {
+  vector-effect: non-scaling-stroke;
+  stroke: var(--c-eu-blue, #004494);
+  stroke-width: 1px;
+}
+.forty span {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-size: 0.875rem;
+  font-weight: var(--wght-ui);
+  font-variant-numeric: tabular-nums;
+}
+.forty span[data-edge="start"] {
+  transform: none;
+}
+.forty span[data-edge="end"] {
+  transform: translateX(-100%);
 }

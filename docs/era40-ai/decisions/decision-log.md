@@ -67,3 +67,4 @@ Naměřeno headless: 60 fps desktop, simulovaný telefon 4× CPU/slow4G LCP 692 
 Tři rozvržení spreadu (photo-left, photo-right, plate) místo dvou. Je to jen rozvržení bez nové animace, proto ho Claude realizoval podle Jakubova stálého pokynu (11:29). Scrubovaný vstup 3.1 zůstává návrh: je to významná animace a podle pravidla fáze 11 potřebuje výslovné schválení.
 
 | D-019 | 15. 11. 2026 | KROK 3.1 (řada oken → spread) schválen, ale **nerealizován**: přechod 03 → 04 už plynule řeší 008A, řada oken by ho zdvojila nebo rozbila. Úsilí jde do spec 015 A (40 let na lince). | Jeden hlavní pohyb na kapitolu, nezdvojovat předávky | Claude (podle Jakubova pokynu rozhodovat sám) |
+| D-020 | 15. 11. 2026 | Spec 015 A integrována: linka Historie v časovém měřítku (1987–2027), 40 značek let, Česko na 11. značce, „Rok N ze 40“, statický pás pro mobil a reduced. Bez nového triggeru, stávající `apply()`. | Číslo 40 jako skutečný čas, ne symbol (doplňuje 014) | Jakub |

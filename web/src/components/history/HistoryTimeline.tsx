@@ -10,19 +10,33 @@ import media from "@/content/media-images.json";
 import styles from "./HistoryTimeline.module.css";
 
 // Timeline geometry in real pixels (the SVG viewBox follows the measured
-// width, so drawSVG lengths match what is on screen). Stations are evenly
-// spaced: 1998, the second station, sits at width / (n - 1). Once joined,
-// the Czech line runs 9 px above the European rail, like a second track.
+// width, so drawSVG lengths match what is on screen). Spec 015 A: the line
+// runs on real time, 1987 → 2027 = 40 years, so the 40 year marks are evenly
+// spaced and 1998 sits on the 11th. Once joined, the Czech line runs 9 px
+// above the European rail, like a second track.
 const RAIL_Y = 58;
 const CZ_Y = 49;
+const FIRST = 1987;
+const SPAN = 40;
+const DOCK_YEAR = 1998;
+/** Where the Czech approach begins, as a share of the 1987–1998 stretch. */
+const APPROACH = 0.52;
+const APPROACH_YEAR = FIRST + (DOCK_YEAR - FIRST) * APPROACH;
+const share = (year: number) => (year - FIRST) / SPAN;
+const marks = Array.from({ length: SPAN }, (_, i) => FIRST + 1 + i);
 function routeGeometry(width: number) {
-  const dock = width / (milestones.length - 1);
+  const dock = share(DOCK_YEAR) * width;
   const f = (n: number) => n.toFixed(1);
   return {
     eu: `M0 ${RAIL_Y}H${f(width)}`,
-    approach: `M${f(dock * 0.52)} 12H${f(dock * 0.7)}C${f(dock * 0.86)} 12 ${f(dock * 0.84)} ${CZ_Y} ${f(dock)} ${CZ_Y}`,
+    approach: `M${f(dock * APPROACH)} 12H${f(dock * 0.7)}C${f(dock * 0.86)} 12 ${f(dock * 0.84)} ${CZ_Y} ${f(dock)} ${CZ_Y}`,
     track: `M${f(dock)} ${CZ_Y}H${f(width)}`,
-    czStart: (0.52 / (milestones.length - 1)) * 100,
+    czStart: share(DOCK_YEAR) * APPROACH * 100,
+    marks: marks.map((year) => ({
+      year,
+      x: f(share(year) * width),
+      decade: (year - FIRST) % 10 === 0,
+    })),
   };
 }
 
@@ -57,6 +71,50 @@ function Caption({ station }: { station: (typeof stations)[number] }) {
         {station.source.label}
       </a>
     </>
+  );
+}
+
+/** Mobile and reduced motion: the 40 years as a quiet static strip (015 A). */
+function FortyStrip() {
+  const pct = (year: number) => (share(year) * 100).toFixed(3) + "%";
+  return (
+    <div className={styles.forty} aria-hidden="true">
+      <div className={styles.fortyInner}>
+        <svg viewBox="0 0 400 24" preserveAspectRatio="none">
+          <path className={styles.fortyEu} d="M0 6H400" />
+          <path
+            className={styles.fortyCz}
+            d={`M${share(DOCK_YEAR) * 400} 2H400`}
+          />
+          {marks.map((year) => (
+            <line
+              key={year}
+              className={styles.mark}
+              data-past="true"
+              x1={share(year) * 400}
+              x2={share(year) * 400}
+              y1={9}
+              y2={(year - FIRST) % 10 === 0 ? 19 : 15}
+            />
+          ))}
+        </svg>
+        {[FIRST, DOCK_YEAR, 2004, FIRST + SPAN].map((year) => (
+          <span
+            key={year}
+            style={{ left: pct(year) }}
+            data-edge={
+              year === FIRST
+                ? "start"
+                : year === FIRST + SPAN
+                  ? "end"
+                  : undefined
+            }
+          >
+            {year}
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -95,6 +153,13 @@ export function HistoryTimeline() {
           const labels = pin.querySelectorAll<HTMLElement>(
             "[data-caption] h3 span",
           );
+          const euTrace = pin.querySelector("[data-eu-trace]");
+          const czApproach = pin.querySelector("[data-cz-approach]");
+          const czTrace = pin.querySelector("[data-cz-trace]");
+          const ticks =
+            pin.querySelectorAll<SVGLineElement>("[data-year-mark]");
+          const counter = pin.querySelector<HTMLElement>("[data-year-count]")!;
+          let travelled = -1;
           section.dataset.enhanced = "true";
           const time = { position: 0 };
           let current = -1;
@@ -112,6 +177,42 @@ export function HistoryTimeline() {
               ),
             );
             year.textContent = String(value);
+            // 015 A: the line travels only while the year changes and waits at
+            // each station; traces and the 40 marks follow the shown year.
+            const at = gsap.utils.interpolate(
+              stations[previous].year,
+              stations[next].year,
+              change,
+            );
+            const clamp = gsap.utils.clamp(0, 1);
+            gsap.set(euTrace, {
+              drawSVG: "0% " + (share(at) * 100).toFixed(3) + "%",
+            });
+            gsap.set(czApproach, {
+              drawSVG:
+                "0% " +
+                (
+                  clamp((at - APPROACH_YEAR) / (DOCK_YEAR - APPROACH_YEAR)) *
+                  100
+                ).toFixed(3) +
+                "%",
+            });
+            gsap.set(czTrace, {
+              drawSVG:
+                "0% " +
+                (
+                  clamp((at - DOCK_YEAR) / (FIRST + SPAN - DOCK_YEAR)) * 100
+                ).toFixed(3) +
+                "%",
+            });
+            const passed = Math.floor(at + 1e-6);
+            if (passed !== travelled) {
+              travelled = passed;
+              ticks.forEach((tick) => {
+                tick.dataset.past = String(Number(tick.dataset.year) <= passed);
+              });
+              counter.textContent = "Rok " + (passed - FIRST) + " ze " + SPAN;
+            }
             year.style.fontVariationSettings =
               '"wght" var(--wght-display), "wdth" ' +
               (66 - 40 * Math.sin(change * Math.PI)).toFixed(1);
@@ -142,33 +243,14 @@ export function HistoryTimeline() {
             { position: count, duration: count, onUpdate: apply },
             0,
           );
-          timeline
-            .fromTo(
-              "[data-eu-trace]",
-              { drawSVG: "0%" },
-              { drawSVG: "100%", duration: count },
-              0,
-            )
-            // The Czech line approaches before 1998, docks beside the European
-            // line at the 1998 station and then runs with it to 2027.
-            .fromTo(
-              "[data-cz-approach]",
-              { drawSVG: "0%" },
-              { drawSVG: "100%", duration: 0.5 },
-              0.5,
-            )
-            .fromTo(
-              "[data-cz-trace]",
-              { drawSVG: "0%" },
-              { drawSVG: "100%", duration: count - 1 },
-              1,
-            )
-            .fromTo(
-              "[data-cz-label]",
-              { autoAlpha: 0, y: 6 },
-              { autoAlpha: 1, y: 0, duration: 0.25 },
-              0.45,
-            );
+          // The traces are drawn in apply() from the shown year (015 A); the
+          // Czech label still appears as the approach begins.
+          timeline.fromTo(
+            "[data-cz-label]",
+            { autoAlpha: 0, y: 6 },
+            { autoAlpha: 1, y: 0, duration: 0.25 },
+            0.45,
+          );
           photos.forEach((photo, i) => {
             if (!i) return;
             const at = i - 0.42;
@@ -196,6 +278,7 @@ export function HistoryTimeline() {
           return () => {
             delete section.dataset.enhanced;
             delete pin.dataset.dark;
+            ticks.forEach((tick) => delete tick.dataset.past);
             year.style.removeProperty("font-variation-settings");
             trigger.current = null;
           };
@@ -274,6 +357,13 @@ export function HistoryTimeline() {
                     ? "–" + stations[active].endYear
                     : ""}
                 </span>
+                <span
+                  className={styles.yearCount}
+                  data-year-count
+                  aria-hidden="true"
+                >
+                  Rok 0 ze {SPAN}
+                </span>
               </div>
               <div className={styles.captionStack}>
                 {stations.map((station, i) => (
@@ -317,6 +407,19 @@ export function HistoryTimeline() {
                 className={styles.rail}
                 d={geometry.approach + geometry.track.replace(/^M[^H]+/, "")}
               />
+              {geometry.marks.map((mark) => (
+                <line
+                  key={mark.year}
+                  className={styles.mark}
+                  data-year-mark
+                  data-year={mark.year}
+                  data-decade={mark.decade || undefined}
+                  x1={mark.x}
+                  x2={mark.x}
+                  y1={RAIL_Y + 4}
+                  y2={RAIL_Y + (mark.decade ? 16 : 11)}
+                />
+              ))}
               <path data-eu-trace d={geometry.eu} />
               <path
                 data-cz-approach
@@ -343,7 +446,10 @@ export function HistoryTimeline() {
             </span>
             <ol className={styles.stops} aria-label="Přejít na milník">
               {stations.map((station, i) => (
-                <li key={station.year}>
+                <li
+                  key={station.year}
+                  style={{ left: (share(station.year) * 100).toFixed(3) + "%" }}
+                >
                   <button
                     type="button"
                     onClick={() => select(i)}
@@ -364,6 +470,7 @@ export function HistoryTimeline() {
         <p className={styles.staticTitle} aria-hidden="true">
           Dvě linie, jedna cesta
         </p>
+        <FortyStrip />
         <ol>
           {stations.map((station) => (
             <li key={station.year} data-dark={station.year >= 2004}>

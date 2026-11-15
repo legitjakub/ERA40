@@ -1,6 +1,6 @@
 # 015: Interactive Assets v1 (40 let na lince, kamera mapy)
 
-**Stav: NÁVRH, audit hotový. Prototyp A hotový** (`docs/era40-ai/prototypes/015-forty-years/`, bez asset SVG na Jakubův pokyn), čeká na schválení produkční integrace. Bez produkčních změn a bez souhlasu se neimplementuje. Autor: Claude, 15. 11. 2026, HEAD `ba83c5c`.
+**Stav: A HOTOVO v produkci** (schváleno Jakubem 15. 11. 2026 „Yes, integrate“). **B (kamera mapy) zůstává NÁVRH.**
 
 ## 0. Výchozí stav, ověřený v kódu (ne podle reportů)
 
