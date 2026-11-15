@@ -4,8 +4,8 @@
 Tento dokument **nic neimplementuje**. Sjednocuje znalosti z repozitáře, rozhodnutí, koordinace a ověřených referencí. Při rozporu platí pořadí: `decision-log.md` → `web/docs/DESIGN.md` → tento dokument → starší reporty.
 
 **Co jsem neměl k dispozici (nevymýšlím):**
-- **ChatGPT chaty**, ve kterých Jakub tvořil jednotlivé věci. Claude ani Codex do nich nevidí. Původní master prompt, 20 konceptů a rozbory Extrafazant a Blenderu znám jen ze shrnutí, které Jakub vložil 15. 11. Úplné texty chybí, žádost je v `PRO_JAKUBA_PODKLADY.md`.
-- **Interactive Assets v1** (`era40-40-year-marks.svg`, `route-camera-prototype.html`) nejsou v repu ani na disku.
+- **ChatGPT chaty:** *aktualizace 17:00.* Codex desktop k nim má přístup a 3 poslední projektové chaty přepsal do `docs/private/chatgpt/2026-11-15/` (mimo Git). Rozdíly jsou v `CHATGPT_CONTEXT_SYNC_2026-11-15.md`. Claude z nich přečetl Jakubovy vlastní požadavky a závěrečné souhrny. Původní, nejstarší master prompt v přepisech není.
+- **Interactive Assets v1** existují jen jako ZIP ke stažení v chatu „Interaktivní prvky ERA40“, na disku nejsou. Podle přepisu má SVG 40 rovnoměrných značek 1988–2027 a rok 1998 na 11. značce, což odpovídá implementaci D-020. Soubory už nejsou blokující.
 - **Higgsfield 3D Jutsu:** ověřený model neexistuje (timeout podle Jakubova shrnutí).
 
 ---
@@ -69,11 +69,11 @@ ERA40 je funkční filmová digitální výstava (Next 16, React 19, GSAP 3.15, 
 
 | Stav | Položky |
 |---|---|
-| **Schváleno a hotovo** | D-001 identita · D-002 úvod · D-003 podstránky navazují · 006 integrace · 007 dopad (filtr, příklady) · 008 předávky 03 → 04 a 06 → 07 · 009 spodní kapitoly · 012 / 3.3 střídavé spready · 014 přechod (D-018) · 015 A 40 let na lince (D-020) · P0, P0b, P1 (detail, archiv), P2 0/5/6/7 · N1–N12, T1–T5, R3–R12 · nové úvodní video |
+| **Schváleno a hotovo (doplněno 17:00)** | P0 mobil: hero 100 svh, Historie „Swipe 40 let“ (D-021, `a7ee795`) · P1 film z originálů Pexels (`6738261`) · D-001 identita · D-002 úvod · D-003 podstránky navazují · 006 integrace · 007 dopad (filtr, příklady) · 008 předávky 03 → 04 a 06 → 07 · 009 spodní kapitoly · 012 / 3.3 střídavé spready · 014 přechod (D-018) · 015 A 40 let na lince (D-020) · P0, P0b, P1 (detail, archiv), P2 0/5/6/7 · N1–N12, T1–T5, R3–R12 · nové úvodní video |
 | **Schváleno, nerealizováno** | 3.1 řada oken (D-019, cíl už plní 008A) |
 | **Pouze návrh** | 001 gramatika Trasy (v praxi z velké části naplněna) · 002 obousměrné trasy (mapa už příjezdy má, upravit nebo zavřít) · 003 vazby 40 let (**nahrazuje 015 A**, zavřít) · 004 švy sekcí (částečně 008) · 015 B kamera mapy · GPU ribbon PoC 011 |
 | **Odmítnuto** | tabule (D-004) · brána 40 → ∞ jako samostatný objekt (D-005) · jízdenky, vlaky, nádraží, okno vlaku (D-006, P0) · /oslava (D-009) · Animaxxing full treatment (D-008) · WebGL distorze děliče 06 (čitelnost) |
-| **Otevřené** | D-007 easing · hero CTA „Objevovat“ vs „Objev“ · Historie na mobilu (statická vs interaktivní) · 015 B · loga a lockup od DZS |
+| **Otevřené** | D-007 easing · hero CTA „Objevovat“ vs „Objev“ · 015 B · loga a lockup od DZS · **mobilní interaktivita Příběhů a podstránek** (Jakub v chatu „Moderní řešení přechodů“: „příběhy… všechny sekce jsou hrozně statické… a všechny podstránky“) |
 | **Neaktuální** | `MOTION.md` §4 (02 „sekvence z okna vlaku“, 07 „countery a scrub sloupců“) · `creative-language.md` tabulka (Prolog = okno vlaku, 01 „Odjezd“) · statický pás Historie jako finální řešení · hlavička 0xx specifikací 001–004 |
 | **Rozporné (a rozhodnutí)** | `creative-language.md` „∞ se nekreslí doslova“ vs D-018: **platí D-018** pouze pro přechod 014, jinde ne. · `MOTION.md` „hero 88 svh mobil“ vs Jakubovo „fullscreen“: **platí Jakub**, řešit v P0. |
 
@@ -229,10 +229,10 @@ Z 20 konceptů ChatGPT brainstormingu (Infinity Ribbon … Evolution) zůstávaj
 
 | Sekce | Výška | Dnes | Problém | Návrh (P) |
 |---|---|---|---|---|
-| 01 Hero | 743 px (88 svh) | film, titulky, CTA | **Není fullscreen**, pod ním vykukuje další sekce. Mobilní film je měkký (720p). | **P0:** `height: 100svh` (fallback 100vh, `100dvh` jen pro pozadí), `env(safe-area-inset-*)` pro titulky a ovládání, scroll cue „↓“. **P1:** mobilní film z 1080p zdrojů, crop na obličeje. |
+| 01 Hero | ✅ 844 px (100 svh) | film, titulky, CTA | ✅ vyřešeno (D-021). Film z originálů (`6738261`), na 3× displejích ještě lehce měkký (720 × 1280, 2 MB). | P1 dál: skutečný 1080p střih nebo DZS záběry, pokud se zvedne rozpočet. |
 | 02 Prolog | 1 043 px | čtecí zvýraznění, PeopleRow swipe | OK | — |
-| 03 Historie | **4 154 px** | statický seznam a pás 40 let | Jakub chtěl interaktivitu i na mobilu. Dlouhé. | **P0: „Swipe 40 let“** (níže) |
-| 04 Příběhy | 1 414 px | swipe rail + hint | OK | — |
+| 03 Historie | ✅ ~850 px | „Swipe 40 let“ | ✅ vyřešeno (D-021) | — |
+| 04 Příběhy | 1 414 px | swipe rail + hint | Jakub: „příběhy hrozně statické“. Swipe existuje, ale karta se jen posune. | **P1: „živá karta“:** aktivní karta (IO, jako v Historii) zostří fotku a podtrhne Trasu, stanice dole sleduje swipe. Tap na fotku otevře detail přes SharedPhoto. Bez WebGL na mobilu. |
 | 05 Mapa | 1 243 px | celá mapa, tlačítka | OK, interakce tapem | — |
 | 06 Návrat | 1 008 px | scroll i prst (P2 5) | OK | — |
 | 07 Rozvětvení | 2 595 px | velké číslo, strom, příklad | dlouhé | **P2:** příklad sektoru sbalit do karty pod vybranou větví |
@@ -305,7 +305,9 @@ Formát: INITIAL → INTRO → INTERACTION → OUTRO → REVERSE · MOBILE · RE
 |---|---|---|---|---|---|---|
 | **P0 ✅** | Hero 100 svh na mobilu + safe area (hotovo 15. 11., D-021). Scroll cue vědomě vynechán: „Jak to začalo“ a titulky už zvou dál. | Jakubův hlavní požadavek | S | nízké (LCP poster) | — | schváleno |
 | **P0 ✅** | Historie mobil „Swipe 40 let“ (hotovo 15. 11., D-021) | interaktivita i na mobilu | M | střední (synchronizace) | — | schváleno |
-| **P1** | Mobilní film z 1080p zdrojů, lepší crop | kvalita obrazu | S–M | nízké | Pexels/Mixkit 1080p nebo DZS | ne |
+| **P1 ✅** | Mobilní film z originálů Pexels, 540 kb/s (`6738261`). Dál jen s vyšším rozpočtem nebo DZS záběry. | kvalita obrazu | S–M | nízké | — | — |
+| **P1** | Mobil Příběhy „živá karta“ (§13) | Jakub: příběhy statické | M | nízké | — | ano (nová interakce) |
+| **P1** | Mobilní audit podstránek: archiv (gesta filtrů, aktivní stav), detail (swipe na další příběh), kvíz (haptika není, ale jasná zpětná vazba výběru), zapojte-se (validace a focus) | Jakub: „všechny podstránky“ | M | nízké | — | dílčí návrhy ke schválení |
 | **P1** | Výměna stock za skutečné příběhy, fotky a video | důvěryhodnost, awards | M | nízké | **DZS podklady** | Jakub/DZS |
 | **P1** | Identita: lockup, loga, povinné EU texty | právní a brand | S | nízké | **DZS** | DZS |
 | **P2** | Sjednotit motion presety (draw, wipe, reveal, count) a D-007 easing | konzistence, údržba | M | nízké | — | D-007 Jakub |
@@ -320,12 +322,13 @@ Formát: INITIAL → INTRO → INTERACTION → OUTRO → REVERSE · MOBILE · RE
 
 ## 17. Otevřené otázky
 
-1. Historie na mobilu: schvaluješ „Swipe 40 let“ (§13)?
+1. ~~Historie na mobilu~~ schváleno a hotovo (D-021).
 2. Hero CTA: „Objevovat příběhy“ (nyní), nebo „Objev příběhy“?
 3. D-007: sjednotit easing na `power3.out` i v CSS?
 4. 015 B: prototyp kamery, nebo odložit?
 5. Kdy dodá DZS skutečné příběhy, fotky, video a identitu? Bez nich zůstává „ilustrační“ vrstva.
-6. Obsah ChatGPT chatů: export do `docs/private/chatgpt/`.
+6. ~~Obsah ChatGPT chatů~~ vyřešeno: Codex je přepsal (17:00). Jen pokud existuje nejstarší původní master prompt v jiném chatu, uveď kde.
+7. Mobilní „živá karta“ Příběhů a návrhy pro podstránky: schvaluješ směr (§13, §16)?
 
 ---
 

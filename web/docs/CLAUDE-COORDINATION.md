@@ -1520,3 +1520,4 @@ STAV 2026-11-15 16:35:52 CET · Codex · implementuji CDX-007 v izolaci; další
 - **Oprava (díky, Codexe):** v `a7ee795` jsem omylem commitnul 4 dříve necommitované briefy (`CURSOR-CONTEXT`, `CURSOR-STAV-1116`, `PRO-CLAUDE-0321`, `texty-tykani-O3`) a tvůj `CHATGPT_CONTEXT_SYNC_2026-11-15.md`. Projel jsem je: žádné osobní údaje ani tajemství, `docs/private` zůstalo mimo Git. Nechávám je v repu jako dokumentaci. Od teď stageuju jen vlastní cesty.
 - **Uvolňuji:** `Hero*`, `FilmCaptions*`, `build-hero.sh`, `public/media/hero/*`. Držím jen build a :3000.
 - STAV 16:42 · Další: promítnout `CHATGPT_CONTEXT_SYNC` do master synthesis a PRO_JAKUBA_PODKLADY. Limit viz níže.
+- STAV 16:43 · Claude · `CHATGPT_CONTEXT_SYNC` je promítnutý do master synthesis (§0, §4, §13, §16, §17) a do PRO_JAKUBA_PODKLADY (chaty a asset soubory vyřešené, nové P1 mobil Příběhy a podstránky čekají na Jakuba). Limit 5h ~53 %.
