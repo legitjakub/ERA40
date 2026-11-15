@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>015 A · 40 let na lince Historie (prototyp)</title>
+<style>
+  @font-face { font-family: "Roboto Flex"; src: url("../../../../web/public/fonts/roboto-flex-latin.woff2") format("woff2"); font-weight: 100 1000; font-stretch: 25% 151%; }
+  @font-face { font-family: "Roboto Flex"; src: url("../../../../web/public/fonts/roboto-flex-latin-ext.woff2") format("woff2"); font-weight: 100 1000; font-stretch: 25% 151%; unicode-range: U+0100-024F; }
+  :root { --blue: #004494; --eplus: #007fc7; --eplus-ink: #006ba8; --yellow: #ffed00; --ink: #0b1b33; --line: #c9d6e3; --mute: #4f5b6e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Roboto Flex", system-ui, sans-serif; color: var(--ink); background: #fff; }
+  .stage { min-height: 100svh; padding: 48px clamp(16px, 5vw, 80px) 40px; display: grid; align-content: space-between; transition: background-color .5s, color .5s; }
+  .stage[data-dark="true"] { background: var(--blue); color: #fff; }
+  .kicker { margin: 0; font-size: .875rem; font-weight: 600; }
+  .year { margin: 8px 0 0; font-size: clamp(4.5rem, 12vw, 10rem); line-height: .9; letter-spacing: -.03em; font-variation-settings: "wght" 860, "wdth" 56; font-variant-numeric: tabular-nums; }
+  .count { margin: 6px 0 0; font-size: 1rem; font-weight: 600; color: var(--mute); }
+  .stage[data-dark="true"] .count { color: var(--line); }
+
+  /* The route, in real time: x = (year − 1987) / 40. */
+  .routes { position: relative; margin: 48px 18px 0; height: 120px; }
+  .routes svg { position: absolute; inset: 0; width: 100%; height: 70px; overflow: visible; }
+  .routes path { fill: none; stroke: currentColor; stroke-width: 2; }
+  .rail { opacity: .2; }
+  .cz { stroke: var(--eplus) !important; }
+  .stage[data-dark="true"] .cz { stroke: var(--yellow) !important; }
+  /* 40 sleepers (1988–2027): ink 1 px, the travelled ones take the line colour. */
+  .tick { stroke: #9fb2c6; stroke-width: 1.5; }
+  .tick.decade { stroke-width: 2; }
+  .stage[data-dark="true"] .tick { stroke: rgb(255 255 255 / .38); }
+  .tick[data-past="true"] { stroke: currentColor; }
+  .label { position: absolute; font-size: .8125rem; font-weight: 600; white-space: nowrap; }
+  .label.eu { left: 0; top: 30px; }
+  .label.cz { top: -14px; color: var(--eplus-ink); }
+  .stage[data-dark="true"] .label.cz { color: var(--yellow); }
+  .stop { position: absolute; top: 46px; transform: translateX(-50%); min-width: 44px; min-height: 44px; padding: 14px 4px 4px; border: 0; background: none; color: inherit; font: inherit; font-size: .875rem; font-weight: 600; cursor: pointer; }
+  .stop::before { content: ""; position: absolute; left: 50%; top: 6px; width: 9px; height: 9px; margin-left: -5px; border-radius: 50%; border: 2px solid currentColor; background: #fff; }
+  .stage[data-dark="true"] .stop::before { background: var(--blue); }
+  .stage .stop[aria-current]::before { background: var(--yellow); border-color: var(--blue); width: 13px; height: 13px; margin-left: -7px; top: 4px; }
+  .stop:focus-visible { outline: 2px solid var(--eplus); outline-offset: 2px; }
+
+  /* Prototype controls (not production). */
+  .proto { position: static; padding: 12px clamp(16px, 5vw, 80px); background: #eef3f8; display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; font-size: .875rem; }
+  .proto input[type=range] { width: min(560px, 100%); }
+  .proto label { display: inline-flex; gap: 6px; align-items: center; }
+  @media (max-width: 1023px) {
+    .routes { margin-inline: 8px; }
+    .stop { font-size: .75rem; }
+  }
+  /* Narrow screens: the static strip (no scrub). 2004 and 2007 are only 45 px
+     apart at 360 px, so the year labels show 1987, 1998, 2004, 2027 only. */
+  @media (max-width: 600px) {
+    /* Mobile production is a static strip: stops are markers, not buttons. */
+    .stage { min-height: 70svh; }
+    .label.eu { display: none; }
+    .stop { min-width: 0; padding-inline: 0; pointer-events: none; }
+    .stop[data-minor="true"] { font-size: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .stage { transition: none; } }
+</style>
+</head>
+<body>
+<section class="stage" id="stage">
+  <div>
+    <p class="kicker" id="line">Evropa</p>
+    <p class="year" id="year" aria-live="off">1987</p>
+    <p class="count" id="count">Rok 0 ze 40</p>
+  </div>
+  <div class="routes" id="routes">
+    <svg id="svg" aria-hidden="true"></svg>
+    <span class="label eu">Evropa od roku 1987</span>
+    <span class="label cz" id="czLabel">Česko od roku 1998</span>
+    <div id="stops" role="list" aria-label="Přejít na milník"></div>
+  </div>
+</section>
+<div class="proto">
+  <label>Scroll pinu (simulace) <input id="scrub" type="range" min="0" max="1000" value="0" aria-label="Simulace scrollu"></label>
+  <label><input id="even" type="checkbox"> dnešní rovnoměrné rozmístění stanic (pro srovnání)</label>
+  <label><input id="reduced" type="checkbox"> reduced motion / mobil (statický stav)</label>
+</div>
+<script>
+const START = 1987, END = 2027;
+const stations = [1987, 1998, 2004, 2007, 2014, 2021, 2027];
+const svg = document.getElementById("svg"), routes = document.getElementById("routes");
+const stage = document.getElementById("stage"), yearEl = document.getElementById("year");
+const countEl = document.getElementById("count"), lineEl = document.getElementById("line");
+const scrub = document.getElementById("scrub"), even = document.getElementById("even"), reducedBox = document.getElementById("reduced");
+const RAIL_Y = 58, CZ_Y = 49, NS = "http://www.w3.org/2000/svg";
+let year = START;
+
+// Position on the line: by time (proposal) or by station index (today).
+function x(y, width) {
+  if (!even.checked) return ((y - START) / (END - START)) * width;
+  for (let i = 0; i < stations.length - 1; i++) {
+    const a = stations[i], b = stations[i + 1];
+    if (y <= b) return ((i + (y - a) / (b - a)) / (stations.length - 1)) * width;
+  }
+  return width;
+}
+function el(name, attrs) { const n = document.createElementNS(NS, name); for (const k in attrs) n.setAttribute(k, attrs[k]); return n; }
+
+function render() {
+  const w = routes.clientWidth;
+  svg.setAttribute("viewBox", `0 0 ${w} 70`);
+  svg.replaceChildren();
+  const dock = x(1998, w), approachStart = x(1995.5, w);
+  // Rails (ghost) and the drawn traces.
+  svg.append(el("path", { class: "rail", d: `M0 ${RAIL_Y}H${w}` }));
+  svg.append(el("path", { class: "rail", d: `M${approachStart} 12C${dock - 20} 12 ${dock - 22} ${CZ_Y} ${dock} ${CZ_Y}H${w}` }));
+  const now = Math.min(x(year, w), w);
+  svg.append(el("path", { d: `M0 ${RAIL_Y}H${now}` }));
+  if (year >= 1995.5) {
+    const cz = year < 1998
+      ? `M${approachStart} 12H${Math.min(now, dock)}`
+      : `M${approachStart} 12C${dock - 20} 12 ${dock - 22} ${CZ_Y} ${dock} ${CZ_Y}H${now}`;
+    svg.append(el("path", { class: "cz", d: cz }));
+  }
+  // 40 sleepers 1988–2027 under the European line.
+  for (let y = 1988; y <= 2027; y++) {
+    const tx = x(y, w), decade = y % 10 === 7;
+    const t = el("line", { class: "tick" + (decade ? " decade" : ""), x1: tx, x2: tx, y1: RAIL_Y + 4, y2: RAIL_Y + (decade ? 16 : 11) });
+    t.dataset.past = String(y <= year);
+    svg.append(t);
+  }
+  document.getElementById("czLabel").style.left = (approachStart / w * 100).toFixed(2) + "%";
+  document.getElementById("czLabel").style.opacity = year >= 1995.5 ? 1 : 0;
+  const stops = document.getElementById("stops");
+  stops.replaceChildren(...stations.map((s) => {
+    const b = document.createElement("button");
+    b.className = "stop"; b.type = "button"; b.textContent = s; b.setAttribute("role", "listitem");
+    b.dataset.minor = String(![1987, 1998, 2004, 2027].includes(s));
+    b.style.left = (x(s, w) / w * 100).toFixed(3) + "%";
+    const current = stations.filter((v) => v <= Math.floor(year)).pop();
+    if (s === current) b.setAttribute("aria-current", "step");
+    b.onclick = () => { year = s; scrub.value = ((s - START) / 40) * 1000; update(); };
+    return b;
+  }));
+  const shown = Math.floor(year);
+  yearEl.textContent = shown;
+  countEl.textContent = shown === START ? "Začátek: rok 0 ze 40" : `Rok ${shown - START} ze 40`;
+  lineEl.textContent = shown >= 1998 ? "Evropa a Česko" : "Evropa";
+  stage.dataset.dark = String(shown >= 2004);
+}
+function update() {
+  if (reducedBox.checked) year = END; // settled end state
+  render();
+}
+scrub.addEventListener("input", () => { year = START + (scrub.value / 1000) * 40; update(); });
+even.addEventListener("change", update);
+reducedBox.addEventListener("change", update);
+addEventListener("resize", render);
+const params = new URLSearchParams(location.search);
+if (params.has("year")) { year = +params.get("year"); scrub.value = ((year - START) / 40) * 1000; }
+if (params.has("even")) even.checked = true;
+if (params.has("reduced")) reducedBox.checked = true;
+update();
+</script>
+</body>
+</html>

@@ -1438,3 +1438,8 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
 ### 2026-11-15 15:57 · Claude → Grok Bot / Codex · KROK 3.1 uzavřen bez změny kódu (D-019)
 - Prohlídka přechodu 03 → 04 na 1440 (6 snímků): předávka 008A už plynule mění poslední snímek Historie ve fotku Terezy, tvrdý střih tam není. Řada oken z 3.1 by ji zdvojila nebo rozbila. Mobil (swipe bez pinu) a reduced už 3.1 splňují.
 - Rozhodnutí je zapsané v D-019 a spec 012. Další práce: spec 015 A (40 let na lince Historie), prototyp hned po dodání asset souborů od Jakuba.
+
+### 2026-11-15 16:01 · Claude → Grok Bot / Codex · HOTOVO prototyp 015 A (40 let na lince), produkce beze změny
+- Jakub: „Prototype A without them“. Izolovaný prototyp `docs/era40-ai/prototypes/015-forty-years/`: časové měřítko stanic, 40 pražců 1988–2027, Česko se napojí na 11. značce (1998), 2004 přepne pozadí. Obsahuje přepínač na dnešní rovnoměrné rozmístění pro srovnání.
+- Ověřeno na 1440/1024/390/360 (přetečení 0, bez chyb, klávesnice). Při kontrole opraveny 3 chyby prototypu (viz README).
+- Čeká na Jakubovo schválení produkční integrace do `HistoryTimeline` (bez nového triggeru).
