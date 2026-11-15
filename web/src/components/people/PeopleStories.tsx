@@ -252,7 +252,7 @@ export function PeopleStories() {
                       )
                     }
                   >
-                    Číst příběh <span aria-hidden="true">↗</span>
+                    Přečti si příběh <span aria-hidden="true">↗</span>
                   </button>
                 </div>
               </article>

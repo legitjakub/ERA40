@@ -383,7 +383,7 @@ export function Numbers() {
                 </p>
                 <h3>{example.name}</h3>
                 <StoryImpact story={example} />
-                <Link href={`/pribehy/${example.id}`}>Číst celý příběh <span aria-hidden="true">↗</span></Link>
+                <Link href={`/pribehy/${example.id}`}>Přečti si celý příběh <span aria-hidden="true">↗</span></Link>
               </div>
             </>
           ) : (

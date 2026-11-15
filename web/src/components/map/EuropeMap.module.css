@@ -49,8 +49,9 @@
 .route {
   fill: none;
   stroke: var(--c-eu-blue);
-  stroke-width: 1.2;
-  opacity: 0.28;
+  /* R5: readable at 360 px, still quieter than the active route (2.5). */
+  stroke-width: 1.5;
+  opacity: 0.45;
   vector-effect: non-scaling-stroke;
 }
 .activeRoute {

@@ -272,7 +272,7 @@ export function EuropeMap({ land }: { land: ReactNode }) {
                 )
               }
             >
-              Číst příběh {selected.name} <span aria-hidden="true">↗</span>
+              Přečti si příběh {selected.name} <span aria-hidden="true">↗</span>
             </button>
           </div>
         </div>

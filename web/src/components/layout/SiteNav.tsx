@@ -237,7 +237,7 @@ export function SiteNav() {
               <ol>
                 {chapters.map(({ id, label }, i) => (
                   <li key={id}>
-                    <Link href={prefix + "#" + id} onClick={(event) => jump(event, i)} onFocus={() => setPreview(i)} onPointerEnter={() => setPreview(i)} aria-current={home && i === active ? "location" : undefined}>
+                    <Link href={prefix + "#" + id} onClick={(event) => jump(event, i)} onFocus={() => setPreview(i)} onPointerEnter={() => setPreview(i)} aria-current={home && i === active ? "location" : undefined} data-state={home ? (i < active ? "past" : i === active ? "now" : "future") : undefined}>
                       <small>{String(i + 1).padStart(2, "0")}</small>
                       <span>{label}</span>
                       <span className={styles.chapterArrow} aria-hidden="true">↗</span>

@@ -210,7 +210,8 @@
   order: 3;
 }
 .qualifier {
-  font-size: max(var(--fs-meta), 0.45em);
+  /* R3: at least 16 px on 360 px phones. */
+  font-size: max(1rem, 0.45em);
   font-weight: var(--wght-ui);
   vertical-align: middle;
 }
