@@ -114,7 +114,7 @@
     border-color var(--dur-xs) var(--ease-out);
 }
 .mapNav button:focus-visible {
-  outline: 3px solid var(--c-yellow);
+  outline: 3px solid var(--c-white);
   outline-offset: 3px;
 }
 @media (hover: hover) and (pointer: fine) {
@@ -158,8 +158,10 @@
 .city:focus-visible {
   outline: none;
 }
+/* CDX-011: focus is a white ring, yellow stays reserved for the selected station. */
 .city:focus-visible .hit {
-  stroke: var(--c-yellow);
+  stroke: var(--c-white);
+  stroke-dasharray: 4 3;
   stroke-width: 2px;
   vector-effect: non-scaling-stroke;
 }
@@ -230,7 +232,7 @@
   background: var(--c-yellow);
 }
 .selection button:focus-visible {
-  outline: 2px solid var(--c-yellow);
+  outline: 2px solid var(--c-white);
   outline-offset: 2px;
 }
 @media (hover: hover) and (pointer: fine) {
@@ -282,7 +284,7 @@
   cursor: pointer;
 }
 .open:focus-visible {
-  outline: 2px solid var(--c-yellow);
+  outline: 2px solid var(--c-white);
   outline-offset: 4px;
 }
 @media (max-width: 1023px) {
@@ -325,4 +327,18 @@
   .mapNav button {
     transition: none;
   }
+}
+
+/* CDX-011: while the story photo travels in from 04 (JourneySequence overlay,
+   z-index 4), the chapter heading and lead stay above it and readable. */
+.section[data-handoff="true"] .heading {
+  position: relative;
+  z-index: 5;
+}
+/* The lead sits where the photo lands; it waits and fades in once the photo is home. */
+.heading p {
+  transition: opacity var(--dur-s) var(--ease-out);
+}
+.section[data-handoff="true"] .heading p {
+  opacity: 0;
 }

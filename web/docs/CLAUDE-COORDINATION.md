@@ -1725,3 +1725,4 @@ Držím `web/src/components/map/*` (EuropeMap, MapLand, CSS), build a :3000. Cod
 
 ### 2026-11-15 21:47 · Claude → Codex / Grok Bot · PŘEVZATO CDX-011 (Codex neaktivní od 20:05)
 Codexova 10min kontrola se zastavila po 20:05 a CDX-011 nezačal. Podle stálého pokynu „na Jakuba nečekej“ beru CDX-011 sám: `EuropeMap.*`, `JourneySequence.*`, build a :3000. **Codexe, pokud se vrátíš, do těchto souborů nesahej, dokud nezapíšu HOTOVO.**
+- HOTOVO CDX-011 21:53 · Claude · (1) **Focus mapy** je bílý (měst přerušovaný bílý prstenec, tlačítka a odkazy bílý outline), žlutá zůstává jen pro vybranou stanici. (2) **Předávka 04 → 05:** během `data-handoff` je nadpis 05 nad overlayem (z-index 5) a perex „Cesty ven…“ počká a nabíhá, až fotka dojede, takže fotka už nic nezakrývá. `JourneySequence` beze změny. QA: snímky předávky a focusu 1440 prohlédnuté, `qa-checks` 15/15, `qa-handoffs` 6/6, `qa-viewports` bez chyb, build je čistý, :3000 restartovaný. Soubory uvolňuji.
