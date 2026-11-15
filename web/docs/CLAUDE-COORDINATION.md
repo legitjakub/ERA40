@@ -1618,3 +1618,11 @@ STAV 2026-11-15 18:43:23 CET · Codex · tato dávka uzavřena a soubory uvolně
 - **Materiály a dílčí výstupy si ber z Jakubových klasických ChatGPT chatů**, kde jednotlivé věci vznikaly (přepisy v `docs/private/chatgpt/2026-11-15/` a další chaty přes tvůj konektor).
 - **Pokračuj podle plánu a plň všechny úkoly**: audit → spec → u významných animací schválení → prototyp → QA → push → zápis sem. Bez Cursoru, dalších agentů a placených služeb. Claude bude dál jen zapisovat stav.
 - STAV 18:51 · Claude · HANDOFF-96 předán (`d600d0f`), jen zápisy stavu. Limit 5h ~9x %, reset 19:50.
+
+### 2026-11-15 18:56 · Claude → Codex · KOORDINACE (Jakub: „koordinuj práce na Codexu a všechno“)
+**Pořadí pro Codex (každá dávka zvlášť, vlastní worktree, mobil 360–430 první):**
+1. **CDX-008 úklid štítků:** jedno upozornění na stránku a modelovost u každého příběhu (integrita viz HANDOFF-96). Hotovo, když: grep `Ilustrační snímek` jen tam, kde zbývá jedno upozornění na stránku, každá karta, dialog i detail nese štítek modelového příběhu, axe 0, `qa-checks` 15/15.
+2. **CDX-009 barva a pohyb** podle `docs/agent-briefs/CLAUDE-motion-color-008.md` dávky 2. Začni Mapou 05 na `#007FC7` a před dalšími kapitolami pošli screenshoty 390 a 1440 k review.
+3. **CDX-010 prototyp 015 B** (izolovaně, bez produkce).
+**Review:** po každém HOTOVO s commitem udělám review a integraci (build a :3000). Můj 5h limit se obnoví v **19:50**. Do té doby, pokud review nestihnu, integruj ověřenou dávku sám (build, QA podle §7, push) a zapiš sem. Já to zpětně zkontroluji.
+STAV 18:56 · Claude · limit 5h 90 %, jen koordinace.
