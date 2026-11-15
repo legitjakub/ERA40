@@ -65,6 +65,11 @@ button {
   outline-offset: 3px;
   box-shadow: 0 0 0 3px var(--c-focus-inner);
 }
+/* Headings and regions that receive focus from script are not controls. */
+:is(h1, h2, h3, h4, section, div, main)[tabindex="-1"]:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
 [id] {
   scroll-margin-top: 64px;
 }
@@ -104,6 +109,29 @@ html[data-reduced-motion="true"] *::after {
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
+}
+/* Archive card photo to story photo (components/archive/SharedPhoto.tsx). */
+::view-transition-group(.story-photo) {
+  animation-duration: 0.42s;
+  animation-timing-function: var(--ease-out);
+}
+::view-transition-old(.story-photo),
+::view-transition-new(.story-photo) {
+  height: 100%;
+  object-fit: cover;
+}
+/* View transitions swap instantly when motion is reduced. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+html[data-reduced-motion="true"]::view-transition-group(*),
+html[data-reduced-motion="true"]::view-transition-old(*),
+html[data-reduced-motion="true"]::view-transition-new(*) {
+  animation: none !important;
 }
 .document-page {
   max-width: 1000px;

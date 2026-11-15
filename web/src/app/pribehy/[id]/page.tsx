@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { RouteMap } from "@/components/archive/RouteMap";
+import { SharedPhoto } from "@/components/archive/SharedPhoto";
 import { StoryLabel } from "@/components/archive/StoryLabel";
 import { StoryImpact } from "@/components/archive/StoryImpact";
 import { storyDetails } from "@/content/story-details";
@@ -91,16 +92,18 @@ async function StoryContent({
               <StoryLabel story={story} />
             </p>
           </div>
-          <figure className={s.photo} data-grain>
-            <Image
-              src={photo.file}
-              alt={photo.alt}
-              fill
-              priority
-              sizes="(min-width: 1024px) 50vw, 100vw"
-            />
-            <figcaption>Ilustrační snímek</figcaption>
-          </figure>
+          <SharedPhoto id={story.id}>
+            <figure className={s.photo} data-grain data-shared-photo={story.id}>
+              <Image
+                src={photo.file}
+                alt={photo.alt}
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+              <figcaption>Ilustrační snímek</figcaption>
+            </figure>
+          </SharedPhoto>
         </header>
 
         <div className={s.body}>
@@ -159,7 +162,7 @@ async function StoryContent({
       </Link>
 
       <aside className={s.invite}>
-        <p>Máte podobnou zkušenost?</p>
+        <p>Máš podobnou zkušenost?</p>
         <Link href="/zapojte-se#pribeh">Přidat svůj příběh</Link>
             </aside>
     </>

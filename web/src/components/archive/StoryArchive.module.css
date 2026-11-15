@@ -110,6 +110,10 @@
 .item {
   min-width: 0;
 }
+.archive[data-filtering] .item,
+.archive[data-filtering] .index li {
+  view-transition-name: var(--vt-name);
+}
 .item[data-shape="0"] {
   grid-column: 1 / span 7;
 }

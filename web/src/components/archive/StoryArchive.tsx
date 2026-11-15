@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useSyncExternalStore } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import { flushSync } from "react-dom";
 import {
   isIncoming,
@@ -13,6 +13,7 @@ import {
   type StoryKind,
 } from "@/content/stories";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { SharedPhoto } from "./SharedPhoto";
 import { StoryLabel } from "./StoryLabel";
 import { impactThemes, storyImpact, type ImpactTheme } from "@/content/story-impact";
 import s from "./StoryArchive.module.css";
@@ -62,6 +63,7 @@ export function StoryArchive() {
   const search = useSyncExternalStore(subscribeLocation, locationSnapshot, serverSnapshot);
   const { kind, direction, view, impact } = readFilters(search);
   const [preview, setPreview] = useState(0);
+  const root = useRef<HTMLElement>(null);
 
   const shown = stories.filter(
     (story) =>
@@ -97,13 +99,18 @@ export function StoryArchive() {
       window.dispatchEvent(new Event("era40-archive-change"));
     };
     const doc = document as Document & {
-      startViewTransition?: (cb: () => void) => { ready: Promise<void> };
+      startViewTransition?: (cb: () => void) => { ready: Promise<void>; finished: Promise<void> };
     };
-    if (reduced || !doc.startViewTransition) {
+    const section = root.current;
+    if (reduced || !doc.startViewTransition || !section) {
       update();
       return;
     }
+    // Cards carry their names only while filtering, so the photo's own
+    // story-{id} name can pair with the story page during navigation.
+    section.dataset.filtering = "";
     const transition = doc.startViewTransition(() => flushSync(update));
+    void transition.finished.finally(() => delete section.dataset.filtering);
     // Rapid filter changes legitimately skip the previous visual transition.
     // Its update still runs; only this expected cancellation is handled here.
     void transition.ready.catch((error) => {
@@ -112,7 +119,7 @@ export function StoryArchive() {
   }
 
   return (
-    <section className={s.archive} aria-label="Archiv příběhů">
+    <section ref={root} className={s.archive} aria-label="Archiv příběhů">
       <div className={s.toolbar}>
         <div className={s.filters} role="group" aria-label="Typ pobytu">
           {[{ id: "all", label: "Vše" } as const, ...storyKinds].map((item) => (
@@ -184,7 +191,7 @@ export function StoryArchive() {
       {shown.length === 0 && (
         <p className={s.empty}>
           Takovou cestu zatím nemáme.{" "}
-          <Link href="/zapojte-se#pribeh">Napište nám tu svoji.</Link>
+          <Link href="/zapojte-se#pribeh">Napiš nám tu svoji.</Link>
         </p>
       )}
 
@@ -197,18 +204,20 @@ export function StoryArchive() {
                 key={story.id}
                 className={s.item}
                 data-shape={i % 5}
-                style={{ viewTransitionName: `story-${story.id}` }}
+                style={{ "--vt-name": `story-item-${story.id}` } as React.CSSProperties}
               >
                 <Link href={`/pribehy/${story.id}`} className={s.card}>
-                  <span className={s.photo} data-grain>
-                    <Image
-                      src={photo.file}
-                      alt={photo.alt}
-                      fill
-                      sizes="(min-width: 1024px) 40vw, 92vw"
-                    />
-                    <span className={s.caption}>Ilustrační snímek</span>
-                  </span>
+                  <SharedPhoto id={story.id}>
+                    <span className={s.photo} data-grain>
+                      <Image
+                        src={photo.file}
+                        alt={photo.alt}
+                        fill
+                        sizes="(min-width: 1024px) 40vw, 92vw"
+                      />
+                      <span className={s.caption}>Ilustrační snímek</span>
+                    </span>
+                  </SharedPhoto>
                   <span className={s.meta}>
                     <span className={s.route}>
                       {story.from} <span aria-hidden="true">⟶</span> {story.to}
@@ -235,7 +244,7 @@ export function StoryArchive() {
               return (
                 <li
                   key={story.id}
-                  style={{ viewTransitionName: `story-${story.id}` }}
+                  style={{ "--vt-name": `story-item-${story.id}` } as React.CSSProperties}
                 >
                   <Link
                     href={`/pribehy/${story.id}`}
