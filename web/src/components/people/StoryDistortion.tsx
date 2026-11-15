@@ -5,9 +5,13 @@ import { useEffect, useRef, type RefObject } from "react";
 export function StoryDistortion({
   root,
   reduced,
+  selector,
+  drive,
 }: {
   root: RefObject<HTMLElement | null>;
   reduced: boolean;
+  selector?: string;
+  drive?: "scroll" | "hover";
 }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -25,7 +29,7 @@ export function StoryDistortion({
       const { createDistortion } = await import("./distortion");
       pending = false;
       if (live && media.matches && canvas.current)
-        cleanup = createDistortion(canvas.current, el);
+        cleanup = createDistortion(canvas.current, el, { selector, drive });
     }
     const near = new IntersectionObserver(
       ([entry]) => {
@@ -51,7 +55,7 @@ export function StoryDistortion({
       media.removeEventListener("change", change);
       cleanup?.();
     };
-  }, [root, reduced]);
+  }, [root, reduced, selector, drive]);
   return (
     <canvas
       ref={canvas}

@@ -1,8 +1,15 @@
-/** A single on-demand canvas enhances the visible DOM photograph. */
+/**
+ * A single on-demand canvas enhances the visible DOM photograph.
+ * - "scroll" (default, 04 Příběhy): scroll velocity bends the photo in view.
+ * - "hover" (prolog PeopleRow, P0): the photo under the pointer "comes alive"
+ *   with a short decaying wave. Same renderer and shader, no new library.
+ */
 export function createDistortion(
   canvas: HTMLCanvasElement,
   section: HTMLElement,
+  options: { selector?: string; drive?: "scroll" | "hover" } = {},
 ) {
+  const drive = options.drive ?? "scroll";
   const gl = canvas.getContext("webgl", {
     alpha: false,
     antialias: false,
@@ -64,8 +71,11 @@ export function createDistortion(
     loaded = "",
     disposed = false;
   const photos = Array.from(
-    section.querySelectorAll<HTMLElement>("[data-photo-wipe]"),
+    section.querySelectorAll<HTMLElement>(options.selector ?? "[data-photo-wipe]"),
   );
+  let hovered: HTMLElement | undefined,
+    energy = 0,
+    started = 0;
   function draw() {
     frame = 0;
     if (disposed || document.hidden) return;
@@ -75,17 +85,28 @@ export function createDistortion(
       velocity = 0;
       return;
     }
-    const delta = scrollY - previous;
-    previous = scrollY;
-    velocity = velocity * 0.78 + Math.max(-2, Math.min(2, delta * 0.04)) * 0.22;
-    if (Math.abs(velocity) < 0.006) {
-      canvas.style.opacity = "0";
-      return;
+    let visible: HTMLElement | undefined;
+    if (drive === "hover") {
+      energy *= 0.955;
+      if (!hovered || energy < 0.01) {
+        canvas.style.opacity = "0";
+        return;
+      }
+      velocity = energy * Math.sin((performance.now() - started) / 70) * 1.4;
+      visible = hovered;
+    } else {
+      const delta = scrollY - previous;
+      previous = scrollY;
+      velocity = velocity * 0.78 + Math.max(-2, Math.min(2, delta * 0.04)) * 0.22;
+      if (Math.abs(velocity) < 0.006) {
+        canvas.style.opacity = "0";
+        return;
+      }
+      visible = photos.find((photo) => {
+        const r = photo.getBoundingClientRect();
+        return r.left + r.width / 2 > 0 && r.left + r.width / 2 < innerWidth;
+      });
     }
-    const visible = photos.find((photo) => {
-      const r = photo.getBoundingClientRect();
-      return r.left + r.width / 2 > 0 && r.left + r.width / 2 < innerWidth;
-    });
     const image = visible?.querySelector("img");
     if (visible && image?.complete && image.naturalWidth) {
       const rect = visible.getBoundingClientRect(),
@@ -130,9 +151,18 @@ export function createDistortion(
   const start = () => {
     if (!frame) frame = requestAnimationFrame(draw);
   };
-  window.addEventListener("scroll", start, { passive: true });
+  const enter = (event: PointerEvent) => {
+    hovered = event.currentTarget as HTMLElement;
+    energy = 1;
+    started = performance.now();
+    start();
+  };
+  if (drive === "hover")
+    photos.forEach((photo) => photo.addEventListener("pointerenter", enter));
+  else window.addEventListener("scroll", start, { passive: true });
   return () => {
     disposed = true;
+    photos.forEach((photo) => photo.removeEventListener("pointerenter", enter));
     window.removeEventListener("scroll", start);
     cancelAnimationFrame(frame);
     canvas.style.opacity = "0";

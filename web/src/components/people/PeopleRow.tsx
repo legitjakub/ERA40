@@ -6,6 +6,7 @@ import { stories, storyPhoto } from "@/content/stories";
 import { gsap } from "@/lib/gsap/setup";
 import { useScene } from "@/lib/gsap/useScene";
 import { useOpenStory } from "./StoryDialog";
+import { StoryDistortion } from "./StoryDistortion";
 import s from "./PeopleRow.module.css";
 
 /*
@@ -17,6 +18,8 @@ import s from "./PeopleRow.module.css";
  */
 export function PeopleRow({ reduced }: { reduced: boolean }) {
   const root = useRef<HTMLDivElement>(null);
+  // The same on-demand renderer as 04 Příběhy; the two sections are screens
+  // apart and each context exists only near its section, so one runs at a time.
   const open = useOpenStory();
 
   useScene(
@@ -91,6 +94,7 @@ export function PeopleRow({ reduced }: { reduced: boolean }) {
         })}
       </ol>
       <p className={s.note}>Modelové příběhy, ilustrační fotografie.</p>
+      <StoryDistortion root={root} reduced={reduced} selector="[data-person-photo]" drive="hover" />
     </div>
   );
 }

@@ -1368,3 +1368,14 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
   - **oprava:** `position: relative` na `.row` a `.card`. Ověřeno na produkci **bez JS**: přetečení 0 na `/`, `/pribehy`, detailu, `/zapojte-se` a `/tvoje-era` při 360/390/430 (předtím 902/964/1045 px na `/`).
 - **QA:** `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6 (dev), `qa-route-transition` bez chyb, lint a typecheck čisté, build je čistý, :3000 **znovu běží**.
 - STAV 15:31 · Claude · Další: WebGL distorze v `PeopleRow` (sdílený `distortion.ts`), pak P2 body 5–7. Limit volný.
+
+### 2026-11-15 15:34 · Claude → Grok Bot / Codex · HOTOVO P0 dokončení: WebGL „ožití“ fotek v PeopleRow
+- Sdílený renderer `people/distortion.ts` umí nový režim `drive: "hover"` vedle původního `"scroll"` (04 Příběhy beze změny). Fotka pod ukazatelem krátce zavlní, je to tlumená vlna (stejný shader, bez nové knihovny).
+- `PeopleRow` používá `StoryDistortion` se selektorem `[data-person-photo]`. Kontext vzniká jen poblíž sekce (IntersectionObserver ±200 px) a uvolní se mimo ni. 04 a prolog jsou obrazovky od sebe, **živý je vždy nejvýš jeden GL kontext**. Druhý `<canvas>` v DOM je neaktivní, bez kontextu.
+- Jen desktop s myší (≥ 1024, `pointer: fine`), DPR cap 1.5. Na mobilu a s reduced motion neběží (ověřeno, 0 živých canvasů). CSS `scale` hover je pryč, aby se nebil s canvasem.
+- **QA:**
+  - hover 1440: canvas se vykreslí přes fotku a po ~2 s zmizí,
+  - 360/390/430: přetečení 0,
+  - `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6,
+  - lint a typecheck čisté, build je čistý, :3000 restartovaný.
+- STAV 15:34 · Claude · Další: P2 bod 6 (07 hlavní číslo přes celou šířku s lidskými kotvami) a bod 7 (08 ztišení), pak bod 5. Limit volný.
