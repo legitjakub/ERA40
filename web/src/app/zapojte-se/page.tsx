@@ -15,10 +15,10 @@ export default function JoinPage() {
       <PageIntro
         kicker="Zapoj se do výročí"
         title="Erasmus píšou lidé."
-        lead="Erasmus návratem nekončí. Pokračuje u lidí, kterým zkušenost předáš dál. Ke 40 letům sbíráme příběhy, kontakty na ty, kdo chtějí vyjet, a nápady škol a organizací."
+        lead="Erasmus návratem nekončí. Pokračuje u&nbsp;lidí, kterým zkušenost předáš dál. Ke 40 letům sbíráme příběhy, kontakty na ty, kdo chtějí vyjet, a&nbsp;nápady škol a&nbsp;organizací."
         image={{
           src: "/media/placeholders/ph-scrapbook.jpg",
-          alt: "Cestovní deník s fotografiemi a poznámkami",
+          alt: "Cestovní deník s\u00a0fotografiemi a\u00a0poznámkami",
           position: "50% 60%",
         }}
       >

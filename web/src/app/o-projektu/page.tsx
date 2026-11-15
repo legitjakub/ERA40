@@ -16,20 +16,20 @@ export default function AboutPage() {
   return (
     <main id="main" className={s.page}>
       <PageIntro
-        kicker="O projektu"
+        kicker="O&nbsp;projektu"
         title="Čtyřicet let cest."
-        lead="Erasmus v Česku je digitální výstava k 40 letům evropského programu Erasmus (1987–2027). Česko je jeho součástí od roku 1998."
+        lead="Erasmus v&nbsp;Česku je digitální výstava k&nbsp;40 letům evropského programu Erasmus (1987–&#8288;2027). Česko je jeho součástí od roku 1998."
         image={{
           src: "/media/placeholders/ph-group.jpg",
-          alt: "Skupina lidí v rozhovoru na schodech",
-          position: "50% 50%",
+          alt: "Skupina lidí v\u00a0rozhovoru na schodech",
+          position: "25% 50%",
         }}
       />
       <div className={s.body}>
         <ul className={s.facts}>
           <li>
             <strong>1987</strong>
-            <span>Evropská komise spouští program Erasmus. Na začátku je v něm jedenáct zemí.</span>
+            <span>Evropská komise spouští program Erasmus. Na začátku je v&nbsp;něm jedenáct zemí.</span>
           </li>
           <li>
             <strong>1998</strong>
@@ -37,9 +37,9 @@ export default function AboutPage() {
           </li>
           <li>
             <strong>411 400</strong>
-            <span>účastníků vyjelo z Česka do zahraničí.</span>
+            <span>účastníků vyjelo z&nbsp;Česka do zahraničí.</span>
             <small>
-              Výzvy 1998–2023, stav k 31. 12. 2023.{" "}
+              Výzvy 1998–&#8288;2023, stav k&nbsp;31.&nbsp;12.&nbsp;2023.{" "}
               <a href={infographic}>DZS (PDF)</a>
             </small>
           </li>
@@ -49,30 +49,30 @@ export default function AboutPage() {
           <h2>Proč tento web</h2>
           <div className={s.text}>
             <p>
-              O Erasmu se většinou mluví v číslech. My ho chceme vyprávět
-              přes lidi: přes první přednášku v cizím jazyce, ranní vlak na
+              O&nbsp;Erasmu se většinou mluví v&nbsp;číslech. My ho chceme vyprávět
+              přes lidi: přes první přednášku v&nbsp;cizím jazyce, ranní vlak na
               stáž nebo kamarádství, které vydrží desítky let.
             </p>
             <p>
               Web prochází osm kapitol od odjezdu přes návrat po pokračování. Historie
-              spojuje evropskou linku od roku 1987 s českou od roku 1998.
-              Mapa ukazuje, kam cesty vedou, a čísla připomínají, kolik lidí
+              spojuje evropskou linku od roku 1987 s&nbsp;českou od roku 1998.
+              Mapa ukazuje, kam cesty vedou, a&nbsp;čísla připomínají, kolik lidí
               už vyjelo.
             </p>
           </div>
         </section>
 
         <section className={s.section}>
-          <h2>Co je ověřené a co modelové</h2>
+          <h2>Co je ověřené a&nbsp;co modelové</h2>
           <div className={s.text}>
             <p>
-              Data a historická fakta pocházejí z veřejných materiálů Domu
-              zahraniční spolupráce. U každého čísla uvádíme období a zdroj.
+              Data a&nbsp;historická fakta pocházejí z&nbsp;veřejných materiálů Domu
+              zahraniční spolupráce. U&nbsp;každého čísla uvádíme období a&nbsp;zdroj.
             </p>
             <p>
-              Příběhy na webu jsou zatím modelové. Postavy, jména i citace jsou
-              fiktivní a nesou viditelné označení. Fotografie a film jsou
-              ilustrační a nezobrazují skutečné účastníky. Postupně je nahradí
+              Příběhy na webu jsou zatím modelové. Postavy, jména i&nbsp;citace jsou
+              fiktivní a&nbsp;nesou viditelné označení. Fotografie a&nbsp;film jsou
+              ilustrační a&nbsp;nezobrazují skutečné účastníky. Postupně je nahradí
               skutečné výpovědi se souhlasem.
             </p>
             <ul>
@@ -80,14 +80,14 @@ export default function AboutPage() {
                 <Link href="/placeholders">Seznam modelového obsahu</Link>
               </li>
               <li>
-                <Link href="/credits">Zdroje a obrazové kredity</Link>
+                <Link href="/credits">Zdroje a&nbsp;obrazové kredity</Link>
               </li>
             </ul>
           </div>
         </section>
 
         <section className={s.section}>
-          <h2>Jak pracujeme s tvými příběhy</h2>
+          <h2>Jak pracujeme s&nbsp;tvými příběhy</h2>
           <div className={s.text}>
             <ul>
               <li>Každý příběh si přečte redakce výročí.</li>
@@ -96,7 +96,7 @@ export default function AboutPage() {
                 schválení. Bez souhlasu nic nezveřejníme.
               </li>
               <li>
-                Kontakt použijeme jen k účelu, který jsi ve formuláři
+                Kontakt použijeme jen k&nbsp;účelu, který jsi ve formuláři
                 vybral(a). Souhlas můžeš kdykoli odvolat.
               </li>
             </ul>
@@ -112,14 +112,14 @@ export default function AboutPage() {
           <h2>Kdo za webem stojí</h2>
           <div className={s.text}>
             <p>
-              Program Erasmus+ v Česku zajišťuje{" "}
+              Program Erasmus+ v&nbsp;Česku zajišťuje{" "}
               <a href="https://www.dzs.cz/">Dům zahraniční spolupráce</a>.
-              Vydavatel tohoto webu, jeho financování a kontaktní adresa{" "}
+              Vydavatel tohoto webu, jeho financování a&nbsp;kontaktní adresa{" "}
               <span className={s.todo}>čekají na potvrzení</span>.
             </p>
             <p>
               Do té doby nám můžeš napsat přes{" "}
-              <Link href="/zapojte-se#organizace">formulář pro školy a organizace</Link>.
+              <Link href="/zapojte-se#organizace">formulář pro školy a&nbsp;organizace</Link>.
             </p>
           </div>
         </section>

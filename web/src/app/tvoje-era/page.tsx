@@ -13,9 +13,9 @@ export default function EraPage() {
   return (
     <main id="main" className={s.page}>
       <PageIntro
-        kicker="Kvíz k 40 letům Erasmu"
+        kicker="Kvíz k&nbsp;40 letům Erasmu"
         title="Jaké je tvoje ERA?"
-        lead="Co z tvého Erasmu žije dodnes? A komu se to dostalo dál? Erasmus se týká i lidí, kteří nikdy nevyjeli."
+        lead="Co z&nbsp;tvého Erasmu žije dodnes? A&nbsp;komu se to dostalo dál? Erasmus se týká i&nbsp;lidí, kteří nikdy nevyjeli."
       />
       <div className={s.content}>
         <EraQuiz />

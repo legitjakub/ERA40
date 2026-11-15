@@ -1,16 +1,16 @@
 import type { Stat } from "./types";
 
 export const participationSource = {
-  label: "DZS, 20 let vzdělávání se s EU (PDF)",
+  label: "DZS, 20 let vzdělávání se s\u00a0EU (PDF)",
   url: "https://www.dzs.cz/sites/default/files/2024-03/Infografika_20let_finalA4.pdf",
 };
 
-export const participationPeriod = "Výzvy 1998–2023, stav k 31. 12. 2023.";
+export const participationPeriod = "Výzvy 1998–\u20602023, stav k\u00a031.\u00a012.\u00a02023.";
 
 export const stats: Stat[] = [
   {
     id: "outgoing-cz",
-    label: "vyjelo z Česka",
+    label: "vyjelo z\u00a0Česka",
     value: 411400,
     period: participationPeriod,
     status: "verified",
@@ -33,7 +33,7 @@ export const stats: Stat[] = [
     value: 86,
     suffix: " %",
     period:
-      "Podle účastníků výjezd přispěl k jejich spokojenosti se životem. Šetření DZS a STEM/MARK, 2022.",
+      "Podle účastníků výjezd přispěl k\u00a0jejich spokojenosti se životem. Šetření DZS a\u00a0STEM/MARK, 2022.",
     status: "verified",
     checkedAt: "2026-11-13",
     sources: [participationSource],

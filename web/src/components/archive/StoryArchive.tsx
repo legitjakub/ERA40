@@ -28,7 +28,7 @@ type View = "photos" | "index";
 
 const directions: [Direction, string][] = [
   ["all", "Oba směry"],
-  ["out", "Z Česka"],
+  ["out", "Z\u00a0Česka"],
   ["in", "Do Česka"],
 ];
 
@@ -63,7 +63,9 @@ export function StoryArchive() {
   const search = useSyncExternalStore(subscribeLocation, locationSnapshot, serverSnapshot);
   const { kind, direction, view, impact } = readFilters(search);
   const [preview, setPreview] = useState(0);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const root = useRef<HTMLElement>(null);
+  const active = [kind, direction, impact].filter((value) => value !== "all").length;
 
   const shown = stories.filter(
     (story) =>
@@ -121,29 +123,51 @@ export function StoryArchive() {
   return (
     <section ref={root} className={s.archive} aria-label="Archiv příběhů">
       <div className={s.toolbar}>
-        <div className={s.filters} role="group" aria-label="Typ pobytu">
-          {[{ id: "all", label: "Vše" } as const, ...storyKinds].map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              aria-pressed={kind === item.id}
-              onClick={() => change({ kind: item.id })}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-        <div className={s.filters} role="group" aria-label="Směr cesty">
-          {directions.map(([id, label]) => (
-            <button
-              key={id}
-              type="button"
-              aria-pressed={direction === id}
-              onClick={() => change({ direction: id })}
-            >
-              {label}
-            </button>
-          ))}
+        <button
+          type="button"
+          className={s.filterToggle}
+          aria-expanded={filtersOpen}
+          aria-controls="archive-filters"
+          onClick={() => setFiltersOpen((open) => !open)}
+        >
+          Filtrovat{active > 0 && ` (${active})`}
+        </button>
+        <div id="archive-filters" className={s.filterPanel} data-open={filtersOpen || undefined}>
+          <div className={s.filters} role="group" aria-label="Typ pobytu">
+            <span className={`${s.filterLabel} ${s.mobileLabel}`} aria-hidden="true">Typ pobytu</span>
+            {[{ id: "all", label: "Vše" } as const, ...storyKinds].map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-pressed={kind === item.id}
+                onClick={() => change({ kind: item.id })}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+          <div className={s.filters} role="group" aria-label="Směr cesty">
+            <span className={`${s.filterLabel} ${s.mobileLabel}`} aria-hidden="true">Směr cesty</span>
+            {directions.map(([id, label]) => (
+              <button
+                key={id}
+                type="button"
+                aria-pressed={direction === id}
+                onClick={() => change({ direction: id })}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <div className={`${s.filters} ${s.themes}`} role="group" aria-label="Co pokračuje dál">
+            <span className={s.filterLabel} aria-hidden="true">Co pokračuje dál</span>
+            {[{ id: "all", label: "Všechna témata" } as const, ...impactThemes].map((item) => (
+              <button key={item.id} type="button" aria-pressed={impact === item.id}
+                onClick={() => change({ impact: item.id })}>
+                {item.label}
+              </button>
+            ))}
+          </div>
         </div>
         <div className={s.views} role="group" aria-label="Zobrazení">
           <button
@@ -160,15 +184,6 @@ export function StoryArchive() {
           >
             Rejstřík
           </button>
-        </div>
-        <div className={`${s.filters} ${s.themes}`} role="group" aria-label="Co pokračuje dál">
-          <span className={s.filterLabel}>Co pokračuje dál</span>
-          {[{ id: "all", label: "Všechna témata" } as const, ...impactThemes].map((item) => (
-            <button key={item.id} type="button" aria-pressed={impact === item.id}
-              onClick={() => change({ impact: item.id })}>
-              {item.label}
-            </button>
-          ))}
         </div>
       </div>
       <div className={s.results}>
@@ -288,7 +303,7 @@ export function StoryArchive() {
         </div>
       )}
       <p className={s.note}>
-        Všechny příběhy v archivu jsou modelové a fiktivní. Nahradí je skutečné
+        Všechny příběhy v&nbsp;archivu jsou modelové a&nbsp;fiktivní. Nahradí je skutečné
         výpovědi účastníků se souhlasem.
       </p>
     </section>

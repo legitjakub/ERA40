@@ -6,18 +6,18 @@
 export const contactPaths = [
   {
     id: "pribeh",
-    label: "Byl(a) jsem na Erasmu",
-    lead: "Sdílej svou cestu a to, co z ní pokračuje dál. Vybrané příběhy se po redakční úpravě a tvém schválení mohou objevit na webu.",
+    label: "Mám za sebou Erasmus",
+    lead: "Sdílej svou cestu a\u00a0to, co z\u00a0ní pokračuje dál. Vybrané příběhy se po redakční úpravě a\u00a0tvém schválení mohou objevit na webu.",
   },
   {
     id: "vyjet",
     label: "Chci vyjet",
-    lead: "Pošleme ti, jak se zapojit, a upozorníme na výzvy a akce k výročí.",
+    lead: "Pošleme ti, jak se zapojit, a\u00a0upozorníme na výzvy a\u00a0akce k\u00a0výročí.",
   },
   {
     id: "organizace",
     label: "Za školu nebo organizaci",
-    lead: "Chystáš akci, projekt nebo setkání absolventů? Ozvi se, rádi tě propojíme s výročím.",
+    lead: "Chystáš akci, projekt nebo setkání absolventů? Ozvi se, rádi tě propojíme s\u00a0výročím.",
   },
 ] as const;
 
@@ -124,10 +124,10 @@ export function validateContact(input: Record<string, unknown>): Result {
       : undefined;
 
   if (path === "pribeh") {
-    if (!text(input, "to")) errors.to = "Kam jsi vyjel(a)?";
+    if (!text(input, "to")) errors.to = "Kam vedla tvoje cesta?";
     const year = text(input, "year");
     if (year && (!/^\d{4}$/.test(year) || Number(year) < 1987 || Number(year) > new Date().getFullYear()))
-      errors.year = "Rok mezi 1987 a dneškem.";
+      errors.year = "Rok mezi 1987 a\u00a0dneškem.";
     if (!story || story.length < 20)
       errors.story = "Pár vět stačí, alespoň jednu myšlenku.";
   }

@@ -39,7 +39,7 @@ export function Future() {
     const url = location.origin + location.pathname;
     if (navigator.share) {
       try {
-        await navigator.share({ title: "Erasmus v Česku", url });
+        await navigator.share({ title: "Erasmus v\u00a0Česku", url });
         return;
       } catch {}
     }
@@ -56,7 +56,7 @@ export function Future() {
         <h2 id="future-title" className={s.title}>
           <span>Cesta končí.</span><span>Zkušenost pokračuje.</span>
         </h2>
-        <p className={s.lead}>Zkušenost z Erasmu se předává dál — k dalším lidem, i k těm, kteří nikdy nevyjeli.</p>
+        <p className={s.lead}>Zkušenost z&nbsp;Erasmu se předává dál — k&nbsp;dalším lidem, i&nbsp;k&nbsp;těm, kteří nikdy nevyjeli.</p>
         <div className={s.journey} aria-hidden="true">
           <svg className={s.desktopRoute} data-route="desktop">
             <defs><mask id={`${maskId}-desktop`} maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
@@ -80,8 +80,8 @@ export function Future() {
         </div>
         <div className={s.links}>
           <Link href="/tvoje-era">Jaké je tvoje ERA?</Link>
-          <a href="https://www.dzs.cz/program/erasmus">Vyrazit s Erasmus+</a>
-          <a href="https://erasmus-plus.ec.europa.eu/">O programu Erasmus+</a>
+          <a href="https://www.dzs.cz/program/erasmus">Vyrazit s&nbsp;Erasmus+</a>
+          <a href="https://erasmus-plus.ec.europa.eu/">O&nbsp;programu Erasmus+</a>
           <button type="button" onClick={share}>{copied ? "Odkaz zkopírován" : "Sdílet"}</button>
         </div>
         <span className="visually-hidden" role="status">{copied ? "Odkaz zkopírován do schránky." : ""}</span>

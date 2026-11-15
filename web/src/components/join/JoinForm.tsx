@@ -43,23 +43,23 @@ const empty: Values = {
 const nextSteps: Record<ContactPath, string[]> = {
   pribeh: [
     "Příběh si přečte redakce výročí.",
-    "Pokud ho budeme chtít zveřejnit, ozveme se a pošleme ti upravený text ke schválení.",
+    "Pokud ho budeme chtít zveřejnit, ozveme se a\u00a0pošleme ti upravený text ke schválení.",
     "Bez tvého souhlasu nic nezveřejníme.",
   ],
   vyjet: [
-    "Pošleme ti přehled, kdo a kam může s Erasmem+ vyjet.",
-    "Upozorníme tě na výzvy a akce k výročí, pokud o to stojíš.",
-    "Odhlásit se můžeš jedním odkazem v každém e-mailu.",
+    "Pošleme ti přehled, kdo a\u00a0kam může s\u00a0Erasmem+ vyjet.",
+    "Upozorníme tě na výzvy a\u00a0akce k\u00a0výročí, pokud o\u00a0to stojíš.",
+    "Odhlásit se můžeš jedním odkazem v\u00a0každém e-mailu.",
   ],
   organizace: [
     "Ozveme se ti do dvou týdnů.",
-    "Domluvíme, jak tvoji akci nebo projekt propojit s výročím.",
+    "Domluvíme, jak tvoji akci nebo projekt propojit s\u00a0výročím.",
     "Kontakt použijeme jen pro tuto spolupráci.",
   ],
 };
 
 const doneTitle: Record<ContactPath, string> = {
-  pribeh: "Děkujeme. Tvůj příběh je u nás.",
+  pribeh: "Děkujeme. Tvůj příběh je u\u00a0nás.",
   vyjet: "Děkujeme. Brzy ti napíšeme.",
   organizace: "Děkujeme. Brzy se ozveme.",
 };
@@ -368,7 +368,7 @@ export function JoinForm() {
                 </div>
                 <div className={s.label}>
                   <label htmlFor={`${uid}-story`}>
-                  Co ti z cesty zůstalo?</label>
+                  Co ti z&nbsp;cesty zůstalo?</label>
                   <textarea
                     {...field("story")}
                     rows={7}
@@ -389,7 +389,7 @@ export function JoinForm() {
                     onChange={(e) => set("publishConsent", e.target.checked)}
                   />
                   <span>
-                    Souhlasím se zveřejněním příběhu po redakční úpravě a mém schválení.
+                    Souhlasím se zveřejněním příběhu po redakční úpravě a&nbsp;mém schválení.
                   </span>
                 </label>
               </>
@@ -458,7 +458,7 @@ export function JoinForm() {
                   checked={Boolean(values.newsletter)}
                   onChange={(e) => set("newsletter", e.target.checked)}
                 />
-                <span>Chci dostávat novinky k 40 letům Erasmu.</span>
+                <span>Chci dostávat novinky k&nbsp;40 letům Erasmu.</span>
               </label>
               <label className={s.check}>
                 <input
@@ -477,7 +477,7 @@ export function JoinForm() {
                 <span>
                   Souhlasím se zpracováním osobních údajů pro tento účel podle{" "}
                   <Link href="/ochrana-osobnich-udaju">
-                    informací o ochraně údajů
+                    informací o&nbsp;ochraně údajů
                   </Link>
                   .
                 </span>

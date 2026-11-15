@@ -143,8 +143,7 @@ async function StoryContent({
               <p key={paragraph.slice(0, 24)}>{paragraph}</p>
             ))}
             <p className={s.disclaimer}>
-              Postava, jméno i citace jsou modelové. Fotografie je ilustrační a
-              nezobrazuje skutečného účastníka.
+              Postava, jméno i&nbsp;citace jsou modelové. Fotografie je ilustrační a&nbsp;nezobrazuje skutečného účastníka.
             </p>
           </div>
         </div>

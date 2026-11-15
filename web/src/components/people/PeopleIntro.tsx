@@ -94,12 +94,11 @@ export function PeopleIntro() {
           </span>
         </h2>
         <p className={styles.reach} data-note>
-          A s&nbsp;nimi se zkušenost dostala i&nbsp;k&nbsp;lidem, kteří nikdy
+          A&nbsp;s&nbsp;nimi se zkušenost dostala i&nbsp;k&nbsp;lidem, kteří nikdy
           nevyjeli: k&nbsp;jejich studentům, kolegům a&nbsp;rodinám.
         </p>
         <p className={styles.note} data-note>
-          DZS eviduje 411&nbsp;400 účastníků z Česka za výzvy 1998–2023. Stav k
-          31.&nbsp;12.&nbsp;2023. <a href={source}>Infografika DZS (PDF)</a>
+          DZS eviduje 411&nbsp;400 účastníků z&nbsp;Česka za výzvy 1998–&#8288;2023. Stav k&nbsp;31.&nbsp;12.&nbsp;2023. <a href={source}>Infografika DZS (PDF)</a>
         </p>
       </div>
       <div className={styles.transition}>

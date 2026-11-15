@@ -107,3 +107,9 @@
     max-width: 52ch;
   }
 }
+/* Five lines at 360 px; larger sizes break the sentence into six to eight. */
+@media (max-width: 767px) {
+  .body h2 {
+    font-size: clamp(2.15rem, 1rem + 5vw, 3rem);
+  }
+}

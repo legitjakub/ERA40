@@ -122,7 +122,13 @@
 .static li[data-dark="true"] p {
   color: inherit;
 }
+/* 44 px hit area; the negative margin keeps the label where the inline link sat. */
 .source {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  max-width: 100%;
+  margin-top: -0.7rem;
   color: inherit;
   font-size: 0.875rem;
   text-decoration: underline;

@@ -19,12 +19,13 @@
   object-fit: cover;
   animation: settle var(--dur-l) var(--ease-out) both;
 }
-/* Same flat ink scrim as the home film, deeper towards the type. */
+/* Flat ink scrim at the DESIGN.md maximum: white lead text stays ≥ 4.5:1
+   over the brightest photo pixels behind it. */
 .scrim {
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: rgb(11 27 51 / 0.5);
+  background: rgb(11 27 51 / 0.55);
 }
 .inner {
   position: relative;

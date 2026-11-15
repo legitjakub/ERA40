@@ -65,10 +65,35 @@ button {
   outline-offset: 3px;
   box-shadow: 0 0 0 3px var(--c-focus-inner);
 }
-/* Headings and regions that receive focus from script are not controls. */
-:is(h1, h2, h3, h4, section, div, main)[tabindex="-1"]:focus-visible {
+/* Headings and regions focused from script (tabindex -1) mark a reading
+   position, they are not controls. Roving buttons with tabindex -1 keep the ring. */
+:where(h1, h2, h3, h4, h5, h6, p, div, section, article, main, header, footer)[tabindex="-1"]:focus {
   outline: none;
   box-shadow: none;
+}
+/* A too-long Czech word breaks inside its column instead of overflowing it.
+   break-word (not anywhere) keeps min-content, so flex rows don't squeeze titles. */
+h1,
+h2 {
+  overflow-wrap: break-word;
+}
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p,
+li,
+blockquote,
+figcaption {
+  text-wrap: pretty;
+}
+@media (max-width: 767px) {
+  h1,
+  h2 {
+    hyphens: auto;
+    hyphenate-limit-chars: 10 4 4;
+  }
 }
 [id] {
   scroll-margin-top: 64px;

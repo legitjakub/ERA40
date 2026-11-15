@@ -78,6 +78,12 @@ try {
 
     await page.goto(`${values.url}/pribehy?dopad=uceni&pohled=index`, { waitUntil: "networkidle" });
     const archive = page.getByRole("region", { name: "Archiv příběhů" });
+    // On phones the filters sit in a collapsible panel ("Filtrovat"); open it first.
+    const openFilters = async () => {
+      const toggle = archive.locator("button[aria-controls='archive-filters']");
+      if (await toggle.isVisible() && (await toggle.getAttribute("aria-expanded")) !== "true") await enter(toggle);
+    };
+    await openFilters();
     await expect(archive.getByRole("button", { name: "Učení a výuka", exact: true })).toHaveAttribute("aria-pressed", "true");
     await expect(archive.locator('a[href^="/pribehy/"]')).toHaveCount(4);
     await enter(archive.getByRole("button", { name: "Do Česka", exact: true }));
@@ -89,6 +95,7 @@ try {
     await page.waitForTimeout(1500);
     await page.screenshot({ path: `${values.out}/${width}-detail.jpg` });
     await page.goBack({ waitUntil: "networkidle" });
+    await openFilters();
     await expect(archive.getByRole("button", { name: "Do Česka", exact: true })).toHaveAttribute("aria-pressed", "true");
     await expect(archive.getByRole("button", { name: "Rejstřík", exact: true })).toHaveAttribute("aria-pressed", "true");
     await enter(archive.getByRole("button", { name: "Stáže a praxe", exact: true }));

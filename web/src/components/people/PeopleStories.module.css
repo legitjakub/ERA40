@@ -222,6 +222,7 @@
   justify-content: center;
 }
 .stations button {
+  position: relative;
   appearance: none;
   flex: none;
   display: flex;
@@ -234,6 +235,16 @@
   color: inherit;
   font: inherit;
   cursor: pointer;
+}
+/* A 44 px hit area centred on the dot; the dot itself stays small. */
+.stations button::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--trasa-station, 10px) / 2);
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
 }
 .station {
   flex: none;
@@ -411,10 +422,6 @@
   }
   .city {
     display: none;
-  }
-  .stations button {
-    padding: 12px;
-    margin: -12px;
   }
   .dialogSpread {
     grid-template-columns: 1fr;

@@ -17,9 +17,9 @@ const models = [
     coords: { from: [17.25, 49.59], to: [-0.38, 39.47] },
     mobility: "Studijní pobyt, vysoká škola",
     year: "2019",
-    quote: "Poprvé jsem musela říct nahlas, co si myslím, a v cizím jazyce.",
+    quote: "Poprvé jsem musela říct nahlas, co si myslím, a\u00a0v\u00a0cizím jazyce.",
     excerpt:
-      "Semestr architektury ve Valencii. Ateliér, kde se kritizuje otevřeně, a kuchyně na koleji, kde se vařilo v pěti jazycích.",
+      "Semestr architektury ve Valencii. Ateliér, kde se kritizuje otevřeně, a\u00a0kuchyně na koleji, kde se vařilo v\u00a0pěti jazycích.",
     mediaId: "ph-train-window-woman",
   },
   {
@@ -34,7 +34,7 @@ const models = [
     year: "2022",
     quote: "Za tři měsíce jsem se naučil víc němčiny než za šest let ve škole.",
     excerpt:
-      "Stáž v projekční kanceláři. Ranní vlak, porady v němčině a první pracovní reference ze zahraničí.",
+      "Stáž v\u00a0projekční kanceláři. Ranní vlak, porady v\u00a0němčině a\u00a0první pracovní reference ze zahraničí.",
     mediaId: "ph-backpack-station",
   },
   {
@@ -45,11 +45,11 @@ const models = [
     to: "Praha",
     toCountry: "Česko",
     coords: { from: [-9.14, 38.72], to: [14.42, 50.08] },
-    mobility: "Studijní pobyt v Česku",
+    mobility: "Studijní pobyt v\u00a0Česku",
     year: "2023",
-    quote: "Praha pro mě nebyla zastávka. Stala se z ní adresa.",
+    quote: "Praha pro mě nebyla zastávka. Stala se z\u00a0ní adresa.",
     excerpt:
-      "Přijela na jeden semestr a zůstala na magisterské studium. Dnes provází nové zahraniční studenty.",
+      "Přijela na jeden semestr a\u00a0zůstala na magisterské studium. Dnes provází nové zahraniční studenty.",
     mediaId: "ph-prague-street",
   },
   {
@@ -62,9 +62,9 @@ const models = [
     coords: { from: [17.67, 49.23], to: [-8.61, 41.15] },
     mobility: "Praxe žáka střední odborné školy",
     year: "2024",
-    quote: "Mistr v dílně mluvil rukama. Rozuměli jsme si od prvního dne.",
+    quote: "Mistr v\u00a0dílně mluvil rukama. Rozuměli jsme si od prvního dne.",
     excerpt:
-      "Tři týdny praxe v portugalské dílně. Poprvé letěl letadlem a poprvé pracoval na zakázce pro skutečného zákazníka.",
+      "Tři týdny praxe v\u00a0portugalské dílně. Poprvé letěl letadlem a\u00a0poprvé pracoval na zakázce pro skutečného zákazníka.",
     mediaId: "ph-workshop",
   },
   {
@@ -77,7 +77,7 @@ const models = [
     coords: { from: [14.66, 49.41], to: [23.76, 61.5] },
     mobility: "Job shadowing, učitelka ZŠ",
     year: "2023",
-    quote: "Vrátila jsem se s jedinou otázkou: proč děti u nás tolik sedí?",
+    quote: "Vrátila jsem se s\u00a0jedinou otázkou: proč děti u\u00a0nás tolik sedí?",
     excerpt:
       "Týden ve finské škole změnil její hodiny. Dnes učí venku každý pátek.",
     mediaId: "ph-classroom",
@@ -94,7 +94,7 @@ const models = [
     year: "2021",
     quote: "Deset dní, šest zemí, jeden společný film.",
     excerpt:
-      "Výměna o médiích a dezinformacích. Z workshopu vznikl krátký dokument a skupina, která si píše dodnes.",
+      "Výměna o\u00a0médiích a\u00a0dezinformacích. Z\u00a0workshopu vznikl krátký dokument a\u00a0skupina, která si píše dodnes.",
     mediaId: "ph-youth",
   },
   {
@@ -109,13 +109,13 @@ const models = [
     year: "2008",
     quote: "Na pohovoru se mě nikdo neptal na známky. Ptali se na Lyon.",
     excerpt:
-      "Erasmus v roce 2008, dnes vede mezinárodní tým. Říká, že nejdůležitější dovednost získal v čekárně francouzského úřadu.",
+      "Erasmus v\u00a0roce 2008, dnes vede mezinárodní tým. Říká, že nejdůležitější dovednost získal v\u00a0čekárně francouzského úřadu.",
     mediaId: "ph-library",
   },
   {
     id: "pratelstvi",
     status: "model-story",
-    name: "Lucie a Marta",
+    name: "Lucie a\u00a0Marta",
     from: "Plzeň",
     to: "Bologna",
     toCountry: "Itálie",
@@ -123,9 +123,9 @@ const models = [
     mobility: "Studijní pobyt, vysoká škola",
     year: "2012",
     quote:
-      "Potkaly jsme se ve frontě na kolej. O deset let později jsme si byly za svědkyně.",
+      "Potkaly jsme se ve frontě na kolej. O\u00a0deset let později jsme si byly za svědkyně.",
     excerpt:
-      "Jedna z Plzně, druhá z Valencie. Erasmus v Boloni, přátelství na celý život.",
+      "Jedna z\u00a0Plzně, druhá z\u00a0Valencie. Erasmus v\u00a0Boloni, přátelství na celý život.",
     mediaId: "ph-friends-evening",
   },
 ];
@@ -138,7 +138,7 @@ const fields = [
   "Pedagogika",
   "Mediální gramotnost",
   "Ekonomie",
-  "Jazyky a kultura",
+  "Jazyky a\u00a0kultura",
 ];
 export const stories: Story[] = models.map((story, i) => ({
   ...story,
@@ -169,8 +169,8 @@ export function getStory(id: string) {
 /** Groups used by the story archive filters. */
 export const storyKinds = [
   { id: "studium", label: "Studium" },
-  { id: "praxe", label: "Stáže a praxe" },
-  { id: "skoly", label: "Učitelé a školy" },
+  { id: "praxe", label: "Stáže a\u00a0praxe" },
+  { id: "skoly", label: "Učitelé a\u00a0školy" },
   { id: "mladez", label: "Mládež" },
 ] as const;
 export type StoryKind = (typeof storyKinds)[number]["id"];

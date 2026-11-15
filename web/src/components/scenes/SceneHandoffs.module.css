@@ -26,7 +26,7 @@
 }
 .axis { width: 100%; height: 100%; overflow: visible; }
 /* A line, never yellow: white over the photo it leaves, EU blue on the light page (Trasa grammar). */
-.axis line { stroke: url(#era-axis-surface) var(--c-eu-blue); stroke-width: 2; }
+.axis path { fill: none; stroke: url(#era-axis-surface) var(--c-eu-blue); stroke-width: 2; }
 :global(body:has(dialog[open])) .overlay { visibility: hidden; }
 @media (max-width:1023px), (max-height:619px), (prefers-reduced-motion:reduce) {
   .overlay { display: none; }

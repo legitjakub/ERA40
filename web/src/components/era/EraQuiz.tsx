@@ -133,7 +133,7 @@ export function EraQuiz() {
         return;
       }
       await navigator.clipboard.writeText(`${text} ${url}`);
-      setStatus("Text a odkaz jsou zkopírované.");
+      setStatus("Text a\u00a0odkaz jsou zkopírované.");
     } catch (error) {
       if ((error as DOMException)?.name !== "AbortError")
         setStatus("Sdílení se nepovedlo. Stáhni si nálepku.");
@@ -144,13 +144,13 @@ export function EraQuiz() {
     return (
       <section className={s.quiz} aria-labelledby="era-start">
         <h2 id="era-start" ref={heading} tabIndex={-1} className={s.question}>
-          Jak se k tobě Erasmus dostal?
+          Jak se k&nbsp;tobě Erasmus dostal?
         </h2>
-        <p className={s.hint}>Pět otázek, zhruba minuta. Nic neukládáme a nic neodesíláme.</p>
+        <p className={s.hint}>Pět otázek, zhruba minuta. Nic neukládáme a&nbsp;nic neodesíláme.</p>
         <div className={s.paths}>
           <button type="button" className={s.path} onClick={() => setPath("vyjel")}>
             <strong>Mám vlastní Erasmus</strong>
-            <span>Studium, stáž, výuka, výměna nebo dobrovolnictví v zahraničí.</span>
+            <span>Studium, stáž, výuka, výměna nebo dobrovolnictví v&nbsp;zahraničí.</span>
           </button>
           <button type="button" className={s.path} onClick={() => setPath("nevyjel")}>
             <strong>Na Erasmu: 0 dní</strong>
