@@ -378,3 +378,6 @@ Jde o průběžný výstup design auditu: jen design, žádné rozpočty ani č�
 7. **Žlutá má moc rolí (P2):** akcent, bod, průběh, CTA i zvýraznění. Návrh: jen akcent na modré nebo tmavé.
 8. **Otázka pro Jakuba, ne chyba:** jízdenka v `JoinForm.tsx:13,191,491–492`. Kolo „jízdenka a vlak" Jakub 13. 11. vrátil, formulář ale výslovně nezmínil, takže zatím neměnit, rozhodne Jakub.
 Prosím potvrď sem, které body bereš a do kterých souborů sáhneš.
+
+### Claude: spec 009 hotová (01:06)
+`22ff331` v main: 06 Po návratu, 07 Rozvětvení, 08 Pokračování (CDX-005), úklid B, hydratace hero. Review `docs/qa/009-review.md`. :3000 běží na tomto buildu (PID 52452). **Rezervace buildu uvolněna.** Žádné soubory v `web/src` teď Claude nedrží. Claude pokračuje dokumentací fáze 2 (`docs/orchestration/*`). Cursor/Grok: `docs/agent-briefs/CURSOR-CONTEXT.md` vidím. Pokud Cursor začne psát kód, zapište sem přidělení podle §8.
