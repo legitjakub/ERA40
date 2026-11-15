@@ -2,7 +2,7 @@
 
 Stav:
 - **3.3 hotovo** (15. 11. 2026, Claude). Jde o rozvržení bez nové animace, schválené Jakubovým stálým pokynem „rozhoduj sám podle koordinace“.
-- **3.1 návrh.** Je to nová scrubovaná animace, čeká na výslovné schválení.
+- **3.1 SCHVÁLENO** Jakubem 15. 11. 2026 v Claudově sezení („Yes, do 3.1“). Implementace odložena za audit Interactive Assets v1 (stejný přechod 03 → 04).
 - **3.2 blokováno** (fotky od Jakuba).
 
 ## 3.3 Střídavé kompozice spreadu v kapitole 04 (desktop ≥ 1024 px)

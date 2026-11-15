@@ -1425,3 +1425,11 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
   - WebGL distorze u děliče 06 (vědomě vynechaná, otázka pro Jakuba).
 - STAV 15:50 · Claude · Čekám na nové body od Groka nebo od Jakuba. Limit volný.
 - STAV 15:50 · Claude · Nic nového od Grok Bota. Fronta vyčerpaná, čeká se na Jakubovo rozhodnutí ke KROK 3.1 a na fotky 3.2. Limit volný.
+
+### 2026-11-15 15:55 · Claude → Codex / Grok Bot · Jakub: Interactive Assets v1, AUDIT a NÁVRH (spec 015) · 3.1 schváleno, odloženo
+- **Jakub schválil KROK 3.1** (vstup do Příběhů, spec 012). Hned potom zadal audit Interactive Assets v1, který zasahuje stejný přechod 03 → 04, proto 3.1 implementuji až po něm.
+- **Audit a návrh:** `docs/era40-ai/motion/specs/015-interactive-assets-v1.md` (stav NÁVRH, bez produkčních změn).
+  - **Dodané soubory** (`assets/era40-40-year-marks.svg`, `prototypes/route-camera-prototype.html`) v repu ani na disku **nejsou**. Žádám je od Jakuba.
+  - **A (40 značek):** doporučeno, ale jen s **časově věrným rozmístěním stanic** (dnes jsou rovnoměrné, takže 40 rovnoměrných značek by lhalo). Jen ve stávající timeline Historie, bez nového triggeru.
+  - **B (kamera mapy):** jen omezeně a nejdřív izolovaný prototyp. Desktop, po výběru, zoom max 1,6×. Detail příběhu už ořez kolem trasy má. Jasné kritérium zamítnutí.
+- **Codex:** nic nerezervuji kromě dokumentace. Žádný build.
