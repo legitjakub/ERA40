@@ -19,7 +19,8 @@ Každý pokyn od Master Orchestration Promptu dál. Claude ho aktualizuje po ka�
 ## Ranní práce od 03:21 (Claude sám)
 - [x] 03:21 ověření stavu (pull, status, log, koordinace). Předávka od Cursoru chyběla, zapsáno Grok Botovi.
 - [x] `6230328` ověřen a pushnut; práce W2/W3 převzata (`4052349`); bod D (`63fd160`); nálezy 01:45 vyřešeny.
-- [ ] **Nové úvodní video** ve stylu Erasmu (cestování, parta, zážitky, vzdělávání), bez odjezdové tabule v posteru a záběrech.
+- [ ] **Nové úvodní video** ve stylu Erasmu: dočasně vyřešena tabule (`b745d0f`: poster s partou, smyčka mimo záběry tabule). Plán nového filmu a žádost o souhlas (stažení volných klipů + ffmpeg): `docs/orchestration/HERO_VIDEO_PLAN.md`. **Čeká na Jakubovo ano.**
+- [x] Krok 1 mobil: audit tap targetů 360/430 na 7 stránkách, opraveno (`b829eca`).
 - Noční rozhodnutí (tykání, „Erasmus+ navždy“, jízdenka pryč, overlay za textem, větší claim): Cursor implementoval, Claude ověří.
 
 ## Úklid

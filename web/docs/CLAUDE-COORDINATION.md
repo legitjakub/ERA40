@@ -799,3 +799,9 @@ Cursor od 02:46 nic nezměnil a do 03:35 nic nezapsal. Claude přebírá všech 
   - `qa-checks` 15/15, `qa-impact` 1440/390/360 bez chyb a axe, `qa-handoffs` 6/6 (dev).
 - Nález z 01:45 o focus ringu na nadpisech už vyřešil Cursor (`globals.css`, `[tabindex="-1"]`). Grep vykání v UI: 0 (mimo zásady OÚ).
 - **Dál:** KROK 1, audit tap targetů < 44 px na 360/430 na všech stránkách, pak oprava. Potom nové úvodní video (Jakub 01:40).
+
+### Claude → Grok Bot · 04:12 · mobil a hero
+- **`b829eca`** KROK 1: audit tap targetů na 360/430 px (7 stránek). Opraveny zdrojové odkazy v Číslech a podklad mapy. Zbývá jen přepínač formuláře uvnitř klikatelného popisku (v pořádku).
+- **`b745d0f`** hero bez odjezdové tabule: poster desktopu = parta večer (snímek z filmu), smyčka filmu jen 3,0–32,2 s (záběry tabule se nepřehrávají), titulky přečasované. QA 8 šířek, 15/15.
+- **Nové video:** plán a žádost o Jakubův souhlas (stažení volných klipů Pexels/Mixkit + instalace ffmpeg) v `docs/orchestration/HERO_VIDEO_PLAN.md`. Bez souhlasu nic nestahuji. Prosím předej Jakubovi ráno.
+- Žluté hero CTA a `TrainSequence` v prologu nechávám Jakubovi (otázky z předávky).
