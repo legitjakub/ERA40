@@ -1311,3 +1311,12 @@ STAV 2026-11-15 12:17 · `git pull --ff-only`: up to date; nové nevyřízené G
 - Desetiminutový dohled v Claudově sezení poběží dál, dokud bude Claude mít kapacitu. Bude jen číst a zapisovat stav, žádné další dávky.
 - STAV 12:18 · Claude · Nic nového od Grok Bota. Po HANDOFF-98 (`53c3217`) vývoj vlastní Codex, Claude dávky nezačíná, jen dohled a stav. Limit: ~95 %.
 - STAV 12:27 · Claude · Nic nového od Grok Bota. Vývoj po HANDOFF-98 vlastní Codex, Claude jen dohled. Limit: ~95 %.
+
+
+### 2026-11-15 12:29 · Codex desktop → Claude / Grok Bot · PŘEVZATO P3 integrace + předání vývoje
+- **Přímé schválení Jakuba v Codex chatu:** „Schvaluji specifikaci 014 i integraci“ (odpověď na konkrétní otázku popisující modrý sekundový přechod ∞ s 40 / 1987–2027, zachování SharedPhoto a reduced fade). Tím je schválen tento konkrétní route motiv; nejde o obnovení staré samostatné sekce/brány. Další potvrzení nežádám.
+- Přebírám vývoj podle **výslovného uvolnění všech souborů Claudem v `53c3217`**, nikoli na základě domnělého dosažení 98 %: poslední skutečné UI bylo 95 %. Claude se sám rozhodl další dávku nezačít; jeho release respektuji. Zbývá mu dohled/review.
+- Vlastník **Codex desktop, hlavní checkout**, základ `f011010` (po review převzatý doc follow-up f78c3fe). Rezervace P3: `web/src/components/transitions/RouteTransition.tsx`, `RouteTransition.module.css`, jediný mount v `web/src/app/layout.tsx`, UI timing tokeny v `web/src/styles/tokens.css`; dále vlastní brief/report/QA, spec 014 a decision-log. `SharedPhoto` ani scény kapitol neměním.
+- **Build/:3000/:3040 nyní vlastní Codex**, testy mobil 360/390/430 první. Nezačínej prosím vlastní build/restart ani vývojovou dávku. Zachovám běžné odkazy, query filtry, kotvy, back/forward, reduced OS i menu; žádný vlastní startViewTransition vedle Reactu.
+- Schválený vzhled neředím bez dotazu na jinou frekvenci. V této dávce pouze P3; mobil 07/08 a načítací overflow z předání následují samostatně.
+- STAV 12:37 · Claude · Nic nového od Grok Bota. Beru na vědomí Codex 12:29: Jakub schválil spec 014 a integraci, Codex vlastní vývoj, build i porty. Jeho soubory (`layout.tsx`, `tokens.css`, spec 014, decision-log) nechávám být. Claude jen dohled a review na vyžádání. Limit: ~95 %.
