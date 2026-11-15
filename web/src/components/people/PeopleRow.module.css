@@ -8,6 +8,7 @@
   font-weight: var(--wght-ui);
 }
 .row {
+  position: relative;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -21,6 +22,9 @@
   margin-bottom: clamp(24px, 3vw, 56px);
 }
 .card {
+  /* Contains the visually hidden labels, so before JS they cannot escape the
+     swipe strip's clipping and widen the page (load-time overflow). */
+  position: relative;
   display: grid;
   gap: 6px;
   width: 100%;

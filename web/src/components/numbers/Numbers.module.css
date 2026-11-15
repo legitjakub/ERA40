@@ -54,7 +54,9 @@
   pointer-events: none;
 }
 .lines[data-ready="false"] {
-  visibility: hidden;
+  /* The unmeasured 800px SSR geometry must not enlarge the document while
+     hydration is delayed. The HTML figures and controls stay available. */
+  display: none;
 }
 .lines path {
   fill: none;
@@ -217,6 +219,7 @@
 }
 .unit {
   font-size: 0.6em;
+  white-space: nowrap;
 }
 .example {
   display: grid;
@@ -273,4 +276,20 @@
 /* N4: the first figure leads (the figures stack under 860 px, above). */
 .more > div:first-child .moreValue {
   font-size: clamp(2.8rem, 5vw, 4.4rem);
+}
+@media (max-width: 767px) {
+  .inner { width: auto; margin-inline: 24px; }
+  .tree { margin-top: 2.25rem; }
+  .sectorButton {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 12px;
+    line-height: 1.4;
+  }
+  .sectorButton > span { min-width: 0; }
+  .more { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 20px; }
+  .more > div { min-width: 0; }
+  .more > div:first-child { grid-column: 1 / -1; padding-bottom: 20px; border-bottom: 1px solid var(--c-line); }
+  .moreValue { font-size: 2.1rem; }
 }

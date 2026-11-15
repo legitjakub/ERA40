@@ -67,13 +67,13 @@ export function Future() {
             <line className={s.dotted} x1="46%" y1="40" x2="101%" y2="40" mask={`url(#${maskId}-desktop)`} />
             <g data-final-open><circle className={s.station} cx="46%" cy="40" r="7" /><text x="46%" y="82" textAnchor="middle">Tvoje cesta</text></g>
           </svg>
-          <svg className={s.mobileRoute} data-route="mobile">
+          <svg className={s.mobileRoute} data-route="mobile" viewBox="0 0 340 96">
             <defs><mask id={`${maskId}-mobile`} maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
-              <path data-future-mask d="M12 56V160" stroke="white" strokeWidth="8" fill="none" />
+              <path data-future-mask d="M112 28H352" stroke="white" strokeWidth="8" fill="none" />
             </mask></defs>
-            <path data-final-route d="M12 -10V56" />
-            <path className={s.dotted} d="M12 56V160" mask={`url(#${maskId}-mobile)`} />
-            <g data-final-open><circle className={s.station} cx="12" cy="56" r="7" /><text x="36" y="62">Tvoje cesta</text></g>
+            <path data-final-route d="M-12 28H112" />
+            <path className={s.dotted} d="M112 28H352" mask={`url(#${maskId}-mobile)`} />
+            <g data-final-open><circle className={s.station} cx="112" cy="28" r="7" /><text x="112" y="72" textAnchor="middle">Tvoje cesta</text></g>
           </svg>
         </div>
         <div className={s.actions}>

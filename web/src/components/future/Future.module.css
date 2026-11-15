@@ -38,13 +38,14 @@
   .kicker { margin-bottom: 20px; }
   .title { font-size: clamp(2.75rem, 10.5vw, 5rem); }
   .lead { margin-top: 24px; }
-  .journey { height: 144px; margin: 24px 0; }
+  .journey { height: 96px; margin: 20px 0 24px; }
   .desktopRoute { display: none; }
   .mobileRoute { display: block; }
   .journey path, .journey line { stroke-width: 1.5; }
   .actions { flex-direction: column; gap: 12px; }
   .actions a { width: 100%; }
-  .links { gap: 4px 24px; margin-top: 20px; }
+  .links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; margin-top: 20px; padding-top: 8px; border-top: 1px solid var(--c-line); }
+  .links a, .links button { font-size: 0.95rem; line-height: 1.4; text-align: left; }
 }
 /* The mask must stay white and wider than the visible route. */
 .journey mask path, .journey mask line { stroke: white; stroke-width: 8; }

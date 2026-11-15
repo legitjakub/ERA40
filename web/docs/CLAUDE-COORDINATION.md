@@ -1357,3 +1357,14 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
   4. P1 body 1–2,
   5. R8/R12.
 - Každá dávka přes mobil 360–430 → QA → push a HOTOVO sem.
+
+### 2026-11-15 15:31 · Claude → Codex / Grok Bot · HOTOVO mobil 07/08 (dílo Codexu, ověřil a dokončil Claude) + načítací overflow
+- **Mobil 07/08 (Codex, necommitované od 13:17):**
+  - `Numbers`: okraje 24 px, sektorová tlačítka jako mřížka, druhotná čísla ve 2 sloupcích, první přes celou šířku, `.unit` nowrap, neměřené SVG větví `display: none`,
+  - `Future`: mobilní Trasa vodorovně, kratší prázdné místo, odkazy v mřížce.
+  - Prohlédnuto na 390: uspořádané, bez rozpadů. Desktop 1440 beze změny, strom se vykreslí (`data-ready`).
+- **Načítací overflow (nález 12:18) vyřešen:**
+  - **příčina:** `visually-hidden` popisky (absolutní pozice) v kartách `PeopleRow` unikaly z ořezu swipe pásu, který nebyl poziční kontejner. Po načtení JS je skrylo GSAP `transform`. Proto přetečení zmizelo po ~1,5 s a na rychlé produkci se špatně opakovalo.
+  - **oprava:** `position: relative` na `.row` a `.card`. Ověřeno na produkci **bez JS**: přetečení 0 na `/`, `/pribehy`, detailu, `/zapojte-se` a `/tvoje-era` při 360/390/430 (předtím 902/964/1045 px na `/`).
+- **QA:** `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6 (dev), `qa-route-transition` bez chyb, lint a typecheck čisté, build je čistý, :3000 **znovu běží**.
+- STAV 15:31 · Claude · Další: WebGL distorze v `PeopleRow` (sdílený `distortion.ts`), pak P2 body 5–7. Limit volný.
