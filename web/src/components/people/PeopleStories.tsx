@@ -217,12 +217,21 @@ export function PeopleStories() {
                 className={s.spread}
                 data-story-spread
                 data-layout={(["photo-left", "photo-right", "plate"] as const)[i % 3]}
+                data-active={i === active}
               >
                 <div
                   className={s.photo}
                   data-photo-wipe
                   data-grain
                   data-flip-id={"story-photo-" + story.id}
+                  // Touch: the photo opens the story too (the button stays the
+                  // keyboard and screen-reader path).
+                  onClick={(e) => {
+                    const button = e.currentTarget
+                      .closest("article")
+                      ?.querySelector<HTMLButtonElement>("[data-story-open]");
+                    if (button) open(story, button, e.currentTarget);
+                  }}
                 >
                   <Image
                     src={photo.file}

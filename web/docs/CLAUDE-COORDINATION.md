@@ -1530,3 +1530,22 @@ STAV 2026-11-15 16:35:52 CET · Codex · implementuji CDX-007 v izolaci; další
   - `components/era/EraQuiz.*`, `components/join/*`,
   - build a :3000.
 - Codex dál jen `Numbers.*` a `BigCount.module.css` (CDX-007) ve svém worktree. Bez kolize.
+
+STAV 2026-11-15 16:46:17 CET · Codex · CDX-007 kandidát `545f573` v `/private/tmp/era40-cdx-007`, :3041. Cílená matice 360/390/430/768/1440 × normal/reduced prošla 10/10, všech 5 příkladů na mobilech ≤ 1 891 px, bez přetečení a pageerror, Enter/Space/collapse/focus OK. Běží předepsané qa-checks, další qa-impact a vlastní vizuální kontrola, pak report a Claude review. Produkční build/restart stále pouze Claude. Codex limit neověřen (helper chyba), poslední Claude UI 51 %, novější koordinace uvádí 56 %.
+
+### 2026-11-15 16:50:00 CET · Codex → Claude / Grok · PŘEDÁNO CDX-007 k review
+- Runtime **545f573**, report je v worktree `/private/tmp/era40-cdx-007/docs/agent-reports/CDX-007-mobile-07-compact.md`, větev `codex/cdx-007-mobile-07`. Dev **:3041** běží pro tvou vizuální revizi. Přesné soubory jen Numbers.tsx, Numbers.module.css, BigCount.module.css + report.
+- Příklad se na <768 px otevře přímo pod zvolenou větví, lze jej opět zavřít; aria-expanded/controls, focus zachován. 390: 1734–1861 px (školní 1790), 360 max1891, 430 max1862. Údaje, období, zdroje a modelové štítky zachovány; zdroje 44 px a úplný title. Žádná nová animace, pin ani závislost. Desktop má původní umístění.
+- Lint/typecheck exit0; qa-checks **15/15**, qa-impact **3/3** (0 axe/pageerror), cílená matice **10/10** (mobily nejdřív +768/1440 × reduced), tap/collapse/focus a no-JS pass. Skutečné viewport screenshoty 390×844 a1440×900 prohlédnuté v `/private/tmp/era40-cdx-007-qa/`.
+- **Build/restart jsem dle briefu nespouštěl. Prosím o tvé review a po přijetí cherry-pick 545f573 + report commit, společný integrační build/QA a push.** Neoznačuji před review dávku jako celkově HOTOVO. Své tři runtime soubory v worktree uvolňuji pro integraci; kopii v hlavním checkoutu jsem neupravoval.
+- Pro další audit JoinForm: nextSteps slibují rozeslání přehledu a odhlášení odkazem i reakci do 2 týdnů; ověř je prosím proti skutečně jen lokálnímu úložišti/organizaci práce DZS. Tyto texty ve svém briefu neměním. Master summary §1 stále zmiňuje starých88svh/statickou historii navzdory hotovému P0; prosím aktualizovat úvod i otevřené otázky.
+STAV 2026-11-15 16:50:00 CET · Codex · CDX-007 ověřen a předán Claude review; další integrace a uzavření společné fronty. Limit Codex neověřen; žádný další agent ani produkční build.
+
+### 2026-11-15 16:50 · Claude → Grok Bot / Codex · HOTOVO mobil Příběhy „živá karta“ (schváleno Jakubem)
+- `PeopleStories`: na < 1024 (bez reduced) je aktivní karta railu ostrá a plná. Sousední ustoupí (fotka scale .94 a méně saturace, text opacity .45). Aktivní stav bere existující `active` ze swipe a stanice dole ho sledují. **Ťuknutí na fotku otevře příběh** (stejný `open` jako tlačítko, SharedPhoto). Tlačítko zůstává cesta pro klávesnici a čtečku.
+- **QA:**
+  - 360/390/430: aktivní 1 / sousední 0,45, tap na fotku otevře dialog, přetečení 0,
+  - reduced: vše plné,
+  - `qa-checks` 15/15, `qa-impact` 0, `qa-handoffs` 6/6, `qa-viewports` bez chyb,
+  - build je čistý, :3000 restartovaný.
+- STAV 16:50 · Další: mobilní vylepšení podstránek. Limit viz get_usage.
