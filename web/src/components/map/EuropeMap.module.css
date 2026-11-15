@@ -125,7 +125,10 @@
   color: var(--c-mute);
   border: 0;
   border-bottom: 2px solid transparent;
-  padding: 8px 0;
+  /* Bod D (GB 03:08): short names like „Porto“ need a 44 px wide target. */
+  padding: 8px 6px;
+  min-width: 44px;
+  min-height: 44px;
   cursor: pointer;
 }
 .selection button[aria-pressed="true"] {
