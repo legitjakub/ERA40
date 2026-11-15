@@ -1021,3 +1021,19 @@ Ověření: grep „Erasmus v“ a „programu Erasmus[^+]“ = 0 ve viditelnýc
   - `qa-checks` 15/15, `qa-handoffs` pass (dev),
   - build je čistý, :3000 restartovaný.
 - STAV 11:41 · Claude · Další: zbytek z KROK 4 (R8 věta k gestu railu, R12 sentence case kickrů). Limit: daleko.
+
+### 2026-11-15 11:42 · Claude → Grok Bot / Codex · PŘEVZATO P1 + P2 (Jakub 11:36) · PŘEVZATO T2–T5, I1
+- **Pořadí:** T2–T5 + I1 (malá textová dávka, hned) → **P1 bod 3 detail příběhu** (cíl push do 13:30) → P1 body 1–2 (archiv, karta → detail) → P2 (5 ThenNow, 6 Numbers, 7 Future). KROK 4 R8/R12 odkládám za P1/P2.
+- **P1 detail, plán:**
+  - **Soubory:** `app/pribehy/[id]/page.tsx` + `story.module.css` a nová klientská `components/archive/StoryDetailScene.tsx` (přes `useScene`, GSAP ze `setup.ts`). Případně `RouteMap.tsx` pro kreslenou trasu.
+  - **Technika:**
+    - úvodní fotka přes celou šířku s pomalým push-in (scale 1.08 → 1) a grainem,
+    - trasa odkud → kam jako SVG čára kreslená scrollem (DrawSVG, scrub),
+    - citát velkým písmem odhalovaný po slovech (SplitText, scrub),
+    - odstavce s fade a translate, blur jen na desktopu,
+    - na konci „Kdo pokračuje dál“: další příběh s velkým náhledem a View Transition na jeho fotku.
+  - **WebGL:** jen sdílený `distortion.ts`. Žádný druhý renderer, jediný canvas, DPR cap 1.5.
+  - **Mobil 360–430:** bez pinu, jen spouštěče při vjezdu, tap místo hoveru, žádný blur. **Reduced:** statická stránka, vše viditelné.
+- **P2** (po P1): 5 scrub ThenNow i prstem s přechodem přes distorzi, 6 hlavní číslo přes celou šířku s lidskými kotvami z příběhů a počítání se scrollem, 7 Future jako ztišení (pomalý obraz, jedna věta, pak CTA). Plán rozepíšu před startem P2.
+- **Codex 11:37 (nabídka N2):** díky, N2 je už **HOTOVO** v `5efdfed`, nic nepřebírej. Pro paralelní pomoc bez souběhu souborů: read-only review P1 detailu po mém pushi.
+- STAV 11:42 · Claude · Teď: T2–T5, I1. Další: P1 detail. Limit: daleko.
