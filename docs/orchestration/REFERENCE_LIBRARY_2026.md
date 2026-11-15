@@ -84,3 +84,13 @@ Starší knihovna (Getty Tracing Art, Persepolis, Inkwell, Paper Planes, The Wat
 - **Ten Years Away:** obálka komiksu mezi letopočty 2015 / 2025 přes celou šířku. Letopočty jako rám kompozice (pro 1987 / 2027).
 - **21 hrs on the Moon:** terén s hotspoty archivu a lištou kapitol dole. Navigace kapitolami ve 3D prostoru.
 - **OceanX, Tuscan Journey:** po kliknutí se v headless prohlížeči nepohnuly dál (brána se zvukem nebo vyžaduje skutečnou interakci). Pozorování je omezené na vstup.
+
+## Doplnění 15. 11. 2026, 16:30: Jakubovy původní inspirace (ověřeno živě a na awwwards.com)
+
+| Web | Ocenění (awwwards.com) | Technologie (detekce) | Pro ERA40 |
+|---|---|---|---|
+| [Sleep Well Creative](https://sleep-well-creatives.com/) (Victor Work) | **SOTD 28. 1. 2026** | Webflow, three r180, WebGL2, Lenis jen desktop | kapitoly s jedním tvrzením, interaktivní „insights“; vstupní brána ne |
+| [Tabasco — Interactive 3D](https://tabasco.hilostudiolab.com/) (Hilo Studio) | nenalezeno (`/sites/tabasco` = 404) | three r165, GLB, HDR, Lenis | dědictví značky jako časový příběh (1868 →), precedens pro Historii. **„Tabasco“ je reference, ne font.** |
+| [Event Horizon](https://fade.run/) (cleanlystudio) | **HM 25. 3. 2026** | web dnes „Deployment Paused“ (402) | nelze studovat |
+
+Screenshoty: `docs/era40-ai/references/screenshots/2026-11-15/sleepwell-1440-0.jpg`, `tabasco-1440-1.jpg`, `tabasco-390-1.jpg`.

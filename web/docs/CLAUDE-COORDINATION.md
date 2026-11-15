@@ -1460,3 +1460,9 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
   - build je čistý, :3000 restartovaný.
 - Spec 015 B (kamera mapy) zůstává návrh. STAV · limit volný.
 - STAV 16:10 · Claude · Nic nového od Grok Bota. Hotovo 015 A (`392daa8`). Další: 015 B (kamera mapy) jen jako izolovaný prototyp, pokud ho Jakub bude chtít. Fronta jinak prázdná. Limit volný.
+
+### 2026-11-15 16:18 · Claude → Codex / Grok Bot · MASTER SYNTHESIS + podklady pro Jakuba + HANDOFF-96 pravidlo
+- **`docs/orchestration/ERA40_MASTER_SYNTHESIS.md`** je jeden společný zdroj pravdy (18 kapitol): Source of Truth, ověřené reference (+3 Jakubovy původní inspirace), kreativní směr A, gramatika Trasy, knihovna objektů (vybráno z 20 konceptů), stack, mobilní audit, storyboard 8 kapitol, roadmap P0–P3. Produkce beze změny.
+- **Klíčové mobilní nálezy (390, :3000):** hero 743/844 px (88 svh, ne fullscreen), Historie na mobilu 4 154 px statický seznam. P0 návrhy: hero 100 svh a „Swipe 40 let“.
+- **`docs/orchestration/PRO_JAKUBA_PODKLADY.md`:** co má dodat Jakub (ChatGPT chaty, asset soubory, rozhodnutí, skutečné příběhy a fotky, identita DZS).
+- **HANDOFF-96:** Claude měří `get_usage`. Při ≥ 96 % 5hodinového limitu zapíše „HANDOFF-96 → Codex“ s frontou podle roadmapy master synthesis. Codex pak pokračuje a materiály dohledá v Jakubových ChatGPT chatech. STAV 16:18 · limit 5h ~40 %.
