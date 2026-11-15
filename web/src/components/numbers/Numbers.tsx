@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
 import { EASE } from "@/lib/gsap/presets";
@@ -31,6 +31,50 @@ const examples: Record<string, string | undefined> = {
   vet: "porto-sos",
   school: "ucitelka",
 };
+
+const compactQuery = "(max-width: 767px)";
+const compactSnapshot = () => window.matchMedia(compactQuery).matches;
+const serverSnapshot = () => false;
+function subscribeCompact(onChange: () => void) {
+  const media = window.matchMedia(compactQuery);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+}
+
+/** One shared panel: beside the tree on desktop, directly under its branch on phones. */
+function SectorExample({ sectorId, open }: { sectorId: string; open: boolean }) {
+  const sector = sectorBreakdown.find((item) => item.id === sectorId)!;
+  const example = stories.find((story) => story.id === examples[sectorId]);
+  const photo = example ? storyPhoto(example) : null;
+  return (
+    <div id="sector-example" className={s.example} hidden={!open}>
+      {example && photo ? (
+        <>
+          <figure className={s.examplePhoto}>
+            <Image src={photo.file} alt={photo.alt} fill sizes="(max-width:767px) 88px,(min-width:1024px) 32vw,90vw" />
+            <figcaption>Ilustrační snímek</figcaption>
+          </figure>
+          <div className={s.exampleText}>
+            <p className={s.exampleLabel} role="status">
+              <span className={s.exampleSector}>{sector.label}<br /></span>
+              <StoryLabel story={example} />
+            </p>
+            <h3>{example.name}</h3>
+            <StoryImpact story={example} />
+            <Link href={`/pribehy/${example.id}`}>Přečti si celý příběh <span aria-hidden="true">↗</span></Link>
+          </div>
+        </>
+      ) : (
+        <div className={s.exampleText}>
+          <p className={s.exampleLabel} role="status">{sector.label}</p>
+          <h3>Patří sem i tvůj příběh.</h3>
+          <p>Příběhy ze vzdělávání dospělých teprve shromažďujeme. Co se díky zahraniční zkušenosti změnilo u tebe?</p>
+          <Link href="/zapojte-se#organizace">Zapojit organizaci <span aria-hidden="true">↗</span></Link>
+        </div>
+      )}
+    </div>
+  );
+}
 
 // Tree geometry in real pixels, measured from the HTML rows. Every branch is
 // an equal elbow plus a straight run whose length is value × one common scale.
@@ -74,10 +118,9 @@ export function Numbers() {
   const treeRef = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReducedMotion();
   const [sectorId, setSectorId] = useState("school");
+  const [exampleOpen, setExampleOpen] = useState(true);
+  const compact = useSyncExternalStore(subscribeCompact, compactSnapshot, serverSnapshot);
   const [tree, setTree] = useState<Tree | null>(null);
-  const selectedSector = sectorBreakdown.find((sector) => sector.id === sectorId)!;
-  const example = stories.find((story) => story.id === examples[sectorId]);
-  const photo = example ? storyPhoto(example) : null;
   const geometry = treeGeometry(
     tree ?? { width: 800, height: 400, spine: 320, rows: [] },
   );
@@ -339,8 +382,11 @@ export function Numbers() {
             </span>
             <span className={s.trunkLabel}>Podle oblasti vzdělávání</span>
             <span className={s.source}>
-              {participationPeriod}{" "}
-              <a href={participationSource.url}>{participationSource.label}</a>
+              <span className={s.trunkPeriod}>{participationPeriod}</span>{" "}
+              <a href={participationSource.url} title={`${participationPeriod} ${participationSource.label}`}>
+                <span className={s.sourceFull}>{participationSource.label}</span>
+                <span className={s.sourceShort}>Zdroj: DZS <span aria-hidden="true">↗</span></span>
+              </a>
             </span>
           </div>
           <ol
@@ -353,8 +399,12 @@ export function Numbers() {
                   type="button"
                   className={s.sectorButton}
                   aria-pressed={sectorId === sector.id}
+                  aria-expanded={compact ? sectorId === sector.id && exampleOpen : undefined}
                   aria-controls="sector-example"
-                  onClick={() => setSectorId(sector.id)}
+                  onClick={() => {
+                    setExampleOpen(!compact || sectorId !== sector.id || !exampleOpen);
+                    setSectorId(sector.id);
+                  }}
                 >
                   <span>{sector.label}</span>
                   <strong>
@@ -365,6 +415,9 @@ export function Numbers() {
                   </strong>
                 </button>
                 <span className={s.track} data-branch-row aria-hidden="true" />
+                {compact && sectorId === sector.id && (
+                  <SectorExample sectorId={sectorId} open={exampleOpen} />
+                )}
               </li>
             ))}
           </ol>
@@ -374,32 +427,7 @@ export function Numbers() {
           stejné měřítko. Jde o počty účastníků, nikoli o počet lidí, které
           zkušenost nepřímo ovlivnila.
         </p>
-        <div id="sector-example" className={s.example} key={sectorId}>
-          {example && photo ? (
-            <>
-              <figure className={s.examplePhoto}>
-                <Image src={photo.file} alt={photo.alt} fill sizes="(min-width:1024px) 32vw,90vw" />
-                <figcaption>Ilustrační snímek</figcaption>
-              </figure>
-              <div className={s.exampleText}>
-                <p className={s.exampleLabel} role="status">
-                  {selectedSector.label}<br />
-                  <StoryLabel story={example} />
-                </p>
-                <h3>{example.name}</h3>
-                <StoryImpact story={example} />
-                <Link href={`/pribehy/${example.id}`}>Přečti si celý příběh <span aria-hidden="true">↗</span></Link>
-              </div>
-            </>
-          ) : (
-            <div className={s.exampleText}>
-              <p className={s.exampleLabel} role="status">{selectedSector.label}</p>
-              <h3>Patří sem i tvůj příběh.</h3>
-              <p>Příběhy ze vzdělávání dospělých teprve shromažďujeme. Co se díky zahraniční zkušenosti změnilo u tebe?</p>
-              <Link href="/zapojte-se#organizace">Zapojit organizaci <span aria-hidden="true">↗</span></Link>
-            </div>
-          )}
-        </div>
+        {!compact && <SectorExample key={sectorId} sectorId={sectorId} open />}
         <dl className={s.more}>
           {others.map((stat) => (
             <div key={stat.id}>
@@ -410,7 +438,13 @@ export function Numbers() {
                 {stat.suffix && <span className={s.unit}>{stat.suffix}</span>}
               </dd>
               <dd className={s.source}>
-                {stat.period} <a href={stat.sources[0].url}>{stat.sources[0].label}</a>
+                <span className={s.sourcePeriod}>
+                  {compact && stat.id === "satisfaction" ? "Šetření DZS a STEM/MARK, 2022." : stat.period}
+                </span>{" "}
+                <a href={stat.sources[0].url} title={`${stat.period} ${stat.sources[0].label}`}>
+                  <span className={s.sourceFull}>{stat.sources[0].label}</span>
+                  <span className={s.sourceShort}>Zdroj: DZS <span aria-hidden="true">↗</span></span>
+                </a>
               </dd>
             </div>
           ))}

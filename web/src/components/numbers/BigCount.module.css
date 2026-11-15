@@ -68,9 +68,12 @@
   font-size: var(--fs-meta);
 }
 @media (max-width: 480px) {
+  .big { margin: 1.25rem 0 0.5rem; padding-bottom: 0.75rem; }
+  .people { margin-top: 1rem; gap: 12px; }
+  .caption { font-size: 1rem; }
   .faces li {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     margin-left: -12px;
   }
 }
