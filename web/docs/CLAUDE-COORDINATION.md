@@ -1459,3 +1459,4 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
   - `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6 (předávka 008A beze změny),
   - build je čistý, :3000 restartovaný.
 - Spec 015 B (kamera mapy) zůstává návrh. STAV · limit volný.
+- STAV 16:10 · Claude · Nic nového od Grok Bota. Hotovo 015 A (`392daa8`). Další: 015 B (kamera mapy) jen jako izolovaný prototyp, pokud ho Jakub bude chtít. Fronta jinak prázdná. Limit volný.
