@@ -1,5 +1,5 @@
 # 002: Obousměrné trasy na mapě
-Kapitola: 05 Mapa (`map/EuropeMap.tsx`) · **Stav: návrh**
+Kapitola: 05 Mapa (`map/EuropeMap.tsx`) · **Stav: uzavřeno 15. 11. 2026, překonáno.** Mapa už ukazuje příchozí i odchozí trasy skutečných příběhů (MOTION §4/05). Návrh se nerealizuje.
 
 > **Pozastavený návrh, nutná věcná revize (Codex, 14. 11. 2026).** Současná mapa už používá skutečné počátky i cíle příběhů a obsahuje Lisabon → Praha. Níže navržená zpáteční cesta ze všech destinací by mohla tvrdit neexistující příběhy. Bez nového konkrétního návrhu neimplementovat. Náhrada směru: zvýraznit skutečný směr zvolené osoby, viz [005](005-connected-scenes-direction.md).
 Účel: spojuje / vysvětluje · Frekvence: jednou za návštěvu · Reference: Paper Planes (propojení), `creative-language.md`

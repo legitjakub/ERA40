@@ -317,7 +317,7 @@ Formát: INITIAL → INTRO → INTERACTION → OUTRO → REVERSE · MOBILE · RE
 | **P1** | Identita: lockup, loga, povinné EU texty | právní a brand | S | nízké | **DZS** | DZS |
 | **P2** | Sjednotit motion presety (draw, wipe, reveal, count) a D-007 easing | konzistence, údržba | M | nízké | — | D-007 Jakub |
 | **P2** | 07 na mobilu zkrátit (příklad pod větev) | méně scrollu | S | nízké | — | ne |
-| **P2** | Dokumentace: MOTION.md §4, creative-language, zavřít spec 002/003 | pravda v dokumentech | S | — | — | ne |
+| **P2 ✅** | Dokumentace: MOTION.md §4, creative-language, spec 002/003/004 uzavřené (15. 11.) | pravda v dokumentech | S | — | — | — |
 | **P2** | Archivní fragmenty 1987/1998/2004 | autenticita Historie | S | nízké | **archivní foto** | ano |
 | **P3** | 015 B kamera mapy (izolovaný prototyp) | čitelnost krátkých tras | M | **orientace** | asset prototyp | ano |
 | **P3** | GPU ribbon Trasy (PoC 011 → rozhodnutí) | „wow“ vrstva | L | výkon, mobil | — | ano |

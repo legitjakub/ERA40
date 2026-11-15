@@ -49,39 +49,41 @@ Každá specifikace musí vyplnit:
 
 Stav ✅ = implementováno, 🟡 = částečně, ⬜ = návrh (nevyvíjet bez schválení).
 
-### 01 Odjezd (hero)
-- INTRO ✅: poster je LCP, video se rozjede. Titulek se vysune po řádcích, rok 1987 se počítá do 2027 a Trasa se natáhne zleva.
-- AMBIENT ✅: běžící film s titulky (FilmCaptions), magnetické CTA na desktopu.
-- OUTRO ✅: pin 150 vh. Film se zmenší do rámu (scale 0,86 + clip-path), text odjede, Trasa pokračuje dolů. Je to předávka „stránka pokračuje uvnitř filmu“.
-- Směr ⬜: nic nepřidávat. Jakub úvod schválil. Případně jen jemnější časování intra po revizi `choreograph`.
+*Aktualizováno 15. 11. 2026 (podle kódu a `docs/orchestration/ERA40_MASTER_SYNTHESIS.md` §14).*
+
+### 01 Úvod (hero)
+- INTRO ✅: poster je LCP, film (balení → škola → přednáška → večeře → večer → návrat → „A předává to dál.“) s titulky, claim po řádcích, „všechno.“ žlutě (P0b), rok signatury se počítá 1987 → 2027 (otázka N-HERO-YEAR: ponechat, nebo pevně?).
+- OUTRO ✅: pin 150 vh, film se zmenší do rámu a Trasa pokračuje dolů.
+- MOBIL ✅: 100 svh + safe-area (D-021). Film z originálů, 720 × 1280.
 
 ### 02 Prolog
-- INTRO ✅: čtecí zvýraznění slov scrubem, sekvence z okna vlaku.
-- OUTRO 🟡: Trasa se má ohnout dolů do Historie (DESIGN §6). Ověřit v prohlížeči, zda je předávka vidět.
+- ✅ čtecí zvýraznění slov scrubem („trochu jiní.“ EU modrou). **PeopleRow:** 8 lidí z příběhů stoupá vlnou (desktop scrub), hover ožije přes WebGL, na mobilu swipe, tap otevře příběh. Okno vlaku je odstraněné (P0, D-006).
 
 ### 03 Historie
-- INTRO/AMBIENT ✅: pin, dvě linie (EU 1987, CZ 1998 se připojí), roky, fotky přes clip-path.
-- Směr ⬜: přechod fotek jako „vertikální žaluzie / pražce“ (SVG maska, viz `tutorials/implementation-notes/svg-mask-transitions.md`), jen pokud zlepší čitelnost stanic.
+- ✅ desktop: pin, linka v časovém měřítku 1987–2027, 40 pražců, česká linka od 11. značky, 2004 modré pozadí, „Rok N ze 40“ (D-020).
+- ✅ mobil, nízké a reduced obrazovky: „Swipe 40 let“, karty milníků a interaktivní pás (D-021).
+- OUTRO ✅: předávka 008A, poslední snímek → fotka Terezy.
 
 ### 04 Příběhy
-- ✅ pin + horizontální rail, WebGL distorze podle rychlosti, Flip do detailu.
-- Směr ⬜: ověřit, že distorze zůstává pod prahem čitelnosti a vypíná se na mobilu a při reduced motion.
+- ✅ pin a vodorovný rail, 3 kompozice spreadu (spec 012), WebGL distorze podle rychlosti (jen desktop), dialog nebo detail.
+- MOBIL ✅: swipe se snapem, hint gesta (R8), živá karta (aktivní ostrá, sousední ustoupí), tap na fotku otevře příběh.
 
 ### 05 Mapa Evropy
-- ✅ scrub kreslení skutečných tras jednotlivých příběhů (`coords.from → coords.to`), včetně Lisabon → Praha, body destinací, seznam tlačítek. Upřesněno po kontrole zdrojů 14. 11.; starší tvrzení „vše z Prahy“ neplatí.
-- Směr ⬜ (kandidát na signature): „kamera jede po Trase“. SVG viewBox se posouvá po cestě (`getPointAtLength`) a fotky příběhů podél trasy zaostří při průjezdu. Je to 2D varianta Blender camera path, bez three.js.
+- ✅ scrub kreslení skutečných tras (obousměrně, včetně Lisabon → Praha), výběr města nakreslí trasu s cestujícím bodem.
+- ⬜ 015 B kamera mapy, P3 (jen desktop, po výběru, max 1,6×, mobil celá mapa).
 
-### 06 Tehdy a teď
-- ✅ slider (drag + klávesnice). Pohyb řídí uživatel, nepřidávat autonomní pohyb.
+### 06 Návrat
+- ✅ dělič Tehdy/Teď: desktop pin a scroll, mobil scroll (P2 bod 5), prst, tlačítka a klávesnice mají vždy přednost. „Teď“ má druhý hlas se žlutým bodem.
+- OUTRO ✅: 008B, dělicí osa → kořen stromu 07, nadpis se píše wipem.
 
-### 07 Čísla
-- ✅ countery a scrub sloupců. Čísla vždy s obdobím.
+### 07 Rozvětvení
+- ✅ 411 400 přes celou šířku (count scrubem) a 8 tváří modelových příběhů (BigCount) → strom 5 oblastí podle skutečných počtů, výběr větve ztlumí ostatní → příklad (na mobilu pod větví, CDX-007) → sekundární čísla se zdroji.
 
-### 08 Budoucnost
-- ✅ Trasa odjíždí za pravý okraj a nekončí. To je jediné legitimní místo pro myšlenku „navždy“: Trasa pokračuje, žádný symbol ∞.
+### 08 Pokračování
+- ✅ ztišení (pomalá fotka a věta Mgr. Jany) → „Cesta končí. Zkušenost **pokračuje.**“ → Trasa odjíždí tečkovaně → CTA. Jediný doslovný ∞ na webu je přechod mezi stránkami (014, D-018), ne tady.
 
 ### Podstránky
-- PageIntro: fotka/modrá plocha, Trasa podél spodní hrany. Bez GSAP scén. Pohyb jen UI (hover, focus, Flip v archivu). Nové efekty sem nepatří bez schválení.
+- PageIntro: fotka/modrá plocha, Trasa podél spodní hrany. Archiv: stagger karet, hover ožití (WebGL desktop), sticky filtry na mobilu, řazení. Detail: push-in, citát po slovech, kreslená trasa, šipky a swipe mezi příběhy. Kvíz: pilulky s potvrzením. Přechod mezi stránkami 014. Další efekty jen po schválení.
 
 ## 5. Typografie v pohybu
 

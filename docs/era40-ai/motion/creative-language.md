@@ -54,15 +54,16 @@ Tento jazyk nic nového nepřidává, jen pevně definuje, co už existuje (Tras
 - Tehdy/teď (06) je jediné místo, kde čtenář **sám** hýbe časem (slider). Nepřidávat autonomní pohyb.
 - Gramatika Trasy (plná / bod / tečkovaná) to propojuje s celým webem.
 
-## Mapa motivů na kapitoly (kandidáti, max 1 nový pohyb na kapitolu)
+## Mapa motivů na kapitoly (stav 15. 11. 2026)
 
-| Kapitola | Motiv | Objekt / přechod | Priorita |
-|---|---|---|---|
-| 01 Odjezd | — | nic nového (schválený úvod) | — |
-| 02 Prolog | cestování | okno vlaku jako frame sequence do Historie | P2 |
-| 03 Historie | 40, proměna | pražcová osa 40 let + roky v rostoucím řezu | P1 |
-| 04 Příběhy | lidé | stanice na Trase, zaostření při průjezdu | P2 |
-| 05 Mapa | propojení | obousměrné trasy (výjezdy + příjezdy) | P1 |
-| 05→07 | propojení → čísla | linky se slijí do pruhů grafu | P3 |
-| 08 Budoucnost | navždy | Trasa v budoucím čase (tečkovaná), nedokončená | P1 |
-| celý web | čas | gramatika Trasy: plná / bod / tečkovaná | P0 (sjednocuje, nic nepřidává) |
+| Kapitola | Motiv | Stav |
+|---|---|---|
+| 01 Úvod | — | film a claim (D-002). Bez vlaku a tabule. |
+| 02 Prolog | lidé, předávání | PeopleRow „lidé, ne doprava“ (P0). **Okno vlaku zrušeno.** |
+| 03 Historie | 40, proměna | ✅ 40 pražců v časovém měřítku (D-020), mobil swipe (D-021), wdth letopočtu |
+| 04 Příběhy | lidé | ✅ stanice na Trase, živá karta, distorze |
+| 05 Mapa | propojení | ✅ obousměrné trasy. Kamera = 015 B (P3). |
+| 06 → 07 | návrat → větvení | ✅ 008B osa → kořen |
+| 08 Pokračování | navždy | ✅ tečkovaná Trasa za okraj, ztišení |
+| celý web | čas | ✅ gramatika Trasy (plná / bod / tečky) |
+| mezi stránkami | 40 let jako tah | ✅ 014 ∞ „40 / 1987–2027“ (D-018), **jediná výjimka** z pravidla „∞ se nekreslí doslova“ |

@@ -1,5 +1,5 @@
 # 003: Osa 40 let (pražce)
-Kapitola: 03 Historie (`history/HistoryTimeline.tsx`) · **Stav: návrh**
+Kapitola: 03 Historie (`history/HistoryTimeline.tsx`) · **Stav: uzavřeno 15. 11. 2026, nahrazeno spec 015 A (D-020).**
 Účel: vysvětluje (měřítko času) · Frekvence: jednou za návštěvu · Reference: `creative-language.md` (číslo 40)
 
 ## Koncept
