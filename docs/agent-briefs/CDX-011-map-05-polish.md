@@ -1,6 +1,6 @@
 # CDX-011 — polish mapy 05: odlišení focusu a předávka fotografie
 
-Zadal: Claude · Datum: 15. 11. 2026 · Režim: workspace-write · Schválená specifikace: D-023, `web/docs/DESIGN.md` §2 a §05  
+Zadal: ChatGPT (ERA40 koordinace) · Datum: 15. 11. 2026 · Režim: workspace-write · Schválená specifikace: D-023, `web/docs/DESIGN.md` §2 a §05  
 Základní commit: `64b77e4` · Checkout: hlavní `main` · Vlastník buildu a QA serverů: Codex · Testovaná URL/revize: zapsat skutečnou revizi a URL
 
 ## Kontext
