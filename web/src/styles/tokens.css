@@ -52,7 +52,11 @@
   --dur-l: 1.4s;
   --dur-route: 1s; /* approved choreography 014, UI handoff only */
   --dur-route-fade: 0.16s; /* reduced motion / no native shared photo */
-  --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+  /* D-007 (decided 15. 11., delegated by Jakub): CSS matches GSAP.
+     --ease-out = power3.out (easeOutQuart), --ease-in-out = power2.inOut
+     (easeInOutCubic). Snappier start, calm landing: „jede jako vlak“. */
+  --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
   /* Trasa motif */
   --trasa-stroke: 2px;

@@ -114,3 +114,38 @@ export function flexAxes(
     ...vars,
   });
 }
+
+/**
+ * Opacity-and-rise reveal for groups (cards, paragraphs). Opacity only, never
+ * visibility, so revealed text stays in the accessibility tree (lesson
+ * 15. 11.). Returns the batch triggers for cleanup by the scene context.
+ */
+export function riseIn(
+  targets: Element[] | NodeListOf<Element>,
+  opts: { y?: number; stagger?: number; start?: string } = {},
+) {
+  return import("./setup").then(({ ScrollTrigger }) =>
+    ScrollTrigger.batch(Array.from(targets), {
+      start: opts.start ?? "top 90%",
+      once: true,
+      onEnter: (batch) =>
+        gsap.from(batch, {
+          opacity: 0,
+          y: opts.y ?? 32,
+          duration: DUR.m,
+          ease: EASE.out,
+          stagger: opts.stagger ?? 0.09,
+          clearProps: "transform,opacity",
+        }),
+    }),
+  );
+}
+
+/**
+ * Left-to-right wipe (clip-path), the „written out along the route“ reveal
+ * used for the 07 headline. Pass a progress 0–1 to set it from a scene.
+ */
+export function wipe(el: HTMLElement, progress: number) {
+  const p = Math.min(1, Math.max(0, progress));
+  el.style.clipPath = `inset(-0.2em ${((1 - p) * 100).toFixed(2)}% -0.2em 0)`;
+}

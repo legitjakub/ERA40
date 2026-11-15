@@ -1594,3 +1594,26 @@ Lokálně je 5 ověřených commitů nepushnutých (f37ce11 02:24, 52277f2, dfb4
 - **PŘEVZATO historický bod Grok 02:47 → Cursor koordinačně, HOTOVO již dříve:** všech5 požadovaných commitů f37ce11/52277f2/dfb4efd/370e194/e4de4d7 je předkem origin/main (ověřeno git merge-base). Nic znovu nespouštím ani nepřisuzuji sobě; Cursor se nepoužívá.
 STAV 2026-11-15 18:43:23 CET · Codex · tato dávka uzavřena a soubory uvolněny; další jen aktuálně schválený brief z koordinace, N-HERO-YEAR a DZS podklady podle rozhodnutí vlastníka. Skutečný Codex Usage nyní43%5h /70%týden, reset21:24; účet běžné použití povoluje, nic se nekupuje.
 - HOTOVO N-HERO-YEAR 18:50 · Claude · signatura hero je pevně „1987–2027“ (D-022), odpočet koncového roku je odstraněný z `Hero.tsx`. Ověřeno na 360/390/430/1440: během úvodu se zobrazuje jen 1987–2027, chyby 0. `qa-checks` 15/15, `qa-viewports` bez chyb, build je čistý, :3000 restartovaný.
+
+### 2026-11-15 18:51 · Claude → Codex / Grok Bot · HOTOVO D-022 + CLAUDE-008 dávka 1 · **HANDOFF-96 → Codex (platí od teď)**
+- **D-022** (`9576994`): hero signatura je pevně „1987–2027“, ověřeno na 360/390/430/1440. **Hero je uvolněné.**
+- **CLAUDE-008 dávka 1** (tento commit): D-007 rozhodnuto (Jakub delegoval). `--ease-out` = power3.out `cubic-bezier(0.25, 1, 0.5, 1)`, nové `--ease-in-out`. Presety `riseIn` (jen opacity, a11y) a `wipe` v `lib/gsap/presets.ts`. Brief: `docs/agent-briefs/CLAUDE-motion-color-008.md`. QA: lint čistý, build čistý, `qa-checks` 15/15, :3000 restartovaný.
+- **K úklidu štítků (Codex):** podle CLAUDE.md musí **každý modelový příběh zůstat rozpoznatelný jako modelový** (v kartě nebo detailu). Fotky ilustrační mohou mít jedno společné upozornění na stránku. Žádná fotka nesmí působit jako skutečný účastník. Neměnit `stats.ts` ani zdroje.
+
+**HANDOFF-96 → Codex.** Claude je na 88–9x % 5h limitu (reset 19:50) a nezačíná další dávku.
+- **HEAD:** tento commit. **Rozpracované soubory Clauda: žádné.**
+- **Výslovně uvolňuji** celé `web/src/**`, `web/scripts/**`, build a porty :3000 a :3040. Restart :3000 přes PID (`lsof -tiTCP:3000 -sTCP:LISTEN`), pak `npm run start -- --hostname 127.0.0.1 --port 3000`.
+- **Poslední QA (main):** `qa-checks` 15/15, `qa-impact` 0, `qa-handoffs` 6/6 (dev :3040 `--url`), `qa-route-transition` bez chyb, `qa-viewports` 8 šířek × normal/reduced bez chyb. Env: `PLAYWRIGHT_BROWSERS_PATH=/private/tmp/era40-qa-browsers`, `AXE_SCRIPT=/private/tmp/era40-qa-tools/node_modules/axe-core/axe.min.js`.
+- **Zbývající fronta** (zdroj pravdy `docs/orchestration/ERA40_MASTER_SYNTHESIS.md` §16 a §17, plus `PRO_JAKUBA_PODKLADY.md`):
+  1. **Tvůj úklid štítků a fórum audit** (rozpracovaný, viz výše integrita).
+  2. **CLAUDE-008 dávka 2**, barva a pohyb v komponentách:
+     - Erasmus+ `#007FC7` jako druhá plocha pro jednu kapitolu (návrh: Mapa 05, bílé linky, žluté stanice, malý text bílý tučný ≥ 18,66 px),
+     - nájezdy přes `riseIn` místo ad-hoc fade-up,
+     - méně stejných rámečkových karet.
+     - Po komponentách, mobil 360–430 první, kontrast ověřit.
+  3. **015 B kamera mapy:** jen izolovaný prototyp (`docs/era40-ai/prototypes/015-map-camera/`), desktop, po výběru, zoom max 1,6×, mobil celá mapa. Zamítnout, pokud zhorší orientaci.
+  4. **P3:** GPU ribbon PoC (011), Blender jen pro renderovaný obraz.
+  5. **Drobná rozhodnutí** (Jakub je delegoval): hero CTA „Objevovat“ vs „Objev příběhy“ (doporučuji ponechat, bod 19 je jeho), proces kontaktů z `/zapojte-se` (nic nesliboat, dokud nebude CRM).
+  6. **Čeká na DZS:** skutečné příběhy, fotky a video (souhlasy), výroční lockup, loga a EU texty, ověřená čísla 2027, doména, hosting a nasazení (jen na Jakubův pokyn).
+- **Materiály a dílčí výstupy si ber z Jakubových klasických ChatGPT chatů**, kde jednotlivé věci vznikaly (přepisy v `docs/private/chatgpt/2026-11-15/` a další chaty přes tvůj konektor).
+- **Pokračuj podle plánu a plň všechny úkoly**: audit → spec → u významných animací schválení → prototyp → QA → push → zápis sem. Bez Cursoru, dalších agentů a placených služeb. Claude bude dál jen zapisovat stav.
