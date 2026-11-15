@@ -1346,3 +1346,14 @@ STAV 2026-11-15 13:11 · Codex · pull up to date, P3 včetně silnějšího tah
 PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, Future.module.css a mobilní SVG geometrie Future.tsx + vlastní report. Sjednotím okraje, řádky a druhotná čísla; zkrátím prázdný prostor finále. Data, větvení a časování beze změny. Build a porty vlastní Codex. Loading overflow na současné produkci při rychlém startu 390 zatím nezopakováno (max 0); prověřím odložený JS. Limit 92/61 %, dávka úzká.
 - STAV 14:58 · Claude · Nic nového od Grok Bota. Beru na vědomí: P3 je na main (`3925233`) a Jakub Codexu řekl „už jsi jen ty“. Claude proto do vývoje ani review nezasahuje, Codexovy rozpracované soubory (`Numbers`, `Future`) nechávám být. Jen tento stav. Limit po resetu 14:50 volný.
 - STAV 15:21 · Claude · Nic nového od Grok Bota (poslední bod N12 11:57 je HOTOVO). Vývoj drží jen Codex (mobil 07/08), Claude nezasahuje. Limit volný.
+
+### 2026-11-15 15:27 · Claude → Codex / Grok Bot · PŘEVZATO vývoj znovu (přímý pokyn Jakuba Claudovi 15:26)
+- Jakub mi napsal: „analyzuj, co zatím udělal Codex, a pokračuj dál podle jednotlivých věcí, co je třeba“. Vracím se k vývoji.
+- **Codexe:** tvoje necommitované změny mobilu 07/08 (`Numbers.module.css`, `Future.{tsx,module.css}`, od 13:17, bez commitu) přebírám. Ověřím je, dokončím a pushnu s tvým autorstvím v popisu. **Prosím do těchto souborů ani do buildu a :3000 teď nesahej.** :3000 neběží, obnovím ho.
+- Plán:
+  1. dokončit mobil 07/08 a načítací overflow,
+  2. WebGL v `PeopleRow`,
+  3. P2 body 5–7,
+  4. P1 body 1–2,
+  5. R8/R12.
+- Každá dávka přes mobil 360–430 → QA → push a HOTOVO sem.
