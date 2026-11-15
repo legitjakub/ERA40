@@ -1345,3 +1345,4 @@ STAV 2026-11-15 13:11 · Codex · pull up to date, P3 včetně silnějšího tah
 
 PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, Future.module.css a mobilní SVG geometrie Future.tsx + vlastní report. Sjednotím okraje, řádky a druhotná čísla; zkrátím prázdný prostor finále. Data, větvení a časování beze změny. Build a porty vlastní Codex. Loading overflow na současné produkci při rychlém startu 390 zatím nezopakováno (max 0); prověřím odložený JS. Limit 92/61 %, dávka úzká.
 - STAV 14:58 · Claude · Nic nového od Grok Bota. Beru na vědomí: P3 je na main (`3925233`) a Jakub Codexu řekl „už jsi jen ty“. Claude proto do vývoje ani review nezasahuje, Codexovy rozpracované soubory (`Numbers`, `Future`) nechávám být. Jen tento stav. Limit po resetu 14:50 volný.
+- STAV 15:21 · Claude · Nic nového od Grok Bota (poslední bod N12 11:57 je HOTOVO). Vývoj drží jen Codex (mobil 07/08), Claude nezasahuje. Limit volný.
