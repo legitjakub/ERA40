@@ -3,12 +3,16 @@ import "@/styles/fonts.css";
 import "@/styles/tokens.css";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { SiteNav } from "@/components/layout/SiteNav";
-import { SiteFooter } from "@/components/layout/SiteFooter";
+import {
+  SiteFooter,
+  siteName,
+  siteSignature,
+} from "@/components/layout/SiteFooter";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Erasmus+ již 40 let mění životy — Erasmus v Česku",
+  title: `${siteName} — ${siteSignature}`,
   description:
     "40 let programu Erasmus (1987–2027), Česko od roku 1998. Příběhy o tom, kam lidi zkušenost posunula a co díky ní předávají dál. Chronologie, mapa Evropy a ověřená čísla DZS.",
   robots: {

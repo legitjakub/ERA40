@@ -8,9 +8,28 @@
   align-items: center;
   padding: 0 clamp(24px, 5vw, 96px);
   color: white;
-  background: rgb(11 27 51 / 0.18);
+  background: transparent;
   transition: transform 0.3s var(--ease-out), color 0.2s, background-color 0.2s;
 }
+/* Over the film the header has no band. A shade fading from the top keeps
+   white text at 4.5:1 or more on the brightest frames. */
+.header[data-film="true"]::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: 180%;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--c-ink) 68%, transparent) 0%,
+    color-mix(in srgb, var(--c-ink) 60%, transparent) 42%,
+    color-mix(in srgb, var(--c-ink) 24%, transparent) 72%,
+    transparent 100%
+  );
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.header[data-light="true"]::before { opacity: 0; }
 .header[data-light="true"],
 .header[data-other="true"] {
   color: var(--c-eu-blue);
@@ -20,16 +39,40 @@
 .header[data-hidden="true"]:not(:focus-within) {
   transform: translateY(-101%);
 }
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+/* Erasmus+ in one Medium weight (Erasmus+ visual guidelines). */
 .brand,
 .brand:hover {
+  --wght-brand: 500;
+  flex: none;
   color: inherit;
   text-decoration: none;
-  font-size: clamp(25px, 2.2vw, 36px);
-  font-weight: var(--wght-heading);
-  letter-spacing: -0.025em;
+  font-size: clamp(26px, 2.3vw, 36px);
+  font-variation-settings: "wdth" var(--wdth-display), "wght" var(--wght-brand);
+  letter-spacing: -0.01em;
   line-height: 1;
+  white-space: nowrap;
 }
-.brand span { font-weight: var(--wght-text); }
+.plus {
+  margin-left: -0.02em;
+}
+.signature {
+  display: none;
+  padding-left: 20px;
+  border-left: 1px solid currentColor;
+  font-size: var(--fs-meta);
+  font-weight: var(--wght-ui);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+@media (min-width: 1360px) {
+  .signature { display: block; }
+}
 .right {
   display: flex;
   align-items: center;
@@ -72,6 +115,7 @@
   font-size: 0.9375rem;
   font-weight: var(--wght-ui);
   text-decoration: none;
+  white-space: nowrap;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 .cta:hover,
@@ -118,18 +162,55 @@
 @media (hover: hover) {
   .menu:hover .menuIcon { height: 12px; }
 }
+/* Reading progress as Trasa: solid line travelled, a station where you are,
+   dotted line ahead. Only the --progress variable changes while scrolling. */
 .progress {
+  --dot: var(--trasa-station);
   position: absolute;
   inset: auto 0 0;
   height: 2px;
-  background: var(--c-yellow);
-  transform: scaleX(0);
+  overflow-x: clip;
+  overflow-y: visible;
+  pointer-events: none;
+  color: white;
+  background: repeating-linear-gradient(
+    to right,
+    currentColor 0 2px,
+    transparent 2px 8px
+  );
+}
+.travelled {
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  transform: scaleX(var(--progress, 0));
   transform-origin: left;
 }
-/* On the light header yellow has ~1.2:1 contrast; use the EU blue there. */
+.here {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: calc(100% - var(--dot));
+  transform: translateX(calc(var(--progress, 0) * 100%));
+}
+.here > span {
+  position: absolute;
+  top: calc(var(--dot) / -2);
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: var(--c-yellow);
+}
+/* Yellow on white is ~1.2:1. On the light header the line and the station
+   are EU blue, the station set off by a white ring. */
 .header[data-light="true"] .progress,
 .header[data-other="true"] .progress {
+  color: var(--c-eu-blue);
+}
+.header[data-light="true"] .here > span,
+.header[data-other="true"] .here > span {
   background: var(--c-eu-blue);
+  box-shadow: 0 0 0 2px white;
 }
 
 /* A chapter index at the same scale as the exhibition, with enough room
@@ -310,6 +391,7 @@
 }
 @media (max-width: 767px) {
   .header { padding-inline: 20px; }
+  .brand, .brand:hover { font-size: 24px; }
   .chapter,
   .archiveLink,
   .cta > span { display: none; }
@@ -338,7 +420,28 @@
   .pages { gap: 4px 24px; }
   .pages a { font-size: 0.9375rem; gap: 12px; }
 }
+/* Narrow phones: the station on the progress line shows the position, so the
+   counter gives way to the full site name. */
+@media (max-width: 419px) {
+  .header { padding-inline: 16px; }
+  .brand, .brand:hover { font-size: 22px; }
+  .right { gap: 12px; }
+  .cta { padding: 8px 10px; }
+  .menu { justify-content: flex-end; min-width: 44px; padding-left: 12px; }
+  .mobileCounter { display: none; }
+  .menu .menuLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+@media (max-width: 359px) {
+  .brand, .brand:hover { font-size: 20px; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .header, .menuIcon, .chapterArrow { transition: none; }
+  .header, .header::before, .menuIcon, .chapterArrow { transition: none; }
   .dialog[open], .preview img { animation: none; }
 }

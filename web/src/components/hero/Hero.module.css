@@ -23,8 +23,29 @@
   object-fit: cover;
   object-position: 50% 47%;
 }
+/* Shade only behind the copy (a soft rectangle bottom left) and a low band
+   under the captions, so the rest of the film stays light. The film has pure
+   white frames: white text needs at least ~60 % ink behind it for 4.5:1. */
 .scrim {
-  background: rgb(6 18 33 / 0.6);
+  background: color-mix(in srgb, var(--c-ink) 64%, transparent);
+  mask-image:
+    linear-gradient(to top, #000 66%, transparent 88%),
+    linear-gradient(to right, #000 76%, transparent 96%);
+  mask-composite: intersect;
+}
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to top,
+      color-mix(in srgb, var(--c-ink) 64%, transparent) 0%,
+      color-mix(in srgb, var(--c-ink) 60%, transparent) 22%,
+      transparent 34%
+    ),
+    color-mix(in srgb, var(--c-ink) 8%, transparent);
 }
 .copy {
   position: absolute;
@@ -74,10 +95,12 @@
   display: block;
 }
 .intro {
-  margin: clamp(18px, 3vh, 36px) 0 22px;
-  line-height: 1.4;
-  font-size: clamp(1rem, 1.3vw, 1.28rem);
+  margin: clamp(18px, 3vh, 36px) 0 clamp(22px, 3.2vh, 34px);
+  line-height: 1.25;
+  font-size: var(--fs-lead);
   font-weight: var(--wght-text);
+  letter-spacing: -0.005em;
+  text-wrap: balance;
 }
 .actions {
   display: flex;
@@ -145,7 +168,12 @@
     min-height: min(620px, 100svh);
   }
   .title {
-    font-size: clamp(3.05rem, 8.9vw, 6.5rem);
+    font-size: clamp(2.875rem, 8.9vw, 6.5rem);
+  }
+  /* The copy spans the full width here; shade the lower part only. */
+  .scrim {
+    mask-image: linear-gradient(to top, #000 64%, transparent 86%);
+    mask-composite: add;
   }
   .copy {
     bottom: 78px;
@@ -157,6 +185,24 @@
   }
   .context {
     margin-bottom: 18px;
+  }
+}
+/* Phones: film captions take two lines under the copy. */
+@media (max-width: 767px) {
+  .copy {
+    bottom: 100px;
+  }
+  .actions {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+  .primary {
+    gap: 14px;
+    padding-inline: 14px;
+  }
+  .primary,
+  .history {
+    white-space: nowrap;
   }
 }
 @media (max-height: 620px) and (min-width: 650px) {

@@ -12,6 +12,7 @@ import {
   setReduceMotionPreference,
   usePrefersReducedMotion,
 } from "@/hooks/usePrefersReducedMotion";
+import { siteSignature } from "./SiteFooter";
 import styles from "./SiteNav.module.css";
 
 const darkHeroPages = [
@@ -23,7 +24,7 @@ const darkHeroPages = [
 ];
 const pages = [
   ["/pribehy", "Všechny příběhy"],
-  ["/zapojte-se", "Zapojte se"],
+  ["/zapojte-se", "Zapoj se"],
   ["/tvoje-era", "Jaké je tvoje ERA?"],
   ["/o-projektu", "O projektu"],
 ] as const;
@@ -77,7 +78,7 @@ export function SiteNav() {
         lastY = y;
       }
       progress.current?.style.setProperty(
-        "transform", `scaleX(${Math.min(1, y / maxScroll)})`,
+        "--progress", String(Math.min(1, y / maxScroll)),
       );
     }
     function schedule() {
@@ -157,10 +158,13 @@ export function SiteNav() {
   const selected = chapters[preview];
   return (
     <>
-      <header className={styles.header} ref={header} data-other={!darkTop}>
-        <Link className={styles.brand} href="/#hero" aria-label="Erasmus v Česku, úvod">
-          Erasmus<span>+</span>
-        </Link>
+      <header className={styles.header} ref={header} data-other={!darkTop} data-film={home}>
+        <div className={styles.identity}>
+          <Link className={styles.brand} href="/#hero" aria-label="Erasmus+ navždy, úvod">
+            Erasmus<span className={styles.plus}>+</span> navždy
+          </Link>
+          <span className={styles.signature}>{siteSignature}</span>
+        </div>
         <div className={styles.right}>
           {home && (
             <span className={styles.chapter} aria-label={`Kapitola ${active + 1} z 8: ${chapters[active].label}`}>
@@ -173,7 +177,7 @@ export function SiteNav() {
             Archiv
           </Link>
           <Link href="/zapojte-se" className={styles.cta} aria-current={pathname === "/zapojte-se" ? "page" : undefined}>
-            Zapojte se <span aria-hidden="true">↗</span>
+            Zapoj se <span aria-hidden="true">↗</span>
           </Link>
           <button className={styles.menu} type="button" aria-label={home ? `Kapitoly ${String(active + 1).padStart(2, "0")} / 08` : "Kapitoly"} aria-describedby={home ? "current-chapter" : undefined} data-home={home} aria-haspopup="dialog" aria-expanded={menuOpen} aria-controls="chapter-menu" onClick={open}>
             <span className={styles.menuLabel}>Kapitoly</span>
@@ -181,7 +185,10 @@ export function SiteNav() {
             <span className={styles.menuIcon} aria-hidden="true" />
           </button>
         </div>
-        <div className={styles.progress} ref={progress} aria-hidden="true" />
+        <div className={styles.progress} ref={progress} aria-hidden="true">
+          <span className={styles.travelled} />
+          <span className={styles.here}><span /></span>
+        </div>
       </header>
       <dialog id="chapter-menu" ref={dialog} className={styles.dialog} aria-labelledby="index-title" data-lenis-prevent onClose={() => setMenuOpen(false)}>
         <div className={styles.dialogInner}>
