@@ -25,6 +25,7 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
   const caption = useRef<HTMLSpanElement>(null);
   const axisOverlay = useRef<SVGSVGElement>(null);
   const axisLine = useRef<SVGLineElement>(null);
+  const axisGradient = useRef<SVGLinearGradientElement>(null);
   const reduced = usePrefersReducedMotion();
 
   useScene(() => {
@@ -160,16 +161,19 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
       const anchorInset = Number.parseFloat(getComputedStyle(numbers).scrollMarginTop) || 0;
       const phase = { p: 0 }, ease = gsap.parseEase(EASE.inOut);
       const sourceStyle = getComputedStyle(source), targetStyle = getComputedStyle(target);
-      const color = gsap.utils.interpolate(
-        sourceStyle.getPropertyValue("--handoff-axis-color").trim() ||
-          (source instanceof SVGElement ? sourceStyle.stroke : sourceStyle.backgroundColor),
-        targetStyle.getPropertyValue("--handoff-axis-color").trim() ||
-          (target instanceof SVGElement ? targetStyle.stroke : targetStyle.borderTopColor),
-      );
+      // Trasa grammar: the line keeps the source colour over the dark surface it leaves
+      // (the white divider on the photo) and the target colour on the light page.
+      const surface = source.parentElement ?? source;
+      const gradient = axisGradient.current, stops = gradient?.querySelectorAll("stop");
+      if (!gradient || stops?.length !== 2) return;
+      stops[0].setAttribute("stop-color", sourceStyle.getPropertyValue("--handoff-axis-color").trim() ||
+        (source instanceof SVGElement ? sourceStyle.stroke : sourceStyle.backgroundColor));
+      stops[1].setAttribute("stop-color", targetStyle.getPropertyValue("--handoff-axis-color").trim() ||
+        (target instanceof SVGElement ? targetStyle.stroke : targetStyle.borderTopColor));
       const finalStroke = target instanceof SVGElement ? Number.parseFloat(targetStyle.strokeWidth) || 1 : 1;
       const movement: { tween?: gsap.core.Tween } = {};
       let refreshFrame = 0;
-      let geometry: { x: number; y: number; h: number; tx: number; ty: number; tw: number } | undefined;
+      let geometry: { x: number; y: number; h: number; w: number; edge: number; tx: number; ty: number; tw: number } | undefined;
       const restore = () => {
         visual.dataset.active = "false";
         source.style.visibility = sourceVisibility;
@@ -183,13 +187,17 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
           restore(); return;
         }
         const at = ease(segment(p, .12, .88)), g = geometry;
-        const targetY = g.ty + innerHeight - native * (innerHeight - anchorInset);
+        const numbersTop = innerHeight - native * (innerHeight - anchorInset);
+        const targetY = g.ty + numbersTop;
+        // The comparison scrolls with the page; its lower edge is a fixed distance above the next chapter.
+        const edge = numbersTop - g.edge;
+        gradient.setAttribute("y1", String(edge - .5));
+        gradient.setAttribute("y2", String(edge + .5));
         line.setAttribute("x1", String(lerp(g.x, g.tx, at)));
         line.setAttribute("x2", String(lerp(g.x, g.tx + g.tw, at)));
         line.setAttribute("y1", String(lerp(g.y, targetY, at)));
         line.setAttribute("y2", String(lerp(g.y + g.h, targetY, at)));
-        line.style.stroke = color(at);
-        line.style.strokeWidth = String(lerp(2, finalStroke, at));
+        line.style.strokeWidth = String(lerp(g.w, finalStroke, at));
         source.style.visibility = "hidden";
         target.style.borderTopColor = "transparent";
         target.dataset.handoffAxisActive = "true";
@@ -200,8 +208,11 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
       const measure = () => {
         const src = source.getBoundingClientRect(), stageBox = stage.getBoundingClientRect();
         const dst = target.getBoundingClientRect(), numberBox = numbers.getBoundingClientRect();
+        // During the handoff the stage has finished its sticky phase and ends where the next chapter begins.
+        const ground = surface.getBoundingClientRect();
         geometry = src.height && dst.width ? {
-          x: src.left + src.width / 2, y: src.top - stageBox.top, h: src.height,
+          x: src.left + src.width / 2, y: src.top - stageBox.top, h: src.height, w: src.width || 2,
+          edge: stageBox.bottom - ground.bottom,
           tx: dst.left, ty: dst.top - numberBox.top, tw: dst.width,
         } : undefined;
       };
@@ -246,6 +257,12 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
         <span ref={caption} className={s.label}>Ilustrační snímek</span>
       </div>
       <svg ref={axisOverlay} className={`${s.overlay} ${s.axis}`} data-axis-handoff aria-hidden="true">
+        <defs>
+          <linearGradient ref={axisGradient} id="era-axis-surface" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" />
+            <stop offset="1" />
+          </linearGradient>
+        </defs>
         <line ref={axisLine} />
       </svg>
     </div>
