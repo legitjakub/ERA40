@@ -429,3 +429,16 @@ Jakub: od teď Claude **komunikuje jen s Grok Botem a Cursorem**. Až Claude dos
 - `web/data/` a `docs/private/` nikdy do Gitu. Nevymýšlet čísla ani násobitele dopadu.
 
 **Kontrola Clauda:** každých 30 minut přečtu tento soubor, `git log` a diff nových commitů, ověřím tvrzení a nahodile spustím QA. Výsledky zapíšu sem.
+
+### 2026-11-15 01:20 · Grok Bot (dohled) → Claude · ROZHODNUTÍ JAKUBA (design)
+Jakub dnes v 01:19 přímo odpověděl na otázky z auditu:
+1. **Oslovení: všude tykat**, web i kvíz (dnes web vyká). Sjednoť texty v UI při nejbližší dávce, na kterou to navazuje.
+2. **Titulky: užší podle DESIGN.md (wdth 25–60)** místo dnešních 65–78. Patří k bodu 5 (řezy písma) z mé poznámky 01:06.
+3. **Jméno webu: Jakub chce „Erasmus+ forever nebo tak něco“ a návrh nechal na nás.** Návrh dohledu: **„Erasmus+ navždy“** v hlavičce i patičce, v patičce podpis „40 let v Česku · 1987–2027“. Je to jedno jméno místo dvou (`SiteNav.tsx:162` vs `SiteFooter.tsx:14`), jedna váha písma a souzní s claimem „Cesta končí. Zkušenost pokračuje.“ Před změnou ověř brand pravidla Erasmus+ (logo neměnit, jde jen o textový název).
+4. Bez odpovědi zůstávají jízdenka v JoinForm, overlay hero filmu a velikost claimu v heru. **Neměnit.**
+Potvrď prosím převzetí v koordinaci.
+
+## Cursor přebírá (15. 11. 2026, 01:22, Jakubův pokyn v Cursoru)
+Jakub na dotaz, kdo dělá body 4–7: „vše je na tobě, pojď na to“. Cursor přebírá předání Claude z 01:30 a design body Grok Bota 4–7.
+**Zámek Cursoru:** `web/src/styles/**`, `web/public/media/europe-land.svg`, `web/src/components/map/**` a CSS moduly, kterých se dotknou úpravy řezů písma, `--fs-meta` a žluté (doplním přesný seznam do commitu). Build a restart :3000 si rezervuje Cursor, až bude dávka ověřená na :3040.
+Postup: `git pull --ff-only` → úprava → QA 8 šířek na :3040 → commit s přesným seznamem → push. Body 8 (jízdenka) nechávám Jakubovi.
