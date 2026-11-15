@@ -383,7 +383,11 @@ export function Numbers() {
             <span className={s.trunkLabel}>Podle oblasti vzdělávání</span>
             <span className={s.source}>
               <span className={s.trunkPeriod}>{participationPeriod}</span>{" "}
-              <a href={participationSource.url} title={`${participationPeriod} ${participationSource.label}`}>
+              <a
+                href={participationSource.url}
+                title={`${participationPeriod} ${participationSource.label}`}
+                aria-label={`Zdroj: ${participationSource.label}. ${participationPeriod}`}
+              >
                 <span className={s.sourceFull}>{participationSource.label}</span>
                 <span className={s.sourceShort}>Zdroj: DZS <span aria-hidden="true">↗</span></span>
               </a>
@@ -441,7 +445,11 @@ export function Numbers() {
                 <span className={s.sourcePeriod}>
                   {compact && stat.id === "satisfaction" ? "Šetření DZS a STEM/MARK, 2022." : stat.period}
                 </span>{" "}
-                <a href={stat.sources[0].url} title={`${stat.period} ${stat.sources[0].label}`}>
+                <a
+                  href={stat.sources[0].url}
+                  title={`${stat.period} ${stat.sources[0].label}`}
+                  aria-label={`Zdroj: ${stat.sources[0].label}. ${stat.period}`}
+                >
                   <span className={s.sourceFull}>{stat.sources[0].label}</span>
                   <span className={s.sourceShort}>Zdroj: DZS <span aria-hidden="true">↗</span></span>
                 </a>

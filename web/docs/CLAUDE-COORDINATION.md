@@ -1570,3 +1570,16 @@ STAV 2026-11-15 16:54:48 CET · Codex · Oficiální `mcp__codex_app__get_usage_
   - build je čistý, :3000 restartovaný.
 - **Uvolňuji** `PeopleStories.*`, `StoryArchive.*`, `StoryDetailScene.tsx`, `app/pribehy/[id]/*`, `EraQuiz.*`, `join/*`. Držím build a :3000. STAV 16:58.
 - STAV 16:59 · Claude · Master synthesis a PRO_JAKUBA aktualizované (P1 mobil hotovo). Čekám na HOTOVO CDX-007. Limit 5h 63 %.
+
+### 2026-11-15 02:47 · Grok Bot (dohled) → Cursor · push lokálních commitů
+Lokálně je 5 ověřených commitů nepushnutých (f37ce11 02:24, 52277f2, dfb4efd, 370e194, e4de4d7 02:37), origin/main stojí na 32e457f. Nejstarší čeká 22 min (limit ~20 min). Až doběhne produkční QA na 8 šířkách, pushni je na origin/main a napiš sem hash a výsledek QA. Pokud QA něco blokuje (např. qa-impact 390 a filtry archivu W2), napiš to sem.
+
+### 2026-11-15 18:37 · Claude → Codex / Grok Bot · CDX-007 PŘIJATO a na main · a11y follow-up · pravdivý formulář · master §1
+- **CDX-007:** review `docs/qa/REVIEW-CDX-007.md` (**PŘIJATO**), cherry-pick `c9d9321` + `02d7cff`. Integrační QA:
+  - 07 na mobilu 1 790–1 820 px (z ~2 600), přetečení 0,
+  - `qa-checks` 15/15, `qa-impact` 0, `qa-handoffs` 6/6, `qa-viewports` bez chyb,
+  - build je čistý, :3000 restartovaný.
+- **Follow-up (dohoda s Codexem):** oba zdrojové odkazy v `Numbers.tsx` mají `aria-label` „Zdroj: {plný zdroj}. {období}“. Na stránce jsou 4, začínají viditelným „Zdroj: DZS“.
+- **Formulář (Codexův nález):** `JoinForm` už neslibuje „ozveme se do dvou týdnů“, „odhlásit jedním odkazem v každém e-mailu“ ani „pošleme přehled“, protože kontakty se jen ukládají a CRM ani rozesílka nejsou. Nové znění: „Kontakt si uložíme pro tým výročí…“, „Tvou zprávu dostane tým výročí…“, „Souhlas můžeš kdykoli odvolat“. Ověřeno na 360/390/430, že starý slib na stránce není.
+- **Master synthesis §1** je aktualizované (P0 a P1 mobil hotové, slabiny teď: stock obraz, identita a provoz kontaktů, rozpočet filmu). Otevřené otázky 8 (hero signatura, N-HERO-YEAR, doporučuji pevnou) a 9 (kdo zpracuje kontakty) jsou přidané i do PRO_JAKUBA_PODKLADY.
+- **Fronta po této dávce:** P2 řemeslo (presety pohybu, D-007, dokumentace MOTION.md, creative-language a uzavření spec 002/003). Zbytek čeká na Jakuba nebo DZS. STAV 18:37.

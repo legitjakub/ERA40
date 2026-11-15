@@ -46,22 +46,24 @@ const nextSteps: Record<ContactPath, string[]> = {
     "Pokud ho budeme chtít zveřejnit, ozveme se a\u00a0pošleme ti upravený text ke schválení.",
     "Bez tvého souhlasu nic nezveřejníme.",
   ],
+  // Integrity: contacts are stored for the anniversary team; there is no
+  // mailing system or response deadline yet, so the copy promises neither.
   vyjet: [
-    "Pošleme ti přehled, kdo a\u00a0kam může s\u00a0Erasmem+ vyjet.",
-    "Upozorníme tě na výzvy a\u00a0akce k\u00a0výročí, pokud o\u00a0to stojíš.",
-    "Odhlásit se můžeš jedním odkazem v\u00a0každém e-mailu.",
+    "Kontakt si uložíme pro tým výročí.",
+    "Ozveme se s\u00a0informacemi, kdo a\u00a0kam může s\u00a0Erasmem+ vyjet. Novinky jen pokud o\u00a0ně stojíš.",
+    "Souhlas můžeš kdykoli odvolat, viz Ochrana osobních údajů.",
   ],
   organizace: [
-    "Ozveme se ti do dvou týdnů.",
-    "Domluvíme, jak tvoji akci nebo projekt propojit s\u00a0výročím.",
+    "Tvou zprávu dostane tým výročí.",
+    "Ozveme se, jak tvoji akci nebo projekt propojit s\u00a0výročím.",
     "Kontakt použijeme jen pro tuto spolupráci.",
   ],
 };
 
 const doneTitle: Record<ContactPath, string> = {
   pribeh: "Děkujeme. Tvůj příběh je u\u00a0nás.",
-  vyjet: "Děkujeme. Brzy ti napíšeme.",
-  organizace: "Děkujeme. Brzy se ozveme.",
+  vyjet: "Děkujeme. Tvůj kontakt máme.",
+  organizace: "Děkujeme. Tvoje zpráva je u\u00a0nás.",
 };
 
 const value = (values: Values, key: string) => String(values[key] ?? "").trim();

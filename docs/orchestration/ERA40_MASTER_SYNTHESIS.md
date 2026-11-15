@@ -16,15 +16,20 @@ ERA40 je funkční filmová digitální výstava (Next 16, React 19, GSAP 3.15, 
 - Je hotová celá dějová osa: úvodní film → prolog s lidmi → Historie 1987–2027 → Příběhy → Mapa → Návrat → Rozvětvení → Pokračování.
 - Hotové jsou také podstránky (archiv, detail, kvíz, zapojení, o projektu) a schválený globální přechod (014).
 
-**Hlavní slabiny dnes:**
-1. **Mobil není rovnocenný desktopu.** Hero má 88 svh místo plné scény, Historie je na mobilu 4 154 px dlouhý statický seznam a kamera, distorze a scrub běží jen na desktopu.
-2. **Obraz je ilustrační stock.** Mobilní film je viditelně měkký (720p zdroje), lidé nejsou skuteční, příběhy jsou modelové.
-3. **Identita výročí není potvrzená** (lockup, loga, povinné texty EU).
+**Stav po odpoledni 15. 11. (aktualizace 17:05):** mobilní P0 a P1 jsou hotové:
+- hero přes celou obrazovku a interaktivní Historie swipem (D-021),
+- film z originálů,
+- živá karta Příběhů,
+- kvíz s potvrzením, detail se šipkami a swipem, sticky filtry archivu,
+- kratší 07 (CDX-007),
+- pravdivé texty formuláře.
 
-**Doporučení na další 2–3 dávky (detail v §16 a §18):**
-- **P0 Mobil:** plnohodnotná scéna hera (100 svh, safe area) a **interaktivní Historie na mobilu** (swipe milníků synchronizovaný s pásem 40 let, bez pinu).
-- **P1:** výměna stock obrazu za skutečné příběhy, jakmile je DZS dodá. Do té doby zkvalitnit mobilní film (1080p zdroje).
-- **P2:** knihovna pohybových presetů (pevné API) a zjednodušení vícenásobných efektů tam, kde se překrývají.
+**Hlavní slabiny teď:**
+1. **Obraz je ilustrační stock** a příběhy jsou modelové. Bez skutečných lidí od DZS web nedosáhne autentické úrovně.
+2. **Identita výročí není potvrzená** (lockup, loga, povinné texty EU) a chybí provoz kontaktů (CRM nebo rozesílka, GDPR texty s doplněnými údaji).
+3. **Mobilní film** je ostřejší, ale v limitu 2 MB zůstává 720 × 1280.
+
+**Doporučení na další dávky:** P2 řemeslo (presety pohybu, D-007 easing, dokumentace MOTION.md a creative-language, uzavřít spec 002/003) a P1 obsah, jakmile ho DZS dodá.
 
 Žádné nové knihovny (Three.js, R3F, Rive, Lottie, OGL) nejsou dnes potřeba. Kandidát na budoucí PoC je jen GPU ribbon Trasy, s DOM/SVG fallbackem.
 
@@ -327,6 +332,8 @@ Formát: INITIAL → INTRO → INTERACTION → OUTRO → REVERSE · MOBILE · RE
 3. D-007: sjednotit easing na `power3.out` i v CSS?
 4. 015 B: prototyp kamery, nebo odložit?
 5. Kdy dodá DZS skutečné příběhy, fotky, video a identitu? Bez nich zůstává „ilustrační“ vrstva.
+8. **Hero signatura:** rok se v úvodu počítá 1987 → 2027, takže krátce svítí např. „1987–2018“ (Codex, N-HERO-YEAR). Ponechat počítání (součást schváleného úvodu D-002), nebo signaturu nechat pevně „1987–2027“? Doporučuji pevnou.
+9. **Formulář:** po odeslání dnes neslibujeme lhůtu ani rozesílku (není CRM). Kdo a jak bude kontakty z `/zapojte-se` skutečně zpracovávat?
 6. ~~Obsah ChatGPT chatů~~ vyřešeno: Codex je přepsal (16:30). Jen pokud existuje nejstarší původní master prompt v jiném chatu, uveď kde.
 7. ~~Mobilní „živá karta“ a podstránky~~ schváleno a hotovo (`016d9d7`, `1fabb77`).
 

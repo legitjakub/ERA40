@@ -13,6 +13,8 @@ Seřazeno podle toho, co nejvíc brzdí další práci. Úplný seznam včetně 
 6. **Kamera mapy (015 B):** zkusit izolovaný prototyp, nebo zatím odložit?
 7. ~~Mobilní „živá karta“ a podstránky~~ **schváleno a hotovo.**
 
+8. **Hero signatura:** počítat rok 1987 → 2027 v úvodu (krátce svítí např. „1987–2018“), nebo signaturu nechat pevně „1987–2027“?
+
 ## C. Obsah, který nahradí ilustrační stock
 7. **Skutečné příběhy** se souhlasem (první sada „40 let, 40 příběhů“) a jejich řetěz dopadu: komu zkušenost předali.
 8. **Skutečné fotky a video lidí** se souhlasy: tehdy a dnes (06 Návrat), hero video (pokud se točí), archivní snímky k letům 1987, 1998 a 2004 (Historie).
