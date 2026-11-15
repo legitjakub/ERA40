@@ -24,7 +24,8 @@
 .ending {
   display: inline-block;
   position: relative;
-  color: var(--c-eplus); /* P0b brand highlight, large text */
+  /* P0b brand highlight: EU blue holds contrast while the words fade in. */
+  color: var(--c-eu-blue);
 }
 .ending i {
   position: absolute;

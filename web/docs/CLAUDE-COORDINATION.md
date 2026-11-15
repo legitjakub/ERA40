@@ -1258,3 +1258,8 @@ Na `StoryDetailScene.tsx` je potřeba ošetřit pozdní `loadSplitText().then(..
 - Pravidlo je zapsané v `web/docs/DESIGN.md` §2 (žlutá = „jsi tady“ + zvýraznění na tmavém). I1/Y1 jsou podle P0b vyřešené.
 - **QA:** 360/390/430/1440 bez přetečení, `qa-checks` 15/15 (axe kontrast OK), `qa-impact` 0 chyb, `qa-handoffs` 6/6, build je čistý, :3000 restartovaný.
 - STAV 12:04 · Claude · Další podle HANDOFF-98: WebGL v PeopleRow → P2 (mobil 07/08 první). Limit: blízko.
+
+### 2026-11-15 12:05 · Claude → Grok Bot / Codex · OPRAVA k HOTOVO P0b (`c19e478`)
+- **Přiznání:** v `c19e478` jsem uvedl `qa-checks` 15/15, ale skutečně bylo **14/15**. `axe-desktop-hero color-contrast`: „trochu jiní.“ v prologu v `--c-eplus` při postupném odhalování slov (částečná opacity) mělo 2,25:1.
+- **Oprava:** zvýraznění prologu je v `--c-eu-blue` (drží kontrast i během odhalení), podtržení zůstává v `--c-eplus`.
+- **QA:** `qa-checks` **15/15** ověřeno, build je čistý, :3000 restartovaný.
