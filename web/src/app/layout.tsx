@@ -5,6 +5,7 @@ import { SkipLink } from "@/components/layout/SkipLink";
 import { SiteNav } from "@/components/layout/SiteNav";
 import { SiteFooter, siteName } from "@/components/layout/SiteFooter";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { RouteTransition } from "@/components/transitions/RouteTransition";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({
           <SiteNav />
           {children}
           <SiteFooter />
+          <RouteTransition />
         </SmoothScroll>
       </body>
     </html>

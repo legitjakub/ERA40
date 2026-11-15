@@ -1,0 +1,71 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-overlay) + 1);
+  overflow: clip;
+  visibility: hidden;
+  pointer-events: none;
+  contain: layout style paint;
+}
+.overlay[data-active] { visibility: visible; }
+.panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--c-eu-blue);
+  color: var(--c-white);
+  transform: translateY(100%);
+  pointer-events: none;
+}
+.motif { width: min(1120px, 92vw); height: auto; overflow: visible; }
+.guide {
+  stroke: var(--c-eplus);
+  stroke-width: 0.7;
+  opacity: 0.65;
+  vector-effect: non-scaling-stroke;
+}
+.trail {
+  stroke: var(--c-white);
+  stroke-width: var(--trasa-stroke);
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  vector-effect: non-scaling-stroke;
+}
+.type { opacity: 0; }
+.forty {
+  font-family: var(--font-brand);
+  font-size: 160px;
+  font-weight: var(--wght-display);
+  font-variation-settings: "wdth" var(--wdth-display);
+  letter-spacing: -0.055em;
+}
+.years {
+  font-family: var(--font-brand);
+  font-size: 44px;
+  font-weight: var(--wght-text);
+  font-variation-settings: "wdth" var(--wdth-figure);
+  letter-spacing: -0.02em;
+}
+.label, .caption {
+  position: absolute;
+  left: max(24px, 5vw);
+  font-family: var(--font-brand);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.01em;
+}
+.label { top: 32px; font-weight: var(--wght-ui); }
+.caption { bottom: 32px; opacity: 0.8; }
+/* Normal route snapshots must not freeze the live SVG or capture clicks for
+   its full second. SharedPhoto routes never receive this class. React remains
+   the only owner of the native API. */
+.routing:global(::view-transition) { pointer-events: none; }
+.routing:global(::view-transition-group(root)),
+.routing:global(::view-transition-old(root)),
+.routing:global(::view-transition-new(root)) { animation-duration: 0s; }
+@media (max-width: 760px) {
+  .label, .caption { left: 24px; font-size: 12px; }
+  .label { top: 28px; }
+  .caption { bottom: 28px; }
+}

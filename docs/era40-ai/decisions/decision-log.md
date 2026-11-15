@@ -6,6 +6,7 @@ Formát: ID · datum · rozhodnutí · důvod · kdo. Nová rozhodnutí přidáv
 
 | ID | Datum | Rozhodnutí | Důvod | Kdo |
 |---|---|---|---|---|
+| D-018 | 15. 11. 2026 | Specifikace 014 **i produkční integrace** globálního route přechodu ∞ s „40 / 1987–2027“ schválena. Trvání 1 s, navigace nečeká, SharedPhoto má přednost, reduced = fade 160 ms. Výjimka pouze pro tuto konkrétní předávku, nikoli starou samostatnou bránu. | Přímá odpověď „Schvaluji specifikaci 014 i integraci“ na konkrétní otázku a prototyp :3073. | Jakub |
 | D-017 | 15. 11. 2026 | Spodní kapitoly 06–08 se přepracují od základu podle spec 009: Návrat → Rozvětvení (skutečné počty DZS) → Pokračování. | Jakub: „spodní sekce se mi nelíbí… klidně to úplně přeměnit dle plánu“ | Jakub / Claude |
 | D-016 | 15. 11. 2026 | **Kreativní směr A, „Linka, která se vrací a pokračuje“**: smyčka ∞ = cesta tam a zpět domů, po návratu se linka větví k dalším lidem. Vybral Claude autonomně (vážené hodnocení 69 / 52 / 40), B a C přispívají jen dílčími principy. | Jakub: „vyhodnoť sám, dělej autonomně“ | Claude |
 | D-015 | 15. 11. 2026 | **Orchestrace Claude × Codex:** Claude je kreativní ředitel a orchestrátor, Codex implementuje přes briefy (`docs/orchestration/`). Fáze 0 hotová, fáze 1 zahájena. Motiv **nekonečného pokračování příběhu** je nově povinný jako smysluplný motiv (ne ikona, ne dekorace). Nahrazuje zamítnutí dekorativní verze v D-005. Stávající web se rozvíjí, nepřepisuje. | Jakub: Master Orchestration Prompt | Jakub / Claude |

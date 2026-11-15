@@ -50,6 +50,8 @@
   --dur-s: 0.6s;
   --dur-m: 0.9s;
   --dur-l: 1.4s;
+  --dur-route: 1s; /* approved choreography 014, UI handoff only */
+  --dur-route-fade: 0.16s; /* reduced motion / no native shared photo */
   --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 
   /* Trasa motif */

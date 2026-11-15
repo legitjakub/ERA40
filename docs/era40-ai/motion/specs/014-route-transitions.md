@@ -1,6 +1,6 @@
 # 014 — Jedna cesta pokračuje mezi stránkami
 
-Komponenta: globální změna routy · **Stav: návrh, prototyp; produkční integrace neschválena.**
+Komponenta: globální změna routy · **Stav: specifikace i integrace schválena Jakubem 15. 11. 2026; implementace a QA probíhají.**
 Účel: spojuje · Frekvence: při změně stránky, nikdy při prvním načtení ani kotvě.
 Zadání: Grok Bot → Codex, P3 (15. 11. 2026; zápis označený 11:55). Nový požadavek na ∞ se vztahuje pouze na krátký přechod; stará brána „40 → ∞“ se nevrací. Jde o výjimku k návrhu, ne plošnou změnu vizuální identity.
 
@@ -16,7 +16,7 @@ Jedna kreslená Trasa oběhne dvě smyčky: čtyřicet let a pokračování za j
 1. **Doporučený návrh:** jeden lehký DOM/SVG překryv 1 s; React dál vlastní nativní snapshots i SharedPhoto. Funguje i bez View Transition API, nezdržuje router.
 2. SVG maska jako jediné odhalení celé stránky: větší repaint a citlivější koordinace se sdílenou fotografií, proto nepoužito.
 3. WebGL přechod: pro jediný tah nepřináší potřebný význam, proto nepoužito.
-Volba 1 je návrh Codexu, dosud nikoli Jakubovo schválení.
+Volbu 1 Jakub výslovně schválil odpovědí „Schvaluji specifikaci 014 i integraci“ na otázku s konkrétním popisem ∞ / 40 / 1987–2027 a náhledem :3073.
 
 ## Stavy
 | Stav | Chování |
@@ -65,4 +65,4 @@ Po schválení: `web/src/components/transitions/RouteTransition.tsx`, `RouteTran
 
 ## Schválení
 Ke schválení: „Jedna modrá předávka s jedním tahem ∞ a označením 40 let, 1 s při změně stránky, bez efektu na sdílené fotografii; následná integrace podle specifikace 014.“
-Dokud konkrétní specifikace nemá souhlas, nevkládat do produkčních komponent.
+**Schváleno:** Jakub, 15. 11. 2026, přímá odpověď v Codex chatu: „Schvaluji specifikaci 014 i integraci“. Souhlas zahrnuje konkrétně popsaný route motiv ∞ s 40 a letopočtem, takže v tomto rozsahu nahrazuje dřívější odmítnutí motivu. Neobnovuje samostatnou sekci/bránu 40 → ∞. Scope, mobil, reduced i ochrana SharedPhoto zůstávají podle této specifikace.
