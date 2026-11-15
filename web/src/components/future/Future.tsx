@@ -77,9 +77,9 @@ export function Future() {
         </div>
         <div className={s.actions}>
           <Link className={s.primary} href="/zapojte-se#pribeh">Zapsat svůj příběh</Link>
-          <Link className={s.secondary} href="/tvoje-era">Jaké je tvoje ERA?</Link>
         </div>
         <div className={s.links}>
+          <Link href="/tvoje-era">Jaké je tvoje ERA?</Link>
           <a href="https://www.dzs.cz/program/erasmus">Vyrazit s Erasmus+</a>
           <a href="https://erasmus-plus.ec.europa.eu/">O programu Erasmus+</a>
           <button type="button" onClick={share}>{copied ? "Odkaz zkopírován" : "Sdílet"}</button>

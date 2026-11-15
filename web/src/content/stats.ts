@@ -10,7 +10,7 @@ export const participationPeriod = "Výzvy 1998–2023, stav k 31. 12. 2023.";
 export const stats: Stat[] = [
   {
     id: "outgoing-cz",
-    label: "účastníků vyjelo z Česka do zahraničí",
+    label: "vyjelo z Česka",
     value: 411400,
     period: participationPeriod,
     status: "verified",
@@ -19,7 +19,7 @@ export const stats: Stat[] = [
   },
   {
     id: "incoming-cz",
-    label: "účastníků přijelo ze zahraničí do Česka",
+    label: "přijelo do Česka",
     value: 450000,
     prefix: "Přibližně",
     period: "Od roku 1998 do 31. 12. 2023.",
@@ -29,18 +29,18 @@ export const stats: Stat[] = [
   },
   {
     id: "satisfaction",
-    label:
-      "účastníků uvedlo, že výjezd přispěl k jejich spokojenosti se životem",
+    label: "výjezd přispěl ke spokojenosti",
     value: 86,
     suffix: " %",
-    period: "Šetření DZS a STEM/MARK v roce 2022.",
+    period:
+      "Podle účastníků výjezd přispěl k jejich spokojenosti se životem. Šetření DZS a STEM/MARK, 2022.",
     status: "verified",
     checkedAt: "2026-11-13",
     sources: [participationSource],
   },
   {
     id: "budget-2026",
-    label: "v rozpočtu Erasmus+ pro Česko",
+    label: "rozpočet pro Česko",
     value: 103,
     prefix: "Téměř",
     suffix: " mil. €",

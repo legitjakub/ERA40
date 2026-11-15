@@ -16,13 +16,12 @@
 .journey .station { fill: var(--c-yellow); stroke: var(--c-eu-blue); stroke-width: 2; vector-effect: non-scaling-stroke; }
 .journey text { fill: var(--c-eu-blue); font-size: 16px; font-weight: var(--wght-ui); }
 .actions { display: flex; flex-wrap: wrap; gap: 16px; }
-.primary, .secondary {
+.primary {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 56px; padding: 14px 24px; border: 1px solid var(--c-eu-blue);
   border-radius: 2px; font-weight: var(--wght-ui); text-decoration: none; text-align: center;
+  background: var(--c-eu-blue); color: var(--c-white);
 }
-.primary { background: var(--c-eu-blue); color: var(--c-white); }
-.secondary { color: var(--c-eu-blue); }
 .links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; margin-top: 24px; }
 .links a, .links button {
   display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding: 8px 0; border: 0;
@@ -32,7 +31,6 @@
 .actions a:focus-visible, .links a:focus-visible, .links button:focus-visible { outline: 3px solid var(--c-eu-blue); outline-offset: 5px; }
 @media (hover: hover) {
   .primary:hover { background: var(--c-ink); }
-  .secondary:hover { background: var(--c-white); }
   .links a:hover, .links button:hover { text-decoration-thickness: 2px; }
 }
 @media (max-width: 767px) {

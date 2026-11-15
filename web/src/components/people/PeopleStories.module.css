@@ -483,13 +483,16 @@
   text-underline-offset: 5px;
 }
 .heading .all {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   margin-top: 10px;
   color: white;
   font-weight: var(--wght-ui);
   text-underline-offset: 5px;
 }
 .heading .all:hover {
-  color: var(--c-yellow);
+  color: white;
+  text-decoration-thickness: 2px;
 }
 

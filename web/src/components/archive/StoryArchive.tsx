@@ -222,8 +222,8 @@ export function StoryArchive() {
                     <span className={s.route}>
                       {story.from} <span aria-hidden="true">⟶</span> {story.to}
                     </span>
-                    <span className={s.name}>{story.name}</span>
                     <span className={s.quote}>„{story.quote}“</span>
+                    <span className={s.name}>{story.name}</span>
                     <span className={s.facts}>
                       {story.mobility}, {story.year}
                     </span>

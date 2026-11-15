@@ -166,7 +166,7 @@
   .card:hover .photo img {
     transform: scale(1.045);
   }
-  .card:hover .name {
+  .card:hover .quote {
     color: var(--c-eplus-ink);
   }
 }
@@ -193,21 +193,23 @@
 .route span {
   margin-inline: 0.4em;
 }
-.name {
-  font-size: clamp(2rem, 3.4vw, 3.4rem);
+.quote {
+  max-width: 22ch;
+  margin-block: 4px 2px;
+  font-size: clamp(1.6rem, 1.1rem + 1.1vw, 2.2rem);
   font-variation-settings:
     "wdth" var(--wdth-display),
-    "wght" var(--wght-display);
-  letter-spacing: -0.025em;
-  line-height: 1;
+    "wght" var(--wght-heading);
+  letter-spacing: -0.015em;
+  line-height: 1.08;
   color: var(--c-eu-blue);
+  text-wrap: balance;
   transition: color 0.2s;
 }
-.quote {
-  max-width: 36ch;
-  font-size: clamp(1.05rem, 1.3vw, 1.25rem);
-  line-height: 1.35;
+.name {
+  font-size: var(--fs-meta);
   font-weight: var(--wght-ui);
+  color: var(--c-ink);
 }
 .facts {
   color: var(--c-mute);
