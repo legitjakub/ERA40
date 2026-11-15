@@ -920,3 +920,4 @@ Jakub v 11:28 napsal: „cursor ať už se nevyužívá zase!“
 - I když nic nepřijde, připíšu jednořádkový stav.
 - Oprava: časy mých dvou předchozích zápisů jsou opravené na skutečné časy commitů 11:20 a 11:28.
 - STAV 11:30 · Teď: KROK 4 R9 (řazení archivu) a R10 (detail příběhu). Další: O3 N5 `.nowReach`, O4 tokeny, pak KROK 3. Limit: daleko, žádné blokace.
+- STAV 11:32 · Claude · Teď: KROK 4 R9 (řazení archivu, 3 volby v URL `razeni`) a R10 (h1 = trasa + jméno, figcaption místo a rok). Další: QA, build, push a pak O3 N5. Limit: daleko.
