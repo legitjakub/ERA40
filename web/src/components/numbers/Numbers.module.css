@@ -19,7 +19,7 @@
   grid-column: 1 / -1;
   margin: 0;
   color: var(--c-eplus-ink);
-  font-size: 0.9375rem;
+  font-size: var(--fs-meta);
   font-weight: var(--wght-ui);
 }
 .inner h2 {
@@ -40,9 +40,40 @@
   line-height: 1.45;
 }
 .tree {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
   margin-top: clamp(3rem, 6vw, 5.5rem);
+  padding-top: 1.75rem;
+}
+/* The returning line: root above the trunk figure, one spine, five branches. */
+.lines {
+  position: absolute;
+  inset: 0 auto auto 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.lines[data-ready="false"] {
+  visibility: hidden;
+}
+.lines path {
+  fill: none;
+  stroke: var(--c-eu-blue);
+  stroke-width: 3px;
+}
+/* 008B: while the handoff copy travels onto the root, the original root waits. */
+.lines .root[data-handoff-axis-active="true"] {
+  visibility: hidden;
+}
+.tip {
+  fill: var(--c-paper);
+  stroke: var(--c-eu-blue);
+  stroke-width: 3px;
+  transition: fill var(--dur-xs) var(--ease-out);
+}
+/* The selected branch is "you are here". */
+.tip[data-selected="true"] {
+  fill: var(--c-yellow);
 }
 .trunk {
   display: grid;
@@ -66,26 +97,10 @@
   max-width: 18ch;
 }
 .branches {
-  --spine: 1;
   position: relative;
   list-style: none;
   margin: 0;
   padding: 0 0 0 2.5rem;
-}
-/* The spine: the returning line, from which every branch leaves. */
-.branches::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 1.6rem;
-  width: 3px;
-  background: var(--c-eu-blue);
-  transform: scaleY(var(--spine));
-  transform-origin: top;
-}
-.trunk[data-handoff-axis-active="true"] + .branches::before {
-  opacity: 0;
 }
 .branches li {
   position: relative;
@@ -115,56 +130,21 @@
     "wdth" var(--wdth-figure),
     "wght" var(--wght-display);
 }
-.sectorButton[aria-pressed="true"] span {
+.sectorButton[aria-pressed="true"] > span {
   font-weight: var(--wght-heading);
 }
 .sectorButton:focus-visible {
   outline: 3px solid var(--c-eu-blue);
   outline-offset: 4px;
 }
+/* Row slot for the measured branch line. */
 .track {
-  position: relative;
+  display: block;
   height: 14px;
   margin-top: 0.25rem;
 }
-/* Rounded elbow: the branch leaves the spine and turns into its line (Trasa language). */
-.track::before {
-  content: "";
-  position: absolute;
-  left: -2.5rem;
-  bottom: calc(100% - 8px);
-  width: 2.5rem;
-  height: 1.2rem;
-  border-left: 3px solid var(--c-eu-blue);
-  border-bottom: 3px solid var(--c-eu-blue);
-  border-bottom-left-radius: 1.2rem;
-  box-sizing: border-box;
-}
-.track i {
-  position: absolute;
-  left: 0;
-  top: 5px;
-  height: 3px;
-  background: var(--c-eu-blue);
-}
-/* Branch end: station dot; the selected branch is "you are here" (yellow). */
-.track i::after {
-  content: "";
-  position: absolute;
-  right: -7px;
-  top: -5.5px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--c-paper);
-  border: 3px solid var(--c-eu-blue);
-  box-sizing: border-box;
-}
-.branches li[data-selected="true"] .track i::after {
-  background: var(--c-yellow);
-}
 @media (hover: hover) {
-  .sectorButton:hover span {
+  .sectorButton:hover > span {
     text-decoration: underline;
     text-underline-offset: 4px;
   }
@@ -263,16 +243,18 @@
   .tree {
     grid-template-columns: minmax(0, 1fr);
   }
+  /* Branches stack vertically; the spine runs along the left edge. */
+  .tree {
+    padding-top: 0.75rem;
+  }
   .trunk {
-    padding: 0 0 1.5rem;
+    padding: 0 0 1.5rem 1.75rem;
+  }
+  .branches {
+    padding-left: 1.75rem;
   }
   .more {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.6rem;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .branches {
-    --spine: 1 !important;
   }
 }

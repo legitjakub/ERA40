@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
-import { DUR, EASE } from "@/lib/gsap/presets";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import {
   participationPeriod,
@@ -31,61 +30,194 @@ const examples: Record<string, string | undefined> = {
   school: "ucitelka",
 };
 
+// Tree geometry in real pixels, measured from the HTML rows. Every branch is
+// an equal elbow plus a straight run whose length is value × one common scale.
+const BEND = 12;
+const TIP = 12;
+const ROOT_Y = 1.5;
+const ARC = (Math.PI * BEND) / 2;
+type Tree = { width: number; height: number; spine: number; rows: number[] };
+const f = (n: number) => n.toFixed(1);
+
+function treeGeometry({ width, spine, rows }: Tree) {
+  const bent = spine >= BEND * 2;
+  const scale = Math.max(0, width - spine - BEND - TIP) / largestSector;
+  const top = ROOT_Y + (bent ? BEND : 0);
+  const lead = bent ? ARC : 0;
+  const last = rows[rows.length - 1] ?? top + BEND;
+  return {
+    root: bent
+      ? `M0 ${ROOT_Y}H${f(spine - BEND)}`
+      : `M${f(spine)} ${ROOT_Y}h0.01`,
+    trunk:
+      (bent
+        ? `M${f(spine - BEND)} ${ROOT_Y}A${BEND} ${BEND} 0 0 1 ${f(spine)} ${f(top)}`
+        : `M${f(spine)} ${ROOT_Y}`) + `V${f(Math.max(top, last - BEND))}`,
+    trunkLength: lead + Math.max(0, last - BEND - top),
+    branches: sectorBreakdown.map((sector, i) => {
+      const y = rows[i] ?? top + BEND;
+      const run = sector.value * scale;
+      return {
+        d: `M${f(spine)} ${f(y - BEND)}A${BEND} ${BEND} 0 0 0 ${f(spine + BEND)} ${f(y)}h${f(run)}`,
+        tip: { x: spine + BEND + run, y },
+        depart: lead + Math.max(0, y - BEND - top),
+        run,
+      };
+    }),
+  };
+}
+
 export function Numbers() {
   const root = useRef<HTMLElement>(null);
+  const treeRef = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReducedMotion();
   const [sectorId, setSectorId] = useState("school");
+  const [tree, setTree] = useState<Tree | null>(null);
   const selectedSector = sectorBreakdown.find((sector) => sector.id === sectorId)!;
   const example = stories.find((story) => story.id === examples[sectorId]);
   const photo = example ? storyPhoto(example) : null;
+  const geometry = treeGeometry(
+    tree ?? { width: 800, height: 400, spine: 320, rows: [] },
+  );
+  const treeKey = tree
+    ? [tree.width, tree.spine, ...tree.rows].map(Math.round).join()
+    : "";
+
+  useLayoutEffect(() => {
+    const element = treeRef.current;
+    if (!element) return;
+    const measure = () => {
+      const box = element.getBoundingClientRect();
+      const list = element.querySelector("ol");
+      if (!list || !box.width) return;
+      const rows = [...element.querySelectorAll<HTMLElement>("[data-branch-row]")].map(
+        (row) => {
+          const r = row.getBoundingClientRect();
+          return r.top + r.height / 2 - box.top;
+        },
+      );
+      const next = {
+        width: box.width,
+        height: box.height,
+        spine: list.getBoundingClientRect().left - box.left,
+        rows,
+      };
+      setTree((current) =>
+        current &&
+        Math.round(current.width) === Math.round(next.width) &&
+        Math.round(current.height) === Math.round(next.height) &&
+        Math.round(current.spine) === Math.round(next.spine) &&
+        current.rows.every((y, i) => Math.round(y) === Math.round(rows[i]))
+          ? current
+          : next,
+      );
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    void document.fonts?.ready.then(measure);
+    return () => observer.disconnect();
+  }, []);
 
   useGSAP(
     () => {
       const section = root.current;
+      const svg = treeRef.current?.querySelector("svg");
       if (
         !section ||
+        !svg ||
+        !tree ||
         reduced ||
         window.matchMedia("(prefers-reduced-motion: reduce)").matches
       )
         return;
       registerGsap();
-      const counters = section.querySelectorAll<HTMLElement>("[data-count]");
-      counters.forEach((element) => {
-        const target = Number(element.dataset.count);
-        const progress = { value: 0 };
-        gsap.to(progress, {
-          value: target,
-          snap: { value: 1 },
-          duration: DUR.l,
-          ease: EASE.out,
-          scrollTrigger: { trigger: element, start: "top 92%", once: true },
-          onUpdate: () => {
-            element.textContent = format.format(progress.value);
-          },
+      const counters = [...section.querySelectorAll<HTMLElement>("[data-count]")];
+      const finals = () =>
+        counters.forEach((element, i) => {
+          element.style.removeProperty("visibility");
+          element.textContent = format.format(sectorBreakdown[i].value);
         });
-      });
-      gsap.from(section.querySelector("ol"), {
-        "--spine": 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section.querySelector("ol"),
-          start: "top 92%",
-          end: "top 60%",
-          scrub: 0.45,
+      const media = gsap.matchMedia();
+      media.add(
+        {
+          // Same conditions as the 008B handoff: the trunk continues the arriving line.
+          handoff:
+            "(min-width: 1024px) and (min-height: 680px) and (prefers-reduced-motion: no-preference)",
+          motion: "(prefers-reduced-motion: no-preference)",
         },
-      });
-      gsap.from(section.querySelectorAll("[data-sector-bar]"), {
-        scaleX: 0,
-        transformOrigin: "left",
-        ease: "none",
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: section.querySelector("ol"),
-          start: "top 90%",
-          end: "bottom 70%",
-          scrub: 0.45,
+        (context) => {
+          const { handoff, motion } = context.conditions as Record<string, boolean>;
+          if (!motion) return;
+          const trunk = svg.querySelector<SVGPathElement>("[data-trunk]")!;
+          const paths = svg.querySelectorAll<SVGPathElement>("[data-branch]");
+          const tips = svg.querySelectorAll<SVGCircleElement>("[data-tip]");
+          const inset = Number.parseFloat(getComputedStyle(section).scrollMarginTop) || 0;
+          const drawn: { timeline?: gsap.core.Timeline } = {};
+          // Each figure is the drawn part of its straight run, read back on the common scale.
+          const count = () => {
+            const time = drawn.timeline?.time() ?? 0;
+            counters.forEach((element, i) => {
+              const { depart, run } = geometry.branches[i];
+              const value = sectorBreakdown[i].value;
+              const share = gsap.utils.clamp(0, 1, (time - depart - ARC) / Math.max(1, run));
+              // No figure before its line arrives: a visible 0 would read as data.
+              element.style.visibility = share > 0 ? "" : "hidden";
+              element.textContent = format.format(
+                share >= 1 ? value : Math.round((value * share) / 100) * 100,
+              );
+            });
+          };
+          // One constant drawing speed: every unit of time is one pixel of line.
+          const timeline = (drawn.timeline = gsap.timeline({
+            defaults: { ease: "none" },
+            onUpdate: count,
+            scrollTrigger: handoff
+              ? {
+                  trigger: section,
+                  // The handoff copy settles on the root at p .88; the trunk takes over there.
+                  start: () => `top ${inset + (innerHeight - inset) * 0.12}px`,
+                  endTrigger: svg,
+                  end: "bottom 78%",
+                  scrub: 0.45,
+                  invalidateOnRefresh: true,
+                }
+              : {
+                  trigger: svg,
+                  start: "top 85%",
+                  end: "bottom 72%",
+                  scrub: 0.45,
+                  invalidateOnRefresh: true,
+                },
+          }));
+          timeline.fromTo(
+            trunk,
+            { drawSVG: "0%" },
+            { drawSVG: "100%", duration: Math.max(1, geometry.trunkLength) },
+            0,
+          );
+          geometry.branches.forEach((branch, i) => {
+            const end = branch.depart + ARC + branch.run;
+            timeline
+              .fromTo(
+                paths[i],
+                { drawSVG: "0%" },
+                { drawSVG: "100%", duration: ARC + branch.run },
+                branch.depart,
+              )
+              .fromTo(
+                tips[i],
+                { scale: 0 },
+                { scale: 1, duration: 18, transformOrigin: "50% 50%" },
+                end - 6,
+              );
+          });
+          // A refresh restores progress without onUpdate, so the figures are read again afterwards.
+          ScrollTrigger.addEventListener("refresh", count);
+          count();
+          return () => ScrollTrigger.removeEventListener("refresh", count);
         },
-      });
+      );
       // A new example can move the final scene; scrolling itself does not resize this section.
       let refreshFrame = 0;
       const observer = new ResizeObserver(() => {
@@ -96,12 +228,11 @@ export function Numbers() {
       return () => {
         observer.disconnect();
         cancelAnimationFrame(refreshFrame);
-        counters.forEach((element) => {
-          element.textContent = format.format(Number(element.dataset.count));
-        });
+        media.revert();
+        finals();
       };
     },
-    { scope: root, dependencies: [reduced], revertOnUpdate: true },
+    { scope: root, dependencies: [reduced, treeKey], revertOnUpdate: true },
   );
 
   return (
@@ -115,21 +246,41 @@ export function Numbers() {
     >
       <div className={s.inner}>
         <header className={s.head}>
-          <p className={s.kicker}>Erasmus v číslech</p>
+          <p className={s.kicker}>Rozvětvení</p>
           <h2 id="numbers-title">Po návratu se zkušenost větví.</h2>
           <p className={s.lead}>
-            Každá oblast vzdělávání je jedna větev. Vyberte ji a podívejte se,
+            Každá oblast vzdělávání je jedna větev. Vyber ji a podívej se,
             jak může zkušenost pokračovat dál.
           </p>
         </header>
-        <div className={s.tree}>
-          <div className={s.trunk} data-number-stat data-handoff-axis-target>
-            <span className={s.trunkValue}>
-              <span className={s.screenReaderOnly}>{format.format(outgoing.value)}</span>
-              <span aria-hidden="true" data-count={outgoing.value}>
-                {format.format(outgoing.value)}
-              </span>
-            </span>
+        <div ref={treeRef} className={s.tree}>
+          <svg
+            className={s.lines}
+            data-ready={tree ? "true" : "false"}
+            width={tree?.width ?? 0}
+            height={tree?.height ?? 0}
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path className={s.root} d={geometry.root} data-handoff-axis-target />
+            <path d={geometry.trunk} data-trunk />
+            {geometry.branches.map((branch, i) => (
+              <path key={sectorBreakdown[i].id} d={branch.d} data-branch />
+            ))}
+            {geometry.branches.map((branch, i) => (
+              <circle
+                key={sectorBreakdown[i].id}
+                className={s.tip}
+                data-selected={sectorId === sectorBreakdown[i].id}
+                data-tip
+                cx={f(branch.tip.x)}
+                cy={f(branch.tip.y)}
+                r="6"
+              />
+            ))}
+          </svg>
+          <div className={s.trunk} data-number-stat>
+            <span className={s.trunkValue}>{format.format(outgoing.value)}</span>
             <span className={s.trunkLabel}>{outgoing.label}</span>
             <span className={s.source}>
               {participationPeriod}{" "}
@@ -150,14 +301,14 @@ export function Numbers() {
                   onClick={() => setSectorId(sector.id)}
                 >
                   <span>{sector.label}</span>
-                  <strong>{format.format(sector.value)}</strong>
+                  <strong>
+                    <span className={s.screenReaderOnly}>{format.format(sector.value)}</span>
+                    <span aria-hidden="true" data-count>
+                      {format.format(sector.value)}
+                    </span>
+                  </strong>
                 </button>
-                <div className={s.track} aria-hidden="true">
-                  <i
-                    data-sector-bar
-                    style={{ width: (sector.value / largestSector) * 100 + "%" }}
-                  />
-                </div>
+                <span className={s.track} data-branch-row aria-hidden="true" />
               </li>
             ))}
           </ol>
@@ -187,8 +338,8 @@ export function Numbers() {
           ) : (
             <div className={s.exampleText}>
               <p className={s.exampleLabel} role="status">{selectedSector.label}</p>
-              <h4>Patří sem i váš příběh.</h4>
-              <p>Příběhy ze vzdělávání dospělých teprve shromažďujeme. Co se díky zahraniční zkušenosti změnilo u vás?</p>
+              <h4>Patří sem i tvůj příběh.</h4>
+              <p>Příběhy ze vzdělávání dospělých teprve shromažďujeme. Co se díky zahraniční zkušenosti změnilo u tebe?</p>
               <Link href="/zapojte-se#organizace">Zapojit organizaci <span aria-hidden="true">↗</span></Link>
             </div>
           )}
