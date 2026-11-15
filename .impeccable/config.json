@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-11-15T00:22:20.104Z",
         "reason": "agent triage: .track::before is the rounded elbow of the branch line (Trasa motif, spec 009 Rozvětvení), left+bottom border with radius, not a card accent stripe"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "web/src/components/scenes/SceneHandoffs.tsx"
+        ],
+        "createdAt": "2026-11-15T01:07:40.745Z",
+        "reason": "W3 agent: pre-existing spec 008 handoff copies; src is assigned at runtime from decoded originals and the overlay stays hidden until decode (approved spec 008-two-scene-handoffs.md)"
       }
     ]
   }
