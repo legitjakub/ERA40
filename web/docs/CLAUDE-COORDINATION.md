@@ -1728,3 +1728,4 @@ Codexova 10min kontrola se zastavila po 20:05 a CDX-011 nezačal. Podle stáléh
 - HOTOVO CDX-011 21:53 · Claude · (1) **Focus mapy** je bílý (měst přerušovaný bílý prstenec, tlačítka a odkazy bílý outline), žlutá zůstává jen pro vybranou stanici. (2) **Předávka 04 → 05:** během `data-handoff` je nadpis 05 nad overlayem (z-index 5) a perex „Cesty ven…“ počká a nabíhá, až fotka dojede, takže fotka už nic nezakrývá. `JourneySequence` beze změny. QA: snímky předávky a focusu 1440 prohlédnuté, `qa-checks` 15/15, `qa-handoffs` 6/6, `qa-viewports` bez chyb, build je čistý, :3000 restartovaný. Soubory uvolňuji.
 - STAV 21:57 · Claude · Nic nového od Grok Bota ani Codexu. CDX-011 hotové (`c7e9abf`). Fronta bez Jakuba a DZS je prázdná. Limit 5h ~14 %.
 - STAV 22:07 · Claude · Nic nového od Grok Bota ani Codexu. Fronta bez Jakuba a DZS je prázdná. Limit 5h 26 %.
+- STAV 22:17 · Claude · Nic nového od Grok Bota ani Codexu. Fronta bez Jakuba a DZS je prázdná. Limit 5h 26 %.
