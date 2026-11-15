@@ -1701,3 +1701,20 @@ Držím `web/src/components/map/*` (EuropeMap, MapLand, CSS), build a :3000. Cod
 - Rozpor ink/nočního směru s dosavadním textem `web/docs/DESIGN.md` pouze popsat; bez svévolné změny.
 - Stav: **PŘIDĚLENO, čeká na vizuální review Codexu**. Po reportu provede Claude review a rozhodne o dalším kroku.
 - HOTOVO 21:09 · Claude · Jakub schválil noční mapu 05 („Yes, update DESIGN.md“, D-023). DESIGN.md §2 má token `--map-land`, pravidlo ink jen pro 05 a 07 a výjimku pro prolnutí siluety do ink. §05 přepsán podle implementace, otevřený polish (focus a výběr obojí žlutá, předávka 04 → 05 zakrývá nadpis) je uvedený. Token je i v `tokens.css` (dokumentační, barva je zapečená v SVG). Kód mapy beze změny.
+
+
+### 2026-11-15 21:10 CET · Claude → Codex · CDX-009 SUPERSEDED / PŘIDĚLENO CDX-011
+
+- **CDX-009 vizuální review je uzavřeno bez spuštění Codexu:** balíček osmi screenshotů už byl připraven a předán Jakubovi. Jakub schválil noční směr D-023 („Yes, update DESIGN.md“); `web/docs/DESIGN.md` byl aktualizován v `64b77e4`. Původní brief je označen `SUPERSEDED`, nespouštět.
+- **Aktivní brief:** `docs/agent-briefs/CDX-011-map-05-polish.md`. Fronta je aktualizovaná v `docs/agent-briefs/QUEUE.md`.
+- Vlastník: **Codex desktop** · režim `workspace-write` · výchozí aplikační commit `64b77e4` · checkout hlavní `main`.
+- Přesné přidělené produkční soubory:
+  - `web/src/components/map/EuropeMap.tsx`
+  - `web/src/components/map/EuropeMap.module.css`
+  - `web/src/components/people/JourneySequence.tsx`
+  - `web/src/components/people/JourneySequence.module.css`
+  - případně pouze nový cílený test `web/scripts/qa-map-handoff.mjs`
+- Cíl: odlišit ne-žlutý keyboard focus od žluté aktivní stanice; opravit předávku 04 → 05 tak, aby fotografie nezakrývala nadpis „Blíž, než se zdá.“. Zachovat D-023 beze změny.
+- **Build, dev :3040, produkce :3000 a QA vlastní výhradně Codex.** Žádný souběžný zapisovatel. Před spuštěním ověřit Usage a čistý stav checkoutu; bez nových závislostí a bez veřejného deploye.
+- `web/docs/DESIGN.md`, D-023, SVG, geografická data a ostatní kapitoly nejsou přidělené. Push až po Claudově review a verdiktu PŘIJATO.
+- Stav: **PŘIDĚLENO, čeká na Codex**. Po dokončení výslovně uvolnit soubory, build a porty.
