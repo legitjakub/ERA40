@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { gsap, registerGsap } from "@/lib/gsap/setup";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import {
   eraQuestions,
   eraCopy,
@@ -29,11 +31,39 @@ export function EraGlyph({ type, className }: { type: EraType; className?: strin
 /** Progress as a short Trasa: passed stations solid, current one yellow, the rest dotted. */
 function Progress({ step, total }: { step: number; total: number }) {
   const gap = 100 / (total - 1);
+  const past = useRef<SVGLineElement>(null);
+  const reduced = usePrefersReducedMotion();
+  const drawn = `0% ${step * gap}%`;
+  const placed = useRef(false);
+
+  // The solid line is drawn on to the new station. Lines use pixel
+  // coordinates (no viewBox scaling), so DrawSVG lengths match the screen.
+  useLayoutEffect(() => {
+    registerGsap();
+    const line = past.current;
+    if (!line) return;
+    if (reduced || !placed.current) {
+      placed.current = true;
+      gsap.set(line, { drawSVG: drawn });
+      return;
+    }
+    const tween = gsap.to(line, { drawSVG: drawn, duration: 0.45, ease: "power2.out", overwrite: true });
+    return () => {
+      tween.kill();
+    };
+  }, [drawn, reduced]);
+
+  useEffect(() => {
+    const resize = () => past.current && gsap.set(past.current, { drawSVG: drawn });
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  }, [drawn]);
+
   return (
     <div className={s.progress} aria-hidden="true">
-      <svg viewBox="0 0 100 10" preserveAspectRatio="none">
-        <line x1="0" y1="5" x2="100" y2="5" className={s.progressFuture} />
-        <line x1="0" y1="5" x2={step * gap} y2="5" className={s.progressPast} />
+      <svg>
+        <line x1="0" y1="50%" x2="100%" y2="50%" className={s.progressFuture} />
+        <line ref={past} x1="0" y1="50%" x2="100%" y2="50%" className={s.progressPast} />
       </svg>
       {Array.from({ length: total }, (_, i) => (
         <span
@@ -60,12 +90,11 @@ export function EraQuiz() {
 
   // Move focus to the new question or result so keyboard and screen-reader
   // users continue where the content changed.
-  const first = useRef(true);
+  const shown = useRef(`${path}-${step}`);
   useEffect(() => {
-    if (first.current) {
-      first.current = false;
-      return;
-    }
+    const key = `${path}-${step}`;
+    if (shown.current === key) return;
+    shown.current = key;
     heading.current?.focus();
   }, [path, step]);
 
@@ -107,7 +136,7 @@ export function EraQuiz() {
       setStatus("Text a odkaz jsou zkopírované.");
     } catch (error) {
       if ((error as DOMException)?.name !== "AbortError")
-        setStatus("Sdílení se nepovedlo. Stáhněte si nálepku.");
+        setStatus("Sdílení se nepovedlo. Stáhni si nálepku.");
     }
   }
 
@@ -173,6 +202,9 @@ export function EraQuiz() {
                 Zapsat svůj příběh <span aria-hidden="true">↗</span>
               </Link>
             </div>
+            <p className={s.disclaimer}>
+              Kvíz je pro zábavu. Výsledek není výzkum ani měření dopadu.
+            </p>
           </div>
         </div>
       </section>

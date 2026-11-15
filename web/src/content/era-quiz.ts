@@ -61,7 +61,7 @@ export const eraTypes: Record<EraTypeId, EraType> = {
   menic: {
     id: "menic",
     name: "Měnič směru",
-    line: "Jeden semestr a jiná mapa celého života.",
+    line: "Jedna cesta a jiná mapa celého života.",
     body: "Na cestu jeden plán, domů jiný. Obor, práce nebo město: něco se tehdy otočilo a drží to dodnes.",
     zero: {
       line: "Cizí nápad, tvůj nový směr.",
@@ -76,8 +76,8 @@ export const eraTypes: Record<EraTypeId, EraType> = {
   svet: {
     id: "svet",
     name: "Svět doma",
-    line: "Evropa u vás sedí u stolu.",
-    body: "Recept z kolejní kuchyně, slovo, které nejde přeložit, host z ciziny na gauči. Doma máš kus světa a nikdo už si nevzpomene, odkud přišel.",
+    line: "Evropa sedí u tvého stolu.",
+    body: "Recept odněkud z Evropy, slovo, které nejde přeložit, host z ciziny na gauči. Doma máš kus světa a nikdo už si nevzpomene, odkud přišel.",
     glyph: {
       solid: ["M188 100 H140", "M140 100 A40 40 0 1 1 140 99.9"],
       dot: [100, 100],
@@ -86,7 +86,7 @@ export const eraTypes: Record<EraTypeId, EraType> = {
   vecny: {
     id: "vecny",
     name: "Věčný Erasmák",
-    line: "Návrat byl jen přestup.",
+    line: "Návrat nebyl tečka.",
     body: "Z neznámého místa máš radost, ne obavy. Pořád zkoušíš nové věci a o další cestě už víš dřív, než ji naplánuješ.",
     zero: {
       line: "Tvoje první cesta už se chystá.",
@@ -101,10 +101,10 @@ export const eraTypes: Record<EraTypeId, EraType> = {
   vztah: {
     id: "vztah",
     name: "Vztah na dobu neurčitou",
-    line: "Semestr skončil. Přátelství ne.",
-    body: "Z lidí z tehdejší koleje jsou dnes kmotři, svědci na svatbě nebo zpráva každé ráno. Vzdálenost to zatím nezkazila.",
+    line: "Pobyt skončil. Přátelství ne.",
+    body: "Z lidí, které jsi tehdy potkal(a), jsou dnes kmotři, svědci na svatbě nebo zpráva každé ráno. Vzdálenost to zatím nezkazila.",
     zero: {
-      line: "Přátelé napříč Evropou. I bez semestru.",
+      line: "Přátelé napříč Evropou. I bez výjezdu.",
       body: "Z výměny, kterou zažil někdo jiný, máš kamarády, rodinu nebo partnera. Erasmus ti přivezl lidi, bez kterých si to dnes neumíš představit.",
     },
     glyph: {

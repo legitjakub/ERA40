@@ -13,7 +13,7 @@ export default function EraPage() {
   return (
     <main id="main" className={s.page}>
       <PageIntro
-        kicker="Erasmus+ již 40 let mění životy"
+        kicker="Kvíz k 40 letům Erasmu"
         title="Jaké je tvoje ERA?"
         lead="Co z tvého Erasmu žije dodnes? A komu se to dostalo dál? Erasmus se týká i lidí, kteří nikdy nevyjeli."
       />

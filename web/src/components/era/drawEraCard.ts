@@ -59,17 +59,13 @@ export async function drawEraCard(type: EraType, path: EraPath) {
   ctx.fill();
   ctx.restore();
 
-  // Name: as large as fits in two lines at most.
   ctx.fillStyle = "white";
   const max = right - left;
-  const words = type.name.split(" ");
-  let size = 116;
-  let lines: string[] = [type.name];
-  const wrap = () => {
-    ctx.font = font(850, size);
-    lines = [];
+  const wrap = (text: string, weight: number, size: number) => {
+    ctx.font = font(weight, size);
+    const lines: string[] = [];
     let current = "";
-    for (const word of words) {
+    for (const word of text.split(" ")) {
       const next = current ? current + " " + word : word;
       if (ctx.measureText(next).width > max && current) {
         lines.push(current);
@@ -77,19 +73,30 @@ export async function drawEraCard(type: EraType, path: EraPath) {
       } else current = next;
     }
     lines.push(current);
+    return lines;
   };
-  wrap();
-  while ((lines.length > 2 || lines.some((l) => ctx.measureText(l).width > max)) && size > 60) {
-    size -= 4;
-    wrap();
-  }
-  const nameBottom = 760;
-  lines.forEach((line, i) =>
-    ctx.fillText(line, left, nameBottom - (lines.length - 1 - i) * size * 1.02),
-  );
+  // Shrinks the type until the text fits in two lines at most.
+  const fit = (text: string, weight: number, size: number, min: number) => {
+    let lines = wrap(text, weight, size);
+    while ((lines.length > 2 || lines.some((l) => ctx.measureText(l).width > max)) && size > min) {
+      size -= 2;
+      lines = wrap(text, weight, size);
+    }
+    return { lines, size };
+  };
 
-  ctx.font = font(600, 40);
-  ctx.fillText(eraCopy(type, path).line, left, nameBottom + 78, max);
+  // The line sits above the divider; a two-line line lifts the name with it.
+  const tagline = fit(eraCopy(type, path).line, 600, 40, 30);
+  const taglineGap = tagline.size * 1.25;
+  const taglineTop = 838 - (tagline.lines.length - 1) * taglineGap;
+  const name = fit(type.name, 850, 116, 60);
+  const nameBottom = taglineTop - 78;
+  ctx.font = font(850, name.size);
+  name.lines.forEach((line, i) =>
+    ctx.fillText(line, left, nameBottom - (name.lines.length - 1 - i) * name.size * 1.02),
+  );
+  ctx.font = font(600, tagline.size);
+  tagline.lines.forEach((line, i) => ctx.fillText(line, left, taglineTop + i * taglineGap));
 
   ctx.strokeStyle = "rgba(255,255,255,.28)";
   ctx.lineWidth = 2;

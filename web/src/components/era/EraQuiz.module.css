@@ -124,13 +124,11 @@
   stroke-width: 2;
   stroke-dasharray: 1 6;
   stroke-linecap: round;
-  vector-effect: non-scaling-stroke;
   opacity: 0.6;
 }
 .progressPast {
   stroke: var(--c-eu-blue);
   stroke-width: 2;
-  vector-effect: non-scaling-stroke;
 }
 .station {
   position: absolute;
@@ -313,6 +311,12 @@
 .next a {
   color: var(--c-eplus-ink);
   font-weight: var(--wght-ui);
+}
+.disclaimer {
+  margin: 24px 0 0;
+  color: var(--c-mute);
+  font-size: var(--fs-meta);
+  line-height: 1.5;
 }
 
 @media (max-width: 760px) {
