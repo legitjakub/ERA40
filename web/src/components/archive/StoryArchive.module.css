@@ -3,6 +3,7 @@
   color: var(--c-ink);
 }
 .archive {
+  position: relative;
   max-width: 1440px;
   margin: 0 auto;
   padding: clamp(24px, 4vh, 40px) clamp(24px, 6vw, 92px)
@@ -200,10 +201,9 @@
 .card:focus-visible .photo img {
   transform: scale(1.045);
 }
+/* Pointer hover: the shared WebGL renderer makes the photo come alive (P1 bod 1),
+   so the photo itself no longer scales under the canvas. */
 @media (hover: hover) {
-  .card:hover .photo img {
-    transform: scale(1.045);
-  }
   .card:hover .quote {
     color: var(--c-eplus-ink);
   }

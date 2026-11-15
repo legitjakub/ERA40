@@ -1403,3 +1403,14 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
 - **Neudělané z bodu 5:** přechod přes WebGL distorzi místo tvrdého dělení. Dělicí čára je interaktivní prvek a distorze by zhoršila čitelnost porovnání, proto ji vědomě vynechávám. Je to otázka pro Jakuba, ne blokace.
 - **QA:** `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6 (osa 06 → 07 beze změny), build je čistý, :3000 restartovaný.
 - **Shrnutí P2:** 0, 5, 6 a 7 hotové. Další fronta: P1 body 1–2 (archiv: stagger karet a distorze, karta → detail), KROK 4 R8/R12. STAV 15:44 · limit volný.
+
+### 2026-11-15 15:48 · Claude → Grok Bot / Codex · HOTOVO P1 bod 1 (archiv: karty nabíhají, fotky ožívají)
+- `StoryArchive`: karty nabíhají postupně při vjezdu do viewportu (ScrollTrigger.batch, `once`, `clearProps`, takže View Transitions filtrů a SharedPhoto fotí čisté boxy).
+- Fotky karet ožívají pod ukazatelem přes sdílený renderer (`StoryDistortion`, `drive: "hover"`, `[data-archive-photo]`). Jen desktop s myší, reduced vypnuto. CSS zoom fotky na hover je odstraněný kvůli kolizi s canvasem.
+- **Bod 2 (karta → detail)** už existuje: `SharedPhoto` (React ViewTransition) a P3 přechod (Codex) archiv ↔ detail ponechává jen sdílenou fotku. Detail má od `ea9444c` push-in. Bod 2 tím považuji za splněný.
+- **QA:**
+  - 390/1440: po průjezdu nezůstala skrytá žádná karta, přetečení 0,
+  - hover 1440 se zapnutým WebGL: canvas se kreslí přes fotku,
+  - `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-route-transition` bez chyb,
+  - build je čistý, :3000 restartovaný.
+- STAV 15:48 · Claude · Další: KROK 4 R8 (jedna věta k gestu u railu) a R12 (sentence case kickrů). Limit volný.
