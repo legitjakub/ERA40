@@ -25,6 +25,15 @@ import s from "./StoryArchive.module.css";
  */
 type Direction = "all" | "out" | "in";
 type View = "photos" | "index";
+type Sort = "curated" | "year" | "name";
+
+// R9: three orders; the curated one is the exhibition sequence.
+const sorts: [Sort, string][] = [
+  ["curated", "Doporučené pořadí"],
+  ["year", "Podle roku"],
+  ["name", "Podle jména"],
+];
+const byName = new Intl.Collator("cs");
 
 const directions: [Direction, string][] = [
   ["all", "Oba směry"],
@@ -43,37 +52,45 @@ function subscribeLocation(update: () => void) {
 const locationSnapshot = () => window.location.search;
 const serverSnapshot = () => "";
 
-type Filters = { kind: StoryKind | "all"; direction: Direction; view: View; impact: ImpactTheme | "all" };
+type Filters = { kind: StoryKind | "all"; direction: Direction; view: View; impact: ImpactTheme | "all"; sort: Sort };
 
 function readFilters(search: string): Filters {
   const params = new URLSearchParams(search);
   const kind = params.get("typ");
   const direction = params.get("smer");
   const impact = params.get("dopad");
+  const sort = params.get("razeni");
   return {
     kind: storyKinds.some((item) => item.id === kind) ? kind as StoryKind : "all",
     direction: direction === "in" || direction === "out" ? direction : "all",
     view: params.get("pohled") === "index" ? "index" : "photos",
     impact: impactThemes.some((item) => item.id === impact) ? impact as ImpactTheme : "all",
+    sort: sort === "rok" ? "year" : sort === "jmeno" ? "name" : "curated",
   };
 }
 
 export function StoryArchive() {
   const reduced = usePrefersReducedMotion();
   const search = useSyncExternalStore(subscribeLocation, locationSnapshot, serverSnapshot);
-  const { kind, direction, view, impact } = readFilters(search);
+  const { kind, direction, view, impact, sort } = readFilters(search);
   const [preview, setPreview] = useState(0);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const root = useRef<HTMLElement>(null);
   const active = [kind, direction, impact].filter((value) => value !== "all").length;
 
-  const shown = stories.filter(
+  const filtered = stories.filter(
     (story) =>
       (kind === "all" || storyKind(story) === kind) &&
       (direction === "all" ||
         (direction === "in" ? isIncoming(story) : !isIncoming(story))) &&
       (impact === "all" || storyImpact(story)?.themes.includes(impact)),
   );
+  const shown =
+    sort === "year"
+      ? [...filtered].sort((a, b) => Number(a.year) - Number(b.year))
+      : sort === "name"
+        ? [...filtered].sort((a, b) => byName.compare(a.name, b.name))
+        : filtered;
 
   // The panel shows the hovered or focused story, or the first one shown.
   const current = shown.some((story) => stories.indexOf(story) === preview)
@@ -91,6 +108,7 @@ export function StoryArchive() {
         ["smer", next.direction, "all"],
         ["pohled", next.view, "photos"],
         ["dopad", next.impact, "all"],
+        ["razeni", next.sort === "year" ? "rok" : next.sort === "name" ? "jmeno" : "curated", "curated"],
       ];
       entries.forEach(([key, value, fallback]) => {
         if (value === fallback) query.delete(key);
@@ -192,6 +210,14 @@ export function StoryArchive() {
             ? `${shown.length} příběhů`
             : `Zobrazeno ${shown.length} z ${stories.length}`}
         </p>
+        <label className={s.sort}>
+          <span>Řadit</span>
+          <select value={sort} onChange={(event) => change({ sort: event.target.value as Sort })}>
+            {sorts.map(([id, label]) => (
+              <option key={id} value={id}>{label}</option>
+            ))}
+          </select>
+        </label>
         {(kind !== "all" || direction !== "all" || impact !== "all") && (
           <button
             className={s.reset}

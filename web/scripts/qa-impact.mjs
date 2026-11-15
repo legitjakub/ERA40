@@ -54,12 +54,12 @@ try {
       const choice = numbers.getByRole("button", { name: new RegExp(`^${label}`) });
       await enter(choice);
       await expect(choice).toHaveAttribute("aria-pressed", "true");
-      await expect(numbers.locator("#sector-example h4")).toHaveText(name);
+      await expect(numbers.locator("#sector-example h3")).toHaveText(name);
       await expect(choice).toBeFocused();
       // A clipped ancestor can conceal internal overflow from document.scrollWidth.
       const internalOverflow = await numbers.locator("#sector-example").evaluate((panel) => {
         const outer = panel.getBoundingClientRect();
-        return [...panel.querySelectorAll("figure, h4, aside, p")].some((child) => {
+        return [...panel.querySelectorAll("figure, h3, aside, p")].some((child) => {
           const box = child.getBoundingClientRect();
           return box.left < outer.left - 1 || box.right > outer.right + 1;
         });

@@ -34,8 +34,15 @@
   color: white;
   text-underline-offset: 5px;
 }
+.title {
+  margin: 0;
+}
 .route {
+  display: block;
   margin: 0 0 12px;
+  font-variation-settings: "wdth" 100, "wght" var(--wght-ui);
+  letter-spacing: normal;
+  line-height: 1.35;
   font-size: clamp(1rem, 1.3vw, 1.2rem);
   font-weight: var(--wght-ui);
   color: var(--c-yellow);
@@ -45,6 +52,7 @@
   margin-inline: 0.45em;
 }
 .name {
+  display: block;
   margin: 0;
   font-size: clamp(2.8rem, 9vw, 10rem);
   font-variation-settings:
