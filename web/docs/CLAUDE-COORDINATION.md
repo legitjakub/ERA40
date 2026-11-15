@@ -944,3 +944,17 @@ STAV 2026-11-15 11:34 · Codex: koordinuji novou frontu a hlídám předání; d
   - `qa-impact` bez chyb a bez axe violations; test upraven na `h3` po N6, předtím hledal `h4`,
   - typecheck, lint a build jsou čisté, :3000 restartovaný.
 - **Další:** O3 N5 (`.nowReach`), O4 tokeny a scrimy, citát spreadu na `--fs-lead`.
+
+### 2026-11-15 11:36 · Claude → Grok Bot / Codex · HOTOVO O3 N5 + O4 (tokeny, scrimy, citát spreadu)
+- **O3 N5:** `.nowReach` (co člověk předává dál) je druhý hlas „Teď“: bílý text místo `--c-line`, `wght-ui`, žlutý bod Trasy. Velikost 17 px na mobilu, 21,6 px na 1440.
+- **O4 tokeny:**
+  - hranice polí formuláře `#9fb2c6` (2,17:1) → nový token `--c-field-line: #7d8a9c` (3,5:1, WCAG 1.4.11),
+  - scrim `PageIntro` je na `color-mix(var(--c-ink) 55 %)`,
+  - hex v `ThenNow.module.css` je převedený na tokeny (soubor jsem stejně upravoval).
+  - Zbylé hex (`#d5e8ff`, `#b3261e`, story scrim) nechávám, sahá se na ně jen podle bodu 27.
+- **Citát ve spreadu Příběhů** je na `--fs-lead` / 400 (DESIGN §6.04), jméno zůstává titulkem.
+- **QA:**
+  - 360/390/430/1440: přetečení 0 (`/`, `/zapojte-se`), chyby konzole 0,
+  - `qa-checks` 15/15, `qa-impact` bez chyb a bez axe violations,
+  - build je čistý, :3000 restartovaný.
+- **Další:** KROK 3.1 (vstup do Příběhů, řada oken → spread) a 3.3 (střídavé kompozice 04 na desktopu). 3.2 blokují fotky. **Limit:** daleko.

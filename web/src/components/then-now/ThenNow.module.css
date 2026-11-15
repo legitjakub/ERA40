@@ -1,6 +1,6 @@
 .section {
   background: #fff;
-  color: #0b1b33;
+  color: var(--c-ink);
   position: relative;
   font-family: var(--font-brand, "Roboto Flex", Roboto, Arial, sans-serif);
 }
@@ -21,7 +21,7 @@
 }
 .title {
   margin: 0;
-  color: #004494;
+  color: var(--c-eu-blue);
   font-size: clamp(3.4rem, 7.8vw, 8rem);
   font-variation-settings:
     "wdth" var(--wdth-display),
@@ -56,13 +56,13 @@
   border: 0;
   border-bottom: 2px solid transparent;
   border-radius: 0;
-  color: #4f5b6e;
+  color: var(--c-mute);
   font: inherit;
   font-size: 0.97rem;
   cursor: pointer;
 }
 .options button[aria-pressed="true"] {
-  color: #004494;
+  color: var(--c-eu-blue);
   font-weight: var(--wght-heading);
   border-color: currentColor;
 }
@@ -73,7 +73,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: #0b1b33;
+  background: var(--c-ink);
   height: clamp(16rem, 36vw, 32rem);
 }
 .image {
@@ -94,7 +94,7 @@
 .tags span {
   padding: 0.35rem 0.65rem;
   color: #fff;
-  background: #0b1b33;
+  background: var(--c-ink);
   font-weight: var(--wght-ui);
   font-size: 0.94rem;
 }
@@ -149,11 +149,11 @@
   height: 100%;
 }
 .comparison:has(.slider:focus-visible) {
-  outline: 3px solid #004494;
+  outline: 3px solid var(--c-eu-blue);
   outline-offset: 3px;
 }
 .comparison:has(.slider:focus-visible) .divider span {
-  outline: 3px solid #0b1b33;
+  outline: 3px solid var(--c-ink);
 }
 .captions {
   display: grid;
@@ -175,19 +175,19 @@
 }
 .captions b {
   font-size: var(--fs-meta);
-  color: #004494;
+  color: var(--c-eu-blue);
 }
 .notes {
   display: flex;
   justify-content: space-between;
   gap: 0.6rem 2rem;
   margin-top: 0.85rem;
-  color: #4f5b6e;
+  color: var(--c-mute);
   font-size: 0.9rem;
   line-height: 1.45;
 }
 .notes a {
-  color: #006ba8;
+  color: var(--c-eplus-ink);
   text-decoration: underline;
 }
 @keyframes caption {
@@ -274,12 +274,27 @@
     "wdth" var(--wdth-figure),
     "wght" var(--wght-heading);
 }
+/* O3 N5: what the person passes on is the point of the chapter, so it reads
+   as the second voice of "Teď", marked by the Trasa dot, not as a footnote. */
 .nowReach {
+  position: relative;
   margin: 0;
   max-width: 34ch;
-  color: var(--c-line);
-  font-size: clamp(1rem, 1.3vw, 1.2rem);
-  line-height: 1.4;
+  padding-left: 1.15em;
+  color: white;
+  font-size: clamp(1.05rem, 1.5vw, 1.375rem);
+  line-height: 1.38;
+  font-weight: var(--wght-ui);
+}
+.nowReach::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--c-yellow);
 }
 .comparison .divider {
   --handoff-axis-color: white;
@@ -337,7 +352,7 @@
     font-size: 1.05rem;
   }
   .nowReach {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
   }
 }
 /* Narrow: the split stays a picture, the "Teď" text continues below it at full width. */
@@ -362,6 +377,6 @@
   }
   .nowBelow .nowReach {
     max-width: none;
-    font-size: 1rem;
+    font-size: 1.0625rem;
   }
 }

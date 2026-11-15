@@ -99,13 +99,14 @@
     "wght" var(--wght-display);
   margin: 0 0 22px;
 }
+/* O4 / DESIGN §6.04: the quote is a lead, the name stays the headline. */
 .text blockquote {
   margin: 0;
-  font-size: clamp(1.6rem, 2.4vw, 2.8rem);
-  line-height: 1.17;
-  font-weight: var(--wght-ui);
-  letter-spacing: -0.03em;
-  max-width: 25ch;
+  font-size: var(--fs-lead);
+  line-height: 1.3;
+  font-weight: var(--wght-text);
+  letter-spacing: -0.01em;
+  max-width: 30ch;
 }
 /* Spec 007/009: the story does not end with the stay — what continues after the return. */
 .impact {
@@ -399,7 +400,6 @@
     padding: 0 4px;
   }
   .text blockquote {
-    font-size: 2rem;
     max-width: 30ch;
   }
   .name {
