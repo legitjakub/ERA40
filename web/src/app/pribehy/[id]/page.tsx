@@ -7,6 +7,7 @@ import { RouteMap } from "@/components/archive/RouteMap";
 import { SharedPhoto } from "@/components/archive/SharedPhoto";
 import { StoryLabel } from "@/components/archive/StoryLabel";
 import { StoryImpact } from "@/components/archive/StoryImpact";
+import { StoryDetailScene } from "@/components/archive/StoryDetailScene";
 import { storyDetails } from "@/content/story-details";
 import {
   getStory,
@@ -92,7 +93,6 @@ async function StoryContent({
               <span className="visually-hidden">, </span>
               <span className={s.name}>{story.name}</span>
             </h1>
-            <blockquote className={s.quote}>„{story.quote}“</blockquote>
             <p className={s.label}>
               <StoryLabel story={story} />
             </p>
@@ -112,6 +112,16 @@ async function StoryContent({
             </figure>
           </SharedPhoto>
         </header>
+
+        {/* P1: the quote gets its own quiet moment, revealed word by word. */}
+        <section className={s.voice} aria-label={`Slovy: ${story.name}`}>
+          <blockquote className={s.voiceQuote} data-voice>
+            „{story.quote}“
+          </blockquote>
+          <p className={s.voiceBy}>
+            {story.name} · {story.to}, {story.year}
+          </p>
+        </section>
 
         <div className={s.body}>
           <aside className={s.aside}>
@@ -144,10 +154,12 @@ async function StoryContent({
             <RouteMap story={story} />
           </aside>
           <div className={s.text}>
-            <StoryImpact story={story} />
-            <p className={s.lead}>{story.excerpt}</p>
+            <div data-reveal>
+              <StoryImpact story={story} />
+            </div>
+            <p className={s.lead} data-reveal>{story.excerpt}</p>
             {body.map((paragraph) => (
-              <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+              <p key={paragraph.slice(0, 24)} data-reveal>{paragraph}</p>
             ))}
             <p className={s.disclaimer}>
               Postava, jméno i&nbsp;citace jsou modelové. Fotografie je ilustrační a&nbsp;nezobrazuje skutečného účastníka.
@@ -157,12 +169,12 @@ async function StoryContent({
       </article>
 
       <Link href={`/pribehy/${next.id}`} className={s.next}>
-        <span className={s.nextLabel}>Další cesta</span>
+        <span className={s.nextLabel}>Kdo pokračuje dál</span>
         <span className={s.nextName}>{next.name}</span>
         <span className={s.nextRoute}>
           {next.from} <span aria-hidden="true">⟶</span> {next.to}
         </span>
-        <span className={s.nextPhoto} data-grain aria-hidden="true">
+        <span className={s.nextPhoto} data-grain data-next-photo aria-hidden="true">
           <Image src={nextPhoto.file} alt="" fill sizes="40vw" />
         </span>
       </Link>
@@ -170,7 +182,8 @@ async function StoryContent({
       <aside className={s.invite}>
         <p>Máš podobnou zkušenost?</p>
         <Link href="/zapojte-se#pribeh">Přidat svůj příběh</Link>
-            </aside>
+      </aside>
+      <StoryDetailScene />
     </>
   );
 }

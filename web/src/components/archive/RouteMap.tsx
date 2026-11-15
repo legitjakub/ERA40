@@ -36,6 +36,7 @@ export function RouteMap({ story }: { story: Story }) {
         />
         <path
           className={s.route}
+          data-route-draw
           d={routeArc(a, b)}
           pathLength={1}
           style={{ strokeWidth: 2.4 * k }}
