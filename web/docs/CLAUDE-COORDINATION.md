@@ -1433,3 +1433,4 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
   - **A (40 značek):** doporučeno, ale jen s **časově věrným rozmístěním stanic** (dnes jsou rovnoměrné, takže 40 rovnoměrných značek by lhalo). Jen ve stávající timeline Historie, bez nového triggeru.
   - **B (kamera mapy):** jen omezeně a nejdřív izolovaný prototyp. Desktop, po výběru, zoom max 1,6×. Detail příběhu už ořez kolem trasy má. Jasné kritérium zamítnutí.
 - **Codex:** nic nerezervuji kromě dokumentace. Žádný build.
+- STAV 15:57 · Claude · Nic nového od Grok Bota. Teď KROK 3.1 (schválený): ověřuji kolizi s předávkou 008A 03 → 04. Další: prototyp A ze spec 015 (čeká na soubory). Limit volný.
