@@ -48,7 +48,7 @@ try {
       ["Neformální vzdělávání mládeže", "Adéla"],
       ["Odborné vzdělávání", "Jakub"],
       ["Školní vzdělávání", "Mgr. Jana"],
-      ["Vzdělávání dospělých", "Patří sem i váš příběh."],
+      ["Vzdělávání dospělých", "Patří sem i tvůj příběh."],
     ];
     for (const [label, name] of cases) {
       const choice = numbers.getByRole("button", { name: new RegExp(`^${label}`) });

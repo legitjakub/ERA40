@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLayoutEffect, useRef, useState } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
+import { EASE } from "@/lib/gsap/presets";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import {
   participationPeriod,
@@ -170,25 +171,9 @@ export function Numbers() {
           };
           // One constant drawing speed: every unit of time is one pixel of line.
           const timeline = (drawn.timeline = gsap.timeline({
+            paused: true,
             defaults: { ease: "none" },
             onUpdate: count,
-            scrollTrigger: handoff
-              ? {
-                  trigger: section,
-                  // The handoff copy settles on the root at p .88; the trunk takes over there.
-                  start: () => `top ${inset + (innerHeight - inset) * 0.12}px`,
-                  endTrigger: svg,
-                  end: "bottom 78%",
-                  scrub: 0.45,
-                  invalidateOnRefresh: true,
-                }
-              : {
-                  trigger: svg,
-                  start: "top 85%",
-                  end: "bottom 72%",
-                  scrub: 0.45,
-                  invalidateOnRefresh: true,
-                },
           }));
           timeline.fromTo(
             trunk,
@@ -212,10 +197,71 @@ export function Numbers() {
                 end - 6,
               );
           });
-          // A refresh restores progress without onUpdate, so the figures are read again afterwards.
+          // Scrolled through, the tree follows the scroll like a scrub. Arrived by a jump
+          // (page load or Back restore inside the range, an instant jump, a chapter link
+          // settling on #cisla) the 008B handoff never played, so the tree is shown
+          // finished and stays finished until the reader leaves its range.
+          let settled = false;
+          let first = true;
+          let jumped = false;
+          let lastY = scrollY;
+          const drive = (progress: number, immediate = false) => {
+            if (progress <= 0 || progress >= 1) settled = false;
+            const target = settled ? 1 : progress;
+            if (immediate) {
+              gsap.killTweensOf(timeline);
+              timeline.progress(target);
+            } else {
+              gsap.to(timeline, { progress: target, duration: 0.45, ease: EASE.out, overwrite: true });
+            }
+          };
+          const inside = (progress: number) => progress > 0 && progress < 1;
+          const trigger = ScrollTrigger.create({
+            ...(handoff
+              ? {
+                  trigger: section,
+                  // The handoff copy settles on the root at p .88; the trunk takes over there.
+                  start: () => `top ${inset + (innerHeight - inset) * 0.12}px`,
+                  endTrigger: svg,
+                  end: "bottom 78%",
+                }
+              : { trigger: svg, start: "top 85%", end: "bottom 72%" }),
+            onUpdate: (self) => {
+              const landed = jumped && inside(self.progress);
+              if (landed) settled = true;
+              drive(self.progress, landed);
+            },
+            onRefresh: (self) => {
+              if (first && inside(self.progress)) settled = true;
+              first = false;
+              drive(self.progress, true);
+            },
+          });
+          const onScroll = () => {
+            jumped = Math.abs(scrollY - lastY) > innerHeight * 0.75;
+            lastY = scrollY;
+          };
+          const onScrollEnd = () => {
+            const anchored =
+              decodeURIComponent(location.hash.slice(1)) === section.id &&
+              Math.abs(section.getBoundingClientRect().top - inset) < 8;
+            if (anchored && inside(trigger.progress) && !settled) {
+              settled = true;
+              drive(trigger.progress);
+            }
+          };
+          // Capture: Lenis updates ScrollTrigger synchronously from its own scroll listener.
+          addEventListener("scroll", onScroll, { passive: true, capture: true });
+          ScrollTrigger.addEventListener("scrollEnd", onScrollEnd);
           ScrollTrigger.addEventListener("refresh", count);
           count();
-          return () => ScrollTrigger.removeEventListener("refresh", count);
+          return () => {
+            removeEventListener("scroll", onScroll, { capture: true });
+            ScrollTrigger.removeEventListener("scrollEnd", onScrollEnd);
+            ScrollTrigger.removeEventListener("refresh", count);
+            gsap.killTweensOf(timeline);
+            trigger.kill();
+          };
         },
       );
       // A new example can move the final scene; scrolling itself does not resize this section.
