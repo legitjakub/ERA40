@@ -4,7 +4,7 @@
 Tento dokument **nic neimplementuje**. Sjednocuje znalosti z repozitáře, rozhodnutí, koordinace a ověřených referencí. Při rozporu platí pořadí: `decision-log.md` → `web/docs/DESIGN.md` → tento dokument → starší reporty.
 
 **Co jsem neměl k dispozici (nevymýšlím):**
-- **ChatGPT chaty:** *aktualizace 17:00.* Codex desktop k nim má přístup a 3 poslední projektové chaty přepsal do `docs/private/chatgpt/2026-11-15/` (mimo Git). Rozdíly jsou v `CHATGPT_CONTEXT_SYNC_2026-11-15.md`. Claude z nich přečetl Jakubovy vlastní požadavky a závěrečné souhrny. Původní, nejstarší master prompt v přepisech není.
+- **ChatGPT chaty:** *aktualizace 16:42.* Codex desktop k nim má přístup a 3 poslední projektové chaty přepsal do `docs/private/chatgpt/2026-11-15/` (mimo Git). Rozdíly jsou v `CHATGPT_CONTEXT_SYNC_2026-11-15.md`. Claude z nich přečetl Jakubovy vlastní požadavky a závěrečné souhrny. Původní, nejstarší master prompt v přepisech není.
 - **Interactive Assets v1** existují jen jako ZIP ke stažení v chatu „Interaktivní prvky ERA40“, na disku nejsou. Podle přepisu má SVG 40 rovnoměrných značek 1988–2027 a rok 1998 na 11. značce, což odpovídá implementaci D-020. Soubory už nejsou blokující.
 - **Higgsfield 3D Jutsu:** ověřený model neexistuje (timeout podle Jakubova shrnutí).
 
@@ -69,7 +69,7 @@ ERA40 je funkční filmová digitální výstava (Next 16, React 19, GSAP 3.15, 
 
 | Stav | Položky |
 |---|---|
-| **Schváleno a hotovo (doplněno 17:00)** | P0 mobil: hero 100 svh, Historie „Swipe 40 let“ (D-021, `a7ee795`) · P1 film z originálů Pexels (`6738261`) · D-001 identita · D-002 úvod · D-003 podstránky navazují · 006 integrace · 007 dopad (filtr, příklady) · 008 předávky 03 → 04 a 06 → 07 · 009 spodní kapitoly · 012 / 3.3 střídavé spready · 014 přechod (D-018) · 015 A 40 let na lince (D-020) · P0, P0b, P1 (detail, archiv), P2 0/5/6/7 · N1–N12, T1–T5, R3–R12 · nové úvodní video |
+| **Schváleno a hotovo (doplněno 16:42)** | P0 mobil: hero 100 svh, Historie „Swipe 40 let“ (D-021, `a7ee795`) · P1 film z originálů Pexels (`6738261`) · D-001 identita · D-002 úvod · D-003 podstránky navazují · 006 integrace · 007 dopad (filtr, příklady) · 008 předávky 03 → 04 a 06 → 07 · 009 spodní kapitoly · 012 / 3.3 střídavé spready · 014 přechod (D-018) · 015 A 40 let na lince (D-020) · P0, P0b, P1 (detail, archiv), P2 0/5/6/7 · N1–N12, T1–T5, R3–R12 · nové úvodní video |
 | **Schváleno, nerealizováno** | 3.1 řada oken (D-019, cíl už plní 008A) |
 | **Pouze návrh** | 001 gramatika Trasy (v praxi z velké části naplněna) · 002 obousměrné trasy (mapa už příjezdy má, upravit nebo zavřít) · 003 vazby 40 let (**nahrazuje 015 A**, zavřít) · 004 švy sekcí (částečně 008) · 015 B kamera mapy · GPU ribbon PoC 011 |
 | **Odmítnuto** | tabule (D-004) · brána 40 → ∞ jako samostatný objekt (D-005) · jízdenky, vlaky, nádraží, okno vlaku (D-006, P0) · /oslava (D-009) · Animaxxing full treatment (D-008) · WebGL distorze děliče 06 (čitelnost) |
@@ -327,7 +327,7 @@ Formát: INITIAL → INTRO → INTERACTION → OUTRO → REVERSE · MOBILE · RE
 3. D-007: sjednotit easing na `power3.out` i v CSS?
 4. 015 B: prototyp kamery, nebo odložit?
 5. Kdy dodá DZS skutečné příběhy, fotky, video a identitu? Bez nich zůstává „ilustrační“ vrstva.
-6. ~~Obsah ChatGPT chatů~~ vyřešeno: Codex je přepsal (17:00). Jen pokud existuje nejstarší původní master prompt v jiném chatu, uveď kde.
+6. ~~Obsah ChatGPT chatů~~ vyřešeno: Codex je přepsal (16:30). Jen pokud existuje nejstarší původní master prompt v jiném chatu, uveď kde.
 7. Mobilní „živá karta“ Příběhů a návrhy pro podstránky: schvaluješ směr (§13, §16)?
 
 ---

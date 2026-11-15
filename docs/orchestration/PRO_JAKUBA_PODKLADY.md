@@ -2,7 +2,7 @@
 
 Seřazeno podle toho, co nejvíc brzdí další práci. Úplný seznam včetně spouštěcích podkladů pro launch je v `MISSING_INPUTS.md`. Tady je jen to, co můžeš dodat ty nebo zprostředkovat.
 
-## A. Hned (aktualizace 17:00)
+## A. Hned (aktualizace 16:42)
 1. ~~Obsah ChatGPT chatů~~ **vyřešeno:** Codex má přístup a 3 chaty přepsal do `docs/private/chatgpt/2026-11-15/`. Dodej jen, pokud existuje starší chat s **původním master promptem**.
 2. ~~Interactive Assets v1~~ **už neblokuje:** linka 40 let je hotová a odpovídá SVG z chatu. Volitelně stáhni ZIP z chatu „Interaktivní prvky ERA40“ do `docs/private/assets/`, hodí se pro kameru mapy.
 3. ~~„Tabaco / Tabasco“~~ **vyřešeno:** referenční web Tabasco (Hilo Studio), ne font.
