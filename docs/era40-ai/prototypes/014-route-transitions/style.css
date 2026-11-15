@@ -66,8 +66,8 @@ output { white-space:nowrap; min-width:38px; font-variant-numeric:tabular-nums }
 #transition[data-active] { visibility:visible }
 .veil { position:absolute; inset:0; background:var(--c-eu-blue); color:white; transform:translateY(100%); display:grid; place-items:center; pointer-events:none }
 .motif { width:min(1120px,92vw); height:auto; overflow:visible }
-.guide { stroke:var(--c-eplus); stroke-width:1.5; opacity:.65 }
-.trail { stroke:white; stroke-width:2.5; stroke-linecap:round; stroke-dasharray:1000; stroke-dashoffset:1000 }
+.guide { stroke:var(--c-eplus); stroke-width:.7; opacity:.65; vector-effect:non-scaling-stroke }
+.trail { stroke:white; stroke-width:var(--trasa-stroke); vector-effect:non-scaling-stroke; stroke-linecap:round; stroke-dasharray:1000; stroke-dashoffset:1000 }
 .forty { font-size:160px; font-weight:840; font-variation-settings:'wdth' 56; letter-spacing:-.055em }
 .years { font-size:44px; font-weight:400; font-variation-settings:'wdth' 78; letter-spacing:-.02em }
 .anniversary { opacity:0 }

@@ -53,6 +53,7 @@ Po schválení: `web/src/components/transitions/RouteTransition.tsx`, `RouteTran
 ## Přístupnost a výkon
 - Žádný fokus, zámek dokumentu, `inert`, odstranění obsahu, zvuk nebo formulářová akce. Čtečka překryv nečte. JS fail znamená běžné odkazy.
 - Jedno SVG, jeden panel, pouze transform/opacity a dashoffset. Po 1 s žádné aktivní animace. GPU canvasů nula. Stroke repaint je vědomý, malý SVG; fyzický mobil ověřit, neslibovat 60 fps z emulace.
+- Po technickém review Claude: tah používá `vector-effect:non-scaling-stroke` a token Trasy (2 px desktop / 1,5 px mobil), takže s SVG nemizí. Doprovodná věta „Zkušenost pokračuje.“ platí i mimo příběhy. Frekvence plné předávky je otevřený feel-check: Claude doporučuje jen první změnu stránky v session a potom krátký fade; prototyp zatím ukazuje plnou variantu pro posouzení.
 - CSS/JS je lokální. Prototyp načítá fonty a existující ilustrační fotografie z projektového `web/public`, žádné nové stahované assety.
 
 ## Akceptace a limity prototypu

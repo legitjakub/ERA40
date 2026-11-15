@@ -116,5 +116,5 @@ await check('No JavaScript: prototype explains its limitation',async()=>{
 await browser.close();
 report.pass=report.matrix.every(result=>result.pass)&&report.interactions.every(result=>result.pass);
 await writeFile(`${dest}/report.json`,JSON.stringify(report,null,2));
-console.log(JSON.stringify(report,null,2));
+console.log(JSON.stringify({pass:report.pass,matrix:report.matrix.length,interactions:report.interactions.length,failures:[...report.matrix,...report.interactions].filter(item=>!item.pass)},null,2));
 process.exitCode=report.pass?0:1;

@@ -18,12 +18,12 @@ Modrá předávka s jedním kresleným tahem ∞, „40“ a „1987–2027“ b
 - Referenci Inkwell jsem skutečně otevřel a posoudil ve dvou kompozicích; přenáší se kontinuita motivu, nikoli její design.
 
 ## Testy a výsledky
-Testovaná revize: pracovní strom nad `ea9444c`; po hlavní matici doplněn pouze statický noscript fallback a ověřen samostatně. Server http://127.0.0.1:3073/ .
+Testovaná revize: finální pracovní strom nad `6f11022` (základ `ea9444c`). Po úpravě linky a textu znovu ověřena úplná matice i noscript. Server http://127.0.0.1:3073/ .
 
 | Příkaz / kontrola | Exit | Stav | Poznámka |
 |---|---|---|---|
 | `node --check …/scene.js` | 0 | prošlo | syntax |
-| `ERA40_QA_PACKAGE=… node …/qa.mjs` | 0 | prošlo | 18/18 viewport/reduced kombinací; 5 skutečných interakčních kontrol |
+| `ERA40_QA_PACKAGE=… node …/qa.mjs` | 0 | prošlo | 18/18 viewport/reduced kombinací a 6 doplňkových kontrol |
 | cílené no-JS a OS preference QA | 0 | prošlo | statické vysvětlení, zrušení po matchMedia eventu |
 | první kontrola ihned po CDP emulateMedia | 1 | selhalo | test kontroloval stav před doručením události; napraveno čekáním na skutečný handler |
 | výchozí Playwright launch / volitelný video pokus | 1 / 1 | blokováno prostředím | chybí bundled Chromium / ffmpeg; Chrome a screenshoty fungují |
@@ -34,7 +34,7 @@ Testovaná revize: pracovní strom nad `ea9444c`; po hlavní matici doplněn pou
 Prohlédnuté 390×844 a 1440×900: `/private/tmp/era40-p3-qa/390-transition-50.png`, `1440-transition-50.png`, mobilní 25/80 % a reduced/fallback. Plné důkazy a meze: `prototypes/014-route-transitions/QA.md`.
 
 ## Známé nedostatky
-Prototyp simuluje routy přes query, neověřuje App Router ani React. Fyzický mobil, produkční INP a skutečný SharedPhoto vyžadují integrační QA. Jemnost linky na mobilu ponechána k vizuálnímu schválení. Výslovný souhlas se specifikací a integrací dosud není udělen; main se nemění.
+Prototyp simuluje routy přes query, neověřuje App Router ani React. Fyzický mobil, produkční INP a skutečný SharedPhoto vyžadují integrační QA. Po Claudově review upraven tah na neškálovaných 1,5 px na mobilu / 2 px desktop a text zobecněn. Frekvence plné varianty je otevřený feel-check. Výslovný souhlas se specifikací a integrací dosud není udělen; runtime se nemění.
 
 ## Doporučený další krok
 Claude review prototypu/spec 014. Jakub schválí konkrétní provedení a integraci. Poté malý oddělený implementační brief pro `components/transitions/**`; jediný mount v `app/layout.tsx` zapojí Claude, nebo jej výslovně uvolní. Každou přijatou a ověřenou dávku teprve potom do main.

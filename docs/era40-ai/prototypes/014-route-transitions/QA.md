@@ -1,7 +1,7 @@
 # QA prototypu 014 — 15. 11. 2026
 
 **Stav:** izolovaný návrh ověřený v prohlížeči, nikoli přijatá produkční integrace.
-Základ worktree: `ea9444c37cb50704c80a2555b015ff230238223a`; testováno nad ním v pracovní větvi `codex/p3-route-transition`.
+Základ worktree: `ea9444c37cb50704c80a2555b015ff230238223a`; první test nad ním v pracovní větvi `codex/p3-route-transition`, finální opakování celé matice a 6 kontrol po review nad `6f11022`. Po finálním běhu se měnila pouze dokumentace.
 
 ## Výsledky
 
@@ -31,7 +31,7 @@ Playwright 1.65.0 ze stávající instalace projektu, již instalovaný Google C
 
 ## Vizuální revize
 
-Prohlédnuté skutečné snímky: 390 × 844 a 1440 × 900 v 50 %, mobil i v 80 %; doplňkově mobil 25 %. Kompozice drží linku, velké „40“ a čitelný letopočet v oddělených smyčkách. Modrá plocha má jasný odchod a nezanechává mléčnou vrstvu nad novou stránkou. Tah na mobilu je velmi subtilní; to je bod pro Jakubův feel-check, nikoli důvod slibovat hotové award-level provedení.
+Prohlédnuté skutečné snímky: 390 × 844 a 1440 × 900 v 50 %, mobil i v 80 %; doplňkově mobil 25 %. Kompozice drží linku, velké „40“ a čitelný letopočet v oddělených smyčkách. Modrá plocha má jasný odchod a nezanechává mléčnou vrstvu nad novou stránkou. Po Claudově review byl původní velmi tenký mobilní tah změněn na neškálovanou Trasu 1,5 px (desktop 2 px) a doprovodný text zobecněn na „Zkušenost pokračuje.“.
 
 Regenerovatelné důkazy mimo Git: `/private/tmp/era40-p3-qa/report.json`, `followup.json`, `390-transition-25.png`, `390-transition-50.png`, `390-transition-80.png`, `1440-transition-50.png`, `390-reduced.png`, `390-fallback.png`.
 
