@@ -83,7 +83,7 @@ Stav ✅ = implementováno, 🟡 = částečně, ⬜ = návrh (nevyvíjet bez sc
 - ✅ ztišení (pomalá fotka a věta Mgr. Jany) → „Cesta končí. Zkušenost **pokračuje.**“ → Trasa odjíždí tečkovaně → CTA. Jediný doslovný ∞ na webu je přechod mezi stránkami (014, D-018), ne tady.
 
 ### Podstránky
-- PageIntro: fotka/modrá plocha, Trasa podél spodní hrany. Archiv: stagger karet, hover ožití (WebGL desktop), sticky filtry na mobilu, řazení. Detail: push-in, citát po slovech, kreslená trasa, šipky a swipe mezi příběhy. Kvíz: pilulky s potvrzením. Přechod mezi stránkami 014. Další efekty jen po schválení.
+- PageIntro: fotka/modrá plocha, Trasa podél spodní hrany. Archiv: fotografie dostupné ihned, hover ožití (WebGL desktop), sticky filtry na mobilu, řazení. Detail: push-in fotografie, čitelná citace a odstavce, kreslená trasa, šipky a swipe mezi příběhy. CDX008 odstranil univerzální fade-up, blur odstavců a opacity0,14 na slovech kvůli čitelnosti a kontrastu. Kvíz: pilulky s potvrzením. Přechod mezi stránkami 014. Další efekty jen po schválení.
 
 ## 5. Typografie v pohybu
 

@@ -13,7 +13,7 @@ export function StoryImpact({ story }: { story: Story }) {
       <div className={s.links} aria-label="Další příběhy se stejným tématem">
         {impact.themes.map((id) => (
           <Link key={id} href={`/pribehy?dopad=${id}`}>
-            {impactThemes.find((theme) => theme.id === id)?.label} <span aria-hidden="true">↗</span>
+            {impactThemes.find((theme) => theme.id === id)?.label}
           </Link>
         ))}
       </div>

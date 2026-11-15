@@ -187,7 +187,7 @@ export function PeopleStories() {
       <header className={s.heading} data-stories-heading>
         <h2 id="stories-title">Osm cest. Spousta začátků.</h2>
         <p>
-          Za každým pobytem je člověk.
+          Osm modelových příběhů ukazuje, co může jedna cesta změnit.
           <br />
           <Link className={s.all} href="/pribehy">
             Všechny příběhy
@@ -239,12 +239,13 @@ export function PeopleStories() {
                     fill
                     sizes="(min-width:1024px) 48vw, 90vw"
                   />
-                  <span className={s.caption}>Ilustrační snímek</span>
                 </div>
                 <div className={s.text} data-story-copy>
-                  <p className={s.kicker}>
-                    <StoryStatus story={story} />
-                  </p>
+                  {story.status !== "model-story" && (
+                    <p className={s.kicker}>
+                      <StoryStatus story={story} />
+                    </p>
+                  )}
                   <p className={s.journey}>
                     {story.from} <span aria-hidden="true">⟶</span> {story.to}
                   </p>
@@ -273,7 +274,7 @@ export function PeopleStories() {
                       )
                     }
                   >
-                    Přečti si příběh <span aria-hidden="true">↗</span>
+                    Přečti si příběh
                   </button>
                 </div>
               </article>

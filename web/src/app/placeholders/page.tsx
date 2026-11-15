@@ -1,15 +1,16 @@
 import Link from "next/link";
-import { FictionBadge } from "@/components/ui/FictionBadge";
+import { stories } from "@/content/stories";
 export default function Placeholders() {
   return (
     <main id="main" className="document-page">
       <h1>O&nbsp;modelovém obsahu</h1>
       <p>Tento web je připravovaný obsahový a&nbsp;interakční prototyp.</p>
-      <h2>Osm modelových příběhů</h2>
+      <h2>Modelové příběhy</h2>
       <p>
-        Tereza, Ondřej, Inês, Jakub, Jana, Adéla, Martin, Lucie a&nbsp;Marta jsou
-        smyšlené postavy. Jejich příběhy i&nbsp;citace vznikly jako ilustrace různých
-        zkušeností s&nbsp;Erasmem. U&nbsp;každého příběhu je viditelné označení „<FictionBadge />“.
+        {stories.filter((story) => story.status === "model-story").map((story) => story.name).join(", ")}{" "}
+        jsou smyšlené postavy. Jejich příběhy i&nbsp;citace ukazují různé zkušenosti
+        s&nbsp;Erasmem. Původ obsahu vysvětluje společná poznámka u&nbsp;přehledu
+        a&nbsp;text v&nbsp;detailu příběhu.
       </p>
       <h2>Ilustrativní fotografie a&nbsp;film</h2>
       <p>
@@ -25,8 +26,8 @@ export default function Placeholders() {
       </p>
       <h2>Zapsání příběhu</h2>
       <p>
-        Zápis lze uložit jako textový soubor do vlastního zařízení. Pro veřejný
-        sběr příběhů bude potřeba připravit redakční zpracování a&nbsp;souhlasy.
+        Zprávy odeslané přes Zapoj se se ukládají pro tým výročí. Zveřejnění
+        příběhu vyžaduje výslovný souhlas jeho autora.
       </p>
       <Link href="/">Zpět k&nbsp;příběhům</Link>
     </main>

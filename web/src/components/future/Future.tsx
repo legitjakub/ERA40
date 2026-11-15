@@ -9,7 +9,6 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import s from "./Future.module.css";
 import { siteName } from "@/components/layout/SiteFooter";
 import { getStory, storyPhoto } from "@/content/stories";
-import { StoryLabel } from "@/components/archive/StoryLabel";
 
 // P2 bod 7: the ending is a hush before the call to action — one person's
 // sentence about what came home with her, over a slow photograph.
@@ -75,10 +74,9 @@ export function Future() {
         <figcaption className={s.hushText}>
           <blockquote data-hush-line>„{voice.quote}“</blockquote>
           <p data-hush-line>
-            {voice.name} · {voice.from} → {voice.to} · <StoryLabel story={voice} />
+            Z modelového příběhu: {voice.name}, {voice.from} → {voice.to}
           </p>
         </figcaption>
-        <span className={s.hushLabel}>Ilustrační snímek</span>
       </figure>
       <div className={s.inner}>
         <p className={s.kicker}>Pokračování</p>

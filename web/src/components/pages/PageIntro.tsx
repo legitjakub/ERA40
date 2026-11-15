@@ -44,7 +44,6 @@ export function PageIntro({
         {lead && <p className={s.lead}>{lead}</p>}
         {children}
       </div>
-      {image && <span className={s.credit}>Ilustrační snímek</span>}
       <span className={s.trasa} aria-hidden="true" />
     </header>
   );

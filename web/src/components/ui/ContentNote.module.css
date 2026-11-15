@@ -1,0 +1,14 @@
+.note {
+  margin: 1.25rem 0 0;
+  max-width: 64ch;
+  color: var(--c-mute);
+  font-size: var(--fs-meta);
+  line-height: 1.55;
+}
+.note a {
+  color: var(--c-eplus-ink);
+  text-underline-offset: 4px;
+  padding-block: 14px;
+}
+.note[data-dark] { color: var(--c-white); }
+.note[data-dark] a { color: inherit; }

@@ -70,3 +70,11 @@ Tři rozvržení spreadu (photo-left, photo-right, plate) místo dvou. Je to jen
 | D-020 | 15. 11. 2026 | Spec 015 A integrována: linka Historie v časovém měřítku (1987–2027), 40 značek let, Česko na 11. značce, „Rok N ze 40“, statický pás pro mobil a reduced. Bez nového triggeru, stávající `apply()`. | Číslo 40 jako skutečný čas, ne symbol (doplňuje 014) | Jakub |
 | D-021 | 15. 11. 2026 | Mobil P0 (master synthesis): hero 100 svh se safe-area. Historie na mobilu = swipe karet milníků synchronizovaný s interaktivním pásem 40 let (nativní range přes pás, tap, tah, šipky, Home/End). Bez pinu a scroll-hijacku, sekce 4 154 → ~850 px. | Jakub: „Yes, do both“ | Jakub |
 | D-022 | 15. 11. 2026 | Hero signatura je pevně „40 let Erasmu+ · 1987–2027 · v Česku od 1998“. Koncový rok se v úvodu už nepočítá (dříve krátce „1987–2018“). Průběh let patří Historii. | N-HERO-YEAR (Codex), obsahový rozpor | Jakub |
+
+| D-023 | 15. 11. 2026 | Jakub deleguje všechna běžná rozhodnutí z PRO_JAKUBA; úklid generických dekorací, opakovaných badge/ilustračních overlay a posílení barvy i uživatelem řízeného pohybu. Modelový původ se vysvětluje jednou v přehledu a v detailu/dialogu, zdroje a metadata zůstávají. Mapa dostává druhou Erasmus+ modrou plochu a ovládání tras; žádné vymyšlené osoby, souhlasy či čísla. | Přímý pokyn Jakuba: „rozhoduj sám ... u všech těch bodů“, nelíbí se mu štítky; CDX-008 | Jakub → rozhodnutí Codex |
+
+### QA CDX-008 · 15. 11. 2026
+
+- Ruční volbu mapy přepisoval refresh stejné stanice railu. Stejná stanice nyní zachová ruční výběr; skutečně jiná stanice propojí scény. Cílené next/prev/focus prošlo na360/390/430/1440 × reduced.
+- Detail citace měl opacity0,14 a skutečný kontrast1,27:1, archivní minikarty stejný fade-up s dočasně nízkým kontrastem. Odstraněn generický nájezd a rozmazávání textu; filmový pohyb fotografií, Trasa a směrové přechody zůstávají.
+- Modelovost samostatných scén04/06/07/08 vysvětluje věta v běžném textu. Nevkládat zpět opakované štítky přes fotografie.

@@ -24,6 +24,7 @@ export function SiteFooter() {
           <Link href="/tvoje-era">Jaké je tvoje ERA?</Link>
           <Link href="/o-projektu">O projektu</Link>
           <Link href="/ochrana-osobnich-udaju">Ochrana osobních údajů</Link>
+          <Link href="/placeholders">O příbězích a fotografiích</Link>
           <Link href="/credits">Zdroje a obrazové kredity</Link>
           <a href="https://www.dzs.cz/">Dům zahraniční spolupráce</a>
           <a href="https://erasmus-plus.ec.europa.eu/">Erasmus+</a>

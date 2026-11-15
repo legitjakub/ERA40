@@ -68,7 +68,6 @@ export function BigCount({ reduced }: { reduced: boolean }) {
         </ul>
         <p className={s.caption}>
           Za každým číslem je člověk. Třeba takový jako Tereza, Jakub nebo Mgr. Jana.
-          <small> Modelové příběhy, ilustrační fotografie.</small>
         </p>
       </div>
     </div>

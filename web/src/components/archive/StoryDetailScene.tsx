@@ -1,6 +1,6 @@
 "use client";
 
-import { gsap, loadSplitText, ScrollTrigger } from "@/lib/gsap/setup";
+import { gsap } from "@/lib/gsap/setup";
 import { useScene } from "@/lib/gsap/useScene";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
@@ -8,9 +8,8 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
  * P1 (Jakub 11:36): the story page should get under the skin — less UI,
  * more person. One scene, no pin, no second renderer:
  * - the opening photo settles with a slow push-in and drifts on scroll,
- * - the quote gets its own quiet section, revealed word by word by scroll,
+ * - the quote and paragraphs remain readable at full contrast,
  * - the route on the map draws with the reading position,
- * - paragraphs arrive one by one (blur only on wide screens),
  * - "Kdo pokračuje dál" opens its photo as it comes into view (touch too).
  * Reduced motion: nothing runs; the static page is complete.
  */
@@ -18,7 +17,7 @@ export function StoryDetailScene() {
   const reduced = usePrefersReducedMotion();
 
   useScene(
-    (context) => {
+    () => {
       if (reduced) return;
       const main = document.querySelector<HTMLElement>("main");
       if (!main) return;
@@ -52,29 +51,6 @@ export function StoryDetailScene() {
         );
       }
 
-      const mm = gsap.matchMedia();
-      mm.add(
-        { wide: "(min-width: 1024px)", narrow: "(max-width: 1023px)" },
-        ({ conditions }) => {
-          const blur = conditions?.wide ? "blur(6px)" : "blur(0px)";
-          const items = main.querySelectorAll("[data-reveal]");
-          gsap.set(items, { opacity: 0, y: 28, filter: blur });
-          ScrollTrigger.batch(items, {
-            start: "top 88%",
-            once: true,
-            onEnter: (entered) =>
-              gsap.to(entered, {
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)",
-                duration: 0.9,
-                ease: "power3.out",
-                stagger: 0.12,
-              }),
-          });
-        },
-      );
-
       const next = main.querySelector<HTMLElement>("[data-next-photo]");
       if (next) {
         gsap.fromTo(
@@ -88,34 +64,6 @@ export function StoryDetailScene() {
         );
       }
 
-      // Codex review 12:03: the SplitText import may resolve after cleanup
-      // (navigation, reduced motion switched on). Guard it; on failure the
-      // quote simply stays static and readable.
-      let alive = true;
-      const voice = main.querySelector<HTMLElement>("[data-voice]");
-      if (voice) {
-        loadSplitText().then(({ SplitText }) => {
-          if (!alive || !voice.isConnected) return;
-          context.add(() => {
-            const split = SplitText.create(voice, { type: "words" });
-            gsap.fromTo(
-              split.words,
-              { opacity: 0.14 },
-              {
-                opacity: 1,
-                ease: "none",
-                stagger: 0.1,
-                scrollTrigger: { trigger: voice, start: "top 80%", end: "bottom 45%", scrub: 0.5 },
-              },
-            );
-          });
-        }).catch(() => {});
-      }
-
-      return () => {
-        alive = false;
-        mm.revert();
-      };
     },
     { dependencies: [reduced] },
   );

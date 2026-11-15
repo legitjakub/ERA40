@@ -1,6 +1,6 @@
 # ERA40 — Master Synthesis (společný zdroj pravdy)
 
-15. 11. 2026, 16:45 · Claude (kreativní ředitel). HEAD na začátku práce `24ee4d6`.
+15. 11. 2026 · původní syntéza Claude, večerní aktualizace Codex po výslovném předání `d600d0f`. Podrobné QA v reportu CDX-008.
 Tento dokument **nic neimplementuje**. Sjednocuje znalosti z repozitáře, rozhodnutí, koordinace a ověřených referencí. Při rozporu platí pořadí: `decision-log.md` → `web/docs/DESIGN.md` → tento dokument → starší reporty.
 
 **Co jsem neměl k dispozici (nevymýšlím):**
@@ -29,7 +29,7 @@ ERA40 je funkční filmová digitální výstava (Next 16, React 19, GSAP 3.15, 
 2. **Identita výročí není potvrzená** (lockup, loga, povinné texty EU) a chybí provoz kontaktů (CRM nebo rozesílka, GDPR texty s doplněnými údaji).
 3. **Mobilní film** je ostřejší, ale v limitu 2 MB zůstává 720 × 1280.
 
-**Doporučení na další dávky:** P2 řemeslo (presety pohybu, D-007 easing, dokumentace MOTION.md a creative-language, uzavřít spec 002/003) a P1 obsah, jakmile ho DZS dodá.
+**Večerní návaznost:** D-007 easing/presety dokončil Claude v `d600d0f`, dokumentace 002/003/004 je uzavřená. Codex CDX-008 odstraňuje rušivé badge a generické nájezdy, posiluje modrou Mapu a přidává procházení tras. Kamera015B je vizuálně ověřený izolovaný experiment: produkci ponechat v přehledu. Skutečný obsah doplnit po dodání DZS.
 
 Žádné nové knihovny (Three.js, R3F, Rive, Lottie, OGL) nejsou dnes potřeba. Kandidát na budoucí PoC je jen GPU ribbon Trasy, s DOM/SVG fallbackem.
 
@@ -45,7 +45,7 @@ ERA40 je funkční filmová digitální výstava (Next 16, React 19, GSAP 3.15, 
   - „Cesta končí. Zkušenost pokračuje.“,
   - název „Erasmus+ navždy“,
   - signatura „40 let Erasmu+ · 1987–2027 · v Česku od 1998“.
-- **Integrita (závazné):** modelové příběhy a ilustrační fotky jsou viditelně označené. Žádná vymyšlená čísla dopadu, termíny akcí ani partneři. Data jen ze `src/content/stats.ts` se zdrojem DZS.
+- **Integrita (D-023, nejnovější přímý pokyn):** modelový původ vysvětluje běžná redakční věta v přehledu, samostatné kapitole i detailu/dialogu. Opakované pill badges a popisky přes fotografie jsou odstraněné; metadata, kredity a zdroje zůstávají. Žádná vymyšlená čísla dopadu, termíny akcí ani partneři. Data jen ze `src/content/stats.ts` se zdrojem DZS.
 
 ---
 
@@ -57,7 +57,7 @@ ERA40 je funkční filmová digitální výstava (Next 16, React 19, GSAP 3.15, 
 | Odjezdová tabule, 40 → ∞ brána, jízdenky, /oslava | 13.–14. 11. | **Odmítnuto** (D-004/005/006/009). |
 | Znalostní báze, skilly, workflow se schválením | 14. 11. | Platí (D-010, D-011). |
 | Podklady DZS (prezentace, brief, kvíz) | 14. 11. | Zpracováno do `docs/private/` (mimo Git), claim a kvíz (D-014). |
-| Orchestrace Claude × Codex | 15. 11. | Platí (D-015). Codex v noci a odpoledne převzal P3 a mobil 07/08, Claude zbytek. |
+| Orchestrace Claude × Codex | 15. 11. | Platí (D-015). Po HANDOFF-96 `d600d0f` vlastní Codex všechny runtime soubory, QA, build i porty; Claude jen koordinaci. Nová změna vlastníka vyžaduje výslovné předání. |
 | Tři kreativní směry A/B/C | 15. 11. | **Vybrán A** (D-016). |
 | Spodní kapitoly 06–08 | 15. 11. | Hotovo (D-017, spec 009) a doladěno P2 0/5/6/7. |
 | Globální přechod ∞ 40 / 1987–2027 | Codex, 15. 11. | Schváleno a implementováno (D-018, spec 014). |
@@ -76,13 +76,13 @@ ERA40 je funkční filmová digitální výstava (Next 16, React 19, GSAP 3.15, 
 |---|---|
 | **Schváleno a hotovo (doplněno 16:42)** | P0 mobil: hero 100 svh, Historie „Swipe 40 let“ (D-021, `a7ee795`) · P1 film z originálů Pexels (`6738261`) · D-001 identita · D-002 úvod · D-003 podstránky navazují · 006 integrace · 007 dopad (filtr, příklady) · 008 předávky 03 → 04 a 06 → 07 · 009 spodní kapitoly · 012 / 3.3 střídavé spready · 014 přechod (D-018) · 015 A 40 let na lince (D-020) · P0, P0b, P1 (detail, archiv), P2 0/5/6/7 · N1–N12, T1–T5, R3–R12 · nové úvodní video |
 | **Schváleno, nerealizováno** | 3.1 řada oken (D-019, cíl už plní 008A) |
-| **Pouze návrh** | 001 gramatika Trasy (v praxi z velké části naplněna) · 002 obousměrné trasy (mapa už příjezdy má, upravit nebo zavřít) · 003 vazby 40 let (**nahrazuje 015 A**, zavřít) · 004 švy sekcí (částečně 008) · 015 B kamera mapy · GPU ribbon PoC 011 |
+| **Pouze návrh** | 001 gramatika Trasy (v praxi naplněna) · GPU ribbon PoC011 (odloženo); 002/003/004 uzavřené, 015B ověřena pouze v prototypu |
 | **Odmítnuto** | tabule (D-004) · brána 40 → ∞ jako samostatný objekt (D-005) · jízdenky, vlaky, nádraží, okno vlaku (D-006, P0) · /oslava (D-009) · Animaxxing full treatment (D-008) · WebGL distorze děliče 06 (čitelnost) |
-| **Otevřené** | D-007 easing · hero CTA „Objevovat“ vs „Objev“ · 015 B · loga a lockup od DZS · **mobilní interaktivita Příběhů a podstránek** (Jakub v chatu „Moderní řešení přechodů“: „příběhy… všechny sekce jsou hrozně statické… a všechny podstránky“) |
-| **Neaktuální** | `MOTION.md` §4 (02 „sekvence z okna vlaku“, 07 „countery a scrub sloupců“) · `creative-language.md` tabulka (Prolog = okno vlaku, 01 „Odjezd“) · statický pás Historie jako finální řešení · hlavička 0xx specifikací 001–004 |
-| **Rozporné (a rozhodnutí)** | `creative-language.md` „∞ se nekreslí doslova“ vs D-018: **platí D-018** pouze pro přechod 014, jinde ne. · `MOTION.md` „hero 88 svh mobil“ vs Jakubovo „fullscreen“: **platí Jakub**, řešit v P0. |
+| **Rozhodnuto delegací (D-023)** | Hero CTA Objev příběhy; D007 hotovo; kamera015B ověřena a zůstává mimo produkci; bez nových analytik, placených služeb a veřejného nasazení. |
+| **Čeká na skutečný podklad** | Příběhy se souhlasy, archivní obraz, oficiální výroční lockup/loga a aktuálnější doložená čísla od DZS. |
+| **Udržováno** | MOTION.md §4, creative-language a specifikace002/003/004 byly aktualizovány Claudem; Codex doplňuje úklid CDX008. Staré výrazy 88svh, statický mobilní pás nebo badge na každé fotografii nejsou aktuální pravidla. |
 
-**Úkol pro údržbu:** aktualizovat `MOTION.md` §4, `creative-language.md` (kapitoly) a uzavřít 002/003 (P2 dokumentace).
+**Údržba:** aktuální chování musí odpovídat reportu CDX008; hotové P2 dokumenty ani mobilní varianty znovu neotvírat.
 
 ---
 
@@ -171,7 +171,7 @@ Jedna věta pro všechny: *Návštěvník jede po jedné lince 40 let. V roce 19
 Úplná verze: `docs/era40-ai/motion/MOTION.md` + `MOTION_BIBLE.md`. Výtah:
 - **Pohyb je jízda:** plynulý, směrovaný, nikdy neskáče. Vpřed = doprava a dolů. Návrat = přesná inverze.
 - **Jeden hlavní pohyb na kapitolu**, nejvýš dva podpůrné.
-- **Tokeny:** `DUR` xs 0,3 / s 0,6 / m 0,9 / l 1,4 s. `EASE.out` = power3.out (CSS `--ease-out` je zatím cubic, D-007 otevřené). Scrub 0,45–1.
+- **Tokeny:** `DUR` xs 0,3 / s 0,6 / m 0,9 / l 1,4 s. `EASE.out` = power3.out (CSS `--ease-out` sjednocené na power3.out v d600d0f). Scrub 0,45–1.
 - **Stavy povinné u každé animace:** INITIAL (SSR čitelné), INTRO, AMBIENT (většinou nic), OUTRO, REVERSE, MOBILE (zjednodušení, ne vypnutí), REDUCED (koncový stav ihned).
 - **Technika:** GSAP jen přes `lib/gsap/setup.ts`, scény přes `useScene`, `gsap.matchMedia`, jeden Lenis, animovat transform/opacity/clip-path, žádný React state po framech.
 - **Poučení z dneška:**
@@ -292,14 +292,14 @@ Formát: INITIAL → INTRO → INTERACTION → OUTRO → REVERSE · MOBILE · RE
 
 ## 15. AI workflow a skills
 
-- **Role:** Claude = kreativní ředitel, orchestrátor a review. Codex = implementace přes briefy (`docs/agent-briefs/`), report (`docs/agent-reports/`) a QA. Grok Bot = dohled v `web/docs/CLAUDE-COORDINATION.md`. Cursor se nepoužívá (Jakub 11:28).
+- **Role:** Aktuálně po výslovném předání `d600d0f`: Codex = implementace, build, QA a vlastní závěrečné review (nikoli nezávislé); Claude = informační koordinace. Původní systém: Claude = kreativní ředitel, orchestrátor a review, Codex = implementace přes briefy (`docs/agent-briefs/`), report (`docs/agent-reports/`) a QA. Grok Bot = dohled v `web/docs/CLAUDE-COORDINATION.md`. Cursor se nepoužívá (Jakub 11:28).
 - **Postup:** audit → spec (`docs/era40-ai/motion/specs/`) → **Jakubovo schválení** → izolovaný prototyp (při riziku) → review → produkce → QA (mobil 360–430 první, 8 šířek, reduced, klávesnice, `qa-checks`, `qa-impact`, `qa-handoffs` na dev, `qa-route-transition`) → push → zápis do koordinace.
 - **Skilly:**
   - projektové `.claude/skills/era40-*` (reference-analyst → motion-director → creative-developer → visual-qa → creative-refinement),
   - `cinematic-websites`, `gsap-*`, `awwwards`, `react-best-practices`, `web-design-guidelines`.
   - Nové neinstalovat bez důvodu (`web/docs/CREATIVE-SKILLS.md`).
 - **Limity:**
-  - Claude měří `get_usage`. Při **96 % 5h limitu** předá vše Codexu (`HANDOFF-96`, automaticky v 10min dohledu).
+  - Claude provedl výslovný HANDOFF-96 už v d600d0f, bez čekání na skutečných96%. Nepřevádět název předání na tvrzení o ověřeném Usage. Codex od té chvíle drží runtime i build.
   - Codex pak pokračuje podle §16 a materiály dohledá v Jakubových ChatGPT chatech.
 
 ---
@@ -315,27 +315,28 @@ Formát: INITIAL → INTRO → INTERACTION → OUTRO → REVERSE · MOBILE · RE
 | **P1 ✅** | (`1fabb77`: kvíz potvrzení, detail šipky + swipe, archiv sticky filtry; formulář už vyhovoval) Mobilní audit podstránek: archiv (gesta filtrů, aktivní stav), detail (swipe na další příběh), kvíz (haptika není, ale jasná zpětná vazba výběru), zapojte-se (validace a focus) | Jakub: „všechny podstránky“ | M | nízké | — | dílčí návrhy ke schválení |
 | **P1** | Výměna stock za skutečné příběhy, fotky a video | důvěryhodnost, awards | M | nízké | **DZS podklady** | Jakub/DZS |
 | **P1** | Identita: lockup, loga, povinné EU texty | právní a brand | S | nízké | **DZS** | DZS |
-| **P2** | Sjednotit motion presety (draw, wipe, reveal, count) a D-007 easing | konzistence, údržba | M | nízké | — | D-007 Jakub |
-| **P2** | 07 na mobilu zkrátit (příklad pod větev) | méně scrollu | S | nízké | — | ne |
+| **P2 ✅** | Sjednotit motion presety (draw, wipe, reveal, count) a D-007 easing | konzistence, údržba | M | nízké | — | D-007 rozhodl Claude po delegaci |
+| **P2 ✅** | 07 na mobilu zkrátit (CDX-007, c9d9321/02d7cff; příklad pod větev) | méně scrollu | S | nízké | — | ne |
 | **P2 ✅** | Dokumentace: MOTION.md §4, creative-language, spec 002/003/004 uzavřené (15. 11.) | pravda v dokumentech | S | — | — | — |
 | **P2** | Archivní fragmenty 1987/1998/2004 | autenticita Historie | S | nízké | **archivní foto** | ano |
-| **P3** | 015 B kamera mapy (izolovaný prototyp) | čitelnost krátkých tras | M | **orientace** | asset prototyp | ano |
-| **P3** | GPU ribbon Trasy (PoC 011 → rozhodnutí) | „wow“ vrstva | L | výkon, mobil | — | ano |
-| **P3** | Blender render (3D Trasa nad mapou do filmu) | filmový obraz | L | čas | Blender | ano |
+| **P3 ✅ PoC** | 015 B kamera mapy: ověřena, ponechána mimo produkci (README prototypu) | čitelnost krátkých tras | M | **orientace** | asset prototyp | ano |
+| **P3 odloženo** | GPU ribbon Trasy (PoC 011 → rozhodnutí) | „wow“ vrstva | L | výkon, mobil | — | ano |
+| **P3 odloženo** | Blender render (3D Trasa nad mapou do filmu) | filmový obraz | L | čas | Blender | ano |
 
 ---
 
-## 17. Otevřené otázky
+## 17. Rozhodnutí a skutečně chybějící podklady
 
-1. ~~Historie na mobilu~~ schváleno a hotovo (D-021).
-2. Hero CTA: „Objevovat příběhy“ (nyní), nebo „Objev příběhy“?
-3. D-007: sjednotit easing na `power3.out` i v CSS?
-4. 015 B: prototyp kamery, nebo odložit?
-5. Kdy dodá DZS skutečné příběhy, fotky, video a identitu? Bez nich zůstává „ilustrační“ vrstva.
-8. ~~**Hero signatura:**~~ **rozhodnuto (Jakub 18:4x): pevně „1987–2027“, hotovo.** rok se v úvodu počítá 1987 → 2027, takže krátce svítí např. „1987–2018“ (Codex, N-HERO-YEAR). Ponechat počítání (součást schváleného úvodu D-002), nebo signaturu nechat pevně „1987–2027“? Doporučuji pevnou.
-9. **Formulář:** po odeslání dnes neslibujeme lhůtu ani rozesílku (není CRM). Kdo a jak bude kontakty z `/zapojte-se` skutečně zpracovávat?
-6. ~~Obsah ChatGPT chatů~~ vyřešeno: Codex je přepsal (16:30). Jen pokud existuje nejstarší původní master prompt v jiném chatu, uveď kde.
-7. ~~Mobilní „živá karta“ a podstránky~~ schváleno a hotovo (`016d9d7`, `1fabb77`).
+Jakub delegoval všechny běžné volby z `PRO_JAKUBA_PODKLADY.md`. Už se na ně znovu neptat:
+- Hero CTA **Objev příběhy**, signatura pevně1987–2027 (Claude9576994).
+- D007/CSS easing a presety hotové Claude d600d0f; jednotný fade-up nenahrazuje promyšlený pohyb.
+- Kamera015B: skutečná projekce, max1,6×; PoC ověřen64výběry. **Neintegrovat nyní**, pevný přehled lépe ukazuje evropské vazby. Produkční procházení tras je součást CDX008.
+- Původ fotografií/modelů vysvětlit v normálním textu, žádné opakované odznaky přes kompozici. Samostatně použité modelové citace zachovají kontext ve větě kapitoly.
+- Kontakty ukládá stávající formulář pro tým výročí; neslibuje CRM, rozesílku ani termín odpovědi. Bez vymyšlených kontaktů a termínů akcí.
+- Žádná nová analytika, placená služba, doména nebo veřejné nasazení. Ověřené dávky lze pushovat na main.
+- ChatGPT podklady jsou dostupné lokálně a přes již přečtené projektové chaty; nový export není blokace.
+
+DZS musí dodat skutečné příběhy, souhlasy, fotky/video, oficiální výroční identitu a případná nová čísla. Do té doby pokračujeme s pravdivě popsanou pracovní verzí. GPU ribbon/Blender nyní odloženy podle hodnoty pro příběh, ne jako otázky čekající na Jakuba.
 
 ---
 

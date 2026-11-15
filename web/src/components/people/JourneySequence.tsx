@@ -43,11 +43,12 @@ export function JourneySequence({ children }: { children: ReactNode }) {
   const overlay = useRef<HTMLDivElement>(null);
   const frame = useRef<HTMLDivElement>(null);
   const image = useRef<HTMLImageElement>(null);
-  const label = useRef<HTMLSpanElement>(null);
   const reduced = usePrefersReducedMotion();
 
   const selectRailStory = useCallback((index: number) => {
-    setState((current) => current.railIndex === index && !current.manual
+    // Refreshing the same rail station must not overwrite a route the reader
+    // deliberately selected on the map. A different story reconnects the rail.
+    setState((current) => current.railIndex === index
       ? current : { railIndex: index, mapIndex: index, manual: false });
   }, []);
   const selectMapStory = useCallback((index: number) => {
@@ -72,9 +73,9 @@ export function JourneySequence({ children }: { children: ReactNode }) {
       source?.closest("article")?.querySelector<HTMLElement>("[data-story-copy]"),
       sourceSection?.querySelector<HTMLElement>("[data-story-route]"),
     ].filter((element): element is HTMLElement => Boolean(element));
-    const visual = overlay.current, crop = frame.current, photo = image.current, caption = label.current;
+    const visual = overlay.current, crop = frame.current, photo = image.current;
     if (!sourceSection || !mapSection || !rail || !source || !target || !original ||
-      !visual || !crop || !photo || !caption) return;
+      !visual || !crop || !photo) return;
 
     const mm = gsap.matchMedia();
     mm.add("(min-width:1024px) and (min-height:620px) and (prefers-reduced-motion:no-preference)", () => {
@@ -106,7 +107,6 @@ export function JourneySequence({ children }: { children: ReactNode }) {
         const w = lerp(from.width, to.width, at), h = lerp(from.height, to.height, at);
         crop.style.clipPath = `inset(${y}px ${width - x - w}px ${height - y - h}px ${x}px)`;
         photo.style.transform = `translate3d(${lerp(first.x, last.x, at)}px,${lerp(first.y, last.y, at)}px,0) scale(${lerp(1, last.width / first.width, at)})`;
-        caption.style.transform = `translate3d(${x + 12}px,${y + h - 37}px,0)`;
         source.style.visibility = "hidden";
         target.style.visibility = "hidden";
         sourceSection.dataset.handoff = "true";
@@ -168,7 +168,6 @@ export function JourneySequence({ children }: { children: ReactNode }) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img ref={image} className={s.image} alt="" decoding="async" />
           </div>
-          <span ref={label} className={s.label}>Ilustrační snímek</span>
         </div>
       </div>
     </JourneyContext>

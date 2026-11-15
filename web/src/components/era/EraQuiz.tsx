@@ -215,7 +215,7 @@ export function EraQuiz() {
             <div className={s.next}>
               <p>Jak to bylo dál? Za tvou zkušeností je konkrétní příběh.</p>
               <Link href="/zapojte-se#pribeh">
-                Zapsat svůj příběh <span aria-hidden="true">↗</span>
+                Zapsat svůj příběh
               </Link>
             </div>
             <p className={s.disclaimer}>

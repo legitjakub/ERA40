@@ -486,7 +486,6 @@ export function HistoryTimeline() {
                   </div>
                 ))}
               </div>
-              <figcaption>Ilustrační snímek</figcaption>
             </figure>
           </div>
           <div ref={routes} className={styles.routes} data-history-copy>
@@ -577,7 +576,6 @@ export function HistoryTimeline() {
                   <div className={styles.stack} data-grain>
                     <Photo station={station} />
                   </div>
-                  <figcaption>Ilustrační snímek</figcaption>
                 </figure>
                 <p className={styles.staticDate}>{station.date}</p>
                 <div className={styles.staticText}>

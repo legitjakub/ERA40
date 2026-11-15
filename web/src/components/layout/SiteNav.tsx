@@ -211,7 +211,7 @@ export function SiteNav() {
             Archiv
           </Link>
           <Link href="/zapojte-se" className={styles.cta} aria-current={pathname === "/zapojte-se" ? "page" : undefined}>
-            Zapoj se <span aria-hidden="true">↗</span>
+            Zapoj se
           </Link>
           <button className={styles.menu} type="button" aria-label={home ? `Kapitoly ${String(active + 1).padStart(2, "0")} / 08` : "Kapitoly"} aria-describedby={home ? "current-chapter" : undefined} data-home={home} aria-haspopup="dialog" aria-expanded={menuOpen} aria-controls="chapter-menu" onClick={open}>
             <span className={styles.menuLabel}>Kapitoly</span>
@@ -250,7 +250,6 @@ export function SiteNav() {
               <Image key={selected.photo} src={`/media/placeholders/${selected.photo}.jpg`} alt="" fill sizes="(min-width: 900px) 38vw, 1px" />
               <figcaption>
                 <span className={styles.previewTitle}>{String(preview + 1).padStart(2, "0")} / {selected.label}</span>
-                <span>Ilustrační snímek</span>
               </figcaption>
             </figure>
           </div>
@@ -258,7 +257,7 @@ export function SiteNav() {
             <nav aria-label="Další stránky">
               <ul className={styles.pages}>
                 {pages.map(([href, label]) => (
-                  <li key={href} data-cta={href === "/zapojte-se" || undefined}><Link href={href} onClick={close} aria-current={pathname === href ? "page" : undefined}>{label}<span aria-hidden="true">↗</span></Link></li>
+                  <li key={href} data-cta={href === "/zapojte-se" || undefined}><Link href={href} onClick={close} aria-current={pathname === href ? "page" : undefined}>{label}</Link></li>
                 ))}
               </ul>
             </nav>

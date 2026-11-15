@@ -38,7 +38,6 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
   const crop = useRef<HTMLDivElement>(null);
   const archiveImage = useRef<HTMLImageElement>(null);
   const portraitImage = useRef<HTMLImageElement>(null);
-  const caption = useRef<HTMLSpanElement>(null);
   const axisOverlay = useRef<SVGSVGElement>(null);
   const axisRoute = useRef<SVGPathElement>(null);
   const axisGradient = useRef<SVGLinearGradientElement>(null);
@@ -57,10 +56,10 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
       const rail = people?.querySelector<HTMLElement>("[data-story-rail]");
       const target = people?.querySelector<HTMLElement>("[data-story-spread]:first-child [data-photo-wipe]");
       const destination = target?.querySelector<HTMLImageElement>("img");
-      const visual = historyOverlay.current, frame = crop.current, label = caption.current;
+      const visual = historyOverlay.current, frame = crop.current;
       const images = [archiveImage.current, portraitImage.current];
       if (!stage || !source || !sourceFigure || !original || !people || !rail || !target ||
-        !destination || !visual || !frame || !label || !images[0] || !images[1]) return;
+        !destination || !visual || !frame || !images[0] || !images[1]) return;
 
       const outgoing = [...stage.querySelectorAll<HTMLElement>("[data-history-copy]")];
       const incoming = [people.querySelector<HTMLElement>("[data-stories-heading]"),
@@ -94,7 +93,6 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
         });
         // A match cut separates two illustrative situations; faces never dissolve into each other.
         images[1]!.style.opacity = p < .5 ? "0" : "1";
-        label.style.transform = `translate3d(${x + 12}px,${y + h - 37}px,0)`;
         outgoing.forEach((element) => { element.style.opacity = String(1 - segment(p, .08, .30)); });
         incoming.forEach((element, i) => {
           // The heading is still arriving vertically; hold it until it clears the travelling frame.
@@ -274,7 +272,6 @@ export function SceneHandoffs({ children }: { children: ReactNode }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img ref={portraitImage} className={s.image} alt="" decoding="async" />
         </div>
-        <span ref={caption} className={s.label}>Ilustrační snímek</span>
       </div>
       <svg ref={axisOverlay} className={`${s.overlay} ${s.axis}`} data-axis-handoff aria-hidden="true">
         <defs>

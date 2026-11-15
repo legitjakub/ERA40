@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ContentNote } from "@/components/ui/ContentNote";
 import { PageIntro } from "@/components/pages/PageIntro";
 import { StoryArchive } from "@/components/archive/StoryArchive";
 import { stories, storyPhoto } from "@/content/stories";
@@ -20,9 +21,10 @@ export default function StoriesPage() {
         title="Každá cesta pokračuje jinak."
         lead={`${stories.length} příběhů z\u00a0Česka do Evropy a\u00a0z\u00a0Evropy do Česka.`}
       >
+        <ContentNote dark />
         <ol className={s.strip} aria-label="Rychlý výběr příběhu">
-          {stories.map((story, i) => (
-            <li key={story.id} style={{ animationDelay: `${0.35 + i * 0.06}s` }}>
+          {stories.map((story) => (
+            <li key={story.id}>
               <Link href={`/pribehy/${story.id}`}>
                 <span className={s.stripPhoto} data-grain>
                   <Image

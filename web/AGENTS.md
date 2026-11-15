@@ -15,7 +15,7 @@ Pracovní microsite je v této složce. Nová art direction je v `docs/DESIGN.md
 - Zachovej osm sekcí a jejich `data-section`, kotvy i přímé odkazy na příběhy.
 - Importuj GSAP z `src/lib/gsap/setup.ts`. Scény používají `useScene` z `src/lib/gsap/useScene.ts`, který čeká na odložený ScrollTrigger a provádí cleanup. Zůstává právě jedna instance Lenisu.
 - `media.json` obsahuje původ a licenci médií. Lehký katalog `media-images.json` a SVG mapu obnovuje `scripts/rebuild-vector-assets.mjs`.
-- Modelové citace se zobrazují s viditelným štítkem. Skutečné příběhy potřebují ověřitelný zdroj i souhlas k užití. Stock fotografie nepotvrzuje identitu modelové postavy.
+- Původ modelového obsahu vysvětluje běžný text u přehledu a v detailu či dialogu. Jakub 15. 11. výslovně odstranil opakované štítky a popisky přes fotografie; nevracej je. Metadata, kredity a rozlišení skutečných a modelových příběhů zůstávají. Skutečné příběhy potřebují ověřitelný zdroj i souhlas k užití. Stock fotografie nepotvrzuje identitu modelové postavy.
 - U statistik zobrazuj období. Datum kontroly zdroje je v datech, hodnoty z roku 2023 se nesmějí označovat jako stav v roce 2027.
 - Proveď build, lint, typecheck a příslušný prohlížečový test před předáním změny.
 - Zachovej ovládání videa při změně reduced motion. Chyba jednotlivého source nesmí skrýt ovládání úspěšně přehrávané alternativy.

@@ -461,7 +461,6 @@
 }
 .strip li {
   min-width: 0;
-  animation: stripIn 0.9s var(--ease-out) both;
 }
 .strip a {
   display: grid;
@@ -505,12 +504,6 @@
   font-size: var(--fs-meta);
   font-weight: var(--wght-ui);
 }
-@keyframes stripIn {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-}
 @media (max-width: 1023px) {
   .strip {
     display: flex;
@@ -525,9 +518,6 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .strip li {
-    animation: none;
-  }
 }
 
 @media (max-width: 767px) {

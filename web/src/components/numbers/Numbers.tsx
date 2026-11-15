@@ -15,7 +15,6 @@ import {
 } from "@/content/stats";
 import s from "./Numbers.module.css";
 import { stories, storyPhoto } from "@/content/stories";
-import { StoryLabel } from "@/components/archive/StoryLabel";
 import { StoryImpact } from "@/components/archive/StoryImpact";
 import { BigCount } from "./BigCount";
 
@@ -52,16 +51,15 @@ function SectorExample({ sectorId, open }: { sectorId: string; open: boolean }) 
         <>
           <figure className={s.examplePhoto}>
             <Image src={photo.file} alt={photo.alt} fill sizes="(max-width:767px) 88px,(min-width:1024px) 32vw,90vw" />
-            <figcaption>Ilustrační snímek</figcaption>
           </figure>
           <div className={s.exampleText}>
             <p className={s.exampleLabel} role="status">
               <span className={s.exampleSector}>{sector.label}<br /></span>
-              <StoryLabel story={example} />
+              {example.from} → {example.to}
             </p>
             <h3>{example.name}</h3>
             <StoryImpact story={example} />
-            <Link href={`/pribehy/${example.id}`}>Přečti si celý příběh <span aria-hidden="true">↗</span></Link>
+            <Link href={`/pribehy/${example.id}`}>Přečti si celý příběh</Link>
           </div>
         </>
       ) : (
@@ -69,7 +67,7 @@ function SectorExample({ sectorId, open }: { sectorId: string; open: boolean }) 
           <p className={s.exampleLabel} role="status">{sector.label}</p>
           <h3>Patří sem i tvůj příběh.</h3>
           <p>Příběhy ze vzdělávání dospělých teprve shromažďujeme. Co se díky zahraniční zkušenosti změnilo u tebe?</p>
-          <Link href="/zapojte-se#organizace">Zapojit organizaci <span aria-hidden="true">↗</span></Link>
+          <Link href="/zapojte-se#organizace">Zapojit organizaci</Link>
         </div>
       )}
     </div>
@@ -340,7 +338,8 @@ export function Numbers() {
           <h2 id="numbers-title">Po návratu se zkušenost <span className="hl">větví.</span></h2>
           <p className={s.lead}>
             Každá oblast vzdělávání je jedna větev. Vyber ji a podívej se,
-            jak může zkušenost pokračovat dál.
+            jak může zkušenost pokračovat dál. Příklady lidí jsou modelové,
+            čísla pocházejí z uvedených zdrojů.
           </p>
         </header>
         <BigCount reduced={reduced} />

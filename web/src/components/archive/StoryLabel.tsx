@@ -1,11 +1,8 @@
 import type { Story } from "@/content/types";
-import { FictionBadge } from "@/components/ui/FictionBadge";
 
-/** Visible integrity label shared by the archive and the story pages. */
+/** Real-story sources. Model content is explained once by its page or detail. */
 export function StoryLabel({ story }: { story: Story }) {
-  return story.status === "model-story" ? (
-    <FictionBadge />
-  ) : (
+  return story.status === "model-story" ? null : (
     <a href={story.source.url}>{story.source.label}</a>
   );
 }

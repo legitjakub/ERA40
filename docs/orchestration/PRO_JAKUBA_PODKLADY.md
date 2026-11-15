@@ -1,29 +1,40 @@
-# Co potřebuju od Jakuba (15. 11. 2026, 16:20)
+# Rozhodnutí a podklady ERA40
 
-Seřazeno podle toho, co nejvíc brzdí další práci. Úplný seznam včetně spouštěcích podkladů pro launch je v `MISSING_INPUTS.md`. Tady je jen to, co můžeš dodat ty nebo zprostředkovat.
+Aktualizováno 15. 11. 2026 · Codex desktop. Jakub výslovně delegoval rozhodování o všech bodech tohoto dokumentu. Běžná kreativní a technická rozhodnutí už nevracíme jako otázky. Skutečné souhlasy, data a schválení cizí organizace nelze nahradit rozhodnutím AI; jejich absence neblokuje další práci na návrhu.
 
-## A. Hned (aktualizace 16:42)
-1. ~~Obsah ChatGPT chatů~~ **vyřešeno:** Codex má přístup a 3 chaty přepsal do `docs/private/chatgpt/2026-11-15/`. Dodej jen, pokud existuje starší chat s **původním master promptem**.
-2. ~~Interactive Assets v1~~ **už neblokuje:** linka 40 let je hotová a odpovídá SVG z chatu. Volitelně stáhni ZIP z chatu „Interaktivní prvky ERA40“ do `docs/private/assets/`, hodí se pro kameru mapy.
-3. ~~„Tabaco / Tabasco“~~ **vyřešeno:** referenční web Tabasco (Hilo Studio), ne font.
+## Rozhodnuto pro současnou fázi
 
-## B. Rozhodnutí (stačí jedna věta)
-4. ~~Historie na mobilu~~ **schváleno a hotovo** (D-021).
-5. **Hero CTA „Objevovat příběhy“** (tvůj bod 19): ponechat, nebo „Objev příběhy“?
-6. **Kamera mapy (015 B):** zkusit izolovaný prototyp, nebo zatím odložit?
-7. ~~Mobilní „živá karta“ a podstránky~~ **schváleno a hotovo.**
+| Původní bod | Rozhodnutí a konkrétní postup |
+|---|---|
+| A1 ChatGPT kontext | Tři projektové chaty jsou přepsané lokálně mimo Git; navíc načten „Reference pro web Erasmu“. Původní příloha Advanced AI Creative Development System je dostupná v Codex attachments. Další export není podmínkou pokračování. |
+| A2 Interactive Assets | Osa 40 let už vznikla z existujících dat a je hotová. Kamera 015 B dostane izolovaný geografický PoC; produkční mapa zatím zachová celý přehled. Chybějící původní ZIP není blokace. |
+| A3 Tabasco / font | Tabasco je reference studia Hilo. Roboto Flex a identita Erasmus+ zůstávají. |
+| B4 Mobilní Historie | Schválená a hotová interaktivní varianta Swipe 40 let, bez pinu. Neotvírat znovu. |
+| B5 Hero CTA | „Objev příběhy“: jasná aktivní výzva se stejným cílem #pribehy. |
+| B6 Kamera mapy | Izolovaný prototyp podle skutečných souřadnic, max 1,6× po výběru, mobil/reduced celý přehled. Produkční prioritou je srozumitelné procházení tras, nikoli automatický let kamery. Vizuální ověření hotové: 8 kombinací / 64 výběrů, oba konce uvnitř, max1,6×. Verdikt: ponechat mimo produkci, kde je důležitější evropský přehled. Viz README prototypu015-map-camera. |
+| B7 Živá karta a podstránky | Již schváleno a hotovo. Dál pouze řemeslné doladění. |
+| B8 Hero signatura | Pevné 1987–2027; dokončil Claude v 9576994 (D-022). |
+| D-007 Pohyb | Sdílené EASE/DUR, CSS easing podle d600d0f. Stávající scény rozvíjet, nevyrábět stejné fade-up na každém bloku ani plovoucí kurzorové efekty. |
+| Štítky a AI vzhled | Odstranit opakované „Ilustrační snímek/video“ a modelové pill badges z kompozice. Původ vysvětlit jednou v přehledu a v detailu/dialogu běžným textem; zachovat metadata, kredity a skutečné zdroje. Nevymazat rozdíl mezi skutečnými a modelovými příběhy. |
+| Barvy a zvýraznění | Modrá Erasmus+ je skutečná plocha kapitoly Mapa, tmavší modrá drží geografii a malé bílé popisky, žlutý bod ukazuje právě zvolenou cestu. Žádné nové gradienty, neon nebo univerzální barevné pilulky. Kontrast ověřit v prohlížeči. |
 
-8. ~~**Hero signatura:**~~ **rozhodnuto a hotovo, pevně „1987–2027“.** počítat rok 1987 → 2027 v úvodu (krátce svítí např. „1987–2018“), nebo signaturu nechat pevně „1987–2027“?
+## Obsahové podklady: pokračujeme s pravdivou pracovní verzí
 
-## C. Obsah, který nahradí ilustrační stock
-7. **Skutečné příběhy** se souhlasem (první sada „40 let, 40 příběhů“) a jejich řetěz dopadu: komu zkušenost předali.
-8. **Skutečné fotky a video lidí** se souhlasy: tehdy a dnes (06 Návrat), hero video (pokud se točí), archivní snímky k letům 1987, 1998 a 2004 (Historie).
-9. **3–5 fotek s popiskem místo · rok · zdroj** pro lidské kotvy čísel (07).
+| Původní bod | Rozhodnutí do dodání skutečných podkladů |
+|---|---|
+| C7 Skutečné příběhy a souhlasy | Stávající postavy zůstávají modelové. Reálný příběh se zařadí až s doloženým zdrojem, souhlasem autora a popisem předaného dopadu. Redakční role náleží týmu výročí/DZS; nepřidělujeme ji vymyšlenému člověku. |
+| C8 Fotografie a video | Použít existující licencované materiály a přiznaný obrazový doprovod. Žádné generované „autentické účastníky“ ani falešný archiv. Archivní fotografie se přidají až s ověřeným původem. |
+| C9 Fotografie u čísel | Existující portréty představují modelové příběhy, nikoliv osoby ve statistice. Nenahrazovat je vymyšlenými autentickými absolventy. |
+| D10 Loga a výroční lockup | Zachovat již dostupné značky Erasmus+ a DZS, výročí vyjádřit typograficky. Nevymýšlet oficiální nové logo ani schválení DZS. Další povinné formulace přidat podle skutečných podkladů. |
+| D11 Čísla 2027 | Používat doložené hodnoty ze stats.ts s viditelným obdobím 2023/2026. Pracovní 500 000 nepoužít. Novější hodnotu lze nahradit až po ověření primárního zdroje. |
 
-## D. Identita a právní (od DZS)
-10. Oficiální výroční lockup „40 let Erasmus+“, pokud existuje. SVG loga Erasmus+ a DZS. Potvrzení signatury v `web/public/brand/` a povinného textu spolufinancování EU.
-11. Ověřený počet českých účastníků k roku 2027 (pracovní „500 000“ je neověřené) a novější data DZS než 2023.
+## Provoz a zveřejnění
 
-## E. Před spuštěním (až to bude aktuální)
-12. Doména a hosting (era40.cz?), analytika a cookies, kdo spravuje kontakty z `/zapojte-se` (dnes jen lokální JSON, žádné CRM), seznam akcí 2027, partneři, avatary pro kvíz.
-13. Výslovný pokyn k nasazení. Bez něj se nic nepublikuje.
+- **Kontakty:** současný formulář ukládá podání pro tým výročí. Neprobíhá automatická rozesílka, CRM synchronizace ani slib odpovědi do pevné lhůty. Redakční zpracování a případné zveřejnění vyžadují skutečného provozovatele a souhlasy; v UI nic neimplementovaného neslibovat.
+- **Analytika a cookies:** pro pracovní verzi bez nového měření, reklamních služeb a dalších souhlasových lišt. Před veřejným spuštěním bude rozsah vycházet ze skutečně zapojených služeb.
+- **Akce a partneři:** nezveřejňovat vymyšlené termíny, místa a loga. Zatím vede zapojení přes funkční formulář.
+- **Doména, hosting a launch:** současná fáze = lokální produkční náhled a ověřené dávky na GitHub main. Žádné placené služby ani nákup domény. Veřejné nasazení není součást této úpravy a nebude předbíhat ověření obsahu a provozovatele.
+
+## Aktuální práce
+
+Codex po výslovném HANDOFF-96 vlastní implementaci i QA. Pořadí: úklid štítků a generických dekorací → barva a ovládání mapy → izolovaný PoC kamery → společné mobilní a desktopové QA, vlastní review a push. Nové velké 3D vrstvy/GPU ribbon/Blender se nyní nezařazují: pro tuto fázi mají vyšší hodnotu fotografie, orientace a odezva na dotyk.

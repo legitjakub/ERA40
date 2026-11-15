@@ -134,28 +134,6 @@ export function Hero() {
             0.35,
           );
       });
-      mm.add("(pointer:fine)", () => {
-        const link =
-          root.current?.querySelector<HTMLElement>("[data-magnetic]");
-        if (!link) return;
-        const x = gsap.quickTo(link, "x", { duration: 0.25 });
-        const y = gsap.quickTo(link, "y", { duration: 0.25 });
-        const move = (event: PointerEvent) => {
-          const r = link.getBoundingClientRect();
-          x((event.clientX - r.left - r.width / 2) * 0.08);
-          y((event.clientY - r.top - r.height / 2) * 0.15);
-        };
-        const reset = () => {
-          x(0);
-          y(0);
-        };
-        link.addEventListener("pointermove", move);
-        link.addEventListener("pointerleave", reset);
-        return () => {
-          link.removeEventListener("pointermove", move);
-          link.removeEventListener("pointerleave", reset);
-        };
-      });
       return () => {
         mm.revert();
       };
@@ -254,8 +232,8 @@ export function Hero() {
           Česko je u toho od roku 1998.
         </p>
         <div className={styles.actions}>
-          <a className={styles.primary} data-magnetic href="#pribehy">
-            Objevovat příběhy <span aria-hidden="true">↗</span>
+          <a className={styles.primary} href="#pribehy">
+            Objev příběhy
           </a>
           <a className={styles.history} href="#historie">
             Jak to začalo
@@ -264,7 +242,6 @@ export function Hero() {
       </div>
       <FilmCaptions video={video} portrait={portrait} />
       <div className={styles.controls} data-controls>
-        <span>{failed ? "Ilustrační snímek" : "Ilustrační video"}</span>
         {!failed && (
           <button
             type="button"

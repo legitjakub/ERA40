@@ -15,6 +15,7 @@ import {
 import { loadFlip, gsap, registerGsap } from "@/lib/gsap/setup";
 import { stories, storyPhoto } from "@/content/stories";
 import type { Story } from "@/content/types";
+import { ContentNote } from "@/components/ui/ContentNote";
 import { StoryLabel } from "@/components/archive/StoryLabel";
 import styles from "./PeopleStories.module.css";
 
@@ -215,12 +216,13 @@ export function StoryProvider({ children }: { children: ReactNode }) {
                 sizes="(min-width: 900px) 50vw, 100vw"
                 loading="eager"
               />
-              <span className={styles.caption}>Ilustrační snímek</span>
             </div>
             <article className={styles.detailText}>
-              <p className={styles.kicker}>
-                <StoryStatus story={story} />
-              </p>
+              {story.status !== "model-story" && (
+                <p className={styles.kicker}>
+                  <StoryStatus story={story} />
+                </p>
+              )}
               <h2 id="story-dialog-title" className={styles.name}>
                 {story.name}
               </h2>
@@ -235,6 +237,7 @@ export function StoryProvider({ children }: { children: ReactNode }) {
               {story.body?.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
+              {story.status === "model-story" && <ContentNote story />}
               <p className={styles.pageLink}>
                 <Link href={`/pribehy/${story.id}`}>
                   Otevřít jako samostatnou stránku

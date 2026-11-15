@@ -111,11 +111,23 @@ export function EuropeMap({ land }: { land: ReactNode }) {
           <p>
             Cesty ven. Cesty k nám.
             <br />
-            Vyber město a poznej příběh.
+            Vyber město a projdi modelový příběh.
           </p>
         </header>
         <div className={s.layout}>
           <div className={s.map}>
+            <div className={s.mapNav} role="group" aria-label="Procházet trasy příběhů">
+              <button type="button" aria-label="Předchozí trasa" onClick={() => setActive((active - 1 + destinations.length) % destinations.length)}>
+                <span aria-hidden="true">←</span>
+              </button>
+              <p aria-live="polite" aria-atomic="true">
+                <strong>{selected.from} → {selected.to}</strong>
+                <span>Trasa {active + 1} z {destinations.length}</span>
+              </p>
+              <button type="button" aria-label="Další trasa" onClick={() => setActive((active + 1) % destinations.length)}>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
             <div className={s.frame}>
               <svg
                 ref={svgRef}
@@ -250,11 +262,12 @@ export function EuropeMap({ land }: { land: ReactNode }) {
                 fill
                 sizes="(min-width:1024px) 30vw,90vw"
               />
-              <span>Ilustrační snímek</span>
             </div>
-            <p className={s.status}>
-              <StoryStatus story={selected} />
-            </p>
+            {selected.status !== "model-story" && (
+              <p className={s.status}>
+                <StoryStatus story={selected} />
+              </p>
+            )}
             <h3>
               {selected.from} → {selected.to}
             </h3>
@@ -272,7 +285,7 @@ export function EuropeMap({ land }: { land: ReactNode }) {
                 )
               }
             >
-              Celý příběh: {selected.name} <span aria-hidden="true">↗</span>
+              Celý příběh: {selected.name}
             </button>
           </div>
         </div>

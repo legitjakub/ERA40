@@ -67,7 +67,7 @@ Rules: about 60 % white/sky, 30 % EU-blue and Erasmus+-blue surfaces (the site s
 ### Photography & video
 Documentary, natural light, real places: nádraží, vlak, kampus, knihovna, kolej, evropské ulice, Praha. Real people and moments, slightly desaturated with a fine grain.
 Avoid: stock "students laughing at laptop", over-smooth AI faces, wrong signage, flags as decoration.
-Labels: verified archive gets a caption with its source. Stock or AI placeholders get the caption „Ilustrační snímek“ / „Ilustrační video“.
+Provenance (Jakub, 15 Nov 2026, direct refinement request): remove repeated „Ilustrační snímek/video“ overlays and model-story pill badges. Explain model content once in normal editorial text at the overview and in the story detail/dialog; retain full metadata, credits and actual archive sources. Photography must not imply a model character is a verified participant. This replaces the earlier requirement for a badge on every photo or quote.
 
 ## 3. Anti-AI-look rules (hard bans)
 1. Giant outline/transparent numerals or words in the background.
@@ -127,7 +127,7 @@ Do not copy layouts or identities. Extract the technique, then rebuild it in our
 Each spec lists: **Start → Scroll → End → Reverse → Mobile → Reduced**.
 
 ### 01 HERO — „Odjezd“
-- Layout: fullscreen video (100svh desktop / 88svh mobile), ink scrim 40 %. Bottom-left headline (Display XL, white): **„Některé cesty změní všechno.“** Context line (Lead, sentence case): „40 let Erasmu. Česko je u toho od roku 1998.“. Two CTAs: „Objevovat příběhy“ (primary: yellow bg + ink text) and „Jak to začalo“ (text link with underline drawn by Trasa). Sound toggle and pause button bottom-right.
+- Layout: fullscreen video (100svh desktop and mobile, safe-area aware; D-021), ink scrim 40 %. Bottom-left headline (Display XL, white): **„Některé cesty změní všechno.“** Context line (Lead, sentence case): „40 let Erasmu. Česko je u toho od roku 1998.“. Two CTAs: „Objev příběhy“ (primary: yellow bg + ink text) and „Jak to začalo“ (text link with underline drawn by Trasa). Sound toggle and pause button bottom-right.
 - Start: poster → video fades in (.6s). The headline uses splitReveal by lines (delay .3). The Trasa draws across the bottom edge, left→right (dur l).
 - Scroll (0–100 % of a 150 vh pin, desktop): video container scales from 1 to 0.86 and its clip-path insets 0→4 vw, turning the video into a framed photograph on a white background. Headline yPercent −30, opacity →0 in the last 30 %. The Trasa continues down into section 02.
 - End: framed video still visible above the fold of section 02.
@@ -148,18 +148,18 @@ Each spec lists: **Start → Scroll → End → Reverse → Mobile → Reduced**
 - Desktop: pinned 250 vh. Left side shows the year as a typographic hero (Display XL, eu-blue) that **counts/morphs** between milestones. Right side shows a photo stack with maskReveal per milestone, plus a caption of 2–3 sentences. Stations are the milestones from `CONTENT-FACTS` §2. The CZ line draws in from the right edge and joins at 1998, and the scene background changes from white to EU-blue at 2004 (EU accession), with type inverting to white.
 - Scrub: progress drives the line length and which station is active. Station labels use splitReveal.
 - Reverse: scrubbed inverse.
-- Mobile: vertical timeline, the line runs down the left edge and each milestone is a block with its image above. No pin.
+- Mobile (D-021): native swipe cards, synchronised with the interactive forty-year timeline; tap, drag and keyboard range controls. No pin. Reduced motion retains the complete readable content.
 - Reduced: static vertical list.
 
 ### 04 PŘÍBĚHY — „Lidé“
-- Content: 6–8 stories (real first, then model stories with the visible label „Modelový příběh – ilustrační“). Each story = portrait or situational photo + name + route („Olomouc → Valencie“) + mobility type + year + quote (Lead size) + 120-word text + „Číst celý příběh“.
+- Content: 6–8 stories (real first; explain model stories in ordinary introductory text and in their detail/dialog, without repeated badges or photo overlays). Each story = portrait or situational photo + name + route („Olomouc → Valencie“) + mobility type + year + quote (Lead size) + 120-word text + „Číst celý příběh“.
 - Desktop: horizontal rail inside a pin (length = number of stories × 70 vh). Each story is a full-height editorial spread with alternating compositions (photo left/right/bleed). The Trasa runs through all spreads at a fixed height, with a station per story. Between stories the photo maskReveals in from the direction of travel. Quote uses splitReveal.
 - Story detail: opens as a full-screen overlay using a Flip transition from the photo. Esc closes it, focus is trapped while it is open and returned on close, and the URL hash updates.
 - Mobile: native horizontal swipe carousel (scroll-snap) with a progress dots line. Detail opens as a full page.
 - Reduced: vertical list of spreads.
 
 ### 05 EVROPA — „Kam to vede“
-- SVG map of Europe (accurate projection, Natural Earth simplified, EU-blue hairlines on white). Prague is the origin station.
+- SVG map of Europe (accurate projection, Natural Earth simplified). Refinement 15 Nov: Erasmus+ blue chapter surface, EU-blue map field, white routes and yellow active station; real origin/destination coordinates per story. Small text sits on EU blue or white; white text on Erasmus+ blue is large and bold. Previous/next route controls select a story without opening it. Clicking a destination still opens the detail.
 - Start: map at 1.0 with Czechia filled eu-blue. As the user scrolls (pin 150 vh desktop), routes draw from Prague to story destinations one by one (routeDraw, slight arc). Destination dots appear with their city label.
 - Interaction: hover/focus on a destination shows a small caption (city, story name). Click/Enter opens the related story overlay from §04. All destinations also exist as a list of buttons beside the map, so it works by keyboard and screen reader.
 - Data layer (optional toggle): top destinations from `CONTENT-FACTS` §3, shown as route thickness. Show the period.
@@ -198,7 +198,7 @@ The rules above define the restraint: no AI decoration. Within that restraint, t
 | P1 | **WebGL image-distortion transition** between story photos (subtle displacement driven by scroll velocity; off on mobile and reduced motion) | 04 | one shared lightweight canvas (OGL or Three.js), lazy-loaded; DOM images remain the accessible source | Zentry, Floema, Hubtown/Unseen |
 | P1 | Scroll-scrubbed image sequence (≈80–120 frames, e.g. a train window passing, which becomes the transition into Historie) | 02→03 | canvas frame sequence, AVIF/WebP sprites, preloaded progressively | Spyker, Prometheus (case study) |
 | P1 | Smooth inertia scroll + velocity-aware skew on large type (max 3°) | global | Lenis velocity → gsap.quickTo | Inkwell |
-| P1 | Magnetic primary CTAs + hover image preview in the chapter index | 01, 08, nav | gsap.quickTo on pointer; desktop only | Active Theory, Unseen |
+| P1 | Meaningful CTA feedback + hover image preview in the chapter index | 01, 08, nav | native focus/hover, no magnetic pointer chase (CDX008) | Active Theory, Unseen |
 | P1 | Page/overlay transition for story detail (Flip from photo to full-screen) | 04 | Flip plugin | Savor |
 | P2 | One 3D moment, only if it helps the story: e.g. Europe map tilt with depth on routes in the Future finale | 05 or 08 | R3F, lazy-loaded, static SVG fallback | Noomo, Messenger/abeto |
 

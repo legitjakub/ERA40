@@ -7,7 +7,6 @@ import { gsap, registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { stories, storyPhoto } from "@/content/stories";
 import { storyImpact } from "@/content/story-impact";
-import { StoryLabel } from "@/components/archive/StoryLabel";
 import s from "./ThenNow.module.css";
 
 // Spec 009, chapter 06 "Návrat": what continues after the return, and who it reaches.
@@ -183,7 +182,8 @@ export function ThenNow() {
             </h2>
             <p>
               Pobyt skončil. To, co si lidé přivezli, dnes dostávají další: žáci,
-              kolegové, noví studenti. Posuň čáru mezi tehdy a teď.
+              kolegové, noví studenti. Tři modelové příběhy ukazují, jak.
+              Posuň čáru mezi tehdy a teď.
             </p>
           </header>
           <div
@@ -301,7 +301,7 @@ export function ThenNow() {
                 <div>
                   <b>Teď</b>
                   <span>
-                    {person.story.name}, <StoryLabel story={person.story} />
+                    {person.story.name}
                   </span>
                 </div>
               </div>
@@ -309,7 +309,6 @@ export function ThenNow() {
                 <span id="then-now-hint" className={s.hint}>
                   Posuň dělicí čáru tahem nebo šipkami na klávesnici.
                 </span>
-                <span>Postavy jsou modelové, fotografie ilustrační.</span>
               </div>
             </figcaption>
           </figure>

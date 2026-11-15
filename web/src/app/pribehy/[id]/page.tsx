@@ -111,9 +111,11 @@ async function StoryContent({
               <span className="visually-hidden">, </span>
               <span className={s.name}>{story.name}</span>
             </h1>
-            <p className={s.label}>
-              <StoryLabel story={story} />
-            </p>
+            {story.status !== "model-story" && (
+              <p className={s.label}>
+                <StoryLabel story={story} />
+              </p>
+            )}
           </div>
           <SharedPhoto id={story.id}>
             <figure className={s.photo} data-grain data-shared-photo={story.id}>
@@ -124,7 +126,6 @@ async function StoryContent({
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
-              <figcaption>Ilustrační snímek</figcaption>
             </figure>
           </SharedPhoto>
         </header>

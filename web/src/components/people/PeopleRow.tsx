@@ -7,6 +7,7 @@ import { gsap } from "@/lib/gsap/setup";
 import { useScene } from "@/lib/gsap/useScene";
 import { useOpenStory } from "./StoryDialog";
 import { StoryDistortion } from "./StoryDistortion";
+import { ContentNote } from "@/components/ui/ContentNote";
 import s from "./PeopleRow.module.css";
 
 /*
@@ -62,7 +63,7 @@ export function PeopleRow({ reduced }: { reduced: boolean }) {
 
   return (
     <div ref={root} className={s.people}>
-      <p className={s.kicker}>Tohle jsou lidé, ne doprava.</p>
+      <p className={s.kicker}>Každý přiveze něco jiného.</p>
       <ol className={s.row} aria-label="Lidé z modelových příběhů">
         {stories.map((story) => {
           const photo = storyPhoto(story);
@@ -93,7 +94,7 @@ export function PeopleRow({ reduced }: { reduced: boolean }) {
           );
         })}
       </ol>
-      <p className={s.note}>Modelové příběhy, ilustrační fotografie.</p>
+      <ContentNote />
       <StoryDistortion root={root} reduced={reduced} selector="[data-person-photo]" drive="hover" />
     </div>
   );

@@ -17,8 +17,6 @@ import { SharedPhoto } from "./SharedPhoto";
 import { StoryLabel } from "./StoryLabel";
 import { impactThemes, storyImpact, type ImpactTheme } from "@/content/story-impact";
 import s from "./StoryArchive.module.css";
-import { gsap, ScrollTrigger } from "@/lib/gsap/setup";
-import { useScene } from "@/lib/gsap/useScene";
 import { StoryDistortion } from "@/components/people/StoryDistortion";
 
 /*
@@ -78,28 +76,6 @@ export function StoryArchive() {
   const { kind, direction, view, impact, sort } = readFilters(search);
   const root = useRef<HTMLElement>(null);
 
-  // P1 bod 1: cards arrive one after another as they enter the viewport.
-  // Transforms are cleared afterwards so View Transitions snapshot clean boxes.
-  useScene(
-    () => {
-      const section = root.current;
-      if (reduced || !section) return;
-      ScrollTrigger.batch(section.querySelectorAll("[data-archive-item]"), {
-        start: "top 94%",
-        once: true,
-        onEnter: (items) =>
-          gsap.from(items, {
-            opacity: 0,
-            y: 48,
-            duration: 0.85,
-            ease: "power3.out",
-            stagger: 0.09,
-            clearProps: "transform,opacity",
-          }),
-      });
-    },
-    { scope: root, dependencies: [reduced, view] },
-  );
   const [preview, setPreview] = useState(0);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const active = [kind, direction, impact].filter((value) => value !== "all").length;
@@ -283,7 +259,6 @@ export function StoryArchive() {
                         fill
                         sizes="(min-width: 1024px) 40vw, 92vw"
                       />
-                      <span className={s.caption}>Ilustrační snímek</span>
                     </span>
                   </SharedPhoto>
                   <span className={s.meta}>
@@ -297,9 +272,11 @@ export function StoryArchive() {
                     </span>
                   </span>
                 </Link>
-                <p className={s.label}>
-                  <StoryLabel story={story} />
-                </p>
+                {story.status !== "model-story" && (
+                  <p className={s.label}>
+                    <StoryLabel story={story} />
+                  </p>
+                )}
               </li>
             );
           })}
@@ -347,7 +324,6 @@ export function StoryArchive() {
                   fill
                   sizes="(min-width: 1024px) 28vw, 1px"
                 />
-                <span className={s.caption}>Ilustrační snímek</span>
               </span>
               <span className={s.panelName}>{stories[current].name}</span>
               <span className={s.panelQuote}>„{stories[current].quote}“</span>

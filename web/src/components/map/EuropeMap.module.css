@@ -1,6 +1,6 @@
 .section {
-  background: var(--c-sky);
-  color: var(--c-ink);
+  background: var(--c-eplus);
+  color: var(--c-white);
   padding: clamp(70px, 10vw, 150px) 0 80px;
 }
 .inner {
@@ -15,7 +15,7 @@
 }
 .heading h2 {
   margin: 0;
-  color: var(--c-eu-blue);
+  color: var(--c-white);
   font-size: clamp(2.75rem, 7vw, 8rem);
   letter-spacing: -0.025em;
   line-height: 1.04;
@@ -25,7 +25,9 @@
     "wght" var(--wght-display);
 }
 .heading p {
-  font-size: clamp(1rem, 1.35vw, 1.3rem);
+  /* White on Erasmus+ blue is reserved for large bold text (AA ≥ 3:1). */
+  font-size: clamp(1.2rem, 1.35vw, 1.3rem);
+  font-weight: 700;
   line-height: 1.4;
 }
 .layout {
@@ -38,6 +40,33 @@
 .map {
   min-width: 0;
   position: relative;
+  background: var(--c-eu-blue);
+}
+.mapNav {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+}
+.mapNav p { margin: 0; text-align: center; line-height: 1.4; }
+.mapNav strong { display: block; font-size: 1rem; font-weight: var(--wght-ui); }
+.mapNav p > span { display: block; margin-top: 2px; font-size: var(--fs-meta); }
+.mapNav button {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid #ffffff80;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--c-white);
+  font: inherit;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background-color var(--dur-xs) var(--ease-out);
+}
+.mapNav button:focus-visible { outline: 3px solid var(--c-yellow); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) {
+  .mapNav button:hover { background: #ffffff20; }
 }
 .map svg {
   width: 100%;
@@ -48,27 +77,27 @@
 }
 .route {
   fill: none;
-  stroke: var(--c-eu-blue);
+  stroke: var(--c-white);
   /* R5: readable at 360 px, still quieter than the active route (2.5). */
   stroke-width: 1.5;
-  opacity: 0.45;
+  opacity: 0.8;
   vector-effect: non-scaling-stroke;
 }
 .activeRoute {
   fill: none;
-  stroke: var(--c-eu-blue);
+  stroke: var(--c-white);
   stroke-width: 2.5;
   vector-effect: non-scaling-stroke;
 }
 .city {
-  fill: var(--c-eu-blue);
+  fill: var(--c-white);
   cursor: pointer;
 }
 .city text {
   font: var(--wght-ui) 15px var(--font-brand);
   font-size: calc(var(--map-label) * var(--map-unit, 1.135));
   paint-order: stroke;
-  stroke: var(--c-sky);
+  stroke: var(--c-eu-blue);
   stroke-width: calc(3.5px * var(--map-unit, 1.135));
   stroke-linejoin: round;
 }
@@ -80,24 +109,24 @@
   outline: none;
 }
 .city:focus-visible .hit {
-  stroke: var(--c-eu-blue);
+  stroke: var(--c-yellow);
   stroke-width: 2px;
   vector-effect: non-scaling-stroke;
 }
 .city[data-active="true"] circle:not(.hit) {
-  fill: var(--c-eu-blue);
-  stroke: white;
+  fill: var(--c-yellow);
+  stroke: var(--c-eu-blue);
   stroke-width: 3;
 }
 .endpoint {
-  fill: var(--c-eu-blue);
+  fill: var(--c-white);
   pointer-events: none;
 }
 .endpoint text {
   font: var(--wght-ui) 15px var(--font-brand);
   font-size: calc(var(--map-label) * var(--map-unit, 1.135));
   paint-order: stroke;
-  stroke: var(--c-sky);
+  stroke: var(--c-eu-blue);
   stroke-width: calc(4.4px * var(--map-unit, 1.135));
   stroke-linejoin: round;
 }
@@ -112,8 +141,10 @@
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  color: var(--c-mute);
+  color: var(--c-white);
+  margin-inline: 16px;
 }
+.panel { min-width: 0; padding: 24px; background: var(--c-paper); color: var(--c-ink); }
 .selection {
   display: flex;
   flex-wrap: wrap;
@@ -166,7 +197,7 @@
   letter-spacing: -0.025em;
   font-weight: var(--wght-heading);
   line-height: 1.1;
-  margin: 0;
+  margin: 24px 0 0;
 }
 .quote {
   font-size: clamp(1.3rem, 1.8vw, 1.8rem);
