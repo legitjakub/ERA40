@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap } from "@/lib/gsap/setup";
 import { DUR, EASE } from "@/lib/gsap/presets";
@@ -9,7 +9,7 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { stories, storyPhoto } from "@/content/stories";
 
 import { StoryStatus, useOpenStory } from "@/components/people/StoryDialog";
-import { project, routeArc } from "@/lib/geo/europe";
+import { EUROPE_VIEWBOX, project, routeArc } from "@/lib/geo/europe";
 import { useJourney } from "@/components/people/JourneySequence";
 import s from "./EuropeMap.module.css";
 
@@ -18,9 +18,27 @@ const destinations = stories.map((story) => ({
   point: project(story.id === "praha-in" ? story.coords.from : story.coords.to),
 }));
 const route = routeArc;
+/** Map user units per CSS pixel at the desktop layout the marker sizes were drawn for. */
+const DESIGN_UNIT = 1.135;
+/** Hit radius in CSS pixels, so every city keeps a touch target of at least 44 px. */
+const HIT_RADIUS_PX = 23;
 
 export function EuropeMap({ land }: { land: ReactNode }) {
   const root = useRef<HTMLElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [unit, setUnit] = useState(DESIGN_UNIT);
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    const observer = new ResizeObserver(([entry]) => {
+      const width = entry.contentRect.width;
+      if (width) setUnit(Math.round((EUROPE_VIEWBOX.width / width) * 100) / 100);
+    });
+    observer.observe(svg);
+    return () => observer.disconnect();
+  }, []);
+  const k = Math.max(1, unit / DESIGN_UNIT);
+  const hitR = Math.max(23, Math.ceil(HIT_RADIUS_PX * unit));
   const { mapIndex: active, selectMapStory: setActive } = useJourney();
   const activeRoute = useRef<SVGPathElement>(null);
   const traveller = useRef<SVGCircleElement>(null);
@@ -89,102 +107,113 @@ export function EuropeMap({ land }: { land: ReactNode }) {
     >
       <div className={s.inner}>
         <header className={s.heading}>
-          <h2 id="map-title">Blíž, než se zdá.</h2>
+          <h2 id="map-title">Blíž, než se&nbsp;zdá.</h2>
           <p>
             Cesty ven. Cesty k nám.
             <br />
-            Vyberte město a poznejte příběh.
+            Vyber město a poznej příběh.
           </p>
         </header>
         <div className={s.layout}>
           <div className={s.map}>
-            <svg
-              viewBox="0 0 840 870"
-              aria-label="Mapa Evropy s trasami modelových příběhů"
-              role="group"
-            >
-              <defs>
-                <clipPath id="europe-bounds">
-                  <rect width="840" height="870" />
-                </clipPath>
-              </defs>
-              <g clipPath="url(#europe-bounds)">
-                {land}
-                {destinations.map(({ story }) => (
+            <div className={s.frame}>
+              <svg
+                ref={svgRef}
+                viewBox="0 0 840 870"
+                aria-label="Mapa Evropy s trasami modelových příběhů"
+                role="group"
+                style={{ "--map-unit": unit } as CSSProperties}
+              >
+                <defs>
+                  <clipPath id="europe-bounds">
+                    <rect width="840" height="870" />
+                  </clipPath>
+                </defs>
+                <g clipPath="url(#europe-bounds)">
+                  {land}
+                  {destinations.map(({ story }) => (
+                    <path
+                      data-route
+                      key={story.id}
+                      className={s.route}
+                      d={route(project(story.coords.from), project(story.coords.to))}
+                      aria-hidden="true"
+                    />
+                  ))}
                   <path
-                    data-route
-                    key={story.id}
-                    className={s.route}
-                    d={route(project(story.coords.from), project(story.coords.to))}
+                    ref={activeRoute}
+                    className={s.activeRoute}
+                    d={route(from, to)}
                     aria-hidden="true"
                   />
-                ))}
-                <path
-                  ref={activeRoute}
-                  className={s.activeRoute}
-                  d={route(from, to)}
-                  aria-hidden="true"
-                />
-                <g aria-hidden="true" className={s.endpoint}>
-                  <circle cx={from[0]} cy={from[1]} r="5" />
-                  {selected.id !== "praha-in" && (
-                    <text x={from[0] - 12} y={from[1] + 24} textAnchor="end">{selected.from}</text>
-                  )}
-                  {selected.id === "praha-in" && (
-                    <><circle cx={to[0]} cy={to[1]} r="5" /><text x={to[0] + 13} y={to[1] + 23}>Praha</text></>
-                  )}
-                </g>
-                {destinations.map(({ story, point }, i) => (
-                  <g
-                    key={story.id}
-                    data-city
-                    className={s.city}
-                    data-active={active === i}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={
-                      story.id === "praha-in"
-                        ? "Lisabon do Prahy, příběh Inês"
-                        : story.to + ", příběh " + story.name
-                    }
-                    onFocus={() => setActive(i)}
-                    onPointerEnter={() => setActive(i)}
-                    onClick={(e) => {
-                      setActive(i);
-                      open(story, e.currentTarget);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
+                  <g aria-hidden="true" className={s.endpoint}>
+                    <circle cx={from[0]} cy={from[1]} r={5 * k} />
+                    {selected.id !== "praha-in" && (
+                      <text x={from[0] - 12 * k} y={from[1] + 24 * k} textAnchor="end">{selected.from}</text>
+                    )}
+                    {selected.id === "praha-in" && (
+                      <>
+                        <circle cx={to[0]} cy={to[1]} r={5 * k} />
+                        <text x={to[0] + 13 * k} y={to[1] + 23 * k}>Praha</text>
+                      </>
+                    )}
+                  </g>
+                  {destinations.map(({ story, point }, i) => (
+                    <g
+                      key={story.id}
+                      data-city
+                      className={s.city}
+                      data-active={active === i}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={
+                        story.id === "praha-in"
+                          ? "Lisabon do Prahy, příběh Inês"
+                          : story.to + ", příběh " + story.name
+                      }
+                      onFocus={() => setActive(i)}
+                      onPointerEnter={() => setActive(i)}
+                      onClick={(e) => {
                         setActive(i);
                         open(story, e.currentTarget);
-                      }
-                    }}
-                  >
-                    <circle
-                      cx={point[0]}
-                      cy={point[1]}
-                      r="23"
-                      className={s.hit}
-                    />
-                    <circle
-                      cx={point[0]}
-                      cy={point[1]}
-                      r={active === i ? 7 : 5}
-                    />
-                    <text x={point[0] + 13} y={point[1] + 5}>
-                      {story.id === "praha-in" ? "Lisabon" : story.to}
-                    </text>
-                  </g>
-                ))}
-                <circle
-                  ref={traveller}
-                  className={s.traveller}
-                  cx={to[0]} cy={to[1]} r="7"
-                  aria-hidden="true"
-                />
-              </g>
-            </svg>
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setActive(i);
+                          open(story, e.currentTarget);
+                        }
+                      }}
+                    >
+                      <circle
+                        cx={point[0]}
+                        cy={point[1]}
+                        r={hitR}
+                        className={s.hit}
+                      />
+                      <circle
+                        cx={point[0]}
+                        cy={point[1]}
+                        r={(active === i ? 7 : 5) * k}
+                      />
+                      {/* Lisbon's label sits under its dot so it never covers Valencie. */}
+                    <text
+                      x={point[0] + (story.id === "praha-in" ? -4 : 13) * k}
+                      y={point[1] + (story.id === "praha-in" ? 26 : 5) * k}
+                    >
+                        {story.id === "praha-in" ? "Lisabon" : story.to}
+                      </text>
+                    </g>
+                  ))}
+                  <circle
+                    ref={traveller}
+                    className={s.traveller}
+                    cx={to[0]} cy={to[1]} r={7 * k}
+                    aria-hidden="true"
+                  />
+                </g>
+              </svg>
+            </div>
             <a
               className={s.credit}
               href="https://www.naturalearthdata.com/about/terms-of-use/"

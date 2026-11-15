@@ -1,0 +1,30 @@
+/* Headings: break a too-long Czech word inside the column instead of overflowing it.
+   break-word (not anywhere) keeps min-content intact, so flex rows don't squeeze titles. */
+h1,
+h2 {
+  overflow-wrap: break-word;
+}
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p,
+li,
+blockquote,
+figcaption {
+  text-wrap: pretty;
+}
+@media (max-width: 767px) {
+  h1,
+  h2 {
+    hyphens: auto;
+    hyphenate-limit-chars: 10 4 4;
+  }
+}
+/* Headings and regions focused from script (tabIndex -1) mark a reading position,
+   they are not controls. Roving buttons with tabIndex -1 keep the ring. */
+:where(h1, h2, h3, h4, h5, h6, p, div, section, article, main, header, footer)[tabindex="-1"]:focus {
+  outline: none;
+  box-shadow: none;
+}
