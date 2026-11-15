@@ -1216,3 +1216,25 @@ Na e7307f4 je asi 23 `:hover` pravidel bez `@media (hover: hover)`. Na telefonu 
   - `qa-checks` 15/15 (axe opraven: přístupné jméno karet obsahuje viditelný text), `qa-handoffs` 6/6 (dev), `qa-impact` 0 chyb,
   - build je čistý, :3000 restartovaný.
 - STAV 12:00 · Claude · Další: P0b (brand zvýraznění a pravidlo v DESIGN.md), pak WebGL v PeopleRow a P2. Limit: blíží se, při 98 % předám podle HANDOFF-98.
+
+### 2026-11-15 12:01 · Claude → Codex / Grok Bot · HANDOFF-98 PŘIPRAVENO (platí, jakmile Claude dosáhne 98 % nebo přestane odpovídat)
+- **HEAD:** `ecb91d1` na origin/main. **Rozpracované soubory: žádné.** Všechny cesty v `web/src/**`, `web/scripts/**`, build a :3000 při 98 % **výslovně uvolňuji** Codexu.
+- **Porty:** :3000 = produkční build z `ecb91d1`, restart přes PID (`lsof -tiTCP:3000 -sTCP:LISTEN`) a `npm run start -- --hostname 127.0.0.1 --port 3000`. :3040 = dev server (HMR, potřebný pro `qa-handoffs --url http://127.0.0.1:3040`).
+- **Poslední QA (`ecb91d1`):** `qa-checks` 15/15, `qa-handoffs` 6/6 (dev), `qa-impact` 0 chyb, 360/390/430/1440 bez přetečení, build čistý. QA env: `PLAYWRIGHT_BROWSERS_PATH=/private/tmp/era40-qa-browsers`, `AXE_SCRIPT=/private/tmp/era40-qa-tools/node_modules/axe-core/axe.min.js`.
+- **Další schválené úkoly v pořadí:**
+  1. **P0b** (Grok 11:52): brand zvýraznění 1–2 slov na blok.
+     - Na světlém `--c-eu-blue`, velké `--c-eplus`, malé `--c-eplus-ink`. Žlutá jen na tmavém.
+     - Místa: hero claim, PeopleIntro, kapitoly, Numbers, Future, detail.
+     - Zapsat změnu pravidla do `web/docs/DESIGN.md`.
+     - Reduced bez animace zvýraznění.
+  2. **P0 dokončení:** jemná WebGL distorze fotek v `PeopleRow` přes sdílený `people/distortion.ts` / StoryDistortion. Jeden canvas, DPR cap 1.5, reduced vypnuto.
+  3. **P2:**
+     - 06 `ThenNow` scrub prstem s přechodem přes distorzi,
+     - 07 `Numbers` hlavní číslo přes celou šířku, lidské kotvy z `stories.ts`, počítání se scrollem,
+     - 08 `Future` jako ztišení,
+     - uspořádat **mobil 07 a 08** (Jakub: „hrozné, neuspořádané“).
+  4. **P1 body 1–2:** archiv (stagger karet, distorze podle rychlosti scrollu) a karta → detail. View Transition `SharedPhoto` už existuje.
+  5. KROK 4 R8/R12. KROK 3.1 (spec 012) čeká na Jakubovo schválení, 3.2 na fotky.
+- **Pravidla:** mobil 360–430 první, pak `qa-checks`, `qa-impact`, `qa-handoffs` (dev), build a restart :3000, push na main a HOTOVO sem. `web/data/` nečíst ani necommitovat. Žádné placené služby.
+- **Surový materiál filmu:** `web/node_modules/.cache/era40-media` (mimo Git). ffmpeg: `FFMPEG=/private/tmp/claude-501/-Users-jakubhrncir-ERA40/c71e376a-d12a-4f3d-8896-5575483e39cc/scratchpad/tools/node_modules/ffmpeg-static/ffmpeg bash scripts/build-hero.sh`. Scratchpad může zmizet, jinak `npm i ffmpeg-static` mimo projekt.
+- Do 98 % pokračuji sám s P0b.
