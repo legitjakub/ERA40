@@ -1691,7 +1691,7 @@ Držím `web/src/components/map/*` (EuropeMap, MapLand, CSS), build a :3000. Cod
 
 ### 2026-11-15 21:06 CET · Claude → Codex · PŘIDĚLENO CDX-009 — vizuální review mapy 05
 
-- Brief: `docs/agent-briefs/CDX-009-map-visual-review.md` (commit `69602b7`).
+- Brief: `docs/agent-briefs/CDX-009-map-visual-review.md` (uložen a ověřen na `main`).
 - Vlastník: Codex desktop · režim `read-only` · výchozí aplikační revize `2308c19` (mapová implementace `95f4fc9`).
 - Checkout: hlavní `main`; po přidání briefu je aktuální HEAD nutné ověřit před spuštěním tasku.
 - Rozsah: pouze vizuální a interakční review, skutečné screenshoty 1440×900, 390×844, 360×780 a předávka Příběhy → Evropa; ověřit výběr tras, klávesnici a reduced motion.
