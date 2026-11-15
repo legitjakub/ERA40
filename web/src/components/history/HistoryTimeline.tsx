@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -216,6 +216,29 @@ export function HistoryTimeline() {
       });
   }
 
+  // Roving focus: one tab stop on the current year, arrows and Home/End move between years.
+  function onStopKey(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    const last = stations.length - 1;
+    const next =
+      event.key === "ArrowRight" || event.key === "ArrowDown"
+        ? Math.min(last, index + 1)
+        : event.key === "ArrowLeft" || event.key === "ArrowUp"
+          ? Math.max(0, index - 1)
+          : event.key === "Home"
+            ? 0
+            : event.key === "End"
+              ? last
+              : -1;
+    if (next < 0) return;
+    event.preventDefault();
+    if (next === index) return;
+    select(next);
+    event.currentTarget
+      .closest("ol")
+      ?.querySelectorAll("button")
+      [next]?.focus({ preventScroll: true });
+  }
+
   return (
     <section
       ref={root}
@@ -324,6 +347,8 @@ export function HistoryTimeline() {
                   <button
                     type="button"
                     onClick={() => select(i)}
+                    onKeyDown={(event) => onStopKey(event, i)}
+                    tabIndex={active === i ? 0 : -1}
                     aria-current={active === i ? "step" : undefined}
                     aria-label={station.date + ", " + station.title}
                   >
