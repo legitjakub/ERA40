@@ -59,3 +59,5 @@ Jakub výslovně schválil oba koncepty a integraci 008. Přechody jsou implemen
 Poučení: (1) konec předávky musí respektovat skutečný scroll-margin-top kotvy; (2) vnitřní ořez gridu od min-height/aspect-ratio neodhalí pouhé document.scrollWidth; (3) očekávané přerušení ViewTransition.ready vyžaduje obsluhu AbortError; (4) opožděný návrat fokusu nesmí přebít novou volbu uživatele; (5) dvě různé ilustrační tváře se ve sdíleném rámu lépe oddělí střihem než prolínáním.
 
 Naměřeno headless: 60 fps desktop, simulovaný telefon 4× CPU/slow4G LCP 692 ms, CLS .002 a 60 fps. Nejde o měření fyzického telefonu. Existující WebGL skutečně vykreslen při pohybu; při nedostupné fotografii zůstává původní obsah viditelný. Žádné kontakty nebyly odeslány ani čteny.
+
+8. **WebGL test:** shoda souřadnic nedokazuje vykreslení. Vždy číst pixely canvasu (`readPixels` s `preserveDrawingBuffer`) nebo prohlédnout screenshot. Ortografická kamera s osou y dolů obrací winding, takže materiály potřebují `DoubleSide` (PoC 1, 15. 11.).
