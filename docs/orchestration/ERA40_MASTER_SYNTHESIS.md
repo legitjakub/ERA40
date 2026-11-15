@@ -332,7 +332,7 @@ Formát: INITIAL → INTRO → INTERACTION → OUTRO → REVERSE · MOBILE · RE
 3. D-007: sjednotit easing na `power3.out` i v CSS?
 4. 015 B: prototyp kamery, nebo odložit?
 5. Kdy dodá DZS skutečné příběhy, fotky, video a identitu? Bez nich zůstává „ilustrační“ vrstva.
-8. **Hero signatura:** rok se v úvodu počítá 1987 → 2027, takže krátce svítí např. „1987–2018“ (Codex, N-HERO-YEAR). Ponechat počítání (součást schváleného úvodu D-002), nebo signaturu nechat pevně „1987–2027“? Doporučuji pevnou.
+8. ~~**Hero signatura:**~~ **rozhodnuto (Jakub 18:4x): pevně „1987–2027“, hotovo.** rok se v úvodu počítá 1987 → 2027, takže krátce svítí např. „1987–2018“ (Codex, N-HERO-YEAR). Ponechat počítání (součást schváleného úvodu D-002), nebo signaturu nechat pevně „1987–2027“? Doporučuji pevnou.
 9. **Formulář:** po odeslání dnes neslibujeme lhůtu ani rozesílku (není CRM). Kdo a jak bude kontakty z `/zapojte-se` skutečně zpracovávat?
 6. ~~Obsah ChatGPT chatů~~ vyřešeno: Codex je přepsal (16:30). Jen pokud existuje nejstarší původní master prompt v jiném chatu, uveď kde.
 7. ~~Mobilní „živá karta“ a podstránky~~ schváleno a hotovo (`016d9d7`, `1fabb77`).

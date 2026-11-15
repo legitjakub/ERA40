@@ -52,7 +52,7 @@ Stav ✅ = implementováno, 🟡 = částečně, ⬜ = návrh (nevyvíjet bez sc
 *Aktualizováno 15. 11. 2026 (podle kódu a `docs/orchestration/ERA40_MASTER_SYNTHESIS.md` §14).*
 
 ### 01 Úvod (hero)
-- INTRO ✅: poster je LCP, film (balení → škola → přednáška → večeře → večer → návrat → „A předává to dál.“) s titulky, claim po řádcích, „všechno.“ žlutě (P0b), rok signatury se počítá 1987 → 2027 (otázka N-HERO-YEAR: ponechat, nebo pevně?).
+- INTRO ✅: poster je LCP, film (balení → škola → přednáška → večeře → večer → návrat → „A předává to dál.“) s titulky, claim po řádcích, „všechno.“ žlutě (P0b), signatura pevně 1987–2027 (D-022).
 - OUTRO ✅: pin 150 vh, film se zmenší do rámu a Trasa pokračuje dolů.
 - MOBIL ✅: 100 svh + safe-area (D-021). Film z originálů, 720 × 1280.
 

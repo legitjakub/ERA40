@@ -90,19 +90,9 @@ export function Hero() {
         stagger: 0.09,
         ease: "power3.out",
       });
-      const end = root.current?.querySelector<HTMLElement>("[data-year-end]");
-      if (end) {
-        const year = { value: 1987 };
-        gsap.to(year, {
-          value: 2027,
-          duration: 1.6,
-          delay: 0.45,
-          ease: "power2.inOut",
-          onUpdate: () => {
-            end.textContent = String(Math.round(year.value));
-          },
-        });
-      }
+      // Jakub 15. 11. (N-HERO-YEAR): the signature always reads 1987–2027;
+      // counting the end year showed intervals like "1987–2018". The years run
+      // in the History chapter instead.
       gsap.from("[data-hero-track]", {
         scaleX: 0,
         transformOrigin: "left",
@@ -168,7 +158,6 @@ export function Hero() {
       });
       return () => {
         mm.revert();
-        if (end) end.textContent = "2027";
       };
     },
     { scope: root, dependencies: [reduced], revertOnUpdate: true },
@@ -245,7 +234,7 @@ export function Hero() {
         <p className={styles.context}>
           <span className={styles.station} />
           <span>
-            40 let Erasmu+ · 1987–<span data-year-end>2027</span> · v Česku od
+            40 let Erasmu+ · 1987–2027 · v Česku od
             1998
           </span>
         </p>
