@@ -289,14 +289,29 @@
   outline: 2px solid var(--c-yellow);
   outline-offset: 6px;
 }
-.spread[data-flipped="true"] .photo {
+/* KROK 3.3 (spec 012): three spreads alternate so the rail reads as an
+   editorial sequence, not one template repeated. The surface stays (bod 22). */
+.spread[data-layout="photo-right"] .photo {
   order: 2;
 }
-.spread[data-flipped="true"] .text {
+.spread[data-layout="photo-right"] .text {
   order: 1;
 }
-.spread[data-flipped="true"] {
+.spread[data-layout="photo-right"] {
   grid-template-columns: 1fr 1.08fr;
+}
+/* Plate: a wide, lower photo on top of the line; the copy sits on the
+   baseline beside it, like a caption plate in a catalogue. */
+.spread[data-layout="plate"] {
+  grid-template-columns: 1.55fr 1fr;
+  align-items: end;
+}
+.spread[data-layout="plate"] .photo {
+  height: clamp(280px, 50svh, 560px);
+  align-self: start;
+}
+.spread[data-layout="plate"] .text {
+  padding-bottom: 0;
 }
 .dialog {
   padding: 0;
@@ -381,7 +396,7 @@
     scrollbar-color: white transparent;
   }
   .spread,
-  .spread[data-flipped="true"] {
+  .spread[data-layout] {
     grid-template-columns: 1fr;
     min-width: 90%;
     max-width: 90%;
@@ -389,9 +404,12 @@
     gap: 26px;
     align-content: start;
   }
-  .spread[data-flipped="true"] .photo,
-  .spread[data-flipped="true"] .text {
+  .spread[data-layout] .photo,
+  .spread[data-layout] .text {
     order: initial;
+  }
+  .spread[data-layout="plate"] .photo {
+    height: 380px;
   }
   .photo {
     height: 380px;
@@ -454,7 +472,7 @@
     overflow: visible;
   }
   .spread,
-  .spread[data-flipped="true"] {
+  .spread[data-layout] {
     min-width: 100%;
     max-width: 100%;
   }

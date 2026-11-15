@@ -61,3 +61,6 @@ Poučení: (1) konec předávky musí respektovat skutečný scroll-margin-top k
 Naměřeno headless: 60 fps desktop, simulovaný telefon 4× CPU/slow4G LCP 692 ms, CLS .002 a 60 fps. Nejde o měření fyzického telefonu. Existující WebGL skutečně vykreslen při pohybu; při nedostupné fotografii zůstává původní obsah viditelný. Žádné kontakty nebyly odeslány ani čteny.
 
 8. **WebGL test:** shoda souřadnic nedokazuje vykreslení. Vždy číst pixely canvasu (`readPixels` s `preserveDrawingBuffer`) nebo prohlédnout screenshot. Ortografická kamera s osou y dolů obrací winding, takže materiály potřebují `DoubleSide` (PoC 1, 15. 11.).
+
+## 2026-11-15 · KROK 3.3 střídavé spready (spec 012)
+Tři rozvržení spreadu (photo-left, photo-right, plate) místo dvou. Je to jen rozvržení bez nové animace, proto ho Claude realizoval podle Jakubova stálého pokynu (11:29). Scrubovaný vstup 3.1 zůstává návrh: je to významná animace a podle pravidla fáze 11 potřebuje výslovné schválení.

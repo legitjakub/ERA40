@@ -204,7 +204,7 @@ export function PeopleStories() {
                 key={story.id}
                 className={s.spread}
                 data-story-spread
-                data-flipped={i % 2 === 1}
+                data-layout={(["photo-left", "photo-right", "plate"] as const)[i % 3]}
               >
                 <div
                   className={s.photo}
