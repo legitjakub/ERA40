@@ -161,7 +161,7 @@ export function SiteNav() {
       <header className={styles.header} ref={header} data-other={!darkTop} data-film={home}>
         <div className={styles.identity}>
           <Link className={styles.brand} href="/#hero" aria-label="Erasmus+ navždy, úvod">
-            Erasmus<span className={styles.plus}>+</span> navždy
+            <span>Erasmus<span className={styles.plus}>+</span> navždy</span>
           </Link>
           <span className={styles.signature}>{siteSignature}</span>
         </div>

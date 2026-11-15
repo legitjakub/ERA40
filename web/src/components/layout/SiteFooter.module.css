@@ -33,11 +33,13 @@
 }
 .inner nav {
   display: grid;
-  gap: 10px;
   justify-items: start;
   align-content: start;
 }
 .inner a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: white;
   font-size: 0.94rem;
 }

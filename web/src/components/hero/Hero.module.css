@@ -63,15 +63,13 @@
   font-weight: var(--wght-ui);
 }
 .station {
+  flex: none;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--c-yellow);
 }
-.dates {
-  margin-left: 10px;
-  padding-left: 20px;
-  border-left: 1px solid #fff9;
+.context > span:last-child {
   font-variant-numeric: tabular-nums;
 }
 .title {
@@ -126,6 +124,9 @@
 }
 .history,
 .history:hover {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: white;
   text-decoration-thickness: 1px;
   text-underline-offset: 6px;
@@ -187,22 +188,25 @@
     margin-bottom: 18px;
   }
 }
-/* Phones: film captions take two lines under the copy. */
+/* Phones: film captions take two lines under the copy, and the static
+   trail would run through the film controls. */
 @media (max-width: 767px) {
   .copy {
-    bottom: 100px;
+    bottom: 96px;
+  }
+  .context {
+    font-size: var(--fs-meta);
   }
   .actions {
-    flex-wrap: wrap;
-    row-gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
   .primary {
-    gap: 14px;
-    padding-inline: 14px;
+    min-height: 48px;
   }
-  .primary,
-  .history {
-    white-space: nowrap;
+  .trail {
+    display: none;
   }
 }
 @media (max-height: 620px) and (min-width: 650px) {

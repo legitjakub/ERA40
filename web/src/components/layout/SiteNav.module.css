@@ -50,6 +50,9 @@
 .brand:hover {
   --wght-brand: 500;
   flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: inherit;
   text-decoration: none;
   font-size: clamp(26px, 2.3vw, 36px);
@@ -118,11 +121,17 @@
   white-space: nowrap;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
+/* Yellow is reserved for "you are here"; the filled state inverts instead. */
 .cta:hover,
 .cta[aria-current] {
-  background: var(--c-yellow);
-  border-color: var(--c-yellow);
-  color: var(--c-ink);
+  background: white;
+  border-color: white;
+  color: var(--c-eu-blue);
+}
+.header:is([data-light="true"], [data-other="true"]) .cta:is(:hover, [aria-current]) {
+  background: var(--c-eu-blue);
+  border-color: var(--c-eu-blue);
+  color: white;
 }
 .cta:focus-visible {
   outline: 2px solid currentColor;

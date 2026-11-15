@@ -243,9 +243,10 @@ export function Hero() {
       </div>
       <div className={styles.copy} data-film-copy>
         <p className={styles.context}>
-          <span className={styles.station} /> 40 let Erasmu+{" "}
-          <span className={styles.dates}>
-            1987 — <span data-year-end>2027</span>
+          <span className={styles.station} />
+          <span>
+            40 let Erasmu+ · 1987–<span data-year-end>2027</span> · v Česku od
+            1998
           </span>
         </p>
         <h1 id="hero-title" className={styles.title}>
