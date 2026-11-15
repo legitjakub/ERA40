@@ -49,3 +49,7 @@ CLI wrapper se pokoušel o síťové rozlišení balíčku, ukončen (130); pou�
 ## Co nebylo ověřeno
 
 Skutečný Next App Router, React SharedPhoto při streamingu/prefetchi, scroll restoration produkce, produkční INP a fyzické FPS. To patří do integračního briefu po schválení specifikace 014. Žádný build/restart :3000, produkční lint/typecheck ani zápis do formuláře neproběhl. Produkční soubory a runtime závislosti jsou beze změny.
+
+
+## Finální doladění po přímém požadavku Jakuba
+Tah je 5 px desktop / 3,75 px mobil, světelný žlutý úsek sleduje čelo. Pro neškálovaný tah je použitá skutečná vykreslená délka místo pathLength=1000. Aktuální prototyp :3073 vizuálně prohlédnut, finální integrovaná aplikace prošla 18/18 + 8/8 na revizi e2294c1, regrese 15/15; pixelový důkaz akcentu 88 / 314 pixelů na 390 / 1440. Tato nová úplná matice je proti skutečné aplikaci, nikoli opakování izolované simulace. Viz finální integrační report.
