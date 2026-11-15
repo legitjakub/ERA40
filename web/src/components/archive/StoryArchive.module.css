@@ -576,3 +576,29 @@
     padding: 0;
   }
 }
+
+/* P1 mobile: the filter bar stays at hand while scrolling the cards; it sits
+   under the header, or at the top when the header slides away. While the
+   filter panel is open it scrolls normally (it can be taller than a phone). */
+@media (max-width: 767px) {
+  .toolbar {
+    position: sticky;
+    top: clamp(64px, 8vh, 80px);
+    z-index: 5;
+    margin-inline: calc(-1 * clamp(24px, 6vw, 92px));
+    padding: 10px clamp(24px, 6vw, 92px);
+    background: var(--c-paper);
+    transition: top var(--dur-xs) var(--ease-out);
+  }
+  :global(body:has(header[data-hidden="true"])) .toolbar {
+    top: 0;
+  }
+  .toolbar:has([data-open]) {
+    position: static;
+  }
+}
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .toolbar {
+    transition: none;
+  }
+}

@@ -8,6 +8,7 @@ import { SharedPhoto } from "@/components/archive/SharedPhoto";
 import { StoryLabel } from "@/components/archive/StoryLabel";
 import { StoryImpact } from "@/components/archive/StoryImpact";
 import { StoryDetailScene } from "@/components/archive/StoryDetailScene";
+import { StorySwipe } from "@/components/archive/StorySwipe";
 import { storyDetails } from "@/content/story-details";
 import {
   getStory,
@@ -67,6 +68,7 @@ async function StoryContent({
   if (!story) notFound();
   const index = stories.indexOf(story);
   const next = stories[(index + 1) % stories.length];
+  const prev = stories[(index - 1 + stories.length) % stories.length];
   const photo = storyPhoto(story);
   const nextPhoto = storyPhoto(next);
   const kind = storyKinds.find((k) => k.id === storyKind(story))?.label;
@@ -75,13 +77,29 @@ async function StoryContent({
   return (
     <>
       <article>
-        <header className={s.hero}>
+        <header className={s.hero} data-story-hero>
           <div className={s.heroText}>
             <p className={s.back}>
               <Link href="/pribehy">Všechny příběhy</Link>
-              <span>
-                {String(index + 1).padStart(2, "0")} /{" "}
-                {String(stories.length).padStart(2, "0")}
+              <span className={s.pager}>
+                <Link
+                  href={`/pribehy/${prev.id}`}
+                  className={s.pagerLink}
+                  aria-label={`Předchozí příběh: ${prev.name}`}
+                >
+                  <span aria-hidden="true">←</span>
+                </Link>
+                <span>
+                  {String(index + 1).padStart(2, "0")} /{" "}
+                  {String(stories.length).padStart(2, "0")}
+                </span>
+                <Link
+                  href={`/pribehy/${next.id}`}
+                  className={s.pagerLink}
+                  aria-label={`Další příběh: ${next.name}`}
+                >
+                  <span aria-hidden="true">→</span>
+                </Link>
               </span>
             </p>
             {/* R10: the title is the route and the name. */}
@@ -182,6 +200,7 @@ async function StoryContent({
         <Link href="/zapojte-se#pribeh">Přidat svůj příběh</Link>
       </aside>
       <StoryDetailScene />
+      <StorySwipe prev={`/pribehy/${prev.id}`} next={`/pribehy/${next.id}`} />
     </>
   );
 }

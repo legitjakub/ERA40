@@ -339,3 +339,31 @@
     transition: none;
   }
 }
+
+/* Previous / next story beside the counter (and swipe on touch, StorySwipe). */
+.pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.pagerLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.125rem;
+  border-radius: 50%;
+  transition: background-color var(--dur-xs) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .pagerLink:hover {
+    background: rgb(255 255 255 / 0.12);
+  }
+}
+.pagerLink:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}

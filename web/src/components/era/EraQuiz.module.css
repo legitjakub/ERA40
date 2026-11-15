@@ -361,3 +361,36 @@
 :global(html[data-reduced-motion="true"]) .glyphDot {
   animation: none;
 }
+
+/* The chosen answer confirms itself before the next question (P1 mobile). */
+.answer {
+  justify-content: space-between;
+  gap: 16px;
+}
+.check {
+  flex: none;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity var(--dur-xs) var(--ease-out),
+    transform var(--dur-xs) var(--ease-out);
+}
+.answer[data-picked] {
+  border-color: var(--c-eu-blue);
+  background: var(--c-eu-blue);
+  color: white;
+}
+.answer[data-picked] .check {
+  opacity: 1;
+  transform: none;
+  color: var(--c-yellow);
+}
+.answer:disabled:not([data-picked]) {
+  opacity: 0.5;
+  cursor: default;
+}
+@media (prefers-reduced-motion: reduce) {
+  .check {
+    transition: none;
+  }
+}

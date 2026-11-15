@@ -81,6 +81,22 @@ export function EraQuiz() {
   const [path, setPath] = useState<EraPath | null>(null);
   const [answers, setAnswers] = useState<EraAnswer[]>([]);
   const [status, setStatus] = useState("");
+  // Mobile feedback (master synthesis P1): the chosen answer confirms itself
+  // for a moment before the next question; reduced motion moves on at once.
+  const [picked, setPicked] = useState<string | null>(null);
+  const reducedMotion = usePrefersReducedMotion();
+  function choose(answer: EraAnswer) {
+    if (picked) return;
+    if (reducedMotion) {
+      setAnswers((current) => [...current, answer]);
+      return;
+    }
+    setPicked(answer.label);
+    window.setTimeout(() => {
+      setAnswers((current) => [...current, answer]);
+      setPicked(null);
+    }, 320);
+  }
   const heading = useRef<HTMLHeadingElement>(null);
   const questions = path ? eraQuestions[path] : [];
   const done = path !== null && answers.length === questions.length;
@@ -227,9 +243,13 @@ export function EraQuiz() {
             <button
               type="button"
               className={s.answer}
-              onClick={() => setAnswers((current) => [...current, answer])}
+              data-picked={picked === answer.label || undefined}
+              aria-pressed={picked === answer.label}
+              disabled={picked !== null && picked !== answer.label}
+              onClick={() => choose(answer)}
             >
               {answer.label}
+              <span className={s.check} aria-hidden="true">✓</span>
             </button>
           </li>
         ))}
