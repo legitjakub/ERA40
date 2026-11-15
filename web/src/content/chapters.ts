@@ -5,7 +5,7 @@ export const chapters = [
   { id: "historie", label: "Historie", photo: "ph-platform-woman" },
   { id: "pribehy", label: "Příběhy", photo: "ph-backpack-station" },
   { id: "mapa", label: "Mapa Evropy", photo: "ph-prague-street" },
-  { id: "tehdy-ted", label: "Tehdy a teď", photo: "ph-library" },
-  { id: "cisla", label: "Erasmus v číslech", photo: "ph-group" },
-  { id: "budoucnost", label: "Budoucnost", photo: "ph-friends-evening" },
+  { id: "tehdy-ted", label: "Návrat", photo: "ph-library" },
+  { id: "cisla", label: "Rozvětvení", photo: "ph-group" },
+  { id: "budoucnost", label: "Pokračování", photo: "ph-friends-evening" },
 ] as const;

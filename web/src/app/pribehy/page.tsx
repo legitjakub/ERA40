@@ -17,8 +17,8 @@ export default function StoriesPage() {
     <main id="main" className={s.page}>
       <PageIntro
         kicker="Archiv cest"
-        title="Každá cesta má svůj začátek."
-        lead={`${stories.length} příběhů z Česka do Evropy a z Evropy do Česka.`}
+        title="Každá cesta pokračuje jinak."
+        lead={`${stories.length} příběhů z\u00a0Česka do Evropy a\u00a0z\u00a0Evropy do Česka.`}
       >
         <ol className={s.strip} aria-label="Rychlý výběr příběhu">
           {stories.map((story, i) => (
@@ -41,7 +41,7 @@ export default function StoriesPage() {
       </PageIntro>
       <StoryArchive />
       <aside className={s.invite}>
-        <p>Chybí tu ten váš?</p>
+        <p>Chybí tu ten tvůj?</p>
         <Link href="/zapojte-se#pribeh">Přidat svůj příběh</Link>
       </aside>
     </main>

@@ -20,7 +20,7 @@ export default function Credits() {
           </li>
         ))}
       </ul>
-      <h2>Porovnání Tehdy a teď</h2>
+      <h2>Porovnání tehdy a teď v kapitole Návrat</h2>
       <ul>
         {comparisons.map((c) => (
           <li key={c.topic}>

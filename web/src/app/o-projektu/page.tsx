@@ -6,7 +6,7 @@ import s from "@/components/pages/Prose.module.css";
 export const metadata: Metadata = {
   title: "O projektu — Erasmus v Česku",
   description:
-    "Digitální výstava ke 40 letům evropského programu Erasmus. Co je ověřené, co modelové a jak pracujeme s vašimi příběhy.",
+    "Digitální výstava ke 40 letům evropského programu Erasmus. Co je ověřené, co modelové a jak pracujeme s tvými příběhy.",
 };
 
 const infographic =
@@ -54,7 +54,7 @@ export default function AboutPage() {
               stáž nebo kamarádství, které vydrží desítky let.
             </p>
             <p>
-              Web prochází osm kapitol od odjezdu po budoucnost. Historie
+              Web prochází osm kapitol od odjezdu přes návrat po pokračování. Historie
               spojuje evropskou linku od roku 1987 s českou od roku 1998.
               Mapa ukazuje, kam cesty vedou, a čísla připomínají, kolik lidí
               už vyjelo.
@@ -87,17 +87,17 @@ export default function AboutPage() {
         </section>
 
         <section className={s.section}>
-          <h2>Jak pracujeme s vašimi příběhy</h2>
+          <h2>Jak pracujeme s tvými příběhy</h2>
           <div className={s.text}>
             <ul>
               <li>Každý příběh si přečte redakce výročí.</li>
               <li>
-                Pokud ho chceme zveřejnit, pošleme vám upravený text ke
+                Pokud ho chceme zveřejnit, pošleme ti upravený text ke
                 schválení. Bez souhlasu nic nezveřejníme.
               </li>
               <li>
-                Kontakt použijeme jen k účelu, který jste ve formuláři
-                vybrali. Souhlas můžete kdykoli odvolat.
+                Kontakt použijeme jen k účelu, který jsi ve formuláři
+                vybral(a). Souhlas můžeš kdykoli odvolat.
               </li>
             </ul>
             <p>
@@ -118,7 +118,7 @@ export default function AboutPage() {
               <span className={s.todo}>čekají na potvrzení</span>.
             </p>
             <p>
-              Do té doby nám můžete napsat přes{" "}
+              Do té doby nám můžeš napsat přes{" "}
               <Link href="/zapojte-se#organizace">formulář pro školy a organizace</Link>.
             </p>
           </div>

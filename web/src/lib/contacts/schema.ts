@@ -7,17 +7,17 @@ export const contactPaths = [
   {
     id: "pribeh",
     label: "Byl(a) jsem na Erasmu",
-    lead: "Sdílejte svou cestu. Vybrané příběhy se po redakční úpravě a vašem schválení mohou objevit na webu.",
+    lead: "Sdílej svou cestu a to, co z ní pokračuje dál. Vybrané příběhy se po redakční úpravě a tvém schválení mohou objevit na webu.",
   },
   {
     id: "vyjet",
     label: "Chci vyjet",
-    lead: "Pošleme vám, jak se zapojit, a upozorníme na výzvy a akce k výročí.",
+    lead: "Pošleme ti, jak se zapojit, a upozorníme na výzvy a akce k výročí.",
   },
   {
     id: "organizace",
     label: "Za školu nebo organizaci",
-    lead: "Chystáte akci, projekt nebo setkání absolventů? Ozvěte se, rádi vás propojíme s výročím.",
+    lead: "Chystáš akci, projekt nebo setkání absolventů? Ozvi se, rádi tě propojíme s výročím.",
   },
 ] as const;
 
@@ -70,7 +70,7 @@ export type ContactRecord = {
 };
 
 /** Bump when the privacy notice text changes, so each record shows what was agreed to. */
-export const PRIVACY_VERSION = "navrh-2026-11-13";
+export const PRIVACY_VERSION = "navrh-2026-11-15";
 
 const LIMITS: Record<string, number> = {
   name: 120,
@@ -106,13 +106,13 @@ export function validateContact(input: Record<string, unknown>): Result {
   const errors: Record<string, string> = {};
   const path = input.path;
   if (path !== "pribeh" && path !== "vyjet" && path !== "organizace")
-    errors.path = "Vyberte, co je vám nejblíž.";
+    errors.path = "Vyber, co je ti nejblíž.";
   const name = text(input, "name");
   const email = text(input, "email");
-  if (!name) errors.name = "Napište, jak vám můžeme říkat.";
-  if (!email || !EMAIL.test(email)) errors.email = "Zkontrolujte e-mail.";
+  if (!name) errors.name = "Napiš, jak ti můžeme říkat.";
+  if (!email || !EMAIL.test(email)) errors.email = "Zkontroluj e-mail.";
   if (input.privacyConsent !== true)
-    errors.privacyConsent = "Bez souhlasu vám nemůžeme odpovědět.";
+    errors.privacyConsent = "Bez souhlasu ti nemůžeme odpovědět.";
 
   const story =
     typeof input.story === "string"
@@ -124,7 +124,7 @@ export function validateContact(input: Record<string, unknown>): Result {
       : undefined;
 
   if (path === "pribeh") {
-    if (!text(input, "to")) errors.to = "Kam jste vyjeli?";
+    if (!text(input, "to")) errors.to = "Kam jsi vyjel(a)?";
     const year = text(input, "year");
     if (year && (!/^\d{4}$/.test(year) || Number(year) < 1987 || Number(year) > new Date().getFullYear()))
       errors.year = "Rok mezi 1987 a dneškem.";
@@ -132,7 +132,7 @@ export function validateContact(input: Record<string, unknown>): Result {
       errors.story = "Pár vět stačí, alespoň jednu myšlenku.";
   }
   if (path === "organizace" && !text(input, "organisation"))
-    errors.organisation = "Doplňte název školy nebo organizace.";
+    errors.organisation = "Doplň název školy nebo organizace.";
 
   if (Object.keys(errors).length) return { ok: false, errors };
   return {

@@ -9,14 +9,13 @@ import {
   validateContact,
   type ContactPath,
 } from "@/lib/contacts/schema";
-import { downloadTicket } from "./downloadTicket";
-import { Ticket } from "./Ticket";
 import s from "./JoinForm.module.css";
 
 /*
  * One form, three paths. The visitor first says who they are; the fields,
- * the side panel and the thank-you change with it. Former participants get a
- * live preview of their personal "jízdenka" and can download it after sending.
+ * the side panel and the thank-you change with it. Former participants see a
+ * live summary of their journey, and every path ends with a summary of what
+ * was sent.
  */
 type Values = Record<string, string | boolean>;
 type Status = "idle" | "sending" | "sent" | "error";
@@ -44,20 +43,65 @@ const empty: Values = {
 const nextSteps: Record<ContactPath, string[]> = {
   pribeh: [
     "Příběh si přečte redakce výročí.",
-    "Pokud ho budeme chtít zveřejnit, ozveme se a pošleme vám upravený text ke schválení.",
-    "Bez vašeho souhlasu nic nezveřejníme.",
+    "Pokud ho budeme chtít zveřejnit, ozveme se a pošleme ti upravený text ke schválení.",
+    "Bez tvého souhlasu nic nezveřejníme.",
   ],
   vyjet: [
-    "Pošleme vám přehled, kdo a kam může s Erasmem+ vyjet.",
-    "Upozorníme vás na výzvy a akce k výročí, pokud o to stojíte.",
-    "Odhlásit se můžete jedním odkazem v každém e-mailu.",
+    "Pošleme ti přehled, kdo a kam může s Erasmem+ vyjet.",
+    "Upozorníme tě na výzvy a akce k výročí, pokud o to stojíš.",
+    "Odhlásit se můžeš jedním odkazem v každém e-mailu.",
   ],
   organizace: [
-    "Ozveme se vám do dvou týdnů.",
-    "Domluvíme, jak vaši akci nebo projekt propojit s výročím.",
+    "Ozveme se ti do dvou týdnů.",
+    "Domluvíme, jak tvoji akci nebo projekt propojit s výročím.",
     "Kontakt použijeme jen pro tuto spolupráci.",
   ],
 };
+
+const doneTitle: Record<ContactPath, string> = {
+  pribeh: "Děkujeme. Tvůj příběh je u nás.",
+  vyjet: "Děkujeme. Brzy ti napíšeme.",
+  organizace: "Děkujeme. Brzy se ozveme.",
+};
+
+const value = (values: Values, key: string) => String(values[key] ?? "").trim();
+
+/** What the visitor filled in, on EU blue: live while writing a story, and after sending. */
+function Summary({ path, values, live }: { path: ContactPath; values: Values; live?: boolean }) {
+  const rows: [string, string][] =
+    path === "pribeh"
+      ? [["Jméno", value(values, "name")], ["Rok", value(values, "year")], ["Typ pobytu", value(values, "mobility")]]
+      : path === "vyjet"
+        ? [["Jméno", value(values, "name")], ["Kdo jsi", value(values, "audience")], ["Kam by tě to táhlo", value(values, "destination")]]
+        : [["Organizace", value(values, "organisation")], ["Jméno", value(values, "name")], ["Role", value(values, "role")]];
+  if (!live) rows.push(["E-mail", value(values, "email")]);
+  const from = value(values, "from");
+  const to = value(values, "to");
+  return (
+    <div className={s.summary} role="group" aria-label={live ? "Shrnutí tvé cesty" : "Shrnutí odeslaných údajů"}>
+      <p className={s.summaryTop}>{live ? "Tvoje cesta" : "Odeslané údaje"}</p>
+      {path === "pribeh" && (
+        <p className={s.summaryRoute}>
+          <span data-empty={!from || undefined}>{from || "Odkud"}</span>
+          <svg aria-hidden="true">
+            <line x1="0" y1="6" x2="100%" y2="6" />
+            <circle cx="0" cy="6" r="4" />
+            <circle cx="100%" cy="6" r="4" />
+          </svg>
+          <span data-empty={!to || undefined}>{to || "Kam"}</span>
+        </p>
+      )}
+      <dl className={s.summaryFacts}>
+        {rows.map(([label, text]) => (
+          <div key={label} data-wide={label === "E-mail" || undefined}>
+            <dt>{label}</dt>
+            <dd>{text || "—"}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
 
 export function JoinForm() {
   const [path, setPath] = useState<ContactPath | null>(null);
@@ -151,24 +195,17 @@ export function JoinForm() {
       }
       if (!response.ok) {
         setSendError(response.status === 429
-          ? "Za chvíli to prosím zkuste znovu. Vaše vyplněné údaje zůstávají tady."
-          : "Odeslání se nepovedlo. Vaše údaje zůstávají vyplněné, zkuste to prosím znovu.");
+          ? "Za chvíli to prosím zkus znovu. Tvoje vyplněné údaje zůstávají tady."
+          : "Odeslání se nepovedlo. Tvoje údaje zůstávají vyplněné, zkus to prosím znovu.");
         setStatus("error");
         return;
       }
       setStatus("sent");
     } catch {
-      setSendError("Připojení se přerušilo. Vaše údaje zůstávají vyplněné, zkuste to prosím znovu.");
+      setSendError("Připojení se přerušilo. Tvoje údaje zůstávají vyplněné, zkus to prosím znovu.");
       setStatus("error");
     }
   }
-
-  const ticket = {
-    name: String(values.name),
-    from: String(values.from),
-    to: String(values.to),
-    year: String(values.year),
-  };
 
   if (status === "sent" && path) {
     return (
@@ -179,25 +216,11 @@ export function JoinForm() {
         aria-live="polite"
       >
         <p className={s.doneKicker}>Odesláno</p>
-        <h2 className={s.doneTitle}>
-          {path === "pribeh"
-            ? "Děkujeme. Vaše cesta je na trase."
-            : path === "vyjet"
-              ? "Děkujeme. Ozveme se s první zastávkou."
-              : "Děkujeme. Brzy se ozveme."}
-        </h2>
-        {path === "pribeh" && (
-          <div className={s.doneTicket}>
-            <Ticket data={ticket} />
-            <button
-              type="button"
-              className={s.secondary}
-              onClick={() => downloadTicket(ticket)}
-            >
-              Stáhnout jízdenku jako obrázek
-            </button>
-          </div>
-        )}
+        <h2 className={s.doneTitle}>{doneTitle[path]}</h2>
+        <div className={s.doneSummary}>
+          <Summary path={path} values={values} />
+        </div>
+        <p className={s.sideTitle}>Co se stane dál</p>
         <ol className={s.steps}>
           {nextSteps[path].map((step) => (
             <li key={step}>{step}</li>
@@ -224,7 +247,7 @@ export function JoinForm() {
       <form id="zapojeni" ref={formRef} className={s.form} onSubmit={submit} noValidate aria-busy={status === "sending"}>
         <fieldset className={s.paths} disabled={status === "sending"}>
           <legend className={s.legend}>
-            <span className={s.stepNo}>1</span> Co je vám nejblíž?
+            <span className={s.stepNo}>1</span> Co je ti nejblíž?
           </legend>
           {contactPaths.map((option) => (
             <label
@@ -257,10 +280,10 @@ export function JoinForm() {
             <legend className={s.legend}>
               <span className={s.stepNo}>2</span>
               {path === "pribeh"
-                ? "Vaše cesta"
+                ? "Tvoje cesta"
                 : path === "vyjet"
-                  ? "Kam vám máme psát"
-                  : "Vaše škola nebo organizace"}
+                  ? "Kam ti máme psát"
+                  : "Tvoje škola nebo organizace"}
             </legend>
 
             {path === "organizace" && (
@@ -273,7 +296,7 @@ export function JoinForm() {
                 </div>
                 <div className={s.label}>
                   <label htmlFor={`${uid}-role`}>
-                  Vaše role <span className={s.optional}>nepovinné</span></label>
+                  Tvoje role <span className={s.optional}>nepovinné</span></label>
                   <input
                     {...field("role")}
                     autoComplete="organization-title"
@@ -336,7 +359,7 @@ export function JoinForm() {
                     <label htmlFor={`${uid}-mobility`}>
                     Typ pobytu <span className={s.optional}>nepovinné</span></label>
                     <select {...field("mobility")}>
-                      <option value="">Vyberte</option>
+                      <option value="">Vyber</option>
                       {mobilityOptions.map((option) => (
                         <option key={option}>{option}</option>
                       ))}
@@ -345,13 +368,13 @@ export function JoinForm() {
                 </div>
                 <div className={s.label}>
                   <label htmlFor={`${uid}-story`}>
-                  Co vám z cesty zůstalo?</label>
+                  Co ti z cesty zůstalo?</label>
                   <textarea
                     {...field("story")}
                     rows={7}
                     maxLength={6000}
                     required
-                    placeholder="Okamžik, člověk, věta, kterou si pamatujete. Pár řádků stačí."
+                    placeholder="Okamžik, člověk, věta, kterou si pamatuješ. Pár řádků stačí."
                   />
                   <span className={s.counter} aria-hidden="true">
                     {String(values.story).length} / 6000
@@ -366,7 +389,7 @@ export function JoinForm() {
                     onChange={(e) => set("publishConsent", e.target.checked)}
                   />
                   <span>
-                    Příběh můžete po redakční úpravě a mém schválení zveřejnit.
+                    Souhlasím se zveřejněním příběhu po redakční úpravě a mém schválení.
                   </span>
                 </label>
               </>
@@ -376,9 +399,9 @@ export function JoinForm() {
               <div className={s.row}>
                 <div className={s.label}>
                   <label htmlFor={`${uid}-audience`}>
-                  Kdo jste <span className={s.optional}>nepovinné</span></label>
+                  Kdo jsi <span className={s.optional}>nepovinné</span></label>
                   <select {...field("audience")}>
-                    <option value="">Vyberte</option>
+                    <option value="">Vyber</option>
                     {audienceOptions.map((option) => (
                       <option key={option}>{option}</option>
                     ))}
@@ -386,7 +409,7 @@ export function JoinForm() {
                 </div>
                 <div className={s.label}>
                   <label htmlFor={`${uid}-destination`}>
-                  Kam by vás to táhlo?{" "}
+                  Kam by tě to táhlo?{" "}
                   <span className={s.optional}>nepovinné</span></label>
                   <input {...field("destination")} placeholder="Země, město nebo obor" />
                 </div>
@@ -402,7 +425,7 @@ export function JoinForm() {
                 </div>
                 <div className={s.label}>
                   <label htmlFor={`${uid}-message`}>
-                  Co chystáte? <span className={s.optional}>nepovinné</span></label>
+                  Co chystáš? <span className={s.optional}>nepovinné</span></label>
                   <textarea
                     {...field("message")}
                     rows={5}
@@ -486,28 +509,17 @@ export function JoinForm() {
       </form>
 
       <aside className={s.side} aria-label="Co se stane dál">
-        {path === "pribeh" ? (
-          <>
-            <p className={s.sideTitle}>Vaše jízdenka</p>
-            <Ticket data={ticket} />
-            <p className={s.sideNote}>
-              Po odeslání si ji můžete stáhnout a sdílet.
-            </p>
-          </>
-        ) : (
-          <>
-            <p className={s.sideTitle}>Co se stane dál</p>
-            <ol className={s.steps}>
-              {(path ? nextSteps[path] : [
-                "Vyberte, co je vám nejblíž.",
-                "Vyplňte pár údajů. Zabere to dvě minuty.",
-                "Ozveme se, nebo vám pošleme, co potřebujete.",
-              ]).map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ol>
-          </>
-        )}
+        {path === "pribeh" && <Summary path={path} values={values} live />}
+        <p className={s.sideTitle}>Co se stane dál</p>
+        <ol className={s.steps}>
+          {(path ? nextSteps[path] : [
+            "Vyber, co je ti nejblíž.",
+            "Vyplň pár údajů. Zabere to dvě minuty.",
+            "Ozveme se, nebo ti pošleme, co potřebuješ.",
+          ]).map((step) => (
+            <li key={step}>{step}</li>
+          ))}
+        </ol>
       </aside>
     </div>
   );

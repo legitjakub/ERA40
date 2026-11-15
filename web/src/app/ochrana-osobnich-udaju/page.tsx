@@ -17,8 +17,8 @@ export default function PrivacyPage() {
     <main id="main" className={s.page}>
       <PageIntro
         kicker="Ochrana osobních údajů"
-        title="Vaše údaje, vaše rozhodnutí."
-        lead="Jak zacházíme s údaji z formuláře Zapojte se."
+        title="Tvoje údaje, tvoje rozhodnutí."
+        lead="Jak zacházíme s údaji z formuláře Zapoj se."
       />
       <div className={s.body}>
         <p className={s.draft} role="note">
@@ -42,12 +42,12 @@ export default function PrivacyPage() {
           <h2>Jaké údaje zpracováváme</h2>
           <div className={s.text}>
             <ul>
-              <li>Všichni: jméno, e-mail a zda chcete dostávat novinky.</li>
+              <li>Všichni: jméno, e-mail a zda chceš dostávat novinky.</li>
               <li>
-                Sdílení příběhu: odkud a kam jste vyjeli, rok, typ pobytu, text
+                Sdílení příběhu: odkud a kam jsi vyjel(a), rok, typ pobytu, text
                 příběhu a souhlas se zveřejněním.
               </li>
-              <li>Zájem o výjezd: kdo jste a kam by vás to táhlo.</li>
+              <li>Zájem o výjezd: kdo jsi a kam by tě to táhlo.</li>
               <li>
                 Školy a organizace: název organizace, role, telefon a zpráva.
               </li>
@@ -59,8 +59,8 @@ export default function PrivacyPage() {
           <h2>Proč a na jakém základě</h2>
           <div className={s.text}>
             <p>
-              Údaje zpracováváme na základě vašeho souhlasu (čl. 6 odst. 1
-              písm. a) GDPR), abychom vám mohli odpovědět, připravit příběh ke
+              Údaje zpracováváme na základě tvého souhlasu (čl. 6 odst. 1
+              písm. a) GDPR), abychom ti mohli odpovědět, připravit příběh ke
               zveřejnění nebo poslat informace k výročí. Novinky posíláme jen
               těm, kdo o ně požádali.
             </p>
@@ -74,7 +74,7 @@ export default function PrivacyPage() {
               Údaje uchováváme do konce kampaně k výročí, nejdéle do{" "}
               <Todo>datum, navrhujeme 31. 12. 2028</Todo>, nebo do odvolání
               souhlasu. Zveřejněné příběhy zůstávají na webu, dokud nás
-              nepožádáte o jejich odstranění.
+              nepožádáš o jejich odstranění.
             </p>
           </div>
         </section>
@@ -90,13 +90,13 @@ export default function PrivacyPage() {
         </section>
 
         <section className={s.section}>
-          <h2>Vaše práva</h2>
+          <h2>Tvoje práva</h2>
           <div className={s.text}>
             <p>
-              Máte právo na přístup k údajům, jejich opravu, výmaz, omezení
-              zpracování a přenositelnost. Souhlas můžete kdykoli odvolat
-              e-mailem na <Todo>kontaktní e-mail</Todo>. Pokud nesouhlasíte se
-              způsobem zpracování, můžete podat stížnost u{" "}
+              Máš právo na přístup k údajům, jejich opravu, výmaz, omezení
+              zpracování a přenositelnost. Souhlas můžeš kdykoli odvolat
+              e-mailem na <Todo>kontaktní e-mail</Todo>. Pokud nesouhlasíš se
+              způsobem zpracování, můžeš podat stížnost u{" "}
               <a href="https://uoou.gov.cz/">Úřadu pro ochranu osobních údajů</a>.
             </p>
             <p>

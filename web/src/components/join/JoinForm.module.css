@@ -242,22 +242,9 @@
   opacity: 0.6;
   cursor: progress;
 }
-.primary:focus-visible,
-.secondary:focus-visible {
+.primary:focus-visible {
   outline: 2px solid var(--c-eplus);
   outline-offset: 3px;
-}
-.secondary {
-  padding: 13px 18px;
-  border: 1px solid var(--c-eu-blue);
-  background: white;
-  color: var(--c-eu-blue);
-  font: inherit;
-  font-weight: var(--wght-ui);
-  cursor: pointer;
-}
-.secondary:hover {
-  background: var(--c-sky);
 }
 .prototype {
   margin: 0;
@@ -276,10 +263,87 @@
   font-size: 1.125rem;
   font-weight: var(--wght-heading);
 }
-.sideNote {
+/* The summary card: EU blue, the Trasa between two stations, plain facts. */
+.summary {
+  display: grid;
+  gap: 18px;
+  width: 100%;
+  max-width: 560px;
+  padding: 22px 24px 20px;
+  background: var(--c-eu-blue);
+  color: white;
+}
+.summaryTop {
   margin: 0;
-  color: var(--c-mute);
-  font-size: 0.875rem;
+  color: var(--c-line);
+  font-size: var(--fs-meta);
+  font-weight: var(--wght-ui);
+}
+.summaryRoute {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(32px, 1fr) minmax(0, max-content);
+  align-items: center;
+  gap: 18px;
+  margin: 0;
+}
+.summaryRoute span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-variation-settings:
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.summaryRoute span:last-child {
+  text-align: right;
+}
+.summaryRoute span[data-empty] {
+  color: rgb(255 255 255 / 0.5);
+}
+.summaryRoute svg {
+  width: 100%;
+  height: 12px;
+  overflow: visible;
+}
+.summaryRoute line {
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+}
+.summaryRoute circle {
+  fill: var(--c-eu-blue);
+  stroke: white;
+  stroke-width: 2;
+}
+.summaryFacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 14px 20px;
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid rgb(255 255 255 / 0.25);
+}
+.summaryFacts div {
+  min-width: 0;
+}
+.summaryFacts [data-wide] {
+  grid-column: 1 / -1;
+}
+.summaryFacts dt {
+  margin-bottom: 4px;
+  color: var(--c-line);
+  font-size: var(--fs-meta);
+  font-weight: var(--wght-ui);
+}
+.summaryFacts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+  font-weight: var(--wght-ui);
+  line-height: 1.35;
 }
 .steps {
   display: grid;
@@ -331,11 +395,11 @@
   letter-spacing: -0.025em;
   line-height: 0.98;
 }
-.doneTicket {
-  display: grid;
-  gap: 18px;
-  justify-items: start;
+.doneSummary {
   margin-bottom: 40px;
+}
+.done .sideTitle {
+  margin-bottom: 12px;
 }
 .doneLinks {
   display: flex;

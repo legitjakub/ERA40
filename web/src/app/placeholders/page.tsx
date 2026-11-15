@@ -14,7 +14,7 @@ export default function Placeholders() {
       <h2>Ilustrativní fotografie a film</h2>
       <p>
         Současné snímky a film využívají materiály Pexels. Záběry nenesou
-        identitu konkrétních účastníků Erasmu. Porovnání Tehdy a teď používá
+        identitu konkrétních účastníků Erasmu. Porovnání tehdy a teď v kapitole Návrat používá
         současné ilustrační fotografie předmětů a situací.
       </p>
       <h2>Časové údaje</h2>
