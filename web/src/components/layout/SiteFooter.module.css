@@ -22,12 +22,6 @@
 .plus {
   margin-left: -0.02em;
 }
-.inner .signature {
-  margin-top: 12px;
-  font-size: var(--fs-meta);
-  font-weight: var(--wght-ui);
-  font-variant-numeric: tabular-nums;
-}
 .inner p {
   margin: 5px 0;
 }

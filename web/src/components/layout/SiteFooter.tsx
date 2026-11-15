@@ -1,9 +1,8 @@
 import Link from "next/link";
 import s from "./SiteFooter.module.css";
 
-/* One wording for the header, the footer and the page title. */
+/* One wording for the footer and the page title. */
 export const siteName = "Erasmus+ navždy";
-export const siteSignature = "40 let Erasmu+ · 1987–2027 · v Česku od 1998";
 
 /*
  * Publisher and co-funding lines follow docs/DESIGN.md §6 (08 Budoucnost).
@@ -18,7 +17,6 @@ export function SiteFooter() {
           <p className={s.brand}>
             Erasmus<span className={s.plus}>+</span> navždy
           </p>
-          <p className={s.signature}>{siteSignature}</p>
         </div>
         <nav aria-label="Závěrečná navigace">
           <Link href="/pribehy">Všechny příběhy</Link>

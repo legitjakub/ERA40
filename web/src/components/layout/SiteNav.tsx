@@ -12,7 +12,6 @@ import {
   setReduceMotionPreference,
   usePrefersReducedMotion,
 } from "@/hooks/usePrefersReducedMotion";
-import { siteSignature } from "./SiteFooter";
 import styles from "./SiteNav.module.css";
 
 const darkHeroPages = [
@@ -96,10 +95,31 @@ export function SiteNav() {
           ? section.parentElement : section;
         return anchor ? anchor.getBoundingClientRect().top + y : Infinity;
       }) : [];
-      const opening = document.querySelector<HTMLElement>("main header");
-      openingEnd = home ? viewport * 0.5 : Math.max(
-        0, (opening?.getBoundingClientRect().bottom ?? 0) + y - bar!.offsetHeight,
-      );
+      // The header stays transparent only until the first line of the
+      // opening reaches it, so its text never runs over the intro copy.
+      let textTop: number;
+      if (home) {
+        const copy = document.querySelector<HTMLElement>("#hero [data-film-copy]");
+        const heroTop = positions.current[0];
+        textTop = copy && Number.isFinite(heroTop)
+          ? heroTop + copy.offsetTop : Infinity;
+      } else {
+        const opening = document.querySelector<HTMLElement>("main header");
+        textTop = (opening?.getBoundingClientRect().bottom ?? 0) + y;
+        if (opening) {
+          const walker = document.createTreeWalker(opening, NodeFilter.SHOW_TEXT);
+          const range = document.createRange();
+          for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+            if (!node.textContent?.trim()) continue;
+            range.selectNodeContents(node);
+            const rect = range.getBoundingClientRect();
+            if (rect.height > 0) textTop = Math.min(textTop, rect.top + y);
+          }
+        }
+      }
+      openingEnd = Math.max(0, Math.min(
+        home ? viewport * 0.5 : Infinity, textTop - bar!.offsetHeight,
+      ));
       maxScroll = Math.max(1, document.documentElement.scrollHeight - viewport);
       schedule();
     }
@@ -154,16 +174,30 @@ export function SiteNav() {
     scrollToPosition(Math.max(0, top - margin), reduced);
   }
 
+  function toTop(event: MouseEvent<HTMLAnchorElement>) {
+    if (!home || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+      return;
+    event.preventDefault();
+    if (location.hash) history.pushState(null, "", "/");
+    scrollToPosition(0, reduced);
+  }
+
   const prefix = home ? "" : "/";
   const selected = chapters[preview];
   return (
     <>
       <header className={styles.header} ref={header} data-other={!darkTop} data-film={home}>
-        <div className={styles.identity}>
-          <Link className={styles.brand} href="/#hero" aria-label="Erasmus+ navždy, úvod">
-            <span>Erasmus<span className={styles.plus}>+</span> navždy</span>
+        <div className={styles.lockup}>
+          <Link className={styles.brand} href="/" aria-label="Erasmus+ navždy – domů" onClick={toTop}>
+            <span className={styles.wordmark} />
           </Link>
-          <span className={styles.signature}>{siteSignature}</span>
+          <p className={styles.forty}>
+            <span className={styles.fortyNumber}>40</span>
+            <span className={styles.fortyMeta}>
+              <span>let</span>
+              <span className={styles.years}>1987–2027</span>
+            </span>
+          </p>
         </div>
         <div className={styles.right}>
           {home && (
@@ -224,7 +258,7 @@ export function SiteNav() {
             <nav aria-label="Další stránky">
               <ul className={styles.pages}>
                 {pages.map(([href, label]) => (
-                  <li key={href}><Link href={href} onClick={close} aria-current={pathname === href ? "page" : undefined}>{label}<span aria-hidden="true">↗</span></Link></li>
+                  <li key={href} data-cta={href === "/zapojte-se" || undefined}><Link href={href} onClick={close} aria-current={pathname === href ? "page" : undefined}>{label}<span aria-hidden="true">↗</span></Link></li>
                 ))}
               </ul>
             </nav>
