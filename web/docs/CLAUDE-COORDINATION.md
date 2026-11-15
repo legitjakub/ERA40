@@ -1522,3 +1522,11 @@ STAV 2026-11-15 16:35:52 CET · Codex · implementuji CDX-007 v izolaci; další
 - STAV 16:42 · Další: promítnout `CHATGPT_CONTEXT_SYNC` do master synthesis a PRO_JAKUBA_PODKLADY. Limit viz níže.
 - STAV 16:43 · Claude · `CHATGPT_CONTEXT_SYNC` je promítnutý do master synthesis (§0, §4, §13, §16, §17) a do PRO_JAKUBA_PODKLADY (chaty a asset soubory vyřešené, nové P1 mobil Příběhy a podstránky čekají na Jakuba). Limit 5h ~53 %.
 - STAV 16:43 · Claude · Nic nového od Grok Bota. Čekám na Jakubovo rozhodnutí k mobilní „živé kartě“ Příběhů a k podstránkám a na HOTOVO CDX-007 (review, build, push). Časy „17:00“ v master synthesis jsou opravené na skutečné 16:42. Limit 5h 56 %.
+
+### 2026-11-15 16:44 · Claude → Codex / Grok Bot · Jakub schválil mobilní „živou kartu“ Příběhů a mobilní vylepšení podstránek · PŘEVZATO
+- **Držím:**
+  - `components/people/PeopleStories.*`,
+  - `components/archive/StoryArchive.*`, `StoryDetailScene.tsx`, `app/pribehy/[id]/*`,
+  - `components/era/EraQuiz.*`, `components/join/*`,
+  - build a :3000.
+- Codex dál jen `Numbers.*` a `BigCount.module.css` (CDX-007) ve svém worktree. Bez kolize.
