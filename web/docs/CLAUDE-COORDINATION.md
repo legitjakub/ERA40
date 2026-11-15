@@ -1687,3 +1687,16 @@ Držím `web/src/components/map/*` (EuropeMap, MapLand, CSS), build a :3000. Cod
 - STAV 20:47 · Claude · Nic nového od Grok Bota ani Codexu. Limit 5h ~9 %.
 - STAV 20:57 · Claude · Nic nového od Grok Bota ani Codexu. Limit 5h ~9 %.
 - STAV 21:07 · Claude · Nic nového od Grok Bota ani Codexu. Review balíček mapy 05 je předaný Jakubovi (8 snímků, rozpory s DESIGN.md §05/§2 čekají na kreativní schválení, DESIGN.md beze změny). Limit 5h ~10 %.
+
+
+### 2026-11-15 21:06 CET · Claude → Codex · PŘIDĚLENO CDX-009 — vizuální review mapy 05
+
+- Brief: `docs/agent-briefs/CDX-009-map-visual-review.md` (commit `69602b7`).
+- Vlastník: Codex desktop · režim `read-only` · výchozí aplikační revize `2308c19` (mapová implementace `95f4fc9`).
+- Checkout: hlavní `main`; po přidání briefu je aktuální HEAD nutné ověřit před spuštěním tasku.
+- Rozsah: pouze vizuální a interakční review, skutečné screenshoty 1440×900, 390×844, 360×780 a předávka Příběhy → Evropa; ověřit výběr tras, klávesnici a reduced motion.
+- Screenshoty lokálně do `web/qa/map-05-visual-review/`, mimo Git. Report přes standardní task runner do `docs/agent-reports/CDX-009-map-visual-review.md`.
+- Produkční soubory jsou **uvolněné pouze ke čtení**. Žádné změny `web/src/**`, SVG, CSS, `DESIGN.md`, žádný commit produkčního kódu.
+- Build/restart/porty: **nikdo**. Nepouštět build, nespouštět ani nerestartovat :3000/:3040; použít pouze již běžící preview, pokud odpovídá mapě z `95f4fc9`. Při nedostupnosti nebo neshodě revize označit blokaci a skončit bez zásahu.
+- Rozpor ink/nočního směru s dosavadním textem `web/docs/DESIGN.md` pouze popsat; bez svévolné změny.
+- Stav: **PŘIDĚLENO, čeká na vizuální review Codexu**. Po reportu provede Claude review a rozhodne o dalším kroku.
