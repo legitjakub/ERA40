@@ -39,7 +39,7 @@ Implementation: SVG `path` + DrawSVGPlugin (or `stroke-dashoffset`), 2 px stroke
 --c-mute:      #4F5B6E; /* secondary text on white/sky (≥6:1) */
 --c-line:      #C9D6E3; /* hairlines, used sparingly */
 ```
-Rules: about 60 % white/sky, 30 % EU-blue and Erasmus+-blue surfaces (the site should read unmistakably as Erasmus+ blue), under 5 % yellow. No gradients between brand colours. A photo overlay may only use a flat `rgba(11,27,51,.35–.55)` ink scrim.
+Rules: about 60 % white/sky, 30 % EU-blue and Erasmus+-blue surfaces (the site should read unmistakably as Erasmus+ blue), under 5 % yellow. No gradients between brand colours. A photo overlay may only use a flat `rgba(11,27,51,.35–.55)` ink scrim. Exception (Jakub, 15. 11. 2026): the hero film may use an ink-to-transparent gradient only behind its text, and the transparent header over the hero may use an ink-to-transparent gradient at the top edge. Both must keep text contrast ≥ 4.5:1 on the worst frame.
 
 ### Typography
 - **Identity = Erasmus+ (not DZS).** DZS appears only as the publisher: its logo is in the footer and in the "Vydává DZS" line. The type follows the Erasmus+ visual guidelines, which allow EC Square Sans Pro inside the Commission charter and Roboto outside it. **No serif fonts.**
