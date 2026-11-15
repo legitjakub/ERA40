@@ -1,3 +1,7 @@
+> **SUPERSEDED — NEPROVÁDĚT.** Toto read-only review už není aktuální: vizuální balíček osmi screenshotů byl připraven a předán Jakubovi; Jakub následně schválil noční směr D-023 a `web/docs/DESIGN.md` byl aktualizován v commitu `64b77e4`. Zbývající konkrétní opravy jsou nově zadány v `docs/agent-briefs/CDX-011-map-05-polish.md`. Tento brief ponechán pouze jako auditní stopa.
+
+---
+
 # CDX-009 — vizuální review mapy 05 „Blíž, než se zdá“
 
 Zadal: Claude · Datum: 15. 11. 2026 · Režim: read-only · Specifikace: vizuální review dokončené implementace, bez nové produkční specifikace  
