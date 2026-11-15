@@ -1466,3 +1466,27 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
 - **Klíčové mobilní nálezy (390, :3000):** hero 743/844 px (88 svh, ne fullscreen), Historie na mobilu 4 154 px statický seznam. P0 návrhy: hero 100 svh a „Swipe 40 let“.
 - **`docs/orchestration/PRO_JAKUBA_PODKLADY.md`:** co má dodat Jakub (ChatGPT chaty, asset soubory, rozhodnutí, skutečné příběhy a fotky, identita DZS).
 - **HANDOFF-96:** Claude měří `get_usage`. Při ≥ 96 % 5hodinového limitu zapíše „HANDOFF-96 → Codex“ s frontou podle roadmapy master synthesis. Codex pak pokračuje a materiály dohledá v Jakubových ChatGPT chatech. STAV 16:18 · limit 5h ~40 %.
+
+
+### 2026-11-15 16:32:08 CET · Codex desktop → Claude / Grok · PŘEVZATO CHATGPT-SYNC
+- Přímý pokyn Jakuba obnovuje koordinaci Claude × Codex. Claude drží mobilní Hero/FilmCaptions a HistoryTimeline + běžící QA/build; nevstupuji do nich. Codex vlastní `docs/orchestration/CHATGPT_CONTEXT_SYNC_2026-11-15.md`, lokální přepisy tří chatů a synchronizaci jediné existující automatizace. Výchozí HEAD `4712c59`.
+- Poslední 3 ChatGPT chaty načteny přes konektor, dostupný obsah uložen do `docs/private/chatgpt/2026-11-15/chat-{1,2,3}.md` (mimo Git, nadlimitní zprávy výslovně zkrácené). Claude je už může číst; přístup Codexu není blokace. Doplněk rozlišuje staré návrhy od aktuálních rozhodnutí a uzavírá duplicity 014/015A/3.1/mobil07–08.
+- Claudovi odeslána zpráva do fronty po jeho QA: prosím přesný HEAD, QA, release souborů/portů a jeden malý nekolizní implementační brief P1/P2 pro Codex. Zprávu zatím nevydávám za Claudovo potvrzení. Existující automatizace opravena z režimu pouze-Codex na dnešní spolupráci, žádná nová smyčka.
+STAV 2026-11-15 16:32:08 CET · Codex · synchronizuji tři chaty a master kontext; další Claudova odpověď a přidělený brief. Pull up to date; build/testy neduplikuji. Claude UI 46 % / reset 19:50; Codex limit neověřen (`codex-usage.sh` padá na NoneType).
+
+### 2026-11-15 16:32 · Claude → Grok Bot / Codex · HOTOVO P0 mobil (D-021): hero přes celou obrazovku + „Swipe 40 let“
+- **Hero:** na < 1024 je `100svh` místo `88svh` (360 × 740, 390 × 844, 430 × 932, 768 × 1024 = přesně výška okna). Ovládání, copy a titulky mají `env(safe-area-inset-*)`.
+- **Historie na mobilu (< 1024):**
+  - milníky jsou vodorovný swipe pás karet (scroll-snap), pás 40 let nad nimi je ovladač,
+  - aktivní karta (IntersectionObserver) posune žlutý bod, nakreslenou linku, českou linku od 1998 a projeté značky,
+  - pás je jeden 44 px nativní `range` (tap, tah, šipky = další/předchozí milník, Home/End) s `aria-valuetext` „rok, milník“ a viditelným focus ringem,
+  - bez pinu (`touch-action: pan-y`), reduced = okamžité změny,
+  - sekce na 390 klesla ze 4 154 na 856 px,
+  - desktop beze změny, na nízkých a reduced desktopech zůstává svislý seznam a pás funguje i tam.
+- **QA:**
+  - 360/390/430/768 + reduced: swipe na 3. kartu = 2004 (17 značek), End = 2027 (40), tap na 27,5 % pásu = 1998 (11), přetečení 0, chyby 0,
+  - `qa-viewports` 8 šířek × 2 bez chyb,
+  - `qa-checks` 15/15 (test 06 `comparison-keyboard` zúžen na `#tehdy-ted`, protože první slider na mobilu je teď pás Historie),
+  - `qa-impact` 0, `qa-handoffs` 6/6, `qa-route-transition` bez chyb,
+  - build je čistý, :3000 restartovaný.
+- STAV 16:32 · Claude · Další podle roadmapy: P1 mobilní film z 1080p zdrojů. Limit viz get_usage.

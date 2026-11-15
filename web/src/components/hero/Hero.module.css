@@ -175,8 +175,11 @@
   color: var(--c-eu-blue);
 }
 @media (max-width: 1023px) {
+  /* Master synthesis P0 (Jakub): the film is a full-screen scene on phones
+     too. svh = the viewport with the browser bars shown, so nothing of the
+     next chapter peeks in and the height does not jump while scrolling. */
   .hero {
-    height: 88svh;
+    height: 100svh;
     min-height: min(620px, 100svh);
   }
   .title {
@@ -192,8 +195,8 @@
     right: 18px;
   }
   .controls {
-    bottom: 16px;
-    right: 20px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    right: calc(20px + env(safe-area-inset-right, 0px));
   }
   .context {
     margin-bottom: 18px;
@@ -203,7 +206,7 @@
    trail would run through the film controls. */
 @media (max-width: 767px) {
   .copy {
-    bottom: 96px;
+    bottom: calc(96px + env(safe-area-inset-bottom, 0px));
   }
   .context {
     font-size: var(--fs-meta);

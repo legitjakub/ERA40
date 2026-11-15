@@ -303,8 +303,8 @@ Formát: INITIAL → INTRO → INTERACTION → OUTRO → REVERSE · MOBILE · RE
 
 | P | Položka | Přínos | Náročnost | Riziko | Závislost / asset | Schválení |
 |---|---|---|---|---|---|---|
-| **P0** | Hero 100 svh na mobilu + safe area + scroll cue | Jakubův hlavní požadavek | S | nízké (LCP poster) | — | ne (oprava) |
-| **P0** | Historie mobil „Swipe 40 let“ | interaktivita i na mobilu | M | střední (synchronizace) | — | **ano** (nová interakce) |
+| **P0 ✅** | Hero 100 svh na mobilu + safe area (hotovo 15. 11., D-021). Scroll cue vědomě vynechán: „Jak to začalo“ a titulky už zvou dál. | Jakubův hlavní požadavek | S | nízké (LCP poster) | — | schváleno |
+| **P0 ✅** | Historie mobil „Swipe 40 let“ (hotovo 15. 11., D-021) | interaktivita i na mobilu | M | střední (synchronizace) | — | schváleno |
 | **P1** | Mobilní film z 1080p zdrojů, lepší crop | kvalita obrazu | S–M | nízké | Pexels/Mixkit 1080p nebo DZS | ne |
 | **P1** | Výměna stock za skutečné příběhy, fotky a video | důvěryhodnost, awards | M | nízké | **DZS podklady** | Jakub/DZS |
 | **P1** | Identita: lockup, loga, povinné EU texty | právní a brand | S | nízké | **DZS** | DZS |

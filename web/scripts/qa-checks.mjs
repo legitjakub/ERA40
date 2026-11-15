@@ -166,7 +166,8 @@ try {
       ),
     );
     await run(`comparison-keyboard-${width}`, async () => {
-      const slider = page.getByRole("slider").first();
+      // Scoped to 06: since P0 the History strip on phones is a slider too.
+      const slider = page.locator("#tehdy-ted").getByRole("slider").first();
       await slider.focus();
       const previous = Number(await slider.inputValue());
       await page.keyboard.press(previous > 0 ? "ArrowLeft" : "ArrowRight");

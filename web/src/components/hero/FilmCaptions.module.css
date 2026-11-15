@@ -43,8 +43,8 @@
 @media (max-width: 1023px) {
   .captions {
     right: auto;
-    left: 20px;
-    bottom: 22px;
+    left: calc(20px + env(safe-area-inset-left, 0px));
+    bottom: calc(22px + env(safe-area-inset-bottom, 0px));
     width: calc(100% - 210px);
     text-align: left;
   }

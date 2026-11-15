@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -74,45 +74,100 @@ function Caption({ station }: { station: (typeof stations)[number] }) {
   );
 }
 
-/** Mobile and reduced motion: the 40 years as a quiet static strip (015 A). */
-function FortyStrip() {
+/**
+ * Mobile (and reduced / short screens): the 40 years as a control above the
+ * milestones (master synthesis P0 „Swipe 40 let“). Swiping the milestones
+ * moves the yellow dot, the drawn line and the travelled marks to that year;
+ * tapping or dragging the strip, or arrow keys on it, jumps to a milestone.
+ * No pin, no scroll hijack; without JS it is a static strip and a list.
+ */
+function FortyStrip({
+  active,
+  onPick,
+}: {
+  active: number;
+  onPick: (index: number) => void;
+}) {
   const pct = (year: number) => (share(year) * 100).toFixed(3) + "%";
+  const year = stations[active].year;
+  const nearest = (value: number) =>
+    stations.reduce(
+      (best, station, i) =>
+        Math.abs(station.year - value) < Math.abs(stations[best].year - value)
+          ? i
+          : best,
+      0,
+    );
   return (
-    <div className={styles.forty} aria-hidden="true">
+    <div className={styles.forty}>
       <div className={styles.fortyInner}>
-        <svg viewBox="0 0 400 24" preserveAspectRatio="none">
-          <path className={styles.fortyEu} d="M0 6H400" />
+        <svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true">
+          <path className={styles.fortyRail} d="M0 6H400" />
+          <path
+            className={styles.fortyEu}
+            d="M0 6H400"
+            pathLength={1}
+            style={{ strokeDashoffset: 1 - share(year) }}
+          />
           <path
             className={styles.fortyCz}
             d={`M${share(DOCK_YEAR) * 400} 2H400`}
+            pathLength={1}
+            style={{
+              strokeDashoffset:
+                1 - Math.max(0, (year - DOCK_YEAR) / (FIRST + SPAN - DOCK_YEAR)),
+              opacity: year >= DOCK_YEAR ? 1 : 0,
+            }}
           />
-          {marks.map((year) => (
+          {marks.map((mark) => (
             <line
-              key={year}
+              key={mark}
               className={styles.mark}
-              data-past="true"
-              x1={share(year) * 400}
-              x2={share(year) * 400}
+              data-past={mark <= year}
+              x1={share(mark) * 400}
+              x2={share(mark) * 400}
               y1={9}
-              y2={(year - FIRST) % 10 === 0 ? 19 : 15}
+              y2={(mark - FIRST) % 10 === 0 ? 19 : 15}
             />
           ))}
         </svg>
-        {[FIRST, DOCK_YEAR, 2004, FIRST + SPAN].map((year) => (
+        <span className={styles.fortyDot} style={{ left: pct(year) }} aria-hidden="true" />
+        {[FIRST, DOCK_YEAR, 2004, FIRST + SPAN].map((label) => (
           <span
-            key={year}
-            style={{ left: pct(year) }}
+            key={label}
+            className={styles.fortyLabel}
+            style={{ left: pct(label) }}
             data-edge={
-              year === FIRST
-                ? "start"
-                : year === FIRST + SPAN
-                  ? "end"
-                  : undefined
+              label === FIRST ? "start" : label === FIRST + SPAN ? "end" : undefined
             }
+            aria-hidden="true"
           >
-            {year}
+            {label}
           </span>
         ))}
+        <input
+          className={styles.fortyInput}
+          type="range"
+          min={FIRST}
+          max={FIRST + SPAN}
+          step={1}
+          value={year}
+          aria-label="Rok na časové ose 1987–2027"
+          aria-valuetext={stations[active].date + ", " + stations[active].title}
+          onChange={(event) => onPick(nearest(event.currentTarget.valueAsNumber))}
+          onKeyDown={(event) => {
+            const step =
+              event.key === "ArrowRight" || event.key === "ArrowUp"
+                ? 1
+                : event.key === "ArrowLeft" || event.key === "ArrowDown"
+                  ? -1
+                  : 0;
+            const jump = event.key === "Home" ? 0 : event.key === "End" ? stations.length - 1 : -1;
+            if (!step && jump < 0) return;
+            event.preventDefault();
+            onPick(jump >= 0 ? jump : Math.min(stations.length - 1, Math.max(0, active + step)));
+          }}
+        />
       </div>
     </div>
   );
@@ -125,6 +180,44 @@ export function HistoryTimeline() {
   const [active, setActive] = useState(0);
   const routes = useRef<HTMLDivElement>(null);
   const [routeWidth, setRouteWidth] = useState(1400);
+  const staticList = useRef<HTMLOListElement>(null);
+  const [staticActive, setStaticActive] = useState(0);
+
+  // The milestone most in view drives the strip (horizontal swipe on phones,
+  // vertical reading on short or reduced-motion desktops).
+  useEffect(() => {
+    const list = staticList.current;
+    if (!list) return;
+    const ratios = new Map<Element, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => ratios.set(entry.target, entry.intersectionRatio));
+        let best = -1;
+        let top = 0.35;
+        ratios.forEach((ratio, element) => {
+          if (ratio > top) {
+            top = ratio;
+            best = Number((element as HTMLElement).dataset.index);
+          }
+        });
+        if (best >= 0) setStaticActive(best);
+      },
+      { threshold: [0, 0.35, 0.5, 0.65, 0.8, 1] },
+    );
+    list.querySelectorAll("li").forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, []);
+
+  function pickStatic(index: number) {
+    const list = staticList.current;
+    const item = list?.querySelectorAll<HTMLElement>("li")[index];
+    if (!list || !item) return;
+    setStaticActive(index);
+    const behavior = reduced ? "instant" : "smooth";
+    if (list.scrollWidth > list.clientWidth + 1)
+      list.scrollTo({ left: item.offsetLeft - list.offsetLeft, behavior });
+    else item.scrollIntoView({ block: "start", behavior });
+  }
   const geometry = routeGeometry(routeWidth);
 
   useLayoutEffect(() => {
@@ -470,10 +563,15 @@ export function HistoryTimeline() {
         <p className={styles.staticTitle} aria-hidden="true">
           Dvě linie, jedna cesta
         </p>
-        <FortyStrip />
-        <ol>
-          {stations.map((station) => (
-            <li key={station.year} data-dark={station.year >= 2004}>
+        <FortyStrip active={staticActive} onPick={pickStatic} />
+        <ol ref={staticList} aria-label="Milníky 1987–2027">
+          {stations.map((station, i) => (
+            <li
+              key={station.year}
+              data-index={i}
+              data-dark={station.year >= 2004}
+              aria-current={staticActive === i ? "step" : undefined}
+            >
               <div className={styles.staticInner}>
                 <figure className={styles.figure}>
                   <div className={styles.stack} data-grain>
