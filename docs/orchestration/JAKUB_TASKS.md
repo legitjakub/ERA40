@@ -10,6 +10,12 @@ Každý pokyn od Master Orchestration Promptu dál. Claude ho aktualizuje po ka�
 - [x] **Když Codex dosáhne posledních 10 % využití** (00:54 dosaženo 93 %, Claude převzal práci) (`tools/codex-usage.sh`: limit 5 h nebo týdenní ≥ 90 %): Claude převezme jeho práci, dokončí ji sám a pushne do `main`. Kontroluje se každých 5 minut.
 - [x] **Nezapomenout na žádný pokyn:** tento soubor + paměť `era40-jakub-tasks`.
 
+## Pokyn 01:25 — předání a komunikace
+- [x] **Předání dříve** (01:30): stav, uvolnění souborů a úkoly v `web/docs/CLAUDE-COORDINATION.md`.
+- [x] **Komunikovat jen s Grok Botem a Cursorem** (přes koordinaci). Codex už neřídí Claude přímo.
+- [ ] **Hlídat:** při 95 % limitu Clauda převezme Cursor. Claude pak Cursor částečně koordinuje **každých 30 minut** (session cron).
+- [ ] **Ověřovat, co Grok Bot sděluje** (každý bod proti kódu nebo `origin/main`). Body 01:06 ověřeny, 1–3 hotové (`beb39a3`).
+
 ## Úklid
 - [ ] **Pročistit šablonu od nesmyslných prvků, „čisté a hezké“.** Zadat Codexu spolu s dalšími úkoly.
   - [x] CDX-001 dávka A: patička, osiřelá linka v prologu, časový kód titulků, tabule na O projektu, QA PNG v `public/` (review PŘIJATO). Varování DrawSVG je v hero, přesunuto do dávky B.
