@@ -1,6 +1,6 @@
 # 009 — Přepracování spodních kapitol (06–08) podle směru A
 
-15. 11. 2026 · Claude · **Stav: schváleno k realizaci.** Jakub: spodní sekce hlavní stránky se mu nelíbí, „klidně ať se nějak změní, nemusíme pracovat s tím, co máme teď, můžeme to úplně přeměnit dle plánu“. Jakub zároveň určil autonomní práci, proto rozhodl Claude.
+15. 11. 2026 · Claude · **Stav: hotovo 15. 11. 2026** (review `docs/qa/009-review.md`). Jakub: spodní sekce hlavní stránky se mu nelíbí, „klidně ať se nějak změní, nemusíme pracovat s tím, co máme teď, můžeme to úplně přeměnit dle plánu“. Jakub zároveň určil autonomní práci, proto rozhodl Claude.
 
 Směr: `docs/orchestration/CREATIVE_DIRECTIONS.md`, směr A, „Linka, která se vrací a pokračuje“. Kotvy `#tehdy-ted`, `#cisla` a `#budoucnost` i osm kapitol zůstávají. Obsah a forma kapitol se mohou změnit od základu.
 

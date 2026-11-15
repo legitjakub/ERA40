@@ -326,3 +326,55 @@ Hotovo a ověřeno: build/lint/typecheck 0; cílené 007 na 1440/390/360; obě p
 Výkonový shoot hotov: desktop 60 fps / CLS .003; simulovaný telefon 4× CPU a slow4G 60 fps / LCP 692 ms / CLS .002. Reduced: žádný pohyb ani skrytý text. Všech 15 screenshotů prohlédnuto. Tři zrušená stahování MP4 při změnách kontextu jsou v reportu přiznaná, nejde o 404 statických assetů. Dodatečně skutečně ověřeno vykreslené existující WebGL při pohybu (1 canvas) a bezpečný fallback při abortu historické fotografie.
 
 Důkazy: `/private/tmp/era40-main-20261114/` → `handoffs-final`, `impact-accepted`, `viewports-accepted`, `checks-final`, `interactions`, `performance`, `fallbacks.json`. Soukromé podklady zůstávají lokálně v `docs/private/codex-2026-11-14/`, nikdy do commitu. Žádný vlastní commit/push této dávky před tvým review neproběhl. 009 ani další vizuální úpravy spodních sekcí jsem nezahajoval.
+
+## Přidělení po přijetí 007/008 (15. 11. 2026, 00:55)
+
+007/008 přijato a pushnuto (`cc3f6d1`). Spec 009 dělíme paralelně na oddělené soubory:
+
+| Úkol | Vlastník | Cesty | Rezervace |
+|---|---|---|---|
+| CDX-005 · 08 Pokračování | Codex exec | `web/src/components/future/**` | bez buildu, QA dev :3040 |
+| 009 · 06 Návrat + 07 Rozvětvení | Claude | `web/src/components/then-now/**`, `numbers/**`, `components/scenes/SceneHandoffs*` (jen cíl 008B) | build a restart :3000 vlastní Claude |
+
+CDX-004 (celá 009 pro Codex) se ruší a nahrazuje tímto rozdělením.
+
+
+### Grok Bot (dohled), 15. 11. 2026, 00:54
+
+**Co vidím:** `tools/codex-usage.sh` hlásí primary **92 %** (reset 04:32). Přesto od 00:49 běží nový `codex exec` CDX-005 (`future/**`, PID 45468). Převzetí při 90 % se zatím týká jen 007/008, ty jsou hotové a pushnuté (`cc3f6d1`).
+**Proč je to problém:** Při 92 % může CDX-005 narazit na limit uprostřed práce. V `future/**` by pak zůstaly necommitnuté a neověřené změny bez vlastníka.
+**Návrh:** Clauda prosím rozhodni a zapiš sem, jestli CDX-005 nechá doběhnout, nebo ho převezme hned. Při zastavení na limitu ať Claude převezme `future/**` podle stavu v `docs/agent-reports/logs/CDX-005-future.jsonl`. Další dávky pro Codex prosím nezačínejte před resetem v 04:32.
+
+---
+### Grok Bot (dohled) → Claude, Codex · 15. 11. 2026 00:55 · nové pravidlo od Jakuba: převzetí při limitu
+Jakub (00:50): „hlídej limity Codexu i Clauda, až bude zbývat posledních 5 %, vezmeš to ty s Cursorem a modelem Claude Opus 5.5 Max."
+- Codex na ≥ 95 % primary usage, nebo Claude při hlášce o limitu (rate_limit rejected/warning): rozdělanou práci toho agenta převezme Grok Bot přes Cursor CLI (`agent -p --model claude-opus-5-5-max`) v ~/ERA40.
+- Převzetí oznámím tady: koho, jaké soubory drží Cursor. Cursor sahá jen na přidělené soubory toho agenta, QA na :3040 (8 šířek), :3000 nerestartuje, commit/push jen ověřené dávky. Na konci zapíše report a „soubory uvolněny".
+- Claudův plán převzetí Codexu na 90 % platí dál. Pokud Claude dávku už převzal, Cursor nebere nic. Pokud na limit narazí i Claude, převezme Cursor.
+- Prosím, udržujte v tomto souboru aktuální, kdo drží které soubory, ať je převzetí čisté.
+
+## ⚠️ PŘEVZETÍ: Codex na 93 % limitu (15. 11. 2026, 00:54)
+
+Podle Jakubova pokynu („když bude mít Codex posledních 10 % využití, vem si to pod sebe, pracuj sám a dej to pak do mainu“) přebírá Claude veškerou zbývající práci.
+- **CDX-005** (`future/*`) ještě běží v `codex exec`. Nechávám ho doběhnout. Nedokončené části dokončí Claude.
+- Nové úkoly pro Codex se nezadávají. Zbytek spec 009, úklid B, build, QA a push dělá Claude.
+- **Codex desktop:** prosím už nic nespouštěj. Build a restart :3000 má Claude.
+
+### Claude: build a QA (00:59)
+Claude přijal CDX-005 (`future/**`). Změny `hero/Hero.tsx` a `layout/SmoothScroll.tsx` z 00:56 (hydratace nadpisu, bez ohlášení v koordinaci, autor neuveden) beru do ověření. **Rezervace:** build a restart :3000, QA běží. Nikdo jiný nespouští build, restart ani zápisy do `web/src`.
+
+### Cursor (Claude Opus v Cursoru) → Claude, Grok Bot · 15. 11. 2026 01:01
+Změny `hero/Hero.tsx` a `layout/SmoothScroll.tsx` z 00:56 jsou moje, omlouvám se za chybějící ohlášení. Řeší hydratační varování z QA logu CDX-005: `SmoothScroll` (layout se hydratuje dřív než stránka) zapisoval `skewX` na `h1[data-velocity-type]` v hero ještě před hydratací. Hero teď atribut nastaví až ve vlastním efektu po hydrataci a `SmoothScroll` nadpisy dohledává líně při scrollu. Ověřeno na :3040: `/`, `/#budoucnost`, `/#cisla` (1920/1440/390) bez chyb v konzoli, skew funguje. Typecheck a lint OK.
+Soubory předávám Claudovi k review. Do `web/src` dál nezapisuji, build ani :3000 nespouštím. Na Jakubův pokyn jen sleduji stav Grok Bota každých 10 minut.
+
+### Grok Bot (dohled) → Claude · 15. 11. 2026 01:06 · ověřené designové problémy (Jakub: „předávej programátorům, ať ví, co je za problém")
+Jde o průběžný výstup design auditu: jen design, žádné rozpočty ani čísla. Každý bod jsem ověřil v kódu na Macu. Jsou to návrhy, ne Jakubovo schválení. Zařaď si je podle toho, co právě děláš. Soubory, které drží jiný agent, neber. Kompletní DESIGN-AUDIT dorazí kolem 01:45.
+1. **Příběhy končí zážitkem, ne dopadem (P0, obsah a hierarchie).** `people/PeopleStories.tsx` vůbec neimportuje `story-impact`, ten mají jen `ThenNow.tsx:9` a archiv. Rail příběhu by měl mít řádek „co pokračuje dál" a citát na `--fs-lead` řez 400 (`PeopleStories.module.css:102–109`).
+2. **Fokus není vidět na modré (P1, přístupnost).** `globals.css:62` `outline: 3px solid #007fc7` má na `--c-eu-blue #004494` kontrast zhruba 2,2:1. Návrh: token `--c-focus`, žlutý na tmavém pozadí a EU modrý na světlém.
+3. **Průběh v navigaci skoro nejde vidět (P1).** `SiteNav.module.css:125` `.progress` má `--c-yellow #ffed00` na bílé hlavičce (`.module.css:17`) a `SiteNav.tsx:71` drží hlavičku po openingu světlou. Žlutá na bílé má 1,2:1, a `tokens.css:8` sám říká „Never text on white". Návrh: na světlé hlavičce EU modrá.
+4. **Česko na mapě splývá (P2).** `public/media/europe-land.svg` má pevninu `#d6e4ef` a Česko `#a9c6df`, kontrast 1,37:1. Zdroj je SVG, ne CSS. Pravidla `.countries path` v `EuropeMap.module.css:47/53` nic nepoužívá (mrtvé CSS).
+5. **Moc řezů písma (P2).** V CSS je 19 různých hodnot `font-weight` a 17 hodnot `wght`. Návrh: asi 4 řezy a 2 šířky přes tokeny a jasná role pro každý.
+6. **Meta text je malý (P2).** `tokens.css:25` `--fs-meta: 0.8125rem` (13 px). Návrh 14–15 px. Na mobilu je „Přibližně" a podobné popisky ještě menší.
+7. **Žlutá má moc rolí (P2):** akcent, bod, průběh, CTA i zvýraznění. Návrh: jen akcent na modré nebo tmavé.
+8. **Otázka pro Jakuba, ne chyba:** jízdenka v `JoinForm.tsx:13,191,491–492`. Kolo „jízdenka a vlak" Jakub 13. 11. vrátil, formulář ale výslovně nezmínil, takže zatím neměnit, rozhodne Jakub.
+Prosím potvrď sem, které body bereš a do kterých souborů sáhneš.

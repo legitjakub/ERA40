@@ -1,168 +1,232 @@
+/* Spec 009 — 07 Rozvětvení: after the return the experience branches out.
+   Light chapter; branch lengths share one linear scale (value / largest). */
 .section {
-  background: #0b1b33;
-  color: #fff;
-  font-family: var(--font-brand, "Roboto Flex", Roboto, Arial, sans-serif);
+  background: var(--c-paper);
+  color: var(--c-ink);
+  padding: var(--section-pad) 0;
 }
 .inner {
   width: min(91%, 1320px);
   margin: auto;
-  padding: clamp(5rem, 11vw, 10rem) 0;
+}
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 1rem 3rem;
+  align-items: end;
+}
+.kicker {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--c-eplus-ink);
+  font-size: 0.9375rem;
+  font-weight: 650;
 }
 .inner h2 {
-  margin: 0 0 clamp(2.5rem, 6vw, 5.5rem);
-  font-size: clamp(3.4rem, 7.4vw, 7.5rem);
-  line-height: 1.04;
-  font-weight: 840;
+  margin: 0;
+  color: var(--c-eu-blue);
+  font-size: clamp(2.8rem, 6vw, 6.4rem);
+  line-height: 1.02;
   letter-spacing: -0.025em;
   font-variation-settings:
-    "wght" 840,
-    "wdth" 52;
+    "wdth" 56,
+    "wght" 840;
+  max-width: 13ch;
 }
-.stats {
-  display: grid;
-  grid-template-columns: 1.24fr 1fr;
-  column-gap: clamp(1.5rem, 8vw, 8rem);
-  row-gap: clamp(2rem, 3vw, 3.5rem);
+.lead {
   margin: 0;
-}
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  border-top: 1px solid #55677e;
-  padding: 1.2rem 0 0.6rem;
-}
-.stat dt {
-  max-width: 28ch;
-  margin-top: 0.75rem;
-  font-size: clamp(1.1rem, 2vw, 1.7rem);
-  line-height: 1.22;
-}
-.stat dd {
-  margin: 0;
-}
-.stat .value {
-  order: -1;
-  position: relative;
-  font-size: clamp(3.75rem, 7.5vw, 7.4rem);
-  line-height: 0.97;
-  font-variant-numeric: tabular-nums;
-  font-variation-settings:
-    "wght" 825,
-    "wdth" 65;
-  font-weight: 825;
-  letter-spacing: -0.035em;
-  white-space: nowrap;
-}
-.stat:nth-child(-n + 2) .value {
-  padding-top: 1.55rem;
-}
-.qualifier {
-  color: #dde9f5;
-  display: block;
-  font-weight: 550;
-  font-variation-settings: normal;
-  letter-spacing: 0;
-  font-size: 1rem;
-  line-height: 1.25;
-  margin-bottom: 0.35rem;
-}
-.stat:nth-child(-n + 2) .qualifier {
-  position: absolute;
-  top: 0;
-}
-.stat:nth-child(4) .value {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-}
-.stat:nth-child(4) .qualifier {
-  flex-basis: 100%;
-  margin: 0;
-}
-.unit {
-  margin-left: .15em;
-  font-size: 0.55em;
-}
-.stat .source,
-.source {
-  margin: 0.8rem 0 0;
-  color: #cbd9e8;
-  font-size: 0.88rem;
+  max-width: 34ch;
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
   line-height: 1.45;
 }
-.source a {
-  color: inherit;
-  display: block;
-  width: fit-content;
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
-}
-.breakdown {
+.tree {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  align-items: start;
-  gap: clamp(1.8rem, 5.5vw, 7rem);
-  padding-top: clamp(4rem, 7vw, 8rem);
+  grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
+  margin-top: clamp(3rem, 6vw, 5.5rem);
 }
-.breakdown h3 {
-  margin: 0;
-  font-size: clamp(2.2rem, 4.3vw, 4.3rem);
-  line-height: 0.97;
-  letter-spacing: -0.035em;
-  font-variation-settings:
-    "wght" 800,
-    "wdth" 57;
-}
-.bars {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+.trunk {
   display: grid;
-  gap: 1.35rem;
+  align-content: start;
+  gap: 0.6rem;
+  padding: 0 2rem 0 0;
 }
-.bars li {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  gap: 0.4rem 1rem;
-  line-height: 1.25;
-}
-.bars strong {
+.trunkValue {
+  color: var(--c-eu-blue);
+  font-size: clamp(3.2rem, 6vw, 5.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
+  font-variation-settings:
+    "wdth" 70,
+    "wght" 860;
 }
-.track {
-  grid-column: 1/-1;
-  height: 4px;
-  background: #45556b;
+.trunkLabel {
+  font-size: 1.05rem;
+  line-height: 1.35;
+  max-width: 18ch;
 }
-.track i {
-  display: block;
-  height: 100%;
-  background: var(--c-eplus);
-  transition: background-color var(--dur-xs);
+.branches {
+  --spine: 1;
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 2.5rem;
 }
-.bars li[data-selected="true"] .track i { background: var(--c-yellow); }
+/* The spine: the returning line, from which every branch leaves. */
+.branches::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 1.6rem;
+  width: 3px;
+  background: var(--c-eu-blue);
+  transform: scaleY(var(--spine));
+  transform-origin: top;
+}
+.trunk[data-handoff-axis-active="true"] + .branches::before {
+  opacity: 0;
+}
+.branches li {
+  position: relative;
+  padding: 0.7rem 0 0.9rem;
+}
 .sectorButton {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
   width: 100%;
   min-height: 44px;
-  align-items: center;
-  gap: 18px;
-  padding: 8px 0;
+  padding: 0.25rem 0;
   border: 0;
   background: none;
-  color: white;
+  color: var(--c-ink);
   text-align: left;
   font: inherit;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
   cursor: pointer;
 }
-.sectorButton:focus-visible { outline: 2px solid var(--c-yellow); outline-offset: 5px; }
-.sectorButton[aria-pressed="true"] { color: var(--c-yellow); }
-.explore { max-width: 31ch; margin: 24px 0 0; line-height: 1.5; }
+.sectorButton strong {
+  color: var(--c-eu-blue);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  font-variation-settings:
+    "wdth" 80,
+    "wght" 800;
+}
+.sectorButton[aria-pressed="true"] span {
+  font-weight: 700;
+}
+.sectorButton:focus-visible {
+  outline: 3px solid var(--c-eu-blue);
+  outline-offset: 4px;
+}
+.track {
+  position: relative;
+  height: 14px;
+  margin-top: 0.25rem;
+}
+/* Rounded elbow: the branch leaves the spine and turns into its line (Trasa language). */
+.track::before {
+  content: "";
+  position: absolute;
+  left: -2.5rem;
+  bottom: calc(100% - 8px);
+  width: 2.5rem;
+  height: 1.2rem;
+  border-left: 3px solid var(--c-eu-blue);
+  border-bottom: 3px solid var(--c-eu-blue);
+  border-bottom-left-radius: 1.2rem;
+  box-sizing: border-box;
+}
+.track i {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  height: 3px;
+  background: var(--c-eu-blue);
+}
+/* Branch end: station dot; the selected branch is "you are here" (yellow). */
+.track i::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  top: -5.5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--c-paper);
+  border: 3px solid var(--c-eu-blue);
+  box-sizing: border-box;
+}
+.branches li[data-selected="true"] .track i::after {
+  background: var(--c-yellow);
+}
+@media (hover: hover) {
+  .sectorButton:hover span {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+.scaleNote {
+  margin: 1.6rem 0 0;
+  max-width: 70ch;
+  color: var(--c-mute);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.source {
+  color: var(--c-mute);
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+}
+.source a {
+  color: var(--c-eplus-ink);
+  text-decoration: underline;
+}
+.more {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  margin: clamp(3rem, 6vw, 5rem) 0 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--c-line);
+}
+.more div {
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+}
+.more dt {
+  order: 2;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.more dd {
+  margin: 0;
+}
+.moreValue {
+  order: 1;
+  color: var(--c-eu-blue);
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  font-variation-settings:
+    "wdth" 74,
+    "wght" 820;
+}
+.more .source {
+  order: 3;
+}
+.qualifier {
+  font-size: 0.45em;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.unit {
+  font-size: 0.6em;
+}
 .example {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
@@ -193,21 +257,22 @@
   clip-path: inset(50%);
   white-space: nowrap;
 }
-@media (max-width: 700px) {
-  .stats,
-  .breakdown {
-    grid-template-columns: 1fr;
+
+@media (max-width: 860px) {
+  .head,
+  .tree {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .stats {
-    row-gap: 1.5rem;
+  .trunk {
+    padding: 0 0 1.5rem;
   }
-  .stat .value {
-    font-size: clamp(3.7rem, 14vw, 5.5rem);
+  .more {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.6rem;
   }
-  .stat:nth-child(-n + 2) .value {
-    padding-top: 0;
-  }
-  .stat:nth-child(-n + 2) .qualifier {
-    position: static;
+}
+@media (prefers-reduced-motion: reduce) {
+  .branches {
+    --spine: 1 !important;
   }
 }

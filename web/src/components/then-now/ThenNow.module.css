@@ -234,3 +234,59 @@
     animation: none;
   }
 }
+
+/* Spec 009 — 06 Návrat: the "Dnes" side is what continues after the return. */
+.now {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 0.9rem;
+  padding: clamp(3.5rem, 6vw, 4rem) clamp(1.25rem, 4vw, 4rem) clamp(1.5rem, 4vw, 4rem) calc(50% + clamp(1rem, 3vw, 3rem));
+  background: var(--c-eu-blue);
+  color: white;
+}
+/* The text lives in the right half; show it only once the "Dnes" side has room. */
+.now > * {
+  opacity: clamp(0, calc((var(--dnes, 1) - 0.42) * 10), 1);
+}
+.nowLabel {
+  margin: 0;
+  color: var(--c-yellow);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.nowText {
+  margin: 0;
+  max-width: 24ch;
+  font-size: clamp(1.4rem, 2.6vw, 2.6rem);
+  line-height: 1.12;
+  font-variation-settings:
+    "wdth" 78,
+    "wght" 720;
+}
+.nowReach {
+  margin: 0;
+  max-width: 34ch;
+  color: var(--c-line);
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.4;
+}
+.comparison .divider {
+  width: 3px;
+  background: white;
+}
+@media (max-width: 760px) {
+  .now {
+    padding: 3.25rem 0.9rem 1rem calc(50% + 0.9rem);
+    gap: 0.5rem;
+  }
+  .nowText {
+    font-size: 1.05rem;
+  }
+  .nowReach {
+    font-size: 0.875rem;
+  }
+}

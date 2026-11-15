@@ -72,17 +72,21 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
           prevent: (el) => el.closest("dialog") !== null,
         });
         const release = attachSmoothScroller(lenis);
-        const skews: ReturnType<typeof gsap.quickTo>[] = [];
+        const skews = new Map<HTMLElement, ReturnType<typeof gsap.quickTo>>();
         // The shared layout survives client-side navigation. Bind effects to
         // this page's nodes and revert them before creating the next instance.
-        const context = gsap.context(() => {
-          document.querySelectorAll<HTMLElement>("main [data-velocity-type]")
-            .forEach((title) => {
-              skews.push(gsap.quickTo(title, "skewX", { duration: 0.35 }));
-            });
-        });
+        // Titles opt in after their own hydration, so they are looked up lazily.
+        const context = gsap.context(() => {});
         const onScroll = ({ velocity }: Lenis) => {
           ScrollTrigger.update();
+          document
+            .querySelectorAll<HTMLElement>("main [data-velocity-type]")
+            .forEach((title) => {
+              if (!skews.has(title))
+                context.add(() =>
+                  skews.set(title, gsap.quickTo(title, "skewX", { duration: 0.35 })),
+                );
+            });
           skews.forEach((skew) =>
             skew(gsap.utils.clamp(-3, 3, velocity * 0.06)),
           );

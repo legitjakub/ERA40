@@ -19,6 +19,8 @@ import { StoryLabel } from "@/components/archive/StoryLabel";
 import { StoryImpact } from "@/components/archive/StoryImpact";
 
 const format = new Intl.NumberFormat("cs-CZ");
+const outgoing = stats.find((stat) => stat.id === "outgoing-cz")!;
+const others = stats.filter((stat) => stat.id !== "outgoing-cz");
 const largestSector = Math.max(
   ...sectorBreakdown.map((sector) => sector.value),
 );
@@ -62,6 +64,16 @@ export function Numbers() {
           },
         });
       });
+      gsap.from(section.querySelector("ol"), {
+        "--spine": 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section.querySelector("ol"),
+          start: "top 92%",
+          end: "top 60%",
+          scrub: 0.45,
+        },
+      });
       gsap.from(section.querySelectorAll("[data-sector-bar]"), {
         scaleX: 0,
         transformOrigin: "left",
@@ -102,46 +114,30 @@ export function Numbers() {
       className={s.section}
     >
       <div className={s.inner}>
-        <h2 id="numbers-title">Erasmus v číslech.</h2>
-        <dl className={s.stats}>
-          {stats.map((stat) => (
-            <div
-              key={stat.id}
-              className={s.stat}
-              data-number-stat
-              data-handoff-axis-target={stat.id === "outgoing-cz" ? "" : undefined}
-            >
-              <dt>{stat.label}</dt>
-              <dd className={s.value}>
-                {stat.prefix && (
-                  <span className={s.qualifier}>{stat.prefix}</span>
-                )}
-                <span className={s.screenReaderOnly}>
-                  {format.format(stat.value)}
-                </span>
-                <span aria-hidden="true" data-count={stat.value}>
-                  {format.format(stat.value)}
-                </span>
-                {stat.suffix && <span className={s.unit}>{stat.suffix}</span>}
-              </dd>
-              <dd className={s.source}>
-                {stat.period}{" "}
-                <a href={stat.sources[0].url}>{stat.sources[0].label}</a>
-              </dd>
-            </div>
-          ))}
-        </dl>
-        <div className={s.breakdown}>
-          <div>
-            <h3>Kdo vyjel z Česka?</h3>
-            <p className={s.source}>
+        <header className={s.head}>
+          <p className={s.kicker}>Erasmus v číslech</p>
+          <h2 id="numbers-title">Po návratu se zkušenost větví.</h2>
+          <p className={s.lead}>
+            Každá oblast vzdělávání je jedna větev. Vyberte ji a podívejte se,
+            jak může zkušenost pokračovat dál.
+          </p>
+        </header>
+        <div className={s.tree}>
+          <div className={s.trunk} data-number-stat data-handoff-axis-target>
+            <span className={s.trunkValue}>
+              <span className={s.screenReaderOnly}>{format.format(outgoing.value)}</span>
+              <span aria-hidden="true" data-count={outgoing.value}>
+                {format.format(outgoing.value)}
+              </span>
+            </span>
+            <span className={s.trunkLabel}>{outgoing.label}</span>
+            <span className={s.source}>
               {participationPeriod}{" "}
               <a href={participationSource.url}>{participationSource.label}</a>
-            </p>
-            <p className={s.explore}>Vyberte oblast a podívejte se, jak může zkušenost pokračovat.</p>
+            </span>
           </div>
           <ol
-            className={s.bars}
+            className={s.branches}
             aria-label="Počty účastníků podle oblasti vzdělávání"
           >
             {sectorBreakdown.map((sector) => (
@@ -159,15 +155,18 @@ export function Numbers() {
                 <div className={s.track} aria-hidden="true">
                   <i
                     data-sector-bar
-                    style={{
-                      width: (sector.value / largestSector) * 100 + "%",
-                    }}
+                    style={{ width: (sector.value / largestSector) * 100 + "%" }}
                   />
                 </div>
               </li>
             ))}
           </ol>
         </div>
+        <p className={s.scaleNote}>
+          Délka větve odpovídá počtu účastníků v oblasti, všechny větve mají
+          stejné měřítko. Jde o počty účastníků, nikoli o počet lidí, které
+          zkušenost nepřímo ovlivnila.
+        </p>
         <div id="sector-example" className={s.example} key={sectorId}>
           {example && photo ? (
             <>
@@ -194,6 +193,21 @@ export function Numbers() {
             </div>
           )}
         </div>
+        <dl className={s.more}>
+          {others.map((stat) => (
+            <div key={stat.id}>
+              <dt>{stat.label}</dt>
+              <dd className={s.moreValue}>
+                {stat.prefix && <span className={s.qualifier}>{stat.prefix} </span>}
+                {format.format(stat.value)}
+                {stat.suffix && <span className={s.unit}>{stat.suffix}</span>}
+              </dd>
+              <dd className={s.source}>
+                {stat.period} <a href={stat.sources[0].url}>{stat.sources[0].label}</a>
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

@@ -1,141 +1,39 @@
 "use client";
 
 import Link from "next/link";
-import { useLayoutEffect, useRef, useState } from "react";
-import { stories } from "@/content/stories";
-import { useScene as useGSAP } from "@/lib/gsap/useScene";
-import { gsap, registerGsap } from "@/lib/gsap/setup";
+import { useId, useRef, useState } from "react";
+import { useScene } from "@/lib/gsap/useScene";
+import { gsap } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import s from "./Future.module.css";
-
-// The closing Trasa: the eight story journeys as filled stations, a bend,
-// an open station for the reader's own journey, and a line that leaves the
-// right edge of the screen unfinished. Geometry is in real pixels so the
-// drawn length matches the screen.
-const ROUTE_H = 132;
-function finalRoute(width: number) {
-  const top = 22;
-  const low = ROUTE_H - 34;
-  const bendAt = Math.round(width * (width < 600 ? 0.5 : 0.58));
-  const bend = Math.min(150, Math.max(70, width * 0.12));
-  const stops = stories.map((story, i) => ({
-    city: story.to,
-    x: Math.round(8 + ((bendAt - 40) * (i + 1)) / stories.length),
-  }));
-  const open = Math.round(bendAt + bend + Math.min(90, width * 0.08));
-  return {
-    d: `M8 ${top}H${bendAt}C${bendAt + bend / 2} ${top} ${bendAt + bend / 2} ${low} ${bendAt + bend} ${low}H${open}`,
-    future: `M${open} ${low}H${width + 8}`,
-    top,
-    low,
-    stops,
-    open,
-  };
-}
 
 export function Future() {
   const root = useRef<HTMLElement>(null);
   const reduced = usePrefersReducedMotion();
   const [copied, setCopied] = useState(false);
-  const journey = useRef<HTMLDivElement>(null);
-  const [routeWidth, setRouteWidth] = useState(1280);
-  const route = finalRoute(routeWidth);
+  const maskId = useId().replace(/:/g, "");
 
-  useLayoutEffect(() => {
-    const element = journey.current;
-    if (!element) return;
-    const measure = () =>
-      setRouteWidth(Math.max(320, Math.round(element.clientWidth)));
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-  useGSAP(
-    () => {
-      registerGsap();
-      if (reduced) return;
-      const mm = gsap.matchMedia();
-      const timeline = gsap.timeline({
+  useScene(() => {
+    if (reduced) return;
+    const mm = gsap.matchMedia();
+    mm.add({ desktop: "(min-width: 768px)", mobile: "(max-width: 767px)" }, (context) => {
+      const variant = context.conditions?.desktop ? "desktop" : "mobile";
+      const route = root.current?.querySelector(`[data-route="${variant}"]`);
+      if (!route) return;
+      // Animate a mask so DrawSVG never replaces the future stroke's dotted pattern.
+      gsap.timeline({
+        defaults: { ease: "none" },
         scrollTrigger: {
-          trigger: root.current,
-          start: "top 70%",
-          end: "center 55%",
-          scrub: 0.5,
+          id: "future-continuation", trigger: root.current,
+          start: "top 70%", end: "top 10%", scrub: 0.5,
         },
-      });
-      timeline
-        .from(
-          "[data-future-line]",
-          { yPercent: 110, stagger: 0.1, ease: "none", duration: 0.7 },
-          0,
-        )
-        .fromTo(
-          "[data-final-route]",
-          { drawSVG: "0%" },
-          { drawSVG: "100%", ease: "none", duration: 0.8 },
-          0,
-        );
-      const geometry = finalRoute(journey.current?.clientWidth ?? 1280);
-      const length = root.current
-        ?.querySelector<SVGPathElement>("[data-final-route]")?.getTotalLength()
-        ?? geometry.open;
-      gsap.utils
-        .toArray<SVGElement>("[data-final-stop]", root.current)
-        .forEach((stop, i) => {
-          const label = root.current?.querySelectorAll("[data-final-city]")[i];
-          const at = 0.8 * ((geometry.stops[i]?.x ?? 8) - 8) / length;
-          timeline.fromTo(
-            stop,
-            { scale: 0, transformOrigin: "50% 50%" },
-            { scale: 1, duration: 0.06, ease: "none" },
-            at,
-          );
-          if (label)
-            timeline.fromTo(
-              label,
-              { autoAlpha: 0, y: 6 },
-              { autoAlpha: 1, y: 0, duration: 0.08, ease: "none" },
-              at,
-            );
-        });
-      timeline.fromTo(
-        "[data-final-open]",
-        { autoAlpha: 0 },
-        { autoAlpha: 1, duration: 0.1, ease: "none" },
-        0.72,
-      );
-      timeline.fromTo(
-        "[data-final-future]",
-        { opacity: 0 },
-        { opacity: 1, duration: 0.2, ease: "none" },
-        0.8,
-      );
-      mm.add("(pointer:fine)", () => {
-        const cta = root.current?.querySelector<HTMLElement>("[data-magnetic]");
-        if (!cta) return;
-        const x = gsap.quickTo(cta, "x", { duration: 0.3 });
-        const y = gsap.quickTo(cta, "y", { duration: 0.3 });
-        const move = (e: PointerEvent) => {
-          const r = cta.getBoundingClientRect();
-          x((e.clientX - r.x - r.width / 2) * 0.06);
-          y((e.clientY - r.y - r.height / 2) * 0.12);
-        };
-        const leave = () => {
-          x(0);
-          y(0);
-        };
-        cta.addEventListener("pointermove", move);
-        cta.addEventListener("pointerleave", leave);
-        return () => {
-          cta.removeEventListener("pointermove", move);
-          cta.removeEventListener("pointerleave", leave);
-        };
-      });
-      return () => mm.revert();
-    },
-    { scope: root, dependencies: [reduced, routeWidth], revertOnUpdate: true },
-  );
+      })
+        .fromTo(route.querySelector("[data-final-route]"), { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.55 })
+        .fromTo(route.querySelector("[data-final-open]"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 })
+        .fromTo(route.querySelector("[data-future-mask]"), { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.35 });
+    });
+    return () => mm.revert();
+  }, { scope: root, dependencies: [reduced] });
 
   async function share() {
     const url = location.origin + location.pathname;
@@ -148,90 +46,45 @@ export function Future() {
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
-    } catch {
-      setCopied(false);
-    }
+    } catch { setCopied(false); }
   }
+
   return (
-    <section
-      ref={root}
-      id="budoucnost"
-      data-section="budoucnost"
-      aria-labelledby="future-title"
-      className={s.section}
-    >
+    <section ref={root} id="budoucnost" data-section="budoucnost" aria-labelledby="future-title" className={s.section}>
       <div className={s.inner}>
-        <p className={s.lead}>Cesta končí. Zkušenost pokračuje.</p>
-        <h2 id="future-title" className={s.title} data-velocity-type>
-          <span>
-            <span data-future-line>Další cesta</span>
-          </span>
-          <span>
-            <span data-future-line>začíná teď.</span>
-          </span>
+        <p className={s.kicker}>Pokračování</p>
+        <h2 id="future-title" className={s.title}>
+          <span>Cesta končí.</span><span>Zkušenost pokračuje.</span>
         </h2>
-        <div className={s.lower}>
-          <p>
-            Na první přednášce v cizím jazyce. U společného stolu. Při
-            rozhodnutí zkusit to. Jak začne ta vaše?
-          </p>
-          <Link data-magnetic className={s.primary} href="/zapojte-se#pribeh">
-            Zapsat svůj příběh <span aria-hidden="true">↗</span>
-          </Link>
-        </div>
-        <div ref={journey} className={s.journey} aria-hidden="true">
-          <svg
-            className={s.route}
-            viewBox={`0 0 ${routeWidth} ${ROUTE_H}`}
-            preserveAspectRatio="none"
-          >
-            <path data-final-route d={route.d} />
-            <path data-final-future className={s.futurePath} d={route.future} />
-            <circle cx="8" cy={route.top} r="6" />
-            {route.stops.map((stop) => (
-              <circle
-                key={stop.city}
-                data-final-stop
-                className={s.stop}
-                cx={stop.x}
-                cy={route.top}
-                r="4.5"
-              />
-            ))}
-            <circle
-              data-final-open
-              className={s.openStop}
-              cx={route.open}
-              cy={route.low}
-              r="7"
-            />
+        <p className={s.lead}>Zkušenost z Erasmu se předává dál — k dalším lidem, i k těm, kteří nikdy nevyjeli.</p>
+        <div className={s.journey} aria-hidden="true">
+          <svg className={s.desktopRoute} data-route="desktop">
+            <defs><mask id={`${maskId}-desktop`} maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+              <line data-future-mask x1="46%" y1="40" x2="101%" y2="40" stroke="white" strokeWidth="8" fill="none" />
+            </mask></defs>
+            <line data-final-route x1="-10" y1="40" x2="46%" y2="40" />
+            <line className={s.dotted} x1="46%" y1="40" x2="101%" y2="40" mask={`url(#${maskId}-desktop)`} />
+            <g data-final-open><circle className={s.station} cx="46%" cy="40" r="7" /><text x="46%" y="82" textAnchor="middle">Vaše cesta</text></g>
           </svg>
-          {route.stops.map((stop) => (
-            <span
-              key={stop.city}
-              data-final-city
-              className={s.city}
-              style={{ left: stop.x, top: route.top + 14 }}
-            >
-              {stop.city}
-            </span>
-          ))}
-          <span
-            data-final-open
-            className={s.yours}
-            style={{ left: route.open, top: route.low + 18 }}
-          >
-            Vaše cesta
-          </span>
+          <svg className={s.mobileRoute} data-route="mobile">
+            <defs><mask id={`${maskId}-mobile`} maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+              <path data-future-mask d="M12 56V160" stroke="white" strokeWidth="8" fill="none" />
+            </mask></defs>
+            <path data-final-route d="M12 -10V56" />
+            <path className={s.dotted} d="M12 56V160" mask={`url(#${maskId}-mobile)`} />
+            <g data-final-open><circle className={s.station} cx="12" cy="56" r="7" /><text x="36" y="62">Vaše cesta</text></g>
+          </svg>
+        </div>
+        <div className={s.actions}>
+          <Link className={s.primary} href="/zapojte-se#pribeh">Zapsat svůj příběh</Link>
+          <Link className={s.secondary} href="/tvoje-era">Jaké je tvoje ERA?</Link>
         </div>
         <div className={s.links}>
-          <Link href="/tvoje-era">Jaké je tvoje ERA?</Link>
           <a href="https://www.dzs.cz/program/erasmus">Vyrazit s Erasmus+</a>
           <a href="https://erasmus-plus.ec.europa.eu/">O programu Erasmus+</a>
-          <button type="button" onClick={share}>
-            {copied ? "Odkaz zkopírován" : "Sdílet tento web"}
-          </button>
+          <button type="button" onClick={share}>{copied ? "Odkaz zkopírován" : "Sdílet"}</button>
         </div>
+        <span className="visually-hidden" role="status">{copied ? "Odkaz zkopírován do schránky." : ""}</span>
       </div>
     </section>
   );

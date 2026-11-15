@@ -72,6 +72,13 @@ export function Hero() {
     };
   }, [reduced]);
 
+  useEffect(() => {
+    // The layout hydrates before this page. Opt into the scroll skew only
+    // once the heading is hydrated, so no inline transform precedes React.
+    const title = root.current?.querySelector("h1");
+    if (title) title.dataset.velocityType = "";
+  }, []);
+
   useGSAP(
     () => {
       registerGsap();
@@ -241,7 +248,7 @@ export function Hero() {
             1987 — <span data-year-end>2027</span>
           </span>
         </p>
-        <h1 id="hero-title" className={styles.title} data-velocity-type>
+        <h1 id="hero-title" className={styles.title}>
           {["Některé cesty", "změní všechno."].map((line) => (
             <span key={line}>
               <span data-title-line>{line}</span>

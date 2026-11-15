@@ -5,8 +5,21 @@ import { useRef, useState, type CSSProperties } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
-import { comparisons } from "@/content/comparisons";
+import { stories, storyPhoto } from "@/content/stories";
+import { storyImpact } from "@/content/story-impact";
+import { StoryLabel } from "@/components/archive/StoryLabel";
 import s from "./ThenNow.module.css";
+
+// Spec 009, chapter 06 "Návrat": what continues after the return, and who it reaches.
+// Only existing model-story content; the reach line paraphrases each story's impact summary.
+const returns = [
+  { id: "ucitelka", reach: "Dostává se to k jejím žákům." },
+  { id: "praha-in", reach: "Dostává se to k novým zahraničním studentům." },
+  { id: "kariera", reach: "Dostává se to ke kolegům v jeho týmu." },
+].map(({ id, reach }) => {
+  const story = stories.find((item) => item.id === id)!;
+  return { story, reach, photo: storyPhoto(story), summary: storyImpact(story)?.summary ?? story.excerpt };
+});
 
 export function ThenNow() {
   const root = useRef<HTMLElement>(null);
@@ -14,7 +27,7 @@ export function ThenNow() {
   const [position, setPosition] = useState(50);
   const [selection, setSelection] = useState(0);
   const reduced = usePrefersReducedMotion();
-  const pair = comparisons[selection];
+  const person = returns[selection];
 
   useGSAP(
     () => {
@@ -60,22 +73,23 @@ export function ThenNow() {
         <div className={s.inner}>
           <header className={s.header} data-handoff-copy>
             <h2 id="then-now-title" className={s.title}>
-              Tehdy a teď.
+              Po návratu.
             </h2>
             <p>
-              Jak najít cestu, ozvat se domů a uchovat si vzpomínku na pobyt?
+              Pobyt skončil. To, co si lidé přivezli, dnes dostávají další: žáci,
+              kolegové, noví studenti. Posuňte čáru mezi tehdy a dnes.
             </p>
           </header>
           <div
             className={s.options}
             data-handoff-copy
             role="group"
-            aria-label="Vyberte téma porovnání"
+            aria-label="Vyberte člověka"
           >
-            {comparisons.map((item, index) => (
+            {returns.map((item, index) => (
               <button
                 type="button"
-                key={item.topic}
+                key={item.story.id}
                 aria-pressed={selection === index}
                 onClick={() => {
                   manual.current = true;
@@ -83,7 +97,7 @@ export function ThenNow() {
                   setPosition(50);
                 }}
               >
-                {item.topic}
+                {item.story.name}
               </button>
             ))}
           </div>
@@ -91,27 +105,24 @@ export function ThenNow() {
             <div
               className={s.comparison}
               data-grain
-              style={{ "--divider": position + "%" } as CSSProperties}
+              style={{ "--divider": position + "%", "--dnes": (100 - position) / 100 } as CSSProperties}
             >
               <Image
-                src={pair.then.file}
-                alt={pair.then.alt}
+                src={person.photo.file}
+                alt={person.photo.alt}
                 fill
                 sizes="(max-width: 1440px) 93vw, 1320px"
                 className={s.image}
               />
               <div className={s.reveal}>
-                <Image
-                  src={pair.now.file}
-                  alt={pair.now.alt}
-                  fill
-                  sizes="(max-width: 1440px) 93vw, 1320px"
-                  className={s.image}
-                />
+                <div className={s.now}>
+                  <p className={s.nowText}>{person.summary}</p>
+                  <p className={s.nowReach}>{person.reach}</p>
+                </div>
               </div>
               <div className={s.tags} aria-hidden="true">
                 <span>Tehdy</span>
-                <span>Teď</span>
+                <span>Dnes</span>
               </div>
               <div className={s.divider} aria-hidden="true" data-handoff-axis-source>
                 <span>‹ ›</span>
@@ -123,12 +134,12 @@ export function ThenNow() {
                 max="100"
                 step="1"
                 value={position}
-                aria-label={"Podíl snímku Tehdy. " + pair.topic}
+                aria-label={"Podíl strany Tehdy. " + person.story.name}
                 aria-valuetext={
                   position +
-                  " % snímku Tehdy, " +
+                  " % strany Tehdy, " +
                   (100 - position) +
-                  " % snímku Teď"
+                  " % strany Dnes"
                 }
                 aria-describedby="then-now-hint"
                 onPointerDown={() => {
@@ -161,29 +172,25 @@ export function ThenNow() {
                 ))}
               </div>
               <div
-                key={pair.topic}
+                key={person.story.id}
                 className={s.captions}
                 aria-live="polite"
                 aria-atomic="true"
               >
                 <div>
                   <b>Tehdy</b>
-                  {pair.then.caption}
+                  {person.story.year} · {person.story.from} → {person.story.to}
                 </div>
                 <div>
-                  <b>Teď</b>
-                  {pair.now.caption}
+                  <b>Dnes</b>
+                  {person.story.name}, <StoryLabel story={person.story} />
                 </div>
               </div>
               <div className={s.notes}>
                 <span id="then-now-hint">
                   Posuňte dělicí čáru tahem nebo šipkami na klávesnici.
                 </span>
-                <span>
-                  Ilustrační snímky z Pexels (
-                  <a href={pair.then.source}>tehdy</a>,{" "}
-                  <a href={pair.now.source}>teď</a>).
-                </span>
+                <span>Postavy jsou modelové, fotografie ilustrační.</span>
               </div>
             </figcaption>
           </figure>
