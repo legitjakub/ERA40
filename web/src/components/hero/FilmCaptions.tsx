@@ -11,16 +11,19 @@ import s from "./FilmCaptions.module.css";
  */
 type Cue = [start: number, end: number, text: string];
 
+// The desktop edit opens and closes on a station departure board, a motif
+// Jakub rejected (D-004). Until a new film exists, the loop plays only the
+// window between those two shots; captions are retimed to it.
+const desktopWindow: [start: number, end: number] = [3, 32.2];
+
 const desktop: Cue[] = [
-  [0, 3, "Den odjezdu."],
   [3, 7, "Do kufru se vejde semestr."],
   [7, 9.5, "Nádraží plné lidí, kteří taky někam jedou."],
   [9.5, 14.5, "Známá krajina zůstává za oknem."],
   [14.5, 19.5, "Nové město. První adresa."],
   [19.5, 23.5, "Přednáška v jiném jazyce."],
   [23.5, 28.5, "Večeře v pěti jazycích."],
-  [28.5, 32.5, "Cesta domů je jiná než cesta tam."],
-  [32.5, 36, "Domů se vrací někdo trochu jiný."],
+  [28.5, 36, "Domů se vrací někdo trochu jiný."],
 ];
 
 const mobile: Cue[] = [
@@ -41,6 +44,7 @@ export function FilmCaptions({
   portrait: boolean;
 }) {
   const cues = portrait ? mobile : desktop;
+  const range = portrait ? null : desktopWindow;
   const [index, setIndex] = useState(0);
   const progress = useRef<HTMLSpanElement>(null);
 
@@ -49,14 +53,20 @@ export function FilmCaptions({
     if (!player) return;
     let currentCue = -1;
     const read = () => {
+      // Keep playback inside the window (skips the departure-board shots).
+      if (range && Number.isFinite(player.duration) && player.duration > range[1]) {
+        if (player.currentTime < range[0] || player.currentTime >= range[1])
+          player.currentTime = range[0];
+      }
       const t = player.currentTime;
       const at = cues.findIndex(([start, end]) => t >= start && t < end);
       if (at >= 0 && at !== currentCue) {
         currentCue = at;
         setIndex(at);
       }
-      const fraction = Number.isFinite(player.duration) && player.duration > 0
-        ? Math.min(1, Math.max(0, t / player.duration))
+      const [from, to] = range ?? [0, player.duration];
+      const fraction = Number.isFinite(to) && to > from
+        ? Math.min(1, Math.max(0, (t - from) / (to - from)))
         : 0;
       if (progress.current)
         progress.current.style.transform = `scaleX(${fraction})`;
@@ -71,7 +81,7 @@ export function FilmCaptions({
       cancelAnimationFrame(initial);
       events.forEach((event) => player.removeEventListener(event, read));
     };
-  }, [video, cues]);
+  }, [video, cues, range]);
 
   const [, , text] = cues[index] ?? cues[0];
   return (
