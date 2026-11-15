@@ -44,6 +44,8 @@ try {
       await link(page,'/zapojte-se');
       await page.waitForURL('**/zapojte-se');
       row.stateAtRouteChange=await page.locator('[data-route-transition]').getAttribute('data-state');
+      row.strokeWidth=await page.locator('[data-route-trail]').evaluate(p=>parseFloat(getComputedStyle(p).strokeWidth));
+      assert.ok(row.strokeWidth >= (width>=1024?5:3.75),'requested bold stroke');
       if(!reduced){
         await page.waitForFunction(()=>document.querySelector('[data-route-transition]').dataset.state==='full');
         if([390,1440].includes(width)){
@@ -119,6 +121,15 @@ try {
     assert.ok(await page.getByRole('heading',{level:1}).isVisible());
     assert.equal(await page.locator('[data-route-transition]').evaluate(root=>getComputedStyle(root).visibility),'hidden');
     await context.close();return 'real SSR heading accessible, no JavaScript veil';
+  });
+  await check('Mobile height changes preserve motion; width changes safely cancel it',async()=>{
+    const {page,context}=await prepare();await link(page,'/zapojte-se');
+    await page.waitForFunction(()=>document.querySelector('[data-route-transition]').dataset.state==='full');
+    await page.setViewportSize({width:390,height:900});
+    assert.equal(await page.locator('[data-route-transition]').getAttribute('data-state'),'full');
+    await page.setViewportSize({width:430,height:900});await idle(page);
+    assert.equal(await page.locator('[data-route-transition]').getAttribute('data-active'),null);
+    await context.close();return 'address bar height does not cancel; rotation/width clears the veil';
   });
   report.errors=errors;
   report.pass=report.matrix.every(row=>row.pass)&&report.checks.every(row=>row.pass)&&!errors.length;

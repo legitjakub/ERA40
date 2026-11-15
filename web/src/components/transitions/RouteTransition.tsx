@@ -29,6 +29,7 @@ export function RouteTransition() {
     if (!root) return;
     const panel = root.querySelector<HTMLElement>("[data-route-panel]")!;
     const trail = root.querySelector<SVGPathElement>("[data-route-trail]")!;
+    const head = root.querySelector<SVGPathElement>("[data-route-head]")!;
     const type = root.querySelector<SVGGElement>("[data-route-type]")!;
     const styles = getComputedStyle(root);
     const duration = milliseconds(styles.getPropertyValue("--dur-route"));
@@ -37,6 +38,7 @@ export function RouteTransition() {
     let animations: Animation[] = [];
     let deadline: ReturnType<typeof setTimeout> | undefined;
     let generation = 0;
+    let viewportWidth = innerWidth;
 
     const clear = () => {
       generation++;
@@ -69,6 +71,14 @@ export function RouteTransition() {
     };
     const full = () => {
       if (!panel.animate) return;
+      // non-scaling-stroke dashes use screen pixels. A normalized pathLength
+      // makes the accent disappear on small viewports; measure once per run.
+      const matrix = trail.getScreenCTM();
+      if (!matrix) return;
+      const length = trail.getTotalLength() * Math.hypot(matrix.a, matrix.b);
+      const headLength = length * 0.02;
+      trail.style.strokeDasharray = `${length} ${length}`;
+      head.style.strokeDasharray = `${headLength} ${length}`;
       root.dataset.state = "full";
       root.setAttribute("data-active", "");
       document.documentElement.classList.add(s.routing);
@@ -80,10 +90,18 @@ export function RouteTransition() {
           { transform: "translateY(-100%)", offset: 1 },
         ], { duration, fill: "both" }),
         trail.animate([
-          { strokeDashoffset: 1000, offset: 0 },
-          { strokeDashoffset: 1000, offset: 0.12, easing },
+          { strokeDashoffset: length, offset: 0 },
+          { strokeDashoffset: length, offset: 0.12, easing },
           { strokeDashoffset: 0, offset: 0.64 },
           { strokeDashoffset: 0, offset: 1 },
+        ], { duration, fill: "both" }),
+        head.animate([
+          { strokeDashoffset: headLength, opacity: 0, offset: 0 },
+          { strokeDashoffset: headLength, opacity: 0, offset: 0.12, easing },
+          { opacity: 1, offset: 0.2 },
+          { strokeDashoffset: headLength - length, opacity: 1, offset: 0.64 },
+          { opacity: 0, offset: 0.76 },
+          { opacity: 0, offset: 1 },
         ], { duration, fill: "both" }),
         type.animate([
           { opacity: 0, offset: 0 },
@@ -128,10 +146,14 @@ export function RouteTransition() {
     };
     const pop = () => transition(previous.current, route(location.pathname), false);
     const visibility = () => { if (document.hidden) clear(); };
+    const resize = () => {
+      if (innerWidth !== viewportWidth) { viewportWidth = innerWidth; clear(); }
+    };
     document.addEventListener("click", click, true);
     window.addEventListener("popstate", pop);
     document.addEventListener("visibilitychange", visibility);
     window.addEventListener("pagehide", clear);
+    window.addEventListener("resize", resize);
     return () => {
       clear();
       intent.current = null;
@@ -140,6 +162,7 @@ export function RouteTransition() {
       window.removeEventListener("popstate", pop);
       document.removeEventListener("visibilitychange", visibility);
       window.removeEventListener("pagehide", clear);
+      window.removeEventListener("resize", resize);
     };
   }, [reduced]);
 
@@ -156,7 +179,8 @@ export function RouteTransition() {
         <span className={s.label}>Erasmus+ navždy</span>
         <svg className={s.motif} viewBox="0 0 1000 440" fill="none" focusable="false">
           <path className={s.guide} d={path} />
-          <path className={s.trail} data-route-trail pathLength="1000" d={path} />
+          <path className={s.trail} data-route-trail d={path} />
+          <path className={s.head} data-route-head d={path} />
           <g className={s.type} data-route-type fill="currentColor" textAnchor="middle">
             <text className={s.forty} x="250" y="259">40</text>
             <text className={s.years} x="750" y="234">1987–2027</text>

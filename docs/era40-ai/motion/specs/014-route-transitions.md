@@ -1,6 +1,6 @@
 # 014 — Jedna cesta pokračuje mezi stránkami
 
-Komponenta: globální změna routy · **Stav: specifikace i integrace schválena Jakubem 15. 11. 2026; implementace a QA probíhají.**
+Komponenta: globální změna routy · **Stav: implementováno a ověřeno, včetně Jakubova doladění silnějšího tahu a světelné špičky. Spec i integrace výslovně schváleny 15. 11. 2026.**
 Účel: spojuje · Frekvence: při změně stránky, nikdy při prvním načtení ani kotvě.
 Zadání: Grok Bot → Codex, P3 (15. 11. 2026; zápis označený 11:55). Nový požadavek na ∞ se vztahuje pouze na krátký přechod; stará brána „40 → ∞“ se nevrací. Jde o výjimku k návrhu, ne plošnou změnu vizuální identity.
 
@@ -34,7 +34,7 @@ Volbu 1 Jakub výslovně schválil odpovědí „Schvaluji specifikaci 014 i int
 |---|---|---:|---:|---|
 | Nová routa | obsah | 0 | bez umělé prodlevy | Router ihned; efekt není loading state. |
 | EU modrá plocha | podpora | 0 | 160 ms / výstup 300 ms | `translateY(100% → 0)`, klid do 700 ms, pak `→ -100%`; stejné `--ease-out`. |
-| Jediný tah ∞ | hlavní | 120 ms | 520 ms | Normalizovaná SVG délka, `stroke-dashoffset`; bílý tah, slabá modrá vodicí linka. |
+| Jediný tah ∞ | hlavní | 120 ms | 520 ms | Skutečná vykreslená SVG délka, `stroke-dashoffset`; bílý tah, slabá modrá vodicí linka. |
 | 40 / 1987–2027 | podpora | 200 ms | 180 ms | Opacity; žádný morph 40 → ∞. Roboto Flex, stejný tvar v obou smyčkách. |
 | Nová stránka | obsah | 700 ms | 300 ms | Odkryje ji odchod plochy; její vlastní motion nesmí zůstat trvale skryté. |
 
@@ -64,5 +64,8 @@ Po schválení: `web/src/components/transitions/RouteTransition.tsx`, `RouteTran
 - Izolovaný náhled: `http://127.0.0.1:3073/`. Scrubber dovolí posoudit frame 0–100 % a varianta „Bez nativních přechodů“ ověří fallback.
 
 ## Schválení
+### Řemeslné doladění na přímý pokyn Jakuba
+15. 11. 2026: „tučnější ty radiusy té nuly nekonečné … a nějak efekty“ — tah nyní 2,5× token Trasy: **5 px desktop / 3,75 px mobil**, oblé zakončení i spoje. Krátký žlutý světelný úsek sleduje čelo kresby ve stejných 120–640 ms a do 760 ms zmizí. Je to podpůrná fáze původní kresby, bez další smyčky, prodloužení navigace, změny layoutu, blur filtru či nového rendereru. User zároveň výslovně potvrdil „už jsi na to vše sám“; implementaci, koordinaci i závěrečnou kontrolu nyní dělá Codex bez další delegace.
+
 Ke schválení: „Jedna modrá předávka s jedním tahem ∞ a označením 40 let, 1 s při změně stránky, bez efektu na sdílené fotografii; následná integrace podle specifikace 014.“
 **Schváleno:** Jakub, 15. 11. 2026, přímá odpověď v Codex chatu: „Schvaluji specifikaci 014 i integraci“. Souhlas zahrnuje konkrétně popsaný route motiv ∞ s 40 a letopočtem, takže v tomto rozsahu nahrazuje dřívější odmítnutí motivu. Neobnovuje samostatnou sekci/bránu 40 → ∞. Scope, mobil, reduced i ochrana SharedPhoto zůstávají podle této specifikace.

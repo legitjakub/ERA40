@@ -18,3 +18,4 @@ Krátké vzory, které se opakují. Každý má zdroj.
 | Scrub s dojezdem | `scrub: 0.45–1` pro filmové scény. Velké hodnoty (2+) jen pro dekorativní masky. | ScrollTrigger docs, Codrops SVG mask |
 | DOM je zdroj pravdy | WebGL/canvas jen kreslí přes `<img>`. Fallback = obrázek. | Animaxxing WebGL, Codrops WebGL gallery |
 | Fonty před split | `document.fonts.ready` → SplitText → animace. | Animaxxing, Codrops gallery |
+| SVG délka při neškálovaném tahu | V ověřeném Chromiu kombinace `pathLength=1000` a `non-scaling-stroke` poslala animovaný dash mimo mobilní křivku. Pro `stroke-dashoffset` měřit jednou na začátku `getTotalLength() × hypot(CTM.a, CTM.b)` a nepoužít současně normalizovaný pathLength. Při změně šířky efekt uklidit; změna výšky mobilního adresního řádku jej neruší. Ověřit skutečné barevné pixely, ne jen computed opacity. | P3 / 014, vlastní experiment a `qa-route-transition.mjs`, 15. 11. 2026 |

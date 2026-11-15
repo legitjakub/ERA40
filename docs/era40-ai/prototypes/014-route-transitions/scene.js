@@ -5,6 +5,7 @@
   const overlay = document.getElementById('transition');
   const veil = overlay.querySelector('.veil');
   const trail = overlay.querySelector('.trail');
+  const head = overlay.querySelector('.head');
   const type = overlay.querySelector('.anniversary');
   const progress = document.getElementById('progress');
   const percent = document.getElementById('percent');
@@ -17,6 +18,7 @@
   if (!views.has(view)) view = 'home';
   let desiredView = view, navigationSequence = 0;
   let animations = [], deadline = 0, sequence = 0, nativeTransition;
+  let viewportWidth = innerWidth;
   const easing = getComputedStyle(document.documentElement).getPropertyValue('--ease-out').trim();
   const motionReduced = () => reduced.checked || media.matches;
   const photoTransition = (from, to) =>
@@ -33,6 +35,11 @@
   }
 
   function makeAnimations() {
+    const matrix = trail.getScreenCTM();
+    const length = trail.getTotalLength() * Math.hypot(matrix.a, matrix.b);
+    const headLength = length * .02;
+    trail.style.strokeDasharray = `${length} ${length}`;
+    head.style.strokeDasharray = `${headLength} ${length}`;
     return [
       veil.animate([
         {transform:'translateY(100%)',offset:0,easing},
@@ -41,10 +48,18 @@
         {transform:'translateY(-100%)',offset:1}
       ], {duration:1000,fill:'both'}),
       trail.animate([
-        {strokeDashoffset:1000,offset:0},
-        {strokeDashoffset:1000,offset:.12,easing},
+        {strokeDashoffset:length,offset:0},
+        {strokeDashoffset:length,offset:.12,easing},
         {strokeDashoffset:0,offset:.64},
         {strokeDashoffset:0,offset:1}
+      ], {duration:1000,fill:'both'}),
+      head.animate([
+        {strokeDashoffset:headLength,opacity:0,offset:0},
+        {strokeDashoffset:headLength,opacity:0,offset:.12,easing},
+        {opacity:1,offset:.2},
+        {strokeDashoffset:headLength-length,opacity:1,offset:.64},
+        {opacity:0,offset:.76},
+        {opacity:0,offset:1}
       ], {duration:1000,fill:'both'}),
       type.animate([
         {opacity:0,offset:0}, {opacity:0,offset:.2,easing},
@@ -142,6 +157,7 @@
   media.addEventListener('change',preferenceChanged);
   addEventListener('visibilitychange',()=>{if(document.hidden){sequence++;reset();nativeTransition?.skipTransition();}});
   addEventListener('pagehide',()=>{sequence++;reset();nativeTransition?.skipTransition();});
+  addEventListener('resize',()=>{if(innerWidth!==viewportWidth){viewportWidth=innerWidth;sequence++;reset();}});
   render(view,false);
   document.documentElement.dataset.reduced=String(motionReduced());
 })();

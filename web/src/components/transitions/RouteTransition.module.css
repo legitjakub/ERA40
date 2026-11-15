@@ -1,4 +1,5 @@
 .overlay {
+  --route-stroke: calc(var(--trasa-stroke) * 2.5);
   position: fixed;
   inset: 0;
   z-index: calc(var(--z-overlay) + 1);
@@ -21,17 +22,27 @@
 .motif { width: min(1120px, 92vw); height: auto; overflow: visible; }
 .guide {
   stroke: var(--c-eplus);
-  stroke-width: 0.7;
-  opacity: 0.65;
+  stroke-width: var(--route-stroke);
+  opacity: 0.32;
   vector-effect: non-scaling-stroke;
 }
 .trail {
   stroke: var(--c-white);
-  stroke-width: var(--trasa-stroke);
+  stroke-width: var(--route-stroke);
   stroke-linecap: round;
+  stroke-linejoin: round;
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   vector-effect: non-scaling-stroke;
+}
+.head {
+  stroke: var(--c-yellow);
+  stroke-width: calc(var(--route-stroke) * 1.35);
+  stroke-linecap: round;
+  stroke-dasharray: 20 980;
+  stroke-dashoffset: 20;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
 }
 .type { opacity: 0; }
 .forty {
