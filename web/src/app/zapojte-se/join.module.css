@@ -23,13 +23,19 @@
 .start span {
   transition: transform 0.25s var(--ease-out);
 }
-.start:hover span,
 .start:focus-visible span {
   transform: translateY(4px);
+}
+@media (hover: hover) and (pointer: fine) {
+  .start:hover span {
+    transform: translateY(4px);
+  }
 }
 .start:focus-visible {
   outline-color: white;
 }
 @media (prefers-reduced-motion: reduce) {
-  .start span { transition: none; }
+  .start span {
+    transition: none;
+  }
 }

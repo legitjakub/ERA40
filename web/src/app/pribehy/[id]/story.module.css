@@ -40,7 +40,9 @@
 .route {
   display: block;
   margin: 0 0 12px;
-  font-variation-settings: "wdth" 100, "wght" var(--wght-ui);
+  font-variation-settings:
+    "wdth" 100,
+    "wght" var(--wght-ui);
   letter-spacing: normal;
   line-height: 1.35;
   font-size: clamp(1rem, 1.3vw, 1.2rem);
@@ -103,7 +105,8 @@
 .voice {
   max-width: 1440px;
   margin: 0 auto;
-  padding: clamp(80px, 18vh, 220px) clamp(24px, 6vw, 92px) clamp(40px, 8vh, 96px);
+  padding: clamp(80px, 18vh, 220px) clamp(24px, 6vw, 92px)
+    clamp(40px, 8vh, 96px);
 }
 .voiceQuote {
   margin: 0;
@@ -235,12 +238,18 @@
 .nextPhoto img {
   object-fit: cover;
 }
-.next:hover .nextPhoto,
 .next:focus-visible .nextPhoto {
   clip-path: inset(0 0 0 0);
 }
-.next:hover .nextName {
-  transform: translateX(16px);
+@media (hover: hover) and (pointer: fine) {
+  .next:hover .nextPhoto {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .next:hover .nextName {
+    transform: translateX(16px);
+  }
 }
 .next:focus-visible {
   outline: 2px solid var(--c-eplus);
@@ -272,8 +281,10 @@
   font-weight: var(--wght-ui);
   text-decoration: none;
 }
-.invite a:hover {
-  background: var(--c-ink);
+@media (hover: hover) and (pointer: fine) {
+  .invite a:hover {
+    background: var(--c-ink);
+  }
 }
 @keyframes rise {
   from {
@@ -328,4 +339,3 @@
     transition: none;
   }
 }
-

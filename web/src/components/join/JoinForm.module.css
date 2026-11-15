@@ -59,8 +59,10 @@
     background-color 0.25s,
     border-color 0.25s;
 }
-.path:hover {
-  border-left-color: var(--c-eplus);
+@media (hover: hover) and (pointer: fine) {
+  .path:hover {
+    border-left-color: var(--c-eplus);
+  }
 }
 .path[data-active="true"] {
   background: var(--c-eu-blue);
@@ -109,9 +111,13 @@
   line-height: 1.05;
   transition: transform 0.45s var(--ease-out);
 }
-.path:hover .pathLabel,
 .path[data-active="true"] .pathLabel {
   transform: translateX(10px);
+}
+@media (hover: hover) and (pointer: fine) {
+  .path:hover .pathLabel {
+    transform: translateX(10px);
+  }
 }
 .pathLead {
   grid-column: 2;
@@ -238,8 +244,10 @@
   font-weight: var(--wght-ui);
   cursor: pointer;
 }
-.primary:hover {
-  background: var(--c-ink);
+@media (hover: hover) and (pointer: fine) {
+  .primary:hover {
+    background: var(--c-ink);
+  }
 }
 .primary:disabled {
   opacity: 0.6;
@@ -284,7 +292,10 @@
 }
 .summaryRoute {
   display: grid;
-  grid-template-columns: minmax(0, max-content) minmax(32px, 1fr) minmax(0, max-content);
+  grid-template-columns: minmax(0, max-content) minmax(32px, 1fr) minmax(
+      0,
+      max-content
+    );
   align-items: center;
   gap: 18px;
   margin: 0;
@@ -426,9 +437,11 @@
   text-underline-offset: 6px;
   cursor: pointer;
 }
-.doneLinks a:hover,
-.doneLinks button:hover {
-  text-decoration-thickness: 2px;
+@media (hover: hover) and (pointer: fine) {
+  .doneLinks a:hover,
+  .doneLinks button:hover {
+    text-decoration-thickness: 2px;
+  }
 }
 @keyframes enter {
   from {

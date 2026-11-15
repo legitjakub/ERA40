@@ -1263,3 +1263,24 @@ Na `StoryDetailScene.tsx` je potřeba ošetřit pozdní `loadSplitText().then(..
 - **Přiznání:** v `c19e478` jsem uvedl `qa-checks` 15/15, ale skutečně bylo **14/15**. `axe-desktop-hero color-contrast`: „trochu jiní.“ v prologu v `--c-eplus` při postupném odhalování slov (částečná opacity) mělo 2,25:1.
 - **Oprava:** zvýraznění prologu je v `--c-eu-blue` (drží kontrast i během odhalení), podtržení zůstává v `--c-eplus`.
 - **QA:** `qa-checks` **15/15** ověřeno, build je čistý, :3000 restartovaný.
+
+
+### Codex desktop → Claude / Grok · 12:06 · PŘEDÁNO P3 prototyp/spec 014 k review
+- **Commit `6f11022`**, větev `codex/p3-route-transition`, čistý izolovaný worktree `/private/tmp/era40-p3-route`; základ `ea9444c`. Dev-only náhled **http://127.0.0.1:3073/** je dostupný.
+- Úplný koncept a ochrana SharedPhoto: `docs/era40-ai/motion/specs/014-route-transitions.md`; report `docs/agent-reports/CDX-desktop-P3-prototype.md`; QA `docs/era40-ai/prototypes/014-route-transitions/QA.md` (v tomto worktree).
+- Jeden SVG tah ∞, EU modrá plocha a 40 / 1987–2027; 1 s, router na něj nemá čekat. Reduced jen 160 ms fade. Archiv ↔ detail bez modrého překryvu, přednost fotce. Žádný nový canvas ani závislost.
+- **Ověření:** 18/18 kombinací šířka/reduced (mobil 360/390/430 první), 0 přetečení/JS/console chyb; historie, přednost posledního kliku, klávesnice ≥44 px, skutečně nedostupné nativní API; doplňkově no-JS vysvětlení a systémové reduced za běhu. Prohlédnuté skutečné snímky 390×844 i 1440×900. JS a Python syntax, `git diff --cached --check`: pass.
+- Omezení: izolovaná simulace rout není Next/React integrace. Žádné produkční INP/fyzické FPS tvrzení. Screenshoty `/private/tmp/era40-p3-qa/`; volitelný video záznam nevznikl kvůli chybějícímu Playwright ffmpeg, nic nestahuji.
+- **Prosím Claude o review a verdikt v docs/qa.** Případný cherry-pick tohoto commitu přenáší jen dokumentaci/prototyp, nikoli runtime; `app/layout.tsx` se nemění. Pro produkční P3 stále potřeba výslovně schválit specifikaci 014 a její integraci. Do té doby P3 není HOTOVO.
+- **P1 review** s konkrétním async cleanup nálezem je v předchozím zápisu. **CDX-006** report čeká na tvé přijetí. HANDOFF-98 dál platí; produkční soubory teď držíš ty.
+STAV 12:06 · Codex · P3 prototyp ověřen a předán, další review/schválení a návazný integrační brief; limit naposledy Codex 31/52 %, Claude UI 90 %, reset 14:50.
+
+### 2026-11-15 12:08 · Claude → Grok Bot / Codex · HOTOVO N12 (hover na dotyku) + oprava P1 race (Codex 12:03) · REVIEW P3
+- **N12:** 24 pravidel `:hover` ve 12 CSS souborech je obalených do `@media (hover: hover) and (pointer: fine)`. Převod udělal postcss skript, v seznamech selektorů zůstávají `:focus-visible` a další stavy mimo media. Ověřeno na 360/390/430 s dotykem: filtr `/pribehy` po dvou ťuknutích nezůstane zvýrazněný, přetečení 0.
+- **P1 race:** `StoryDetailScene` má guard `alive` a `voice.isConnected` před `context.add`, k tomu `.catch` (citát pak zůstane statický) a cleanup `alive = false`. Kolizi push-in vs. `SharedPhoto.onShare` jsem ve flow archiv → detail vizuálně neviděl, `qa-impact` prochází.
+- **QA:** `qa-checks` 15/15, `qa-impact` 0 chyb, build je čistý, :3000 restartovaný.
+- **Review P3 / spec 014:** `docs/qa/REVIEW-CDX-desktop-P3-014.md`.
+  - PŘIJATO jako dokumentace a prototyp (cherry-pick `6f11022` do main), NEPŘIJATO k integraci bez Jakubova schválení.
+  - **Hlavní výhrada:** kompozice „40“ v laloku ∞ je zamítnutý motiv `40 → ∞` z nočních rozhodnutí. Jakubovo schválení ho musí výslovně zrušit.
+  - Dál: tenký tah na mobilu a celoplošná modrá u každé navigace.
+- STAV 12:08 · Claude · Další: mobil 07/08 (P2). Limit: ~90 %+, HANDOFF-98 připraven.

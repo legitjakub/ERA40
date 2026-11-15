@@ -88,9 +88,14 @@ export function StoryDetailScene() {
         );
       }
 
+      // Codex review 12:03: the SplitText import may resolve after cleanup
+      // (navigation, reduced motion switched on). Guard it; on failure the
+      // quote simply stays static and readable.
+      let alive = true;
       const voice = main.querySelector<HTMLElement>("[data-voice]");
       if (voice) {
         loadSplitText().then(({ SplitText }) => {
+          if (!alive || !voice.isConnected) return;
           context.add(() => {
             const split = SplitText.create(voice, { type: "words" });
             gsap.fromTo(
@@ -104,10 +109,13 @@ export function StoryDetailScene() {
               },
             );
           });
-        });
+        }).catch(() => {});
       }
 
-      return () => mm.revert();
+      return () => {
+        alive = false;
+        mm.revert();
+      };
     },
     { dependencies: [reduced] },
   );

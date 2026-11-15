@@ -9,7 +9,10 @@
   padding: 0 clamp(24px, 5vw, 96px);
   color: white;
   background: transparent;
-  transition: transform 0.3s var(--ease-out), color 0.2s, background-color 0.2s;
+  transition:
+    transform 0.3s var(--ease-out),
+    color 0.2s,
+    background-color 0.2s;
 }
 /* Over the film the header has no band. A shade fading from the top keeps
    white text at 4.5:1 or more on the brightest frames. */
@@ -29,7 +32,9 @@
   pointer-events: none;
   transition: opacity 0.2s;
 }
-.header[data-light="true"]::before { opacity: 0; }
+.header[data-light="true"]::before {
+  opacity: 0;
+}
 .header[data-light="true"],
 .header[data-other="true"] {
   color: var(--c-eu-blue);
@@ -63,7 +68,10 @@
   mask: url("/brand/erasmus-plus.svg") center / contain no-repeat;
 }
 @media (forced-colors: active) {
-  .wordmark { background: CanvasText; forced-color-adjust: none; }
+  .wordmark {
+    background: CanvasText;
+    forced-color-adjust: none;
+  }
 }
 /* Digits of the condensed 40 stand slightly taller than the wordmark's
    capitals; the small lines sit on their baseline. */
@@ -86,7 +94,9 @@
 }
 .fortyNumber {
   font-size: calc(var(--mark) * 1.5);
-  font-variation-settings: "wdth" 30, "wght" var(--wght-display);
+  font-variation-settings:
+    "wdth" 30,
+    "wght" var(--wght-display);
   letter-spacing: -0.01em;
 }
 .fortyMeta {
@@ -109,7 +119,9 @@
   font-size: var(--fs-meta);
   font-variant-numeric: tabular-nums;
 }
-.chapterNumber { white-space: nowrap; }
+.chapterNumber {
+  white-space: nowrap;
+}
 .chapterName {
   min-width: 10ch;
   padding-left: 14px;
@@ -122,10 +134,15 @@
   font-weight: var(--wght-ui);
   text-decoration: none;
 }
-.archiveLink:hover,
 .archiveLink[aria-current] {
   text-decoration: underline;
   text-underline-offset: 6px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .archiveLink:hover {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
 }
 .cta {
   display: inline-flex;
@@ -140,19 +157,31 @@
   font-weight: var(--wght-ui);
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 /* Yellow is reserved for "you are here"; the filled state inverts instead. */
-.cta:hover,
 .cta[aria-current] {
   background: white;
   border-color: white;
   color: var(--c-eu-blue);
 }
-.header:is([data-light="true"], [data-other="true"]) .cta:is(:hover, [aria-current]) {
-  background: var(--c-eu-blue);
-  border-color: var(--c-eu-blue);
-  color: white;
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover {
+    background: white;
+    border-color: white;
+    color: var(--c-eu-blue);
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .header:is([data-light="true"], [data-other="true"])
+    .cta:is(:hover, [aria-current]) {
+    background: var(--c-eu-blue);
+    border-color: var(--c-eu-blue);
+    color: white;
+  }
 }
 .cta:focus-visible {
   outline: 2px solid currentColor;
@@ -190,7 +219,9 @@
   white-space: nowrap;
 }
 @media (hover: hover) {
-  .menu:hover .menuIcon { height: 12px; }
+  .menu:hover .menuIcon {
+    height: 12px;
+  }
 }
 /* Reading progress as Trasa: solid line travelled, a station where you are,
    dotted line ahead. Only the --progress variable changes while scrolling. */
@@ -261,8 +292,12 @@
   overflow-y: auto;
   overscroll-behavior: contain;
 }
-.dialog::backdrop { background: var(--c-ink); }
-.dialog[open] { animation: enter 0.4s var(--ease-out) both; }
+.dialog::backdrop {
+  background: var(--c-ink);
+}
+.dialog[open] {
+  animation: enter 0.4s var(--ease-out) both;
+}
 .dialogInner {
   display: flex;
   flex-direction: column;
@@ -284,7 +319,9 @@
   font-size: 1rem;
   font-weight: var(--wght-text);
 }
-.close { padding: 0; }
+.close {
+  padding: 0;
+}
 .close > span:last-child {
   font-size: 2rem;
   font-weight: var(--wght-text);
@@ -298,7 +335,9 @@
   gap: clamp(40px, 7vw, 120px);
   margin: clamp(24px, 4vh, 48px) 0;
 }
-.panel nav { align-self: center; }
+.panel nav {
+  align-self: center;
+}
 .panel ol {
   margin: 0;
   padding: 0;
@@ -313,7 +352,9 @@
   color: white;
   text-decoration: none;
   font-size: clamp(1.8rem, 3.8vw, 3.8rem);
-  font-variation-settings: "wdth" var(--wdth-display), "wght" var(--wght-heading);
+  font-variation-settings:
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-heading);
   letter-spacing: -0.025em;
   line-height: 1.1;
   transition: color 0.2s;
@@ -321,12 +362,20 @@
 .panel small {
   min-width: 2.4ch;
   font-size: var(--fs-meta);
-  font-variation-settings: "wdth" 100, "wght" var(--wght-ui);
+  font-variation-settings:
+    "wdth" 100,
+    "wght" var(--wght-ui);
   letter-spacing: normal;
   font-variant-numeric: tabular-nums;
 }
-.panel a:where(:hover, :focus-visible),
-.panel a[aria-current] { color: var(--c-yellow); }
+.panel a[aria-current] {
+  color: var(--c-yellow);
+}
+@media (hover: hover) and (pointer: fine) {
+  .panel a:where(:hover, :focus-visible) {
+    color: var(--c-yellow);
+  }
+}
 /* R7: each chapter carries the Trasa grammar — travelled (solid), here (dot), ahead (dots). */
 .panel a[data-state]::before {
   content: "";
@@ -351,11 +400,15 @@
   font-size: 0.6em;
   opacity: 0;
   transform: translate(-8px, 8px);
-  transition: opacity 0.25s, transform 0.25s var(--ease-out);
+  transition:
+    opacity 0.25s,
+    transform 0.25s var(--ease-out);
 }
-.panel a:where(:hover, :focus-visible) .chapterArrow {
-  opacity: 1;
-  transform: none;
+@media (hover: hover) and (pointer: fine) {
+  .panel a:where(:hover, :focus-visible) .chapterArrow {
+    opacity: 1;
+    transform: none;
+  }
 }
 .preview {
   position: relative;
@@ -410,8 +463,14 @@
   font-size: 1rem;
   font-weight: var(--wght-ui);
 }
-.pages a:where(:hover, :focus-visible),
-.pages a[aria-current] { color: var(--c-yellow); }
+.pages a[aria-current] {
+  color: var(--c-yellow);
+}
+@media (hover: hover) and (pointer: fine) {
+  .pages a:where(:hover, :focus-visible) {
+    color: var(--c-yellow);
+  }
+}
 .pref {
   display: inline-flex;
   align-items: center;
@@ -431,29 +490,58 @@
   outline-offset: 4px;
 }
 @keyframes enter {
-  from { opacity: 0; transform: translateY(-16px); }
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
 }
-@keyframes photoIn { from { opacity: 0.55; transform: scale(1.03); } }
+@keyframes photoIn {
+  from {
+    opacity: 0.55;
+    transform: scale(1.03);
+  }
+}
 @media (max-width: 1023px) {
-  .archiveLink { display: none; }
+  .archiveLink {
+    display: none;
+  }
 }
 @media (max-width: 1099px) {
-  .chapterName { display: none; }
-  .panel { gap: 40px; }
-  .pages { gap: 16px 24px; }
+  .chapterName {
+    display: none;
+  }
+  .panel {
+    gap: 40px;
+  }
+  .pages {
+    gap: 16px 24px;
+  }
 }
 /* On phones the header keeps the lockup and the menu; "Zapoj se" leads the
    page links inside the menu instead. */
 @media (max-width: 767px) {
-  .header { padding-inline: 20px; }
-  .lockup { --mark: 20px; gap: 12px; }
-  .forty { gap: 6px; }
-  .forty::before { margin-right: 6px; }
+  .header {
+    padding-inline: 20px;
+  }
+  .lockup {
+    --mark: 20px;
+    gap: 12px;
+  }
+  .forty {
+    gap: 6px;
+  }
+  .forty::before {
+    margin-right: 6px;
+  }
   .years,
   .chapter,
   .archiveLink,
-  .cta { display: none; }
-  .right { gap: 16px; }
+  .cta {
+    display: none;
+  }
+  .right {
+    gap: 16px;
+  }
   .menu {
     justify-content: flex-end;
     min-width: 44px;
@@ -462,7 +550,9 @@
     gap: 12px;
     font-size: 0.9375rem;
   }
-  .menuIcon { width: 18px; }
+  .menuIcon {
+    width: 18px;
+  }
   .menu[data-home="true"] .menuLabel {
     position: absolute;
     width: 1px;
@@ -471,19 +561,51 @@
     clip-path: inset(50%);
     white-space: nowrap;
   }
-  .mobileCounter { display: inline; }
-  .dialogTop { padding-bottom: 12px; }
-  .dialogTop h2 { max-width: 22ch; font-size: 0.9375rem; }
+  .mobileCounter {
+    display: inline;
+  }
+  .dialogTop {
+    padding-bottom: 12px;
+  }
+  .dialogTop h2 {
+    max-width: 22ch;
+    font-size: 0.9375rem;
+  }
   .closeText,
-  .preview { display: none; }
-  .close { justify-content: center; width: 44px; }
-  .panel { display: block; margin-block: 24px; }
-  .panel a { min-height: 47px; font-size: clamp(1.8rem, 7.8vw, 2.5rem); }
-  .chapterArrow { opacity: 1; transform: none; }
-  .dialogBottom { padding-top: 16px; gap: 16px; }
-  .pages { gap: 4px 24px; }
-  .pages a { font-size: 0.9375rem; gap: 12px; }
-  .pages li[data-cta] { order: -1; width: 100%; }
+  .preview {
+    display: none;
+  }
+  .close {
+    justify-content: center;
+    width: 44px;
+  }
+  .panel {
+    display: block;
+    margin-block: 24px;
+  }
+  .panel a {
+    min-height: 47px;
+    font-size: clamp(1.8rem, 7.8vw, 2.5rem);
+  }
+  .chapterArrow {
+    opacity: 1;
+    transform: none;
+  }
+  .dialogBottom {
+    padding-top: 16px;
+    gap: 16px;
+  }
+  .pages {
+    gap: 4px 24px;
+  }
+  .pages a {
+    font-size: 0.9375rem;
+    gap: 12px;
+  }
+  .pages li[data-cta] {
+    order: -1;
+    width: 100%;
+  }
   .pages li[data-cta] a {
     padding: 0 16px;
     border: 1px solid currentColor;
@@ -492,14 +614,30 @@
   }
 }
 @media (max-width: 419px) {
-  .header { padding-inline: 16px; }
-  .lockup { --mark: 19px; }
+  .header {
+    padding-inline: 16px;
+  }
+  .lockup {
+    --mark: 19px;
+  }
 }
 @media (max-width: 359px) {
-  .lockup { --mark: 18px; }
-  .mobileCounter { display: none; }
+  .lockup {
+    --mark: 18px;
+  }
+  .mobileCounter {
+    display: none;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .header, .header::before, .menuIcon, .chapterArrow { transition: none; }
-  .dialog[open], .preview img { animation: none; }
+  .header,
+  .header::before,
+  .menuIcon,
+  .chapterArrow {
+    transition: none;
+  }
+  .dialog[open],
+  .preview img {
+    animation: none;
+  }
 }

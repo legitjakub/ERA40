@@ -54,8 +54,10 @@
     color 0.2s,
     border-color 0.2s;
 }
-.toolbar button:hover {
-  border-color: var(--c-eu-blue);
+@media (hover: hover) and (pointer: fine) {
+  .toolbar button:hover {
+    border-color: var(--c-eu-blue);
+  }
 }
 .toolbar button[aria-pressed="true"] {
   background: var(--c-eu-blue);
@@ -397,8 +399,10 @@
   font-weight: var(--wght-ui);
   text-decoration: none;
 }
-.invite a:hover {
-  background: white;
+@media (hover: hover) and (pointer: fine) {
+  .invite a:hover {
+    background: white;
+  }
 }
 @media (max-width: 1023px) {
   .grid {
@@ -477,9 +481,13 @@
   object-fit: cover;
   transition: transform 0.8s var(--ease-out);
 }
-.strip a:hover .stripPhoto img,
 .strip a:focus-visible .stripPhoto img {
   transform: scale(1.06);
+}
+@media (hover: hover) and (pointer: fine) {
+  .strip a:hover .stripPhoto img {
+    transform: scale(1.06);
+  }
 }
 .strip a:focus-visible {
   outline: 2px solid var(--c-yellow);

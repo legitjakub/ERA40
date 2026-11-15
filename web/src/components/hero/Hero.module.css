@@ -119,17 +119,28 @@
   padding: 12px 19px;
   text-decoration: none;
 }
-.primary:hover {
-  background: white;
+@media (hover: hover) and (pointer: fine) {
+  .primary:hover {
+    background: white;
+  }
 }
-.history,
-.history:hover {
+.history {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   color: white;
   text-decoration-thickness: 1px;
   text-underline-offset: 6px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .history:hover {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: white;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
+  }
 }
 .controls {
   position: absolute;
@@ -224,4 +235,3 @@
     margin: 6px 0;
   }
 }
-

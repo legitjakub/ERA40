@@ -107,8 +107,10 @@
   font-weight: var(--wght-ui);
   text-decoration: none;
 }
-.cta:hover {
-  background: var(--c-ink);
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover {
+    background: var(--c-ink);
+  }
 }
 @media (max-width: 1023px) {
   .section {

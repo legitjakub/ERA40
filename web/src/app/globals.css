@@ -52,8 +52,10 @@ a {
   color: var(--c-eplus-ink);
   text-underline-offset: 0.2em;
 }
-a:hover {
-  text-decoration-thickness: 2px;
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    text-decoration-thickness: 2px;
+  }
 }
 button {
   touch-action: manipulation;
@@ -67,7 +69,21 @@ button {
 }
 /* Headings and regions focused from script (tabindex -1) mark a reading
    position, they are not controls. Roving buttons with tabindex -1 keep the ring. */
-:where(h1, h2, h3, h4, h5, h6, p, div, section, article, main, header, footer)[tabindex="-1"]:focus {
+:where(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    div,
+    section,
+    article,
+    main,
+    header,
+    footer
+  )[tabindex="-1"]:focus {
   outline: none;
   box-shadow: none;
 }
@@ -218,7 +234,6 @@ html[data-reduced-motion="true"]::view-transition-new(*) {
   white-space: nowrap;
   border: 0;
 }
-
 
 /* P0b (Jakub 11:44, DESIGN.md §2): one or two key words per block carry a
    brand colour. Light surfaces: Erasmus+ blue, large text only (≥ 24 px,
