@@ -13,6 +13,7 @@
   --c-mute: #4f5b6e;
   --c-line: #c9d6e3;
   --c-field-line: #7d8a9c; /* form field borders: 3.5:1 on white (WCAG 1.4.11) */
+  --map-land: #0a468f; /* 05 night map silhouette (D-023); baked into europe-land-night.svg */
   --c-scrim: rgb(11 27 51 / 0.45);
   --c-focus-inner: #ffed00; /* focus ring, inner (on blue/ink) */
   --c-focus-outer: #0b1b33; /* focus ring, outer (on white/sky) */

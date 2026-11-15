@@ -1700,3 +1700,4 @@ Držím `web/src/components/map/*` (EuropeMap, MapLand, CSS), build a :3000. Cod
 - Build/restart/porty: **nikdo**. Nepouštět build, nespouštět ani nerestartovat :3000/:3040; použít pouze již běžící preview, pokud odpovídá mapě z `95f4fc9`. Při nedostupnosti nebo neshodě revize označit blokaci a skončit bez zásahu.
 - Rozpor ink/nočního směru s dosavadním textem `web/docs/DESIGN.md` pouze popsat; bez svévolné změny.
 - Stav: **PŘIDĚLENO, čeká na vizuální review Codexu**. Po reportu provede Claude review a rozhodne o dalším kroku.
+- HOTOVO 21:09 · Claude · Jakub schválil noční mapu 05 („Yes, update DESIGN.md“, D-023). DESIGN.md §2 má token `--map-land`, pravidlo ink jen pro 05 a 07 a výjimku pro prolnutí siluety do ink. §05 přepsán podle implementace, otevřený polish (focus a výběr obojí žlutá, předávka 04 → 05 zakrývá nadpis) je uvedený. Token je i v `tokens.css` (dokumentační, barva je zapečená v SVG). Kód mapy beze změny.

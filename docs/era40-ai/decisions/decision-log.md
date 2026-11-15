@@ -78,3 +78,4 @@ Tři rozvržení spreadu (photo-left, photo-right, plate) místo dvou. Je to jen
 - Ruční volbu mapy přepisoval refresh stejné stanice railu. Stejná stanice nyní zachová ruční výběr; skutečně jiná stanice propojí scény. Cílené next/prev/focus prošlo na360/390/430/1440 × reduced.
 - Detail citace měl opacity0,14 a skutečný kontrast1,27:1, archivní minikarty stejný fade-up s dočasně nízkým kontrastem. Odstraněn generický nájezd a rozmazávání textu; filmový pohyb fotografií, Trasa a směrové přechody zůstávají.
 - Modelovost samostatných scén04/06/07/08 vysvětluje věta v běžném textu. Nevkládat zpět opakované štítky přes fotografie.
+| D-023 | 15. 11. 2026 | Kapitola 05 Evropa jako noční mapa (ink plocha, silueta `--map-land`, Česko Erasmus+ modrou, ořez s prolnutím do ink, bez boxu a karty). DESIGN.md §2 a §05 aktualizovány. Ink jen pro 05 a 07. | Jakub: původní mapa „hnusná“, review 8 snímků → „Yes, update DESIGN.md“ | Jakub |

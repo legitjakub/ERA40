@@ -38,10 +38,11 @@ Implementation: SVG `path` + DrawSVGPlugin (or `stroke-dashoffset`), 2 px stroke
 --c-white:     #FFFFFF;
 --c-mute:      #4F5B6E; /* secondary text on white/sky (≥6:1) */
 --c-line:      #C9D6E3; /* hairlines, used sparingly */
+--map-land:    #0A468F; /* 05 night map only: Europe silhouette on ink (in public/media/europe-land-night.svg) */
 ```
 Text highlights (P0b, Jakub 15. 11. 2026, overrides "yellow only for you-are-here"): one or two key words per block may carry a brand colour via `.hl` (Erasmus+ blue `--c-eplus`, large text ≥ 24 px only, ≥ 3:1 on white/sky; small text uses `--c-eplus-ink`) or `.hl-dark` (EU yellow, only on EU-blue/ink surfaces or behind the hero scrim). Never whole sentences, no animation under reduced motion.
 
-Rules: about 60 % white/sky, 30 % EU-blue and Erasmus+-blue surfaces (the site should read unmistakably as Erasmus+ blue), under 5 % yellow. No gradients between brand colours. A photo overlay may only use a flat `rgba(11,27,51,.35–.55)` ink scrim. Exception (Jakub, 15. 11. 2026): the hero film may use an ink-to-transparent gradient only behind its text, and the transparent header over the hero may use an ink-to-transparent gradient at the top edge. Both must keep text contrast ≥ 4.5:1 on the worst frame.
+Rules: about 60 % white/sky, 30 % EU-blue and Erasmus+-blue surfaces (the site should read unmistakably as Erasmus+ blue), under 5 % yellow. Ink is a chapter surface for exactly two chapters, 05 Evropa (night map, D-023) and 07 statistics where specified; never more, so blue stays dominant. No gradients between brand colours. Exception (D-023): the 05 map silhouette may dissolve into the ink surface at its crop edges (mask fade, land → ink), never between two blues. A photo overlay may only use a flat `rgba(11,27,51,.35–.55)` ink scrim. Exception (Jakub, 15. 11. 2026): the hero film may use an ink-to-transparent gradient only behind its text, and the transparent header over the hero may use an ink-to-transparent gradient at the top edge. Both must keep text contrast ≥ 4.5:1 on the worst frame.
 
 ### Typography
 - **Identity = Erasmus+ (not DZS).** DZS appears only as the publisher: its logo is in the footer and in the "Vydává DZS" line. The type follows the Erasmus+ visual guidelines, which allow EC Square Sans Pro inside the Commission charter and Roboto outside it. **No serif fonts.**
@@ -159,11 +160,12 @@ Each spec lists: **Start → Scroll → End → Reverse → Mobile → Reduced**
 - Reduced: vertical list of spreads.
 
 ### 05 EVROPA — „Kam to vede“
-- SVG map of Europe (accurate projection, Natural Earth simplified). Refinement 15 Nov: Erasmus+ blue chapter surface, EU-blue map field, white routes and yellow active station; real origin/destination coordinates per story. Small text sits on EU blue or white; white text on Erasmus+ blue is large and bold. Previous/next route controls select a story without opening it. Clicking a destination still opens the detail.
-- Start: map at 1.0 with Czechia filled eu-blue. As the user scrolls (pin 150 vh desktop), routes draw from Prague to story destinations one by one (routeDraw, slight arc). Destination dots appear with their city label.
-- Interaction: hover/focus on a destination shows a small caption (city, story name). Click/Enter opens the related story overlay from §04. All destinations also exist as a list of buttons beside the map, so it works by keyboard and screen reader.
+- **Night map (D-023, Jakub 15. 11. 2026; replaces the Erasmus+ blue boxed map):** ink chapter surface, Europe as one silhouette in `--map-land` with borders only as faint ink gaps, Czechia in Erasmus+ blue with a white edge. Cropped to the area of the stories (Lisbon–Tampere); the crop edges fade into ink (desktop right and top, mobile top only). No frame, no card: the selected story is white type on ink (photo, route, quote, „Celý příběh“), destinations are a station list (dot + name, selected = yellow dot). Real origin/destination coordinates per story. Previous/next route controls sit under the map and select a story without opening it; clicking a destination opens the detail.
+- Trasa grammar: all routes faint white, the selected route solid white, the yellow dot only for the active station and the traveller. Labels near the right crop edge anchor left.
+- Start: routes draw with scroll (scrub, no pin), destination dots appear with their labels; the selected route draws with a travelling dot.
+- Interaction: hover/focus on a destination selects it and updates the story beside the map. Click/Enter opens the related story overlay from §04. All destinations also exist as a list of buttons, so it works by keyboard and screen reader. Known open polish (review 15. 11.): keyboard focus ring and selection share yellow; the 04 → 05 photo handoff briefly covers the heading.
 - Data layer (optional toggle): top destinations from `CONTENT-FACTS` §3, shown as route thickness. Show the period.
-- Mobile: no pin, map at full width with all routes drawn on enter, plus a destination list below.
+- Mobile: no pin, map at full width, route controls under the map, destination stations as a horizontal swipe strip, then the story.
 - 3D: not part of the base build. It is a possible P2 upgrade (see §7) and needs approval first.
 
 ### 06 TEHDY / TEĎ — „Co se změnilo“
