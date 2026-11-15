@@ -194,8 +194,20 @@ export function PeopleStories() {
           </Link>
         </p>
       </header>
+      {/* R8: one sentence about the gesture on touch screens; it leaves after the first swipe. */}
+      <p className={s.swipeHint} aria-hidden="true">
+        Další příběhy najdeš posunem do strany <span>→</span>
+      </p>
       <div className={s.viewport}>
-        <div ref={rail} className={s.rail} data-story-rail>
+        <div
+          ref={rail}
+          className={s.rail}
+          data-story-rail
+          onScroll={(event) => {
+            const section = event.currentTarget.closest("section");
+            if (section && event.currentTarget.scrollLeft > 24) section.dataset.swiped = "true";
+          }}
+        >
           {stories.map((story, i) => {
             const photo = storyPhoto(story);
             return (

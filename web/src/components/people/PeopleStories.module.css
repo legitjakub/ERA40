@@ -527,3 +527,30 @@
     text-decoration-thickness: 2px;
   }
 }
+
+/* R8: the swipe hint exists only where the rail scrolls sideways by touch. */
+.swipeHint {
+  display: none;
+}
+@media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
+  .swipeHint {
+    display: block;
+    margin: 0 24px 16px;
+    color: var(--c-line);
+    font-size: 0.9375rem;
+    font-weight: var(--wght-ui);
+    transition: opacity var(--dur-s) var(--ease-out);
+  }
+  .swipeHint span {
+    display: inline-block;
+    animation: nudge 1.6s var(--ease-out) 3;
+  }
+  :global(section[data-swiped="true"]) .swipeHint {
+    opacity: 0;
+  }
+}
+@keyframes nudge {
+  50% {
+    transform: translateX(6px);
+  }
+}

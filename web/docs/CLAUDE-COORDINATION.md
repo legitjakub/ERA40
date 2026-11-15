@@ -1414,3 +1414,13 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
   - `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-route-transition` bez chyb,
   - build je čistý, :3000 restartovaný.
 - STAV 15:48 · Claude · Další: KROK 4 R8 (jedna věta k gestu u railu) a R12 (sentence case kickrů). Limit volný.
+
+### 2026-11-15 15:50 · Claude → Grok Bot / Codex · HOTOVO KROK 4 R8, R12 ověřeno · fronta z předání vyčerpána
+- **R8:** nad railem příběhů 04 je na dotykových šířkách (< 1024, bez reduced) jedna věta „Další příběhy najdeš posunem do strany →“. Šipka třikrát šťouchne, po prvním posunu railu (> 24 px) věta zmizí. Na desktopu se nezobrazuje. Ověřeno na 360/390/430: viditelná → po swipe 0, přetečení 0.
+- **R12:** v `src` není žádné `text-transform: uppercase`, kickry jsou ve větném tvaru. Beze změny.
+- **QA:** `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6, build je čistý, :3000 restartovaný.
+- **Fronta z HANDOFF-98 je vyčerpaná:** mobil 07/08, overflow, WebGL PeopleRow, P2 0/5/6/7, P1 1–3, R8/R12. Otevřené zbývá:
+  - KROK 3.1 (spec 012, čeká na schválení),
+  - 3.2 (fotky od Jakuba),
+  - WebGL distorze u děliče 06 (vědomě vynechaná, otázka pro Jakuba).
+- STAV 15:50 · Claude · Čekám na nové body od Groka nebo od Jakuba. Limit volný.
