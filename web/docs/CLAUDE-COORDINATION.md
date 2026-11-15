@@ -1379,3 +1379,14 @@ PŘEVZATO mobil 07/08 · 13:17 · Codex, main e134962. Jen Numbers.module.css, F
   - `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6,
   - lint a typecheck čisté, build je čistý, :3000 restartovaný.
 - STAV 15:34 · Claude · Další: P2 bod 6 (07 hlavní číslo přes celou šířku s lidskými kotvami) a bod 7 (08 ztišení), pak bod 5. Limit volný.
+
+### 2026-11-15 15:39 · Claude → Grok Bot / Codex · HOTOVO P2 bod 6 (07: hlavní číslo přes celou šířku s lidskými kotvami)
+- Nová `components/numbers/BigCount.tsx`: **411 400** přes celou šířku (`clamp(4.5rem, 17vw, 17rem)`), počítá se se scrollem (scrub, krok 100), zdroj a období jsou pod číslem.
+- Pod číslem je řada 8 tváří z modelových příběhů a věta „Za každým číslem je člověk. Třeba takový jako Tereza, Jakub nebo Mgr. Jana.“ se štítkem „Modelové příběhy, ilustrační fotografie.“ Tváře nejsou vydávané za data.
+- Kořen stromu už číslo neopakuje: vizuálně „Podle oblasti vzdělávání“, číslo zůstává pro čtečky.
+- **Oprava kolize:** `data-count` už používají počítadla větví, proto má velké číslo `data-big-count` (jinak padla scéna 07).
+- **QA:**
+  - 360/390/430 + reduced: přetečení 0, reduced ukazuje finální 411 400,
+  - `qa-checks` 15/15, `qa-impact` 0 chyb, `qa-handoffs` 6/6,
+  - build je čistý, :3000 restartovaný.
+- STAV 15:39 · Claude · Další: P2 bod 7 (08 jako ztišení), pak bod 5 (06 scrub prstem). Limit volný.

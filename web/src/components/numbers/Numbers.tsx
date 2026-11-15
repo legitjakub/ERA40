@@ -17,6 +17,7 @@ import s from "./Numbers.module.css";
 import { stories, storyPhoto } from "@/content/stories";
 import { StoryLabel } from "@/components/archive/StoryLabel";
 import { StoryImpact } from "@/components/archive/StoryImpact";
+import { BigCount } from "./BigCount";
 
 const format = new Intl.NumberFormat("cs-CZ");
 const outgoing = stats.find((stat) => stat.id === "outgoing-cz")!;
@@ -299,6 +300,7 @@ export function Numbers() {
             jak může zkušenost pokračovat dál.
           </p>
         </header>
+        <BigCount reduced={reduced} />
         <div ref={treeRef} className={s.tree}>
           <svg
             className={s.lines}
@@ -331,8 +333,11 @@ export function Numbers() {
             ))}
           </svg>
           <div className={s.trunk} data-number-stat>
-            <span className={s.trunkValue}>{format.format(outgoing.value)}</span>
-            <span className={s.trunkLabel}>{outgoing.label}</span>
+            {/* P2 bod 6: the figure is shown big above; the root keeps it for screen readers only. */}
+            <span className="visually-hidden">
+              {format.format(outgoing.value)} {outgoing.label},{" "}
+            </span>
+            <span className={s.trunkLabel}>Podle oblasti vzdělávání</span>
             <span className={s.source}>
               {participationPeriod}{" "}
               <a href={participationSource.url}>{participationSource.label}</a>
