@@ -6,6 +6,7 @@ import { useScene } from "@/lib/gsap/useScene";
 import { gsap } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import s from "./Future.module.css";
+import { siteName } from "@/components/layout/SiteFooter";
 
 export function Future() {
   const root = useRef<HTMLElement>(null);
@@ -39,7 +40,7 @@ export function Future() {
     const url = location.origin + location.pathname;
     if (navigator.share) {
       try {
-        await navigator.share({ title: "Erasmus v\u00a0Česku", url });
+        await navigator.share({ title: siteName, url });
         return;
       } catch {}
     }

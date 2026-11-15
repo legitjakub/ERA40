@@ -6,7 +6,7 @@ import s from "@/components/pages/Prose.module.css";
 export const metadata: Metadata = {
   title: "O projektu",
   description:
-    "Digitální výstava ke 40 letům evropského programu Erasmus. Co je ověřené, co modelové a jak pracujeme s tvými příběhy.",
+    "Digitální výstava ke 40 letům evropského programu Erasmus+. Co je ověřené, co modelové a jak pracujeme s tvými příběhy.",
 };
 
 const infographic =
@@ -18,7 +18,7 @@ export default function AboutPage() {
       <PageIntro
         kicker="O&nbsp;projektu"
         title="Čtyřicet let cest."
-        lead="Erasmus v&nbsp;Česku je digitální výstava k&nbsp;40 letům evropského programu Erasmus (1987–&#8288;2027). Česko je jeho součástí od roku 1998."
+        lead="Erasmus+ navždy je digitální výstava ke 40 letům evropského programu Erasmus+ (1987–&#8288;2027). Česko je jeho součástí od roku 1998."
         image={{
           src: "/media/placeholders/ph-group.jpg",
           alt: "Skupina lidí v\u00a0rozhovoru na schodech",

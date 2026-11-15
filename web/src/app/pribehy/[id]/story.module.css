@@ -45,7 +45,8 @@
   line-height: 1.35;
   font-size: clamp(1rem, 1.3vw, 1.2rem);
   font-weight: var(--wght-ui);
-  color: var(--c-yellow);
+  /* I1: yellow is reserved for "you are here"; the route reads as calm text. */
+  color: var(--c-line);
 }
 .route span,
 .nextRoute span {

@@ -10,7 +10,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: { default: siteName, template: "%s — Erasmus+ navždy" },
   description:
-    "40 let programu Erasmus (1987–2027), Česko od roku 1998. Příběhy o tom, kam lidi zkušenost posunula a co díky ní předávají dál. Chronologie, mapa Evropy a ověřená čísla DZS.",
+    "40 let programu Erasmus+ (1987–2027), Česko od roku 1998. Příběhy o tom, kam lidi zkušenost posunula a co díky ní předávají dál. Chronologie, mapa Evropy a ověřená čísla DZS.",
   robots: {
     index: false,
     follow: false,
