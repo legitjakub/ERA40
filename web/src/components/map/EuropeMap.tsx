@@ -9,7 +9,7 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { stories, storyPhoto } from "@/content/stories";
 
 import { StoryStatus, useOpenStory } from "@/components/people/StoryDialog";
-import { EUROPE_VIEWBOX, project, routeArc } from "@/lib/geo/europe";
+import { project, routeArc } from "@/lib/geo/europe";
 import { useJourney } from "@/components/people/JourneySequence";
 import s from "./EuropeMap.module.css";
 
@@ -18,6 +18,11 @@ const destinations = stories.map((story) => ({
   point: project(story.id === "praha-in" ? story.coords.from : story.coords.to),
 }));
 const route = routeArc;
+/**
+ * The visible crop of the 840 × 870 Natural Earth sheet: from Lisbon to
+ * Tampere, without the empty far north and east, so the routes fill the frame.
+ */
+const VIEW = { x: 40, y: 175, w: 640, h: 650 };
 /** Map user units per CSS pixel at the desktop layout the marker sizes were drawn for. */
 const DESIGN_UNIT = 1.135;
 /** Hit radius in CSS pixels, so every city keeps a touch target of at least 44 px. */
@@ -32,7 +37,7 @@ export function EuropeMap({ land }: { land: ReactNode }) {
     if (!svg) return;
     const observer = new ResizeObserver(([entry]) => {
       const width = entry.contentRect.width;
-      if (width) setUnit(Math.round((EUROPE_VIEWBOX.width / width) * 100) / 100);
+      if (width) setUnit(Math.round((VIEW.w / width) * 100) / 100);
     });
     observer.observe(svg);
     return () => observer.disconnect();
@@ -131,14 +136,14 @@ export function EuropeMap({ land }: { land: ReactNode }) {
             <div className={s.frame}>
               <svg
                 ref={svgRef}
-                viewBox="0 0 840 870"
+                viewBox={`${VIEW.x} ${VIEW.y} ${VIEW.w} ${VIEW.h}`}
                 aria-label="Mapa Evropy s trasami modelových příběhů"
                 role="group"
                 style={{ "--map-unit": unit } as CSSProperties}
               >
                 <defs>
                   <clipPath id="europe-bounds">
-                    <rect width="840" height="870" />
+                    <rect x={VIEW.x} y={VIEW.y} width={VIEW.w} height={VIEW.h} />
                   </clipPath>
                 </defs>
                 <g clipPath="url(#europe-bounds)">
@@ -209,9 +214,11 @@ export function EuropeMap({ land }: { land: ReactNode }) {
                         r={(active === i ? 7 : 5) * k}
                       />
                       {/* Lisbon's label sits under its dot so it never covers Valencie. */}
+                    {/* Cities near the crop's right edge (Tampere) label to the left. */}
                     <text
-                      x={point[0] + (story.id === "praha-in" ? -4 : 13) * k}
+                      x={point[0] + (story.id === "praha-in" ? -4 : point[0] > VIEW.x + VIEW.w * 0.78 ? -13 : 13) * k}
                       y={point[1] + (story.id === "praha-in" ? 26 : 5) * k}
+                      textAnchor={story.id !== "praha-in" && point[0] > VIEW.x + VIEW.w * 0.78 ? "end" : undefined}
                     >
                         {story.id === "praha-in" ? "Lisabon" : story.to}
                       </text>

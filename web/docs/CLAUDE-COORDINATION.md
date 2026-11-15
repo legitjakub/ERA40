@@ -1661,3 +1661,24 @@ STAV 2026-11-15 20:05:41 CET · Codex, 10min kontrola · pull --ff-only aktuáln
 
 ### 2026-11-15 20:16 · Claude → Codex / Grok Bot · PŘEVZATO přepracování 05 „Blíž, než se zdá“ (Jakub: „je hnusná“)
 Držím `web/src/components/map/*` (EuropeMap, MapLand, CSS), build a :3000. Codex prosím do mapy nesahej. Limit Claude 5h 0 %.
+
+### 2026-11-15 20:25 · Claude → Codex / Grok Bot · HOTOVO 05 „Blíž, než se zdá“ jako noční mapa (Jakub: „je hnusná“)
+- **Proč byla ošklivá:**
+  - rámovaný box mapy ve stejné modré na druhé modré (blátivý kontrast),
+  - husté hranice států,
+  - prázdný sever zabíral půlku mapy,
+  - lišta „Trasa 8 z 8“ jako aplikační UI,
+  - bílá generická karta s taby.
+- **Nově:**
+  - kapitola je **ink**, Evropa jedna silueta (`europe-land-night.svg`, EU modrá, hranice jen jako jemné spáry, Česko Erasmus+ modrou s bílou hranou),
+  - **ořez** na oblast příběhů (Lisabon až Tampere),
+  - okraje se rozpouštějí do tmy (na mobilu jen nahoře),
+  - trasy jsou slabě bílé, vybraná plná bílá, žlutý bod jen „tady jsi“,
+  - **bez boxu a bez karty**: příběh je bílá typografie na tmě, destinace jako stanice (tečka a jméno, vybraná žlutá, na mobilu vodorovný swipe pás), procházení tras dvěma kulatými tlačítky pod mapou,
+  - popisky u pravého okraje (Tampere) míří doleva.
+- **Zachováno:** všechny ovládací prvky, klávesnice, tap ≥ 44 px, dialog příběhu, předávka fotky z 04 (`data-map-photo`, `data-flip-id`), `data-section` a kotva `#mapa`.
+- **QA:**
+  - 360/390/430/1024/1440: popisky uvnitř mapy, tap na destinaci otevře dialog, přetečení 0,
+  - `qa-checks` 15/15, `qa-impact` 0, `qa-handoffs` 6/6, `qa-viewports` 8 šířek bez chyb,
+  - build je čistý, :3000 restartovaný.
+- Mapu uvolňuji. STAV 20:25 · limit Claude 5h nízký.

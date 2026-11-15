@@ -1,104 +1,154 @@
+/*
+ * 05 „Blíž, než se zdá“ — night map (Jakub 15. 11.: the boxed blue-on-blue
+ * map with a white tab card felt ugly). Ink chapter, Europe as one EU-blue
+ * silhouette, routes in white, the yellow dot only for „you are here“. No
+ * frame and no card: the map is the stage, the story is plain white type.
+ */
 .section {
-  background: var(--c-eplus);
+  position: relative;
+  background: var(--c-ink);
   color: var(--c-white);
-  padding: clamp(70px, 10vw, 150px) 0 80px;
+  padding: var(--section-pad) 0;
+  overflow: clip;
 }
 .inner {
-  width: min(90%, 1320px);
+  width: min(91%, 1320px);
   margin: auto;
 }
 .heading {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 1rem 3rem;
   align-items: end;
-  justify-content: space-between;
-  gap: 24px;
 }
 .heading h2 {
   margin: 0;
-  color: var(--c-white);
-  font-size: clamp(2.75rem, 7vw, 8rem);
+  font-size: clamp(2.8rem, 6vw, 6.4rem);
+  line-height: 1.02;
   letter-spacing: -0.025em;
-  line-height: 1.04;
-  text-wrap: balance;
   font-variation-settings:
     "wdth" var(--wdth-display),
     "wght" var(--wght-display);
 }
 .heading p {
-  /* White on Erasmus+ blue is reserved for large bold text (AA ≥ 3:1). */
-  font-size: clamp(1.2rem, 1.35vw, 1.3rem);
-  font-weight: 700;
-  line-height: 1.4;
+  margin: 0;
+  max-width: 34ch;
+  color: var(--c-line);
+  font-size: var(--fs-lead);
+  line-height: 1.35;
 }
 .layout {
   display: grid;
-  grid-template-columns: 1.55fr 1fr;
-  gap: clamp(28px, 5vw, 80px);
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
   align-items: center;
-  margin-top: 35px;
+  margin-top: clamp(24px, 4vw, 48px);
 }
 .map {
-  min-width: 0;
   position: relative;
-  background: var(--c-eu-blue);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
+/* The route browser sits under the map, the credit last. */
+.map > .mapNav {
+  order: 2;
+}
+.map > .credit {
+  order: 3;
+  align-self: flex-start;
+}
+/* The crop dissolves into the night instead of ending in a hard edge. */
+.frame {
+  -webkit-mask-image:
+    linear-gradient(to right, #000 88%, transparent),
+    linear-gradient(to bottom, transparent, #000 7%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, #000 88%, transparent),
+    linear-gradient(to bottom, transparent, #000 7%);
+  mask-composite: intersect;
+}
+.frame svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  /* --map-unit (user units per CSS px) is measured in EuropeMap.tsx so labels keep a CSS size. */
+  --map-label: 0.9375rem;
+}
+/* Browse routes: two quiet round buttons and the current route between them. */
 .mapNav {
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
+  gap: 16px;
+  margin-top: 12px;
 }
-.mapNav p { margin: 0; text-align: center; line-height: 1.4; }
-.mapNav strong { display: block; font-size: 1rem; font-weight: var(--wght-ui); }
-.mapNav p > span { display: block; margin-top: 2px; font-size: var(--fs-meta); }
+.mapNav p {
+  margin: 0;
+  line-height: 1.35;
+  order: 3;
+}
+.mapNav strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: var(--wght-ui);
+}
+.mapNav p > span {
+  display: block;
+  color: var(--c-line);
+  font-size: var(--fs-meta);
+}
 .mapNav button {
-  min-width: 44px;
-  min-height: 44px;
-  border: 1px solid #ffffff80;
-  border-radius: var(--radius-control);
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border: 1px solid rgb(255 255 255 / 0.35);
+  border-radius: 50%;
   background: transparent;
   color: var(--c-white);
   font: inherit;
-  font-size: 1.3rem;
   cursor: pointer;
-  transition: background-color var(--dur-xs) var(--ease-out);
+  transition:
+    background-color var(--dur-xs) var(--ease-out),
+    border-color var(--dur-xs) var(--ease-out);
 }
-.mapNav button:focus-visible { outline: 3px solid var(--c-yellow); outline-offset: 3px; }
+.mapNav button:focus-visible {
+  outline: 3px solid var(--c-yellow);
+  outline-offset: 3px;
+}
 @media (hover: hover) and (pointer: fine) {
-  .mapNav button:hover { background: #ffffff20; }
+  .mapNav button:hover {
+    background: rgb(255 255 255 / 0.1);
+    border-color: var(--c-white);
+  }
 }
-.map svg {
-  width: 100%;
-  height: auto;
-  display: block;
-  /* --map-unit (user units per CSS px) is measured in EuropeMap.tsx so labels keep a CSS size. */
-  --map-label: var(--fs-meta);
-}
+/* Grammar of the Trasa: all journeys faint, the chosen one solid white. */
 .route {
   fill: none;
   stroke: var(--c-white);
-  /* R5: readable at 360 px, still quieter than the active route (2.5). */
-  stroke-width: 1.5;
-  opacity: 0.8;
+  stroke-width: 1.25px;
+  opacity: 0.32;
   vector-effect: non-scaling-stroke;
 }
 .activeRoute {
   fill: none;
   stroke: var(--c-white);
-  stroke-width: 2.5;
+  stroke-width: 2.5px;
+  stroke-linecap: round;
   vector-effect: non-scaling-stroke;
 }
 .city {
   fill: var(--c-white);
   cursor: pointer;
 }
-.city text {
+.city text,
+.endpoint text {
   font: var(--wght-ui) 15px var(--font-brand);
-  font-size: calc(var(--map-label) * var(--map-unit, 1.135));
+  font-size: calc(var(--map-label) * var(--map-unit, 1));
   paint-order: stroke;
-  stroke: var(--c-eu-blue);
-  stroke-width: calc(3.5px * var(--map-unit, 1.135));
+  stroke: var(--c-ink);
+  stroke-width: calc(4px * var(--map-unit, 1));
   stroke-linejoin: round;
 }
 .city .hit {
@@ -115,158 +165,164 @@
 }
 .city[data-active="true"] circle:not(.hit) {
   fill: var(--c-yellow);
-  stroke: var(--c-eu-blue);
-  stroke-width: 3;
+  stroke: var(--c-ink);
+  stroke-width: 2.5;
 }
 .endpoint {
   fill: var(--c-white);
   pointer-events: none;
 }
-.endpoint text {
-  font: var(--wght-ui) 15px var(--font-brand);
-  font-size: calc(var(--map-label) * var(--map-unit, 1.135));
-  paint-order: stroke;
-  stroke: var(--c-eu-blue);
-  stroke-width: calc(4.4px * var(--map-unit, 1.135));
-  stroke-linejoin: round;
-}
 .traveller {
   fill: var(--c-yellow);
-  stroke: var(--c-eu-blue);
+  stroke: var(--c-ink);
   stroke-width: 2;
   pointer-events: none;
 }
 .credit {
-  font-size: 0.875rem;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  color: var(--c-white);
-  margin-inline: 16px;
+  margin-top: 4px;
+  color: var(--c-line);
+  font-size: 0.875rem;
 }
-.panel { min-width: 0; padding: 24px; background: var(--c-paper); color: var(--c-ink); }
+/* The story: plain type on ink, no card. */
+.panel {
+  min-width: 0;
+  color: var(--c-white);
+}
+/* Destinations as stations: a dot and a name; the chosen one yellow. */
 .selection {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 18px;
+  gap: 2px 18px;
   margin-bottom: 24px;
 }
 .selection button {
-  font: inherit;
-  font-size: 0.94rem;
-  background: none;
-  color: var(--c-mute);
-  border: 0;
-  border-bottom: 2px solid transparent;
-  /* Bod D (GB 03:08): short names like „Porto“ need a 44 px wide target. */
-  padding: 8px 6px;
-  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   min-height: 44px;
+  min-width: 44px;
+  padding: 8px 2px;
+  border: 0;
+  background: none;
+  color: var(--c-line);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: var(--wght-ui);
   cursor: pointer;
+  transition: color var(--dur-xs) var(--ease-out);
+}
+.selection button::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
 }
 .selection button[aria-pressed="true"] {
-  color: var(--c-eu-blue);
-  border-color: currentColor;
-  font-weight: var(--wght-ui);
+  color: var(--c-white);
+}
+.selection button[aria-pressed="true"]::before {
+  border-color: var(--c-white);
+  background: var(--c-yellow);
+}
+.selection button:focus-visible {
+  outline: 2px solid var(--c-yellow);
+  outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .selection button:hover {
+    color: var(--c-white);
+  }
 }
 .photo {
   position: relative;
-  aspect-ratio: 1.5;
-  background: var(--c-line);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--c-eu-blue);
 }
 .photo img {
   object-fit: cover;
 }
-.photo span {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  font-size: 0.875rem;
-  color: white;
-  background: #0b1b33d9;
-  padding: 3px 6px;
-}
 .status {
+  margin: 16px 0 0;
+  color: var(--c-line);
   font-size: var(--fs-meta);
-  color: var(--c-mute);
-  line-height: 1.4;
-  margin: 20px 0 12px;
 }
 .panel h3 {
-  font-size: clamp(1.8rem, 3vw, 3rem);
-  letter-spacing: -0.025em;
-  font-weight: var(--wght-heading);
-  line-height: 1.1;
-  margin: 24px 0 0;
+  margin: 20px 0 0;
+  font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variation-settings:
+    "wdth" var(--wdth-display),
+    "wght" var(--wght-display);
 }
 .quote {
-  font-size: clamp(1.3rem, 1.8vw, 1.8rem);
+  margin: 14px 0 0;
+  max-width: 30ch;
+  font-size: var(--fs-lead);
   line-height: 1.3;
-  letter-spacing: -0.02em;
 }
 .open {
-  background: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 18px;
+  padding: 0;
   border: 0;
-  border-bottom: 1px solid currentColor;
-  color: var(--c-eu-blue);
+  border-bottom: 1px solid var(--c-yellow);
+  background: none;
+  color: var(--c-white);
   font: inherit;
   font-weight: var(--wght-ui);
-  padding: 10px 0;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  gap: 28px;
   cursor: pointer;
+}
+.open:focus-visible {
+  outline: 2px solid var(--c-yellow);
+  outline-offset: 4px;
 }
 @media (max-width: 1023px) {
   .heading {
-    display: block;
+    grid-template-columns: 1fr;
   }
   .layout {
     grid-template-columns: 1fr;
     gap: 28px;
   }
-  .map {
-    width: 100%;
-    max-width: 650px;
-    margin: auto;
-  }
-  .selection {
-    gap: 4px 16px;
-  }
-  .selection button {
-    min-height: 44px;
-  }
-  .panel {
-    max-width: 650px;
-    width: 100%;
-    margin: auto;
-  }
-  .photo {
-    aspect-ratio: 1.8;
-  }
 }
-/* Phones: crop to the destinations (user units x 40–760, y 170–850) so Iberia,
-   the UK and Finland stay in frame at a readable scale. Percent margins resolve
-   against the frame width, so the crop needs no script and causes no shift. */
 @media (max-width: 767px) {
+  .inner {
+    width: auto;
+    margin-inline: 20px;
+  }
   .frame {
-    aspect-ratio: 720 / 680;
-    overflow: hidden;
+    margin-inline: -12px;
+    /* Narrow screens: no side fade, Tampere sits near the right edge. */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%);
+    mask-image: linear-gradient(to bottom, transparent, #000 6%);
   }
   .frame svg {
-    width: calc(100% * 840 / 720);
-    max-width: none;
-    margin: calc(-100% * 170 / 720) 0 0 calc(-100% * 40 / 720);
-    --map-label: 0.9375rem;
+    --map-label: 0.875rem;
+  }
+  .selection {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-inline: -20px;
+    padding-inline: 20px;
+    scroll-padding-inline: 20px;
+  }
+  .selection button {
+    flex: none;
   }
 }
-@media (max-width: 500px) {
-  .inner {
-    width: calc(100% - 32px);
-  }
-  .map {
-    margin-inline: -8px;
+@media (prefers-reduced-motion: reduce) {
+  .selection button,
+  .mapNav button {
+    transition: none;
   }
 }
-
