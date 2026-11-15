@@ -235,7 +235,7 @@
   }
 }
 
-/* Spec 009 — 06 Návrat: the "Dnes" side is what continues after the return. */
+/* Spec 009 — 06 Návrat: the "Teď" side is what continues after the return. */
 .now {
   position: absolute;
   inset: 0;
@@ -247,7 +247,7 @@
   background: var(--c-eu-blue);
   color: white;
 }
-/* The text lives in the right half; show it only once the "Dnes" side has room. */
+/* The text lives in the right half; show it only once the "Teď" side has room. */
 .now > * {
   opacity: clamp(0, calc((var(--dnes, 1) - 0.42) * 10), 1);
 }
@@ -275,8 +275,43 @@
   line-height: 1.4;
 }
 .comparison .divider {
+  --handoff-axis-color: white;
   width: 3px;
   background: white;
+}
+/* Entry: one trip out and back comes home and folds into the divider (same 3 px white line). */
+.route {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  visibility: hidden;
+}
+.route path {
+  fill: none;
+  stroke: white;
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+.comparison[data-home-route="drawing"] .route {
+  visibility: visible;
+}
+.comparison[data-home-route="away"] .divider,
+.comparison[data-home-route="drawing"] .divider {
+  background: transparent;
+}
+.divider span {
+  transition:
+    opacity var(--dur-xs) var(--ease-out),
+    scale var(--dur-xs) var(--ease-out);
+}
+/* The knob ("you are here") waits until the line is home. */
+.comparison[data-home-route="away"] .divider span,
+.comparison[data-home-route="drawing"] .divider span {
+  opacity: 0;
+  scale: 0.6;
 }
 @media (max-width: 760px) {
   .now {

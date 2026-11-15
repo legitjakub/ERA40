@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -21,19 +21,107 @@ const returns = [
   return { story, reach, photo: storyPhoto(story), summary: storyImpact(story)?.summary ?? story.excerpt };
 });
 
+// One trip out from home and back, in comparison pixels. Home is the top of the
+// divider; the trip goes out wide on the roomier side and returns close to the
+// line. At straight = 1 every point lies on the divider, so the round trip folds
+// flat into it. A single loop without a crossing: never a figure eight.
+function homeRoute(width: number, height: number, divider: number, straight: number) {
+  const x = (divider / 100) * width + 1.5;
+  const side = x > width / 2 ? -1 : 1;
+  const out = side * Math.max(0, Math.min(width * 0.24, (side < 0 ? x : width - x) - 16));
+  const back = -side * Math.max(0, Math.min(width * 0.08, (side < 0 ? width - x : x) - 8));
+  const point = (dx: number, y: number, flatY: number) =>
+    `${(x + dx * (1 - straight)).toFixed(1)} ${(y + (flatY - y) * straight).toFixed(1)}`;
+  const h = height;
+  return (
+    `M${point(0, 0, 0)}` +
+    `C${point(out, h * 0.1, h / 3)} ${point(out * 0.9, h * 0.86, (h * 2) / 3)} ${point(out * 0.3, h * 0.86, h)}` +
+    `C${point(back, h * 0.86, (h * 2) / 3)} ${point(back, h * 0.2, h / 3)} ${point(0, 0, 0)}`
+  );
+}
+
 export function ThenNow() {
   const root = useRef<HTMLElement>(null);
+  const comparison = useRef<HTMLDivElement>(null);
+  const route = useRef<SVGPathElement>(null);
   const manual = useRef(false);
+  const divider = useRef(50);
+  const redraw = useRef<(() => void) | undefined>(undefined);
   const [position, setPosition] = useState(50);
   const [selection, setSelection] = useState(0);
   const reduced = usePrefersReducedMotion();
   const person = returns[selection];
+
+  useEffect(() => {
+    divider.current = position;
+    redraw.current?.();
+  }, [position]);
+
+  // Any manual choice ends the entry route at once: the line is home.
+  const takeOver = () => {
+    manual.current = true;
+    redraw.current?.();
+  };
 
   useGSAP(
     () => {
       if (reduced || !root.current) return;
       registerGsap();
       const media = gsap.matchMedia();
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        const section = root.current;
+        const frame = comparison.current;
+        const path = route.current;
+        if (!section || !frame || !path) return;
+        const inset = Number.parseFloat(getComputedStyle(section).scrollMarginTop) || 0;
+        const shape = { straight: 0 };
+        let box = { width: frame.clientWidth, height: frame.clientHeight };
+        const drawn: { timeline?: gsap.core.Timeline } = {};
+        const build = () =>
+          path.setAttribute("d", homeRoute(box.width, box.height, divider.current, shape.straight));
+        const state = () => {
+          const p = drawn.timeline?.progress() ?? 0;
+          frame.dataset.homeRoute =
+            manual.current || p >= 1 ? "home" : p <= 0 ? "away" : "drawing";
+        };
+        // DrawSVG measures the loop itself, so geometry is rebuilt unfolded before each refresh.
+        const refreshInit = () => {
+          box = { width: frame.clientWidth, height: frame.clientHeight };
+          shape.straight = 0;
+          build();
+        };
+        build();
+        const timeline = (drawn.timeline = gsap.timeline({
+          defaults: { ease: "none" },
+          onUpdate: state,
+          scrollTrigger: {
+            trigger: frame,
+            start: "top 80%",
+            endTrigger: section,
+            // Home exactly when the chapter reaches its anchor position.
+            end: `top ${inset}px`,
+            scrub: 0.45,
+            invalidateOnRefresh: true,
+          },
+        }));
+        timeline
+          .fromTo(path, { drawSVG: "0%" }, { drawSVG: "100%", duration: 0.7 })
+          .fromTo(shape, { straight: 0 }, { straight: 1, duration: 0.3, onUpdate: build });
+        // A refresh restores progress without onUpdate, so the state is read again afterwards.
+        ScrollTrigger.addEventListener("refreshInit", refreshInit);
+        ScrollTrigger.addEventListener("refresh", state);
+        redraw.current = () => {
+          build();
+          state();
+        };
+        state();
+        return () => {
+          ScrollTrigger.removeEventListener("refreshInit", refreshInit);
+          ScrollTrigger.removeEventListener("refresh", state);
+          redraw.current = undefined;
+          delete frame.dataset.homeRoute;
+        };
+      });
       media.add(
         "(min-width: 1024px) and (min-height: 680px) and (prefers-reduced-motion: no-preference)",
         () => {
@@ -77,14 +165,14 @@ export function ThenNow() {
             </h2>
             <p>
               Pobyt skončil. To, co si lidé přivezli, dnes dostávají další: žáci,
-              kolegové, noví studenti. Posuňte čáru mezi tehdy a dnes.
+              kolegové, noví studenti. Posuň čáru mezi tehdy a teď.
             </p>
           </header>
           <div
             className={s.options}
             data-handoff-copy
             role="group"
-            aria-label="Vyberte člověka"
+            aria-label="Vyber člověka"
           >
             {returns.map((item, index) => (
               <button
@@ -92,7 +180,7 @@ export function ThenNow() {
                 key={item.story.id}
                 aria-pressed={selection === index}
                 onClick={() => {
-                  manual.current = true;
+                  takeOver();
                   setSelection(index);
                   setPosition(50);
                 }}
@@ -103,6 +191,7 @@ export function ThenNow() {
           </div>
           <figure className={s.figure}>
             <div
+              ref={comparison}
               className={s.comparison}
               data-grain
               style={{ "--divider": position + "%", "--dnes": (100 - position) / 100 } as CSSProperties}
@@ -120,9 +209,12 @@ export function ThenNow() {
                   <p className={s.nowReach}>{person.reach}</p>
                 </div>
               </div>
+              <svg className={s.route} aria-hidden="true" focusable="false">
+                <path ref={route} />
+              </svg>
               <div className={s.tags} aria-hidden="true">
                 <span>Tehdy</span>
-                <span>Dnes</span>
+                <span>Teď</span>
               </div>
               <div className={s.divider} aria-hidden="true" data-handoff-axis-source>
                 <span>‹ ›</span>
@@ -139,14 +231,12 @@ export function ThenNow() {
                   position +
                   " % strany Tehdy, " +
                   (100 - position) +
-                  " % strany Dnes"
+                  " % strany Teď"
                 }
                 aria-describedby="then-now-hint"
-                onPointerDown={() => {
-                  manual.current = true;
-                }}
+                onPointerDown={takeOver}
                 onChange={(event) => {
-                  manual.current = true;
+                  takeOver();
                   setPosition(event.target.valueAsNumber);
                 }}
               />
@@ -163,7 +253,7 @@ export function ThenNow() {
                     key={item.value}
                     aria-pressed={position === item.value}
                     onClick={() => {
-                      manual.current = true;
+                      takeOver();
                       setPosition(item.value);
                     }}
                   >
@@ -182,13 +272,13 @@ export function ThenNow() {
                   {person.story.year} · {person.story.from} → {person.story.to}
                 </div>
                 <div>
-                  <b>Dnes</b>
+                  <b>Teď</b>
                   {person.story.name}, <StoryLabel story={person.story} />
                 </div>
               </div>
               <div className={s.notes}>
                 <span id="then-now-hint">
-                  Posuňte dělicí čáru tahem nebo šipkami na klávesnici.
+                  Posuň dělicí čáru tahem nebo šipkami na klávesnici.
                 </span>
                 <span>Postavy jsou modelové, fotografie ilustrační.</span>
               </div>
