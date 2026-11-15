@@ -126,6 +126,11 @@
   transform: scaleX(0);
   transform-origin: left;
 }
+/* On the light header yellow has ~1.2:1 contrast; use the EU blue there. */
+.header[data-light="true"] .progress,
+.header[data-other="true"] .progress {
+  background: var(--c-eu-blue);
+}
 
 /* A chapter index at the same scale as the exhibition, with enough room
    for both the narrative and the routes beyond the homepage. */

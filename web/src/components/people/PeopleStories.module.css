@@ -107,6 +107,23 @@
   letter-spacing: -0.03em;
   max-width: 25ch;
 }
+/* Spec 007/009: the story does not end with the stay — what continues after the return. */
+.impact {
+  margin: 18px 0 0;
+  padding-left: 14px;
+  border-left: 3px solid var(--c-yellow);
+  max-width: 34ch;
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  line-height: 1.4;
+  color: white;
+}
+.impact span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  color: #d5e8ff;
+}
 .excerpt {
   max-width: 43ch;
   font-size: 1.03rem;

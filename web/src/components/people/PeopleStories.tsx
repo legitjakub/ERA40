@@ -8,6 +8,7 @@ import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { stories, storyPhoto } from "@/content/stories";
+import { storyImpact } from "@/content/story-impact";
 import { StoryStatus, useOpenStory } from "./StoryDialog";
 import { StoryDistortion } from "./StoryDistortion";
 import { useJourney } from "./JourneySequence";
@@ -229,6 +230,12 @@ export function PeopleStories() {
                   <h3 className={s.name}>{story.name}</h3>
                   <blockquote>„{story.quote}“</blockquote>
                   <p className={s.excerpt}>{story.excerpt}</p>
+                  {storyImpact(story) && (
+                    <p className={s.impact}>
+                      <span>Co pokračuje dál</span>
+                      {storyImpact(story)!.summary}
+                    </p>
+                  )}
                   <p className={s.info}>
                     {story.field}, {story.year}
                   </p>

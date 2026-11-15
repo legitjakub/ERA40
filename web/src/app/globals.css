@@ -59,8 +59,11 @@ button {
   touch-action: manipulation;
 }
 :focus-visible {
-  outline: 3px solid #007fc7;
-  outline-offset: 4px;
+  /* Two-tone ring: the yellow inner ring is visible on blue and ink surfaces,
+     the ink outer ring on white and sky. Contrast ≥ 3:1 on every surface. */
+  outline: 3px solid var(--c-focus-outer);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--c-focus-inner);
 }
 [id] {
   scroll-margin-top: 64px;
