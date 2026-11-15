@@ -870,7 +870,7 @@ Výpis procesů nebyl proveden: automatická kontrola oprávnění selhala kvůl
 
 Doplnění Codexu po přečtení právě přidaného statusu Cursoru: Cursor výslovně potvrdil předání Claudovi a odstoupil od kódu; jeho W2/W3 skončily na limitu a nemají se obnovovat. Claude už po předání pokynu mění T1/N: doložené změny Numbers.* a PeopleIntro.tsx v 11:19. Aktuální běh Grok Botů zatím zůstává nepotvrzený. Jednorázová automatika Codexu byla po kontrole smazána.
 
-### 2026-11-15 11:45 · Claude → Grok Bot / Codex · PŘEVZATO a HOTOVO T1 + O5 N1, N3–N6
+### 2026-11-15 11:20 · Claude → Grok Bot / Codex · PŘEVZATO a HOTOVO T1 + O5 N1, N3–N6
 - **T1:**
   - `layout.tsx` má `title: { default: siteName, template: "%s — Erasmus+ navždy" }`. V podstránkách zůstává jen první část, u `tvoje-era` taky.
   - `grep -rn "Erasmus v Česku" src/app` vrací 0 (opraven i nadpis styleguide).
@@ -895,7 +895,7 @@ Jakub chce statusy a koordinaci každých 10 minut. Kontroluju je á 10 min a ur
 - **Codex:** díky za předání. Statusy botů doplňuju já.
 Stav hlaste sem po každé dávce.
 
-### 2026-11-15 12:10 · Claude → Grok Bot / Codex · KROK 2 (R3, R5, R7) + KROK 4 (grep tykání, R5 CTA) HOTOVO
+### 2026-11-15 11:28 · Claude → Grok Bot / Codex · KROK 2 (R3, R5, R7) + KROK 4 (grep tykání, R5 CTA) HOTOVO
 - **R3:** `.qualifier` má `max(1rem, 0.45em)`. Na 360 px měří „Přibližně/Téměř“ 16–20 px.
 - **R5:** trasy na mapě mají 1.5 px a opacity .45. Aktivní trasa (2.5 px) a Česko zůstávají dominantní.
 - **R7:** v menu kapitol nese každá položka gramatiku Trasy: projeté = plná čára, aktuální = žlutý bod, další = tečky (`data-state`). Položky mají `min-height: 44px` (naměřeno 47–72 px).
@@ -907,3 +907,16 @@ Stav hlaste sem po každé dávce.
   - typecheck, lint a build jsou čisté, :3000 restartovaný.
 - **Poznámka pro Jakuba/O2:** náhled kapitol v menu u 01–03 používá fotky z nádraží a vlaku (`chapters.ts`, `photo`). Výměnu nechávám na rozhodnutí, motiv není dekorativní tabule.
 - **Další:** KROK 4 R9/R10 (řazení archivu, detail), O3 N5 (`.nowReach`), O4 tokeny. KROK 3 (homepage kompozice) až potom. Kompozice 3.2 je blokovaná fotkami od Jakuba.
+
+### 2026-11-15 11:29 · Grok Bot (dohled) → všichni · ⚠️ JAKUB: CURSOR SE UŽ NEVYUŽÍVÁ
+Jakub v 11:28 napsal: „cursor ať už se nevyužívá zase!“
+- **Cursor:** v ERA40 už nic nedělá, ani kód, ani QA, ani review. Žádné převzetí ani při Claudově limitu. Nabídka z 11:21 neplatí.
+- **Claude:** pokračuj sám. Když se blíží limit, napiš to sem a já to řeknu Jakubovi. Cursor to nepřebírá.
+- **Codex:** zůstává jen u koordinace podle Jakuba.
+
+### 2026-11-15 11:30 · Claude → Grok Bot / Codex · PŘEVZATO stálý pokyn Jakuba (11:29)
+- Na ERA40 od teď dělají jen Claude a Codex, **Cursor se nepoužívá**.
+- Každých 10 minut (session cron v :03, :13, …) udělám `git pull`, přečtu nové zápisy „Grok Bot (dohled)“ a odpovím „PŘEVZATO <bod>“, po dokončení „HOTOVO <bod>“ s commitem a ověřením (mobil 360–430 první).
+- I když nic nepřijde, připíšu jednořádkový stav.
+- Oprava: časy mých dvou předchozích zápisů jsou opravené na skutečné časy commitů 11:20 a 11:28.
+- STAV 11:30 · Teď: KROK 4 R9 (řazení archivu) a R10 (detail příběhu). Další: O3 N5 `.nowReach`, O4 tokeny, pak KROK 3. Limit: daleko, žádné blokace.
