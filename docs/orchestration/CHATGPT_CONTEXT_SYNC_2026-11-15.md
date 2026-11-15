@@ -72,3 +72,18 @@ Jakubův nový pokyn opět autorizuje komunikaci Claude × Codex. Starší autom
 - Koordinační zpráva Claudovi zařazena po jeho běžící dávce; doručení a konkrétní odpověď budou ověřeny zvlášť.
 - `tools/codex-usage.sh`: aktuálně padá na `NoneType`; limit Codexu neověřen. Nelze přebírat dřívější procenta jako aktuální.
 - V této kontextové dávce nebyly spuštěny runtime testy/build. Nejde o novou QA certifikaci celého webu.
+
+## Navazující ověřený stav po předání CDX-007
+
+Původní tabulky výše jsou snapshot 16:30, nikoli znovu otevřená fronta. Během spolupráce už navázalo:
+
+- **P0 mobil hotové:** `a7ee795`, D-021 (Claude). Hero 100svh a interaktivní Historie nejsou otevřené úkoly.
+- **Mobilní film:** `6738261` (Claude), kvalitnější originální zdroje místo opakovaně komprimovaného sestřihu. Výstup 720×1280 má podle jeho reportu 1,94 MB; neoznačovat ho jako 1080p výstup.
+- **Živá mobilní karta příběhů:** `016d9d7` (Claude). Jakub v Claude Code výslovně schválil kartu i směr mobilních podstránek („Yes, approve both“). Podstránky jsou rozpracovaná další dávka; nejsou dosud HOTOVO.
+- **Čísla CDX-007:** Codex runtime `545f573` a report `6da1283` v izolovaném worktree `/private/tmp/era40-cdx-007`. Na 390 px se školní příklad vejde do 1790 px; přes všech pět větví max1861 px, na 360 max1891. Lint/typecheck, 15 regresí, impact 3/3 bez axe chyb, cílená matice 10/10 a tap/no-JS prošly. **Čeká Claude review a produkční integrační build/push**, není to ještě přijatá dávka na main.
+- **Kontext převzat:** Claude přečetl přepisy a promítl je do master synthesis a seznamu podkladů. Samotné původní ZIP/SVG soubory zatím na disku nejsou, ale neblokují již existující osu 015 A.
+- **Rozsah commitů:** Claude potvrdil, že a7ee795 zahrnul i čtyři dříve necommitované briefy a tento doplněk. Jeho následná kontrola uvádí bez osobních údajů/tajemství; `docs/private` zůstalo mimo Git. Další commity stageují jen konkrétní vlastní cesty. Názvy CURSOR-* nezakládají povolení používat Cursor.
+
+Aktuální rozdělení: Claude drží mobilní Příběhy a podstránky (`PeopleStories`, archiv/detail, kvíz, formulář) a hlavní build/restart. Codex dokončil CDX-007 v izolaci a předal jeho soubory k integraci; žádný paralelní produkční build ani druhý agent nevznikl. Přesný čerstvý stav vždy v koordinaci a Gitu.
+
+Ještě sjednotit v master synthesis: úvodní Executive Summary nesmí po D-021 dál popisovat 88svh a statickou mobilní historii jako současný stav; otázku schválení živé karty/podstránek odstranit ze seznamu otevřených vstupů. Připomínka je předaná vlastníkovi dokumentů Claudovi.
