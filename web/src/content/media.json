@@ -407,5 +407,27 @@
     "license": "Mixkit Free License (free use)",
     "sourceUrl": "https://mixkit.co/free-stock-video/young-students-hanging-out-on-a-campus-meadow-36084/",
     "orientation": "landscape"
+  },
+  {
+    "id": "ph-adult-learning",
+    "kind": "image",
+    "file": "/media/placeholders/ph-adult-learning.jpg",
+    "alt": "Dva lidé vedou výklad pro skupinu dospělých v cihlové učebně",
+    "status": "illustrative",
+    "credit": "RDNE Stock project / Pexels",
+    "license": "Pexels License (free use)",
+    "sourceUrl": "https://www.pexels.com/photo/teacher-teaching-adult-education-5756752/",
+    "download": "https://images.pexels.com/photos/5756752/pexels-photo-5756752.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "ph-campus-conversation",
+    "kind": "image",
+    "file": "/media/placeholders/ph-campus-conversation.jpg",
+    "alt": "Dva studenti v rozhovoru před školní budovou",
+    "status": "illustrative",
+    "credit": "Armin Rimoldi / Pexels",
+    "license": "Pexels License (free use)",
+    "sourceUrl": "https://www.pexels.com/photo/cheerful-multiethnic-students-discussing-university-studies-in-campus-5553959/",
+    "download": "https://images.pexels.com/photos/5553959/pexels-photo-5553959.jpeg?auto=compress&cs=tinysrgb&w=1600"
   }
 ]

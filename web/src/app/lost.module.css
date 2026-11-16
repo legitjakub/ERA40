@@ -1,0 +1,45 @@
+/* Blueprint v0.2 C10/C11: Czech 404 and error states in the PageIntro
+   language (EU-blue field, yellow station), with a way back. */
+.page {
+  min-height: 100svh;
+  background: var(--c-eu-blue);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 32px;
+  margin-top: 28px;
+}
+.primary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 0;
+  background: var(--c-yellow);
+  color: var(--c-ink);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: var(--wght-ui);
+  text-decoration: none;
+  cursor: pointer;
+}
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: white;
+  font-size: 1rem;
+  font-weight: var(--wght-ui);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .primary:hover {
+    background: white;
+  }
+  .secondary:hover {
+    text-decoration-thickness: 2px;
+  }
+}

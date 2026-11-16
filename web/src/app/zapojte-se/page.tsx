@@ -14,12 +14,13 @@ export default function JoinPage() {
     <main id="main" className={s.page}>
       <PageIntro
         kicker="Zapoj se do výročí"
+        route="open"
         title="Erasmus píšou lidé."
         lead="Erasmus návratem nekončí. Pokračuje u&nbsp;lidí, kterým zkušenost předáš dál. Ke 40 letům sbíráme příběhy, kontakty na ty, kdo chtějí vyjet, a&nbsp;nápady škol a&nbsp;organizací."
         image={{
-          src: "/media/placeholders/ph-scrapbook.jpg",
-          alt: "Cestovní deník s\u00a0fotografiemi a\u00a0poznámkami",
-          position: "50% 60%",
+          src: "/media/placeholders/ph-campus-conversation.jpg",
+          alt: "Ilustrační snímek: dva studenti v\u00a0rozhovoru před školní budovou.",
+          position: "62% 30%",
         }}
       >
         <a href="#zapojeni" className={s.start}>
@@ -28,6 +29,10 @@ export default function JoinPage() {
       </PageIntro>
       <div className={s.content}>
         <JoinForm />
+        <p className={s.photoNote}>
+          Úvodní fotografie je z&nbsp;fotobanky. Nezachycuje doložený příběh
+          účastníků programu.
+        </p>
       </div>
     </main>
   );

@@ -39,3 +39,12 @@
     transition: none;
   }
 }
+
+/* Blueprint v0.2 C6: the stock origin is said once, as plain text. */
+.photoNote {
+  max-width: 65ch;
+  margin: 48px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--c-mute, #4f5b6e);
+}

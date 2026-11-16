@@ -41,29 +41,41 @@ const empty: Values = {
 };
 
 const nextSteps: Record<ContactPath, string[]> = {
+  // Blueprint v0.2 copy C7–C9: this preview stores records locally only
+  // (lib/contacts/store.ts). It promises no reading, reply or deadline until
+  // the publisher sets up a real process (Blueprint §13).
   pribeh: [
-    "Příběh si přečte redakce výročí.",
-    "Pokud ho budeme chtít zveřejnit, ozveme se a\u00a0pošleme ti upravený text ke schválení.",
-    "Bez tvého souhlasu nic nezveřejníme.",
+    "Příběh byl uložen v\u00a0tomto náhledu. Automaticky se nikam neodesílá.",
+    "V\u00a0tomto náhledu se nic nezveřejňuje.",
   ],
-  // Integrity: contacts are stored for the anniversary team; there is no
-  // mailing system or response deadline yet, so the copy promises neither.
   vyjet: [
-    "Kontakt si uložíme pro tým výročí.",
-    "Ozveme se s\u00a0informacemi, kdo a\u00a0kam může s\u00a0Erasmem+ vyjet. Novinky jen pokud o\u00a0ně stojíš.",
+    "Kontakt byl uložen v\u00a0tomto náhledu. Automaticky se nikam neodesílá.",
     "Souhlas můžeš kdykoli odvolat, viz Ochrana osobních údajů.",
   ],
   organizace: [
-    "Tvou zprávu dostane tým výročí.",
-    "Ozveme se, jak tvoji akci nebo projekt propojit s\u00a0výročím.",
-    "Kontakt použijeme jen pro tuto spolupráci.",
+    "Zpráva byla uložena v\u00a0tomto náhledu. Automaticky se nikam neodesílá.",
+  ],
+};
+
+// The same promise before sending, in the future tense (side panel).
+const plannedSteps: Record<ContactPath, string[]> = {
+  pribeh: [
+    "Po odeslání se příběh uloží v\u00a0tomto náhledu. Automaticky se nikam neodesílá.",
+    "V\u00a0tomto náhledu se nic nezveřejňuje.",
+  ],
+  vyjet: [
+    "Po odeslání se kontakt uloží v\u00a0tomto náhledu. Automaticky se nikam neodesílá.",
+    "Souhlas můžeš kdykoli odvolat, viz Ochrana osobních údajů.",
+  ],
+  organizace: [
+    "Po odeslání se zpráva uloží v\u00a0tomto náhledu. Automaticky se nikam neodesílá.",
   ],
 };
 
 const doneTitle: Record<ContactPath, string> = {
-  pribeh: "Děkujeme. Tvůj příběh je u\u00a0nás.",
-  vyjet: "Děkujeme. Tvůj kontakt máme.",
-  organizace: "Děkujeme. Tvoje zpráva je u\u00a0nás.",
+  pribeh: "Děkujeme za příběh.",
+  vyjet: "Děkujeme za kontakt.",
+  organizace: "Děkujeme za zprávu.",
 };
 
 const value = (values: Values, key: string) => String(values[key] ?? "").trim();
@@ -514,10 +526,10 @@ export function JoinForm() {
         {path === "pribeh" && <Summary path={path} values={values} live />}
         <p className={s.sideTitle}>Co se stane dál</p>
         <ol className={s.steps}>
-          {(path ? nextSteps[path] : [
+          {(path ? plannedSteps[path] : [
             "Vyber, co je ti nejblíž.",
             "Vyplň pár údajů. Zabere to dvě minuty.",
-            "Ozveme se, nebo ti pošleme, co potřebuješ.",
+            "V\u00a0tomto náhledu se údaje jen uloží. Automaticky se nikam neodesílají.",
           ]).map((step) => (
             <li key={step}>{step}</li>
           ))}

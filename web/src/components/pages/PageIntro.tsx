@@ -13,12 +13,15 @@ export function PageIntro({
   lead,
   children,
   image,
+  route = "travelled",
 }: {
   kicker: string;
   title: ReactNode;
   lead?: ReactNode;
   children?: ReactNode;
   image?: { src: string; alt: string; position?: string };
+  /** Trasa grammar: solid = travelled; dotted, static = still to come. */
+  route?: "travelled" | "open";
 }) {
   return (
     <header className={s.intro} data-tone={image ? "photo" : "blue"}>
@@ -44,7 +47,7 @@ export function PageIntro({
         {lead && <p className={s.lead}>{lead}</p>}
         {children}
       </div>
-      <span className={s.trasa} aria-hidden="true" />
+      <span className={s.trasa} data-route={route} aria-hidden="true" />
     </header>
   );
 }

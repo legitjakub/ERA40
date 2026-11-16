@@ -91,6 +91,12 @@
   transform-origin: left;
   animation: draw var(--dur-l) 0.3s var(--ease-out) both;
 }
+/* Blueprint v0.2 §11: the open, dotted Trasa is static (no draw). */
+.trasa[data-route="open"] {
+  background: radial-gradient(circle, white 1.5px, transparent 1.75px) 0 50% / 12px 3px
+    repeat-x;
+  animation: none;
+}
 @keyframes curtain {
   from {
     clip-path: inset(0 0 100% 0);

@@ -99,3 +99,4 @@ Tři rozvržení spreadu (photo-left, photo-right, plate) místo dvou. Je to jen
 3. **Navazující ScrollTriggery mezi komponentami:** start druhého úseku musí odpovídat konci prvního v každém režimu (pin: `top bottom`; nativně: konec hera `bottom 40%` → začátek Prologu `top 40%`).
 4. **Kulaté zakončení čáry:** `stroke-linecap: round` s nulovou čárkou kreslí tečku. Prázdný úsek skrýt (`visibility`).
 5. **QA v náhledovém panelu aplikace:** skrytý panel škrtí rAF a GSAP, takže snímky jsou rozpracované. Ověřovat headless Playwrightem (`qa-living-route.mjs`).
+| D-027 | 16. 11. 2026 | Dávka 2 Blueprintu v0.2 integrována: S04 v Prologu, S07 na Zapojte se se statickou tečkovanou Trasou, copy C6–C11, česká 404 a chybová stránka, kredity S04/S07. Formulář před odesláním mluví v budoucím čase a po odeslání v minulém, žádný slib odpovědi. Review `docs/qa/LR-B2-blueprint-batch2-review.md`. | Blueprint §9, §11, §13 | Jakub: „Ano, pokračuj“ |
