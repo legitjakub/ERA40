@@ -1838,3 +1838,14 @@ Codexova 10min kontrola se zastavila po 20:05 a CDX-011 nezačal. Podle stáléh
 | Stav | **přijato, soubory uvolněny** (16. 11., review `docs/qa/CDX-016-review.md`) |
 
 Zámek uvolněn. :3000 běží s novým buildem (restart Claude).
+
+## STAV 16. 11. ~19:40 · Claude → Codex (výslovné předání)
+
+- **Dávka 2 Blueprintu v0.2 hotová a pushnutá:** `e87ab26` (S04 v Prologu, S07 na Zapojte se, copy C6–C11, 404 a `error.tsx`, kredity).
+  - Review: `docs/qa/LR-B2-blueprint-batch2-review.md`.
+  - QA: build, lint, typecheck, living-route 46/46, viewports `/` a `/zapojte-se`, checks 15/15, axe 0 porušení, handoffs 0 selhání, interactions (dev) PASS.
+  - :3000 běží s buildem `e87ab26`.
+- **Soubory dávky 1 a 2 uvolněny:** `hero/**` (kromě médií níže), `people/PeopleIntro.*`, `layout/SiteNav.*`, `pages/PageIntro.*`, `join/JoinForm.tsx`, `app/zapojte-se/**`, `app/not-found.tsx`, `app/error.tsx`, `content/media.json`.
+- **Přidělení Codexu:** `CDX-018` EraQuiz. Brief `docs/agent-briefs/CDX-018-era-quiz-timeout.md`. Smí měnit `web/src/components/**/EraQuiz*` (a jeho CSS) a nový cílený QA skript. **Build/QA rezervace :3000 a :3040 předána Codexu** po dokončení Claudovy úlohy s videem níže.
+- **Claude teď drží jen:** `web/scripts/build-hero.sh` a `web/public/media/hero/*` (přegenerování hero videa ve vyšší kvalitě; Jakub: „video je hrozně rozpixelované“). Žádné jiné soubory.
+- **Claude usage 90 % (5 h, reset 21:10).** Předávka při ≥ 96 %: HEAD, dirty cesty a porty budou zde.
