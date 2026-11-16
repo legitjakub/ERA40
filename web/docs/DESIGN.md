@@ -137,7 +137,7 @@ Each spec lists: **Start → Scroll → End → Reverse → Mobile → Reduced**
 - Reduced: poster image, no autoplay, all text visible.
 - Video: 30–45 s documentary cut (shot list in `CONTENT-FACTS.md` §5). `muted autoplay playsinline loop`, MP4 H.264 + WebM, 1080p desktop / 720p mobile, poster AVIF. Captions file if speech is present.
 
-> **Approved direction, pending integration (Creative Blueprint v0.2, Jakub 16. 11. 2026; D-024).** The text above describes the current site. Once Jakub approves integrating prototype 016, this replaces it:
+> **Integrated 16. 11. 2026 (Creative Blueprint v0.2, D-024–D-026; CDX-016). This block supersedes the text above wherever they differ:**
 > - Chapter name **„Úvod“** (not „Odjezd“).
 > - Composition C2: anniversary row „40 / let Erasmu+“ above the two-line claim; context sentence „1987–2027. V Česku od roku 1998.“; the intro paragraph is removed; ink scrim only behind the left ~55 % and under the captions.
 > - Display sizes (explicit exceptions to Display XL 96–220 px): claim 90 px at 1440 × 900, `min(6.25vw, 10vh)`; compact hero below 680 px height 80 px; „40“ 200 px at 1440 × 900, 80 px compact. Mobile: 360 → 88/44, 390 → 96/48, 430 → 96/54. Weight 840; `wdth` 78 for the figure, 56 for the claim.
@@ -151,7 +151,7 @@ Each spec lists: **Start → Scroll → End → Reverse → Mobile → Reduced**
 - Mobile: same effect, scrub over a shorter distance.
 - Reduced: full ink text.
 
-> **Approved direction, pending integration (spec 016; D-024):**
+> **Integrated 16. 11. 2026 (spec 016; D-026):**
 > - Desktop ≥ 1024 px: „trochu jiní.“ sits on its own last line.
 > - The underline is the end of the hero Trasa: it descends in the left margin and turns into the underline with a 16 px bend.
 > - Mobile: a short vertical Trasa stops above the heading; the underline stays as it is today.

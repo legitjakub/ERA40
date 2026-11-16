@@ -186,7 +186,7 @@ export function SiteNav() {
   const selected = chapters[preview];
   return (
     <>
-      <header className={styles.header} ref={header} data-other={!darkTop} data-film={home}>
+      <header className={styles.header} ref={header} data-other={!darkTop} data-film={home} data-hero={home && active === 0}>
         <div className={styles.lockup}>
           <Link className={styles.brand} href="/" aria-label="Erasmus+ navždy – domů" onClick={toTop}>
             <span className={styles.wordmark} />

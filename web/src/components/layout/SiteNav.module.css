@@ -44,6 +44,17 @@
 .header[data-hidden="true"]:not(:focus-within) {
   transform: translateY(-101%);
 }
+/* Spec 016 / Blueprint §3: over the hero the big „40“ carries the
+   anniversary, so the header lockup steps back until the reader departs. */
+.header[data-hero="true"] .forty {
+  visibility: hidden;
+}
+/* Over the film the hero's own line is the only horizontal Trasa (U3);
+   the reading progress returns with the light header. */
+.header[data-hero="true"]:not([data-light="true"]) .progress,
+.header[data-hidden="true"]:not(:focus-within) .progress {
+  visibility: hidden;
+}
 /* The official Erasmus+ signature (public/brand/README.md) is a mask, so it
    takes the header colour: white over the film, EU blue on light. Its
    proportions come from the file and must not be changed. */

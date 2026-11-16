@@ -32,9 +32,49 @@
   height: 2px;
   left: 0.02em;
   right: 0.025em;
-  bottom: -0.015em;
+  bottom: -0.075em;
   background: var(--c-eplus);
   transform-origin: left center;
+}
+/* Spec 016: on desktop „trochu jiní.“ starts the last line, so the route
+   can turn from the margin into its underline without underlining other
+   words. Where the route is drawn, it is the underline. */
+@media (min-width: 1024px) {
+  .ending {
+    display: block;
+    width: fit-content;
+  }
+  .prolog[data-route-desktop] .ending i {
+    visibility: hidden;
+  }
+}
+.route {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.route path {
+  stroke: var(--c-eplus);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: 0 99999;
+  visibility: hidden;
+  vector-effect: non-scaling-stroke;
+}
+.route circle {
+  fill: var(--c-yellow);
+  stroke: var(--c-eu-blue);
+  stroke-width: 2;
+  opacity: 0;
+}
+@media (max-width: 1023px) {
+  .route path {
+    stroke-width: 1.5;
+  }
 }
 .reach {
   max-width: 34ch;

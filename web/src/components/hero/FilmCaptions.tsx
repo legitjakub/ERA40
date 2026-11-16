@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useState, type RefObject } from "react";
 import s from "./FilmCaptions.module.css";
 
 /*
@@ -8,7 +8,8 @@ import s from "./FilmCaptions.module.css";
  * scripts/build-hero.sh (desktop 28.9 s, mobile 28.1 s; shotlist in
  * docs/orchestration/HERO_VIDEO_PLAN.md). They narrate the journey the site
  * tells — packing, studying, friends, return, passing it on — without naming
- * places the footage does not show. A thin line follows the film's progress.
+ * places the footage does not show. Shown only after the film first plays
+ * (spec 016); the former progress line is gone, the Trasa is the only line.
  */
 type Cue = [start: number, end: number, text: string];
 
@@ -35,13 +36,14 @@ const mobile: Cue[] = [
 export function FilmCaptions({
   video,
   portrait,
+  shown,
 }: {
   video: RefObject<HTMLVideoElement | null>;
   portrait: boolean;
+  shown: boolean;
 }) {
   const cues = portrait ? mobile : desktop;
   const [index, setIndex] = useState(0);
-  const progress = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const player = video.current;
@@ -54,16 +56,9 @@ export function FilmCaptions({
         currentCue = at;
         setIndex(at);
       }
-      const total = player.duration;
-      const fraction = Number.isFinite(total) && total > 0
-        ? Math.min(1, Math.max(0, t / total))
-        : 0;
-      if (progress.current)
-        progress.current.style.transform = `scaleX(${fraction})`;
     };
-    // Native media events keep cues in sync without a second animation loop
-    // or a React render on every video frame. The progress is a DOM-only
-    // transform; React updates only when the actual caption changes.
+    // Native media events keep cues in sync without a second animation loop;
+    // React updates only when the actual caption changes.
     const events = ["timeupdate", "seeked", "loadedmetadata", "emptied"];
     events.forEach((event) => player.addEventListener(event, read));
     const initial = requestAnimationFrame(read);
@@ -75,13 +70,10 @@ export function FilmCaptions({
 
   const [, , text] = cues[index] ?? cues[0];
   return (
-    <div className={s.captions} data-controls aria-hidden="true">
+    <div className={s.captions} data-shown={shown} aria-hidden="true">
       <p className={s.line} key={text}>
         <span>{text}</span>
       </p>
-      <span className={s.progress}>
-        <span ref={progress} />
-      </span>
     </div>
   );
 }

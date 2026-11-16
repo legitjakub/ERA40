@@ -89,3 +89,13 @@ Tři rozvržení spreadu (photo-left, photo-right, plate) místo dvou. Je to jen
 4. **Stav hlavičky se řídí polohou, ne pin timeline.** V reduced pin není a hlavička zůstala v hero stavu nad Prologem.
 5. **Svislá Trasa nesmí procházet textem.** Osa sestupu leží 28 px vlevo od sloupce; podtržení se dá napojit jen tehdy, když „trochu jiní.“ začíná řádek.
 6. **QA fokusu v náhledovém prohlížeči:** bez fokusu dokumentu nevznikají `focusin`/`focusout` z programového `focus()` / `blur()`. Napřed dát dokumentu fokus (klik nebo Tab), jinak test hlásí falešnou chybu.
+| D-025 | 16. 11. 2026 | Integrace prototypu 016 (hero C2 + předávka 01 → 02, copy C1–C5, hlavička) do produkce schválena. Proces: brief `CDX-016-living-route-integration` → Codex → review Claude. S04, S07, C6–C11, 404 a chyba jdou do další dávky. | REVIEW-016 (R1–R8 uzavřeny) | Jakub: „Ano, integrovat“ |
+| D-026 | 16. 11. 2026 | Living Route integrována do produkce (CDX-016, provedl Claude po vyčerpání limitu Codexu, review `docs/qa/CDX-016-review.md`): hero C2, předávka 01 → 02, titulky bez linky postupu, lockup a čtecí linka v hlavičce skryté nad filmem. Ověřeno: build, lint, typecheck, qa-living-route 46/46, viewports, handoffs, checks, interactions. | Spec 016 Revize 1 | Jakub: „udělej to za něj, teď jsi ty ten hlavní“ |
+
+### Poučení z integrace 016 · 16. 11. 2026
+
+1. **Pozdní promisy po úklidu:** `usePrefersReducedMotion` při hydrataci krátce vrací `true` (server snapshot). Effect pro reduced se tak na okamžik spustí a jeho pozdní `document.fonts.ready` pak přepíše RICH scénu. Async callbacky v efektech vždy hlídat příznakem `alive`.
+2. **Pořadí efektů:** `useGSAP` / `useScene` běží jako layout effect před cleanupem pasivních efektů. Cleanup pasivního efektu nesmí resetovat sdílené refy, které mezitím převzala scéna.
+3. **Navazující ScrollTriggery mezi komponentami:** start druhého úseku musí odpovídat konci prvního v každém režimu (pin: `top bottom`; nativně: konec hera `bottom 40%` → začátek Prologu `top 40%`).
+4. **Kulaté zakončení čáry:** `stroke-linecap: round` s nulovou čárkou kreslí tečku. Prázdný úsek skrýt (`visibility`).
+5. **QA v náhledovém panelu aplikace:** skrytý panel škrtí rAF a GSAP, takže snímky jsou rozpracované. Ověřovat headless Playwrightem (`qa-living-route.mjs`).

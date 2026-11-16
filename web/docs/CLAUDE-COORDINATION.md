@@ -1824,3 +1824,17 @@ Codexova 10min kontrola se zastavila po 20:05 a CDX-011 nezačal. Podle stáléh
 - STAV 16. 11. 16:11 · Claude · Nic nového od Grok Bota ani Codexu. Fronta bez Jakuba a DZS je prázdná. Limit 5h 0 % (po resetu).
 - STAV 16. 11. 16:44 · Claude · Nic nového od Grok Bota ani Codexu. Fronta bez Jakuba a DZS je prázdná. Limit 5h 1 %.
 - STAV 16. 11. 16:45 · Claude · Nic nového od Grok Bota ani Codexu. Fronta bez Jakuba a DZS je prázdná. Limit 5h 2 %.
+
+## ZÁMEK · CDX-016 integrace Living Route (16. 11. 2026)
+
+| Pole | Hodnota |
+|---|---|
+| Úkol | CDX-016 / spec 016 (Jakub: „Ano, integrovat“) |
+| Vlastník a session | **Claude** (Jakub 16. 11.: „udělej to za něj, teď jsi ty ten hlavní“); Codex exec zrušen (limit) |
+| Checkout | hlavní `/Users/jakubhrncir/ERA40` |
+| Základní commit | `3bb0f41` |
+| Přesné cesty | `web/src/components/hero/**`, `web/src/components/people/PeopleIntro.*`, `web/src/components/layout/SiteNav.*`, `web/scripts/qa-*.mjs` |
+| Rezervace | build a restart :3000 → Claude; dev :3040 pro QA |
+| Stav | **přijato, soubory uvolněny** (16. 11., review `docs/qa/CDX-016-review.md`) |
+
+Zámek uvolněn. :3000 běží s novým buildem (restart Claude).

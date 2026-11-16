@@ -1,6 +1,6 @@
 # 016 · Living Route: hero → Prolog
 
-Komponenta: `components/hero/Hero.tsx`, `components/people/PeopleIntro.tsx` (zatím beze změny) · **Stav: specifikace schválena v rámci Creative Blueprintu v0.2 (Jakub, 16. 11. 2026); izolovaný prototyp hotový a zrevidovaný (R1–R8 uzavřeny). Produkční integrace NENÍ schválena** a čeká na Jakubovo rozhodnutí o prototypu (fáze 11).
+Komponenta: `components/hero/Hero.tsx`, `components/people/PeopleIntro.tsx` (zatím beze změny) · **Stav: hotovo.** Spec schválena s Blueprintem v0.2 (D-024), integrace schválena Jakubem („Ano, integrovat“, D-025) a provedena v CDX-016 (review `docs/qa/CDX-016-review.md`, D-026).
 Účel: spojuje · Frekvence: jednou za návštěvu (scroll scéna), REVERSE kdykoli.
 Prototyp: lokálně mimo Git v `/private/tmp/era40-living-route-prototype-016-2026-11-16/` (HTML/GSAP, Codex), revize `REVIEW-016.md` tamtéž.
 
