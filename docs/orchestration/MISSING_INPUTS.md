@@ -36,3 +36,20 @@
 ## Co můžeme dělat bez nich
 
 Kreativní směry, motion bible, technický PoC a QA systém. Vše s ilustračními médii a viditelně označeným modelovým obsahem, připravené na výměnu za skutečné podklady.
+
+## BLOKUJE SPUŠTĚNÍ · licence čtyř záběrů hero filmu (zjištěno 16. 11. 2026)
+
+Stránky Mixkitu dnes uvádějí u čtyř použitých klipů **Stock Video Restricted License**, tedy jen osobní nekomerční použití. Katalog je dosud vedl jako Free:
+- `x-lecture` (48165): přednáška;
+- `x-dinner-garden` (23131): večeře na zahradě;
+- `x-lab` (24232): laboratoř, závěr „A předává to dál.“;
+- `x-meadow` (36084): louka.
+
+Free licenci mají `x-campus-walk` (4503) a `x-dinner-home` (12134). Ty jsou nově ve 4K a 1080p.
+
+Kampaňový web DZS není osobní použití. Před veřejným spuštěním je proto potřeba jedno z:
+1. licencovat tyto klipy (Envato Elements);
+2. nahradit je Free / Pexels záběry se stejným významem;
+3. nechat DZS dodat vlastní záběry.
+
+Web je zatím `noindex` a nenasazený. Rozhoduje Jakub a DZS.
