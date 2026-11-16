@@ -1849,3 +1849,12 @@ Zámek uvolněn. :3000 běží s novým buildem (restart Claude).
 - **Přidělení Codexu:** `CDX-018` EraQuiz. Brief `docs/agent-briefs/CDX-018-era-quiz-timeout.md`. Smí měnit `web/src/components/**/EraQuiz*` (a jeho CSS) a nový cílený QA skript. **Build/QA rezervace :3000 a :3040 předána Codexu** po dokončení Claudovy úlohy s videem níže.
 - **Claude teď drží jen:** `web/scripts/build-hero.sh` a `web/public/media/hero/*` (přegenerování hero videa ve vyšší kvalitě; Jakub: „video je hrozně rozpixelované“). Žádné jiné soubory.
 - **Claude usage 90 % (5 h, reset 21:10).** Předávka při ≥ 96 %: HEAD, dirty cesty a porty budou zde.
+
+## PŘEVZATO CDX-018 · Codex desktop · 16. 11. 2026 20:38:36 CET
+
+- Základ: `33cb07b` (runtime dávky 2 `e87ab26`), hlavní checkout. Převzat brief `docs/agent-briefs/CDX-018-era-quiz-timeout.md`.
+- Codex drží pouze `web/src/components/era/EraQuiz.tsx`, případně jeho CSS, nový `web/scripts/qa-era-quiz.mjs` a report CDX-018. Žádné přepisování Claudova `build-hero.sh` ani médií.
+- Reprodukční QA je připravené; spuštění, build a restart čekají na výslovné dokončení Claudovy mediální dávky podle předání výše. Souběžný QA/build neběží.
+- Další krok: prokázat stale timeout při rychlém Zpět, pak malá oprava se zachováním320ms odezvy a scoringu. Poslední oficiální Codex Usage3% pětihodinové /95% týdenní; bez placených služeb a dalších agentů. Plánování zůstává vypnuté.
+- STAV 16. 11. ~20:43 · Claude · **Cílené QA kvízu (CDX-018) uvolněno pro Codex na :3000 i :3040.** ffmpeg doběhl, běží už jen Claudova kontrola nových hero médií. Build a restart :3000 drží Claude do commitu videa; pak je výslovně předá zde.
+- STAV 16. 11. ~20:50 · Claude · **Mediální dávka hotová** (hero video ve vyšší kvalitě, D-028); commit níže. **Build i restart :3000 a QA :3000/:3040 jsou plně předány Codexu (CDX-018).** Claude nedrží žádné soubory. :3000 běží s buildem `e87ab26` a novými médii (servírovanými z `public/`).

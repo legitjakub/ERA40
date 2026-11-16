@@ -23,7 +23,7 @@ render() {
     frame_count=$(awk -v seconds="$duration" 'BEGIN { print int(seconds*24+0.5) }')
     # Optional fourth column: horizontal crop position 0..1 (default centre).
     xpos=${xpos:-0.5}
-    filter="fps=24,scale=$width:$height:force_original_aspect_ratio=increase,crop=$width:$height:(iw-ow)*$xpos:(ih-oh)/2,setsar=1"
+    filter="fps=24,scale=$width:$height:force_original_aspect_ratio=increase:flags=lanczos,crop=$width:$height:(iw-ow)*$xpos:(ih-oh)/2,setsar=1"
     grade="eq=saturation=0.93:contrast=1.025,format=yuv420p"
     # Optional fifth column pulls cool stock footage towards the shared warm grade.
     case "${tone:-}" in
@@ -42,11 +42,14 @@ render() {
   done
   "$ffmpeg_bin" -nostdin -v error -y -f concat -safe 0 -i "$concat" -c copy "$master"
   "$ffmpeg_bin" -nostdin -v error -y -ss "$poster_time" -i "$master" -frames:v 1 "$work/$basename.jpg"
-  node -e 'require("sharp")(process.argv[1]).avif({quality:45}).toFile(process.argv[2])' "$work/$basename.jpg" "$work/$basename.avif"
-  "$ffmpeg_bin" -nostdin -v error -y -i "$master" -an -c:v libx264 -threads 4 -preset medium \
-    -b:v "${rate}k" -maxrate "$((rate*2))k" -bufsize "$((rate*3))k" -g 48 -movflags +faststart "$work/$basename.mp4"
+  node -e 'require("sharp")(process.argv[1]).avif({quality:58}).toFile(process.argv[2])' "$work/$basename.jpg" "$work/$basename.avif"
+  # Quality first (Jakub 16. 11.: the film looked pixelated at 0.8 Mb/s):
+  # constant quality, capped so a frame never starves on cuts.
+  "$ffmpeg_bin" -nostdin -v error -y -i "$master" -an -c:v libx264 -threads 4 -preset slow \
+    -profile:v high -crf 19 -maxrate "${rate}k" -bufsize "$((rate*2))k" -g 48 -pix_fmt yuv420p \
+    -movflags +faststart "$work/$basename.mp4"
   "$ffmpeg_bin" -nostdin -v error -y -i "$master" -an -c:v libvpx-vp9 -threads 4 -row-mt 1 \
-    -tile-columns 2 -deadline good -cpu-used 5 -g 48 -b:v "$((rate*3/4))k" -maxrate "${rate}k" -bufsize "$((rate*3))k" -crf 42 "$work/$basename.webm"
+    -tile-columns 2 -deadline good -cpu-used 3 -g 48 -crf 31 -b:v "$((rate*3/4))k" "$work/$basename.webm"
   for ext in mp4 webm; do
     if (( $(wc -c < "$work/$basename.$ext") > limit )); then
       echo "$basename.$ext exceeds $limit bytes" >&2
@@ -60,7 +63,7 @@ render() {
 # masters of the approved shots (packing, Prague tram, students, evening friends;
 # re-downloaded in full resolution 15. 11. for a sharper phone film); x-* are Mixkit clips
 # listed in src/content/media.json. The edit ends on "passing it on" and loops to packing.
-render desktop 1920x1080 810 4000000 18 <<'CUT'
+render desktop 1920x1080 6000 26000000 18 <<'CUT'
 v-packing 4.1 3.8
 x-campus-walk 2 4
 x-lecture 1 3.5
@@ -69,7 +72,7 @@ v-friends 3.2 4.6
 x-meadow 6 4 0.5 warm
 x-lab 5.5 4.5 0.5 warmer
 CUT
-render mobile 720x1280 540 2000000 16 <<'CUT'
+render mobile 1080x1920 4500 20000000 16 <<'CUT'
 vm-suitcase 1.1 3.8
 vm-prague-tram 3.2 3.8
 x-lecture 1 3.5 0.55
