@@ -137,12 +137,25 @@ Each spec lists: **Start → Scroll → End → Reverse → Mobile → Reduced**
 - Reduced: poster image, no autoplay, all text visible.
 - Video: 30–45 s documentary cut (shot list in `CONTENT-FACTS.md` §5). `muted autoplay playsinline loop`, MP4 H.264 + WebM, 1080p desktop / 720p mobile, poster AVIF. Captions file if speech is present.
 
+> **Approved direction, pending integration (Creative Blueprint v0.2, Jakub 16. 11. 2026; D-024).** The text above describes the current site. Once Jakub approves integrating prototype 016, this replaces it:
+> - Chapter name **„Úvod“** (not „Odjezd“).
+> - Composition C2: anniversary row „40 / let Erasmu+“ above the two-line claim; context sentence „1987–2027. V Česku od roku 1998.“; the intro paragraph is removed; ink scrim only behind the left ~55 % and under the captions.
+> - Display sizes (explicit exceptions to Display XL 96–220 px): claim 90 px at 1440 × 900, `min(6.25vw, 10vh)`; compact hero below 680 px height 80 px; „40“ 200 px at 1440 × 900, 80 px compact. Mobile: 360 → 88/44, 390 → 96/48, 430 → 96/54. Weight 840; `wdth` 78 for the figure, 56 for the claim.
+> - One horizontal Trasa in the desktop hero (white line with a yellow station). The caption progress line is removed. Mobile has no horizontal Trasa at rest. The header „40“ lockup is hidden over the hero.
+> - Motion: spec `docs/era40-ai/motion/specs/016-living-route.md`. The film pauses without seeking and becomes a photograph; the Trasa becomes its frame and descends into the Prolog.
+
 ### 02 PROLOG — „Proč na tom záleží“
 - Layout: white background. A large statement (Display) across 9 cols: **„Od roku 1998 vyjelo s Erasmem do zahraničí přes 411 000 lidí z Česka. Každý se vrátil trochu jiný.“** The number comes from `CONTENT-FACTS` and shows its period in a footnote.
 - Start → Scroll: words go from 15 % to 100 % ink opacity, scrubbed word-by-word with scroll (reading-highlight effect). The Trasa underlines „trochu jiný“ when that word activates.
 - End: a footnote with source fades in. Then the Trasa bends downward into the timeline.
 - Mobile: same effect, scrub over a shorter distance.
 - Reduced: full ink text.
+
+> **Approved direction, pending integration (spec 016; D-024):**
+> - Desktop ≥ 1024 px: „trochu jiní.“ sits on its own last line.
+> - The underline is the end of the hero Trasa: it descends in the left margin and turns into the underline with a 16 px bend.
+> - Mobile: a short vertical Trasa stops above the heading; the underline stays as it is today.
+> - S04 image slot: approved in Blueprint v0.2, not part of 016.
 
 ### 03 HISTORIE — „Dvě linie, jedna cesta“
 - Concept: two parallel lines. The EU line starts at 1987 and the CZ line joins at 1998, so visually the Czech track merges into the European one.

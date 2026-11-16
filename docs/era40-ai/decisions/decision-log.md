@@ -79,3 +79,13 @@ Tři rozvržení spreadu (photo-left, photo-right, plate) místo dvou. Je to jen
 - Detail citace měl opacity0,14 a skutečný kontrast1,27:1, archivní minikarty stejný fade-up s dočasně nízkým kontrastem. Odstraněn generický nájezd a rozmazávání textu; filmový pohyb fotografií, Trasa a směrové přechody zůstávají.
 - Modelovost samostatných scén04/06/07/08 vysvětluje věta v běžném textu. Nevkládat zpět opakované štítky přes fotografie.
 | D-023 | 15. 11. 2026 | Kapitola 05 Evropa jako noční mapa (ink plocha, silueta `--map-land`, Česko Erasmus+ modrou, ořez s prolnutím do ink, bez boxu a karty). DESIGN.md §2 a §05 aktualizovány. Ink jen pro 05 a 07. | Jakub: původní mapa „hnusná“, review 8 snímků → „Yes, update DESIGN.md“ | Jakub |
+| D-024 | 16. 11. 2026 | Creative Blueprint v0.2 „The Living Route“ schválen jako celek (Jakub). Mezi schválené změny patří: kompozice C2 (40 / let Erasmu+ nad claimem), vypuštění intro odstavce, kapitola „Úvod“, jediná Trasa v hero, předávka 01 → 02 podle spec 016, S04 v Prologu, S07 na Zapojte se, copy C1–C11, české 404 a chyba. Izolovaný prototyp 016 je hotový a zrevidovaný. **Integrace do produkce zatím schválena není.** | Blueprint v0.2, REVIEW-016 | Jakub (Blueprint), Claude a Codex (prototyp) |
+
+### Poučení z prototypu 016 · 16. 11. 2026
+
+1. **Obrys a deska musí doběhnout spolu.** Když se obrys rámu (K) a zmenšovaná deska interpolují nezávisle, boky rámu leží až do p ≈ 0,65 uvnitř fotografie a čtou se jako UI čára přes obraz. Deska i K mají končit ve stejném p (0,55) a boky se kreslí až potom.
+2. **Barva čáry přes film a papír:** dva geometricky shodné path (bílý ořezaný `clipPath` podle aktuální desky, modrý pod ním) jsou přesnější než crossfade barvy podle vypočteného průsečíku.
+3. **Nativní režimy nesmějí zdědit odchod copy z pinu.** Na mobilu zajelo „40“ a claim do masek dřív než CTA. Copy v nativním scrollu odjíždí přirozeně a intro se při prvním scrollu dokončí (`progress(1)`).
+4. **Stav hlavičky se řídí polohou, ne pin timeline.** V reduced pin není a hlavička zůstala v hero stavu nad Prologem.
+5. **Svislá Trasa nesmí procházet textem.** Osa sestupu leží 28 px vlevo od sloupce; podtržení se dá napojit jen tehdy, když „trochu jiní.“ začíná řádek.
+6. **QA fokusu v náhledovém prohlížeči:** bez fokusu dokumentu nevznikají `focusin`/`focusout` z programového `focus()` / `blur()`. Napřed dát dokumentu fokus (klik nebo Tab), jinak test hlásí falešnou chybu.
