@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -214,21 +213,6 @@ export function PeopleIntro() {
         <p className={styles.note} data-note>
           Podle DZS za výzvy 1998–&#8288;2023, stav k&nbsp;31.&nbsp;12.&nbsp;2023. Přesné číslo najdeš v&nbsp;kapitole 07. <a href={source}>Infografika DZS (PDF)</a>
         </p>
-        {/* S04 (Blueprint v0.2): a separate situation after a cut, not a
-            person from the film; its origin is said once, as plain text. */}
-        <figure className={styles.passing}>
-          <Image
-            src="/media/placeholders/ph-adult-learning.jpg"
-            alt="Ilustrační snímek: dva lidé vedou výklad pro skupinu dospělých v cihlové učebně."
-            width={1600}
-            height={2400}
-            sizes="(max-width: 1023px) 100vw, 640px"
-          />
-          <figcaption>
-            Fotografie je z&nbsp;fotobanky. Nezachycuje doložený příběh
-            účastníků programu.
-          </figcaption>
-        </figure>
       </div>
       <div className={styles.transition}>
         <PeopleRow reduced={reduced} />

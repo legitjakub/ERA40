@@ -155,7 +155,7 @@ Each spec lists: **Start → Scroll → End → Reverse → Mobile → Reduced**
 > - Desktop ≥ 1024 px: „trochu jiní.“ sits on its own last line.
 > - The underline is the end of the hero Trasa: it descends in the left margin and turns into the underline with a 16 px bend.
 > - Mobile: a short vertical Trasa stops above the heading; the underline stays as it is today.
-> - S04 image slot (stock, captioned once as such) sits under the source note, right-aligned on desktop (D-027).
+> - Jakub removed the S04 stock photograph from the Prologue on 22. 11. 2026. The source note leads directly into the existing people row.
 
 ### 03 HISTORIE — „Dvě linie, jedna cesta“
 - Concept: two parallel lines. The EU line starts at 1987 and the CZ line joins at 1998, so visually the Czech track merges into the European one.

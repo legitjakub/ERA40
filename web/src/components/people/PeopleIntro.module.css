@@ -98,34 +98,6 @@
   text-decoration: underline;
   white-space: nowrap;
 }
-.passing {
-  width: 56%;
-  max-width: 640px;
-  margin: clamp(64px, 9vh, 112px) 0 0 auto;
-}
-.passing img {
-  display: block;
-  width: 100%;
-  height: clamp(380px, 45vw, 620px);
-  object-fit: cover;
-  object-position: 50% 62%;
-}
-.passing figcaption {
-  margin-top: 14px;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--c-mute, #4f5b6e);
-}
-@media (max-width: 1023px) {
-  .passing {
-    width: 100%;
-    max-width: none;
-    margin-top: 44px;
-  }
-  .passing img {
-    height: min(440px, 110vw);
-  }
-}
 .transition {
   position: relative;
   padding-top: clamp(42px, 6.5vw, 100px);
