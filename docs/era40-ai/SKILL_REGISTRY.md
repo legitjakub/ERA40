@@ -90,3 +90,12 @@ for source in Path('.claude/skills').iterdir():
 ```
 
 Pět vlastních skillů je přečteno Codexem celé. Jejich schvalovací hranice platí nad převzatými skilly, které by jinak rovnou implementovaly animaci. Reference analyst nyní používá dostupné nástroje daného agenta, nikoli nepřenositelné názvy nástrojů Claude.
+
+## MotionSites — projektový research adapter (26. 11. 2026)
+
+- `era40-motionsites-analyst`: nový originální research-only skill v `.claude/skills/era40-motionsites-analyst/SKILL.md`, společně viditelný Codexu přes `.agents/skills/era40-motionsites-analyst`. Není to oficiální upstream builder; vědomě neinstaluje šablony ani produkční kód.
+- Workflow: `docs/era40-ai/workflows/motionsites-research.md`.
+- Nastavení připojení: `.mcp.json` pro Claude Code, oficiální endpoint `https://motionsites.ai/api/mcp`. OAuth vyžaduje samostatný souhlas a přihlášení uživatele. Codex ani ChatGPT tím nejsou automaticky připojené.
+- Návod, rozsah a omezení: `docs/era40-ai/MOTIONSITES_SETUP.md`.
+- Pro práci s vizuální inspirací používá existující `era40-reference-analyst` a `era40-motion-director`; nepřebírá autoritu nad `DESIGN.md` ani decision logem. Aktuální fáze je pouze rešerše a storyboardy.
+- Oficiální MotionSites Web Builder (https://github.com/Motionsites-AI/claude-skill) je pro ERA40 **externí zdroj technik**, nikoliv automaticky spuštěný builder. Jeho příklady a media jsou samostatně licencované; nepřevádět je do veřejného repozitáře.
