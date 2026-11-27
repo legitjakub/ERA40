@@ -32,9 +32,9 @@ export default function HomePage() {
         <Hero />
         <PeopleIntro />
         <SceneHandoffs>
-          <HistoryTimeline />
           <JourneySequence>
             <PeopleStories />
+            <HistoryTimeline />
             <EuropeMap land={<MapLand />} />
           </JourneySequence>
           <ThenNow />

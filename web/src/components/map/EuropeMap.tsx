@@ -44,7 +44,9 @@ export function EuropeMap({ land }: { land: ReactNode }) {
   }, []);
   const k = Math.max(1, unit / DESIGN_UNIT);
   const hitR = Math.max(23, Math.ceil(HIT_RADIUS_PX * unit));
-  const { mapIndex: active, selectMapStory: setActive } = useJourney();
+  const { mapStoryId, selectMapStory } = useJourney();
+  const active = Math.max(0, destinations.findIndex(({ story }) => story.id === mapStoryId));
+  const setActive = (index: number) => selectMapStory(destinations[index].story.id);
   const activeRoute = useRef<SVGPathElement>(null);
   const traveller = useRef<SVGCircleElement>(null);
   const reduced = usePrefersReducedMotion();

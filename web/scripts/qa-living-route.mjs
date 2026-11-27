@@ -21,7 +21,7 @@ await mkdir(out, { recursive: true });
 const results = [];
 const check = (label, ok, detail) => results.push({ label, ok: Boolean(ok), detail });
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-const browser = await chromium.launch();
+const browser = await chromium.launch({ channel: process.env.PLAYWRIGHT_CHANNEL || undefined });
 
 async function open(width, height, { reduced = false, touch = false } = {}) {
   const context = await browser.newContext({
@@ -98,7 +98,7 @@ const state = (page) =>
   await scroll(page, Math.round(0.4 * 1.5 * H));
   const held = await state(page);
   check("focus: CTA held visible", held.copyOpacity === "1" && !held.copyInert, held);
-  await page.focus("#pribehy-intro a");
+  await page.evaluate(() => document.activeElement?.blur());
   await wait(300);
   const left = await state(page);
   check("focus: released after blur", left.copyOpacity === "0" && left.copyInert, left);

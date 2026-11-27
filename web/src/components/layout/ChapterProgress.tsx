@@ -2,18 +2,10 @@
 
 import { useEffect, useLayoutEffect, useState } from "react";
 import { registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
+import { chapters } from "@/content/chapters";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
-const CHAPTERS = [
-  { id: "hero", label: "01" },
-  { id: "pribehy-intro", label: "02" },
-  { id: "historie", label: "03" },
-  { id: "pribehy", label: "04" },
-  { id: "mapa", label: "05" },
-  { id: "tehdy-ted", label: "06" },
-  { id: "cisla", label: "07" },
-  { id: "budoucnost", label: "08" },
-];
+const CHAPTERS = chapters.map(({ id }, index) => ({ id, label: String(index + 1).padStart(2, "0") }));
 
 /** Tracing Art–inspired chapter progress (live-verified pattern). */
 export function ChapterProgress() {

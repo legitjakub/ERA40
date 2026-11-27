@@ -4,28 +4,13 @@ import { useEffect, useRef } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
-import { PeopleRow } from "./PeopleRow";
 import styles from "./PeopleIntro.module.css";
-
-const opening =
-  "Od roku 1998 vyjelo s Erasmem do zahraničí přes 400 tisíc lidí z Česka. Domů se vraceli";
-const ending = "trochu jiní.";
-const source =
-  "https://www.dzs.cz/sites/default/files/2024-03/Infografika_20let_finalA4.pdf";
-
-function words(text: string) {
-  return text.split(" ").map((word, index) => (
-    <span key={index}>
-      <span data-word>{word}</span>{" "}
-    </span>
-  ));
-}
 
 type Route = { length: number; samples: [number, number][]; desktop: boolean };
 
 /*
  * Spec 016: the hero route arrives in the left margin and, on desktop,
- * bends into the underline of „trochu jiní.“ (the underline is the route's
+ * bends into the underline of the key phrase (the underline is the route's
  * end). On phones a short vertical route stops above the heading and the
  * underline keeps its own scrub. Geometry is read only when measuring.
  */
@@ -119,34 +104,19 @@ export function PeopleIntro() {
         (context) => {
           const mobile = context.conditions?.mobile;
           const heading = section.querySelector("h2");
-          const timeline = gsap.timeline({
-            defaults: { ease: "none" },
-            scrollTrigger: {
-              trigger: heading,
-              start: mobile ? "top 88%" : "top 84%",
-              end: mobile ? "bottom 60%" : "bottom 42%",
-              scrub: true,
-            },
-          });
-          timeline.fromTo(
-            "[data-word]",
-            { opacity: 0.58 },
-            { opacity: 1, stagger: 0.085, duration: 0.22 },
-          );
           // On desktop the route draws the underline itself.
-          if (mobile)
-            timeline.fromTo(
-              "[data-underline]",
-              { scaleX: 0 },
-              { scaleX: 1, duration: 0.18 },
-              "-=0.2",
-            );
-          timeline.fromTo(
-            "[data-note]",
-            { opacity: 0 },
-            { opacity: 1, duration: 0.18 },
-            mobile ? "-=0.1" : "-=0.3",
-          );
+          if (mobile) {
+            gsap.fromTo("[data-underline]", { scaleX: 0 }, {
+              scaleX: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: heading,
+                start: "top 88%",
+                end: "bottom 60%",
+                scrub: true,
+              },
+            });
+          }
 
           // The route continues from the hero: it starts at the section top
           // and ends together with the reading scrub. After the pinned hero
@@ -197,25 +167,12 @@ export function PeopleIntro() {
         <circle r="5" />
       </svg>
       <div className={styles.body}>
-        <h2 id="people-intro-title" aria-label={opening + " " + ending}>
-          <span aria-hidden="true">
-            {words(opening)}
-            <span className={styles.ending}>
-              {words(ending)}
-              <i data-underline />
-            </span>
-          </span>
+        <h2 id="people-intro-title">
+          Co si lidé <span className={styles.ending}>přivezli?<i data-underline aria-hidden="true" /></span>
         </h2>
-        <p className={styles.reach} data-note>
-          A&nbsp;s&nbsp;nimi se zkušenost dostala i&nbsp;k&nbsp;lidem, kteří nikdy
-          nevyjeli: k&nbsp;jejich studentům, kolegům a&nbsp;rodinám.
+        <p className={styles.reach}>
+          Zkušenosti, které teď předávají žákům, kolegům a&nbsp;rodinám.
         </p>
-        <p className={styles.note} data-note>
-          Podle DZS za výzvy 1998–&#8288;2023, stav k&nbsp;31.&nbsp;12.&nbsp;2023. Přesné číslo najdeš v&nbsp;kapitole 07. <a href={source}>Infografika DZS (PDF)</a>
-        </p>
-      </div>
-      <div className={styles.transition}>
-        <PeopleRow reduced={reduced} />
       </div>
     </section>
   );

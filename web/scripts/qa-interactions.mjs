@@ -3,7 +3,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 const url = process.argv[2] || "http://127.0.0.1:3043";
 const dir = "qa/interactions";
 await mkdir(dir, { recursive: true });
-const browser = await chromium.launch();
+const browser = await chromium.launch({ channel: process.env.PLAYWRIGHT_CHANNEL || undefined });
 const checks = [];
 async function test(name, fn) {
   try {
@@ -15,15 +15,18 @@ async function test(name, fn) {
 }
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 const errors = [];
+await page.route("**/api/kontakty", (route) => route.abort());
 page.on("pageerror", (e) => errors.push(e.message));
 await page.goto(url);
 await page.evaluate(() => document.fonts.ready);
 await page.waitForTimeout(1300);
 await test("Desktop pin order", async () => {
   const r = await page.evaluate(() => window.__eraRanges());
-  expect(r.hero.start).toBeLessThan(r.historie.start);
-  expect(r.hero.end).toBeLessThan(r.historie.start);
-  expect(r.historie.end).toBeLessThan(r.pribehy.start);
+  expect(r.hero.end).toBeLessThan(r.pribehy.start);
+  const lastCut = r.pribehy.start + .76 * (r.pribehy.end - r.pribehy.start);
+  expect(lastCut).toBeLessThanOrEqual(r.historie.start);
+  expect(r.pribehy.end).toBeLessThan(r.historie.end);
+  expect(r.pribehy.end - r.pribehy.start).toBeLessThanOrEqual(1080);
   return r;
 });
 await test("History direct milestone and reverse", async () => {
@@ -37,12 +40,16 @@ await test("History direct milestone and reverse", async () => {
   await expect(first).toHaveAttribute("aria-current", "step");
 });
 await test("Pinned story focus and Flip dialog", async () => {
-  const trigger = page.locator("[data-story-open]").last();
+  const station = page.locator("#pribehy nav").getByRole("button", { name: "Inês", exact: true });
+  await station.focus();
+  await page.keyboard.press("Enter");
+  await expect(station).toHaveAttribute("aria-current", "step");
+  const trigger = page.locator("#story-praha-in [data-story-open]");
   await trigger.focus();
   await page.keyboard.press("Enter");
   const d = page.locator("dialog[open]");
   await expect(d).toBeVisible();
-  await expect(d).toContainText("Lucie a Marta");
+  await expect(d).toContainText("Inês");
   await page.waitForTimeout(750);
   await page.screenshot({ path: dir + "/desktop-dialog.png" });
   await page.keyboard.press("Escape");
@@ -145,6 +152,7 @@ await test("Content survives WebGL unavailability", async () => {
   const ctx = await browser.newContext({
     viewport: { width: 1440, height: 900 },
   });
+  await ctx.route("**/api/kontakty", (route) => route.abort());
   await ctx.addInitScript(() => {
     const original = HTMLCanvasElement.prototype.getContext;
     HTMLCanvasElement.prototype.getContext = function (kind, ...args) {
@@ -159,7 +167,7 @@ await test("Content survives WebGL unavailability", async () => {
     .locator("#pribehy")
     .evaluate((el) => scrollTo(0, el.getBoundingClientRect().top + scrollY));
   await p.waitForTimeout(800);
-  await expect(p.locator("[data-story-open]")).toHaveCount(8);
+  await expect(p.locator("[data-story-open]")).toHaveCount(3);
   await expect(p.locator("#pribehy img").first()).toBeVisible();
   await ctx.close();
 });

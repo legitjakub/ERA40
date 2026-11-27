@@ -125,6 +125,8 @@ Do not copy layouts or identities. Extract the technique, then rebuild it in our
 
 ## 6. Sections — storyboards
 
+> **Updated 27. 11. 2026 (spec 017).** The shorter Prologue leads into three featured stories (chapter 03), then History (chapter 04). On desktop the photographs share one frame with two scroll-driven mask cuts over at most 120 vh of added scroll. Smaller screens use native swipe. Reduced motion shows all three in the document flow. The archive and all eight anchors remain available. The paragraphs below describe the earlier Prologue and story rail where they conflict with this update.
+
 Each spec lists: **Start → Scroll → End → Reverse → Mobile → Reduced**.
 
 ### 01 HERO — „Odjezd“
