@@ -70,20 +70,20 @@ export function Future() {
   return (
     <section ref={root} id="budoucnost" data-section="budoucnost" aria-labelledby="future-title" className={s.section}>
       <figure className={s.hush} data-hush>
-        <Image src={storyPhoto(voice).file} alt="" fill sizes="100vw" />
+        <div className={s.print}><Image src={storyPhoto(voice).file} alt="" fill sizes="(min-width: 768px) 46vw, 100vw" /></div>
         <figcaption className={s.hushText}>
           <blockquote data-hush-line>„{voice.quote}“</blockquote>
           <p data-hush-line>
-            Z modelového příběhu: {voice.name}, {voice.from} → {voice.to}
+            {voice.name} · {voice.from} – {voice.to}<br />Modelový příběh učitelky základní školy.
           </p>
         </figcaption>
       </figure>
       <div className={s.inner}>
-        <p className={s.kicker}>Pokračování</p>
+
         <h2 id="future-title" className={s.title}>
-          <span>Cesta končí.</span><span>Zkušenost <span className="hl">pokračuje.</span></span>
+          <span>Co přinesla</span><span>tvoje cesta?</span>
         </h2>
-        <p className={s.lead}>Zkušenost z&nbsp;Erasmu se předává dál — k&nbsp;dalším lidem, i&nbsp;k&nbsp;těm, kteří nikdy nevyjeli.</p>
+        <p className={s.lead}>Vzpomeneš si na okamžik z Erasmu, který tě provází dodnes? Zapiš ho do výroční sbírky.</p>
         <div className={s.journey} aria-hidden="true">
           <svg className={s.desktopRoute} data-route="desktop">
             <defs><mask id={`${maskId}-desktop`} maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">

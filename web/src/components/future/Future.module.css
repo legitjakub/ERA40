@@ -49,28 +49,18 @@
 }
 /* The mask must stay white and wider than the visible route. */
 .journey mask path, .journey mask line { stroke: white; stroke-width: 8; }
-/* P2 bod 7: a hush before the ending — one voice over a slow photograph. */
-.hush { position: relative; margin: 0; height: min(86svh, 820px); overflow: clip; background: var(--c-ink); }
-.hush img { object-fit: cover; transform-origin: 50% 60%; }
-.hush::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to top, rgb(11 27 51 / 0.82) 0%, rgb(11 27 51 / 0.55) 45%, rgb(11 27 51 / 0.2) 100%);
+.hush {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center; gap: clamp(32px, 6vw, 96px); margin: 0;
+  padding: clamp(56px, 9vw, 132px) max(6vw, calc((100vw - 1280px) / 2));
+  background: var(--c-eu-blue); color: white;
 }
-.hushText {
-  position: absolute; z-index: 1; left: 0; right: 0; bottom: 0;
-  max-width: 1440px; margin: auto; padding: 0 clamp(24px, 6vw, 92px) clamp(48px, 10vh, 110px);
-  color: white;
-}
-.hushText blockquote {
-  margin: 0; max-width: 22ch;
-  font-size: clamp(2rem, 4.6vw, 4.6rem); line-height: 1.08; letter-spacing: -0.025em;
-  font-variation-settings: "wdth" var(--wdth-display), "wght" var(--wght-heading);
-}
-.hushText p { margin: 20px 0 0; color: var(--c-line); font-size: 1rem; font-weight: var(--wght-ui); }
-.hushLabel {
-  position: absolute; z-index: 1; top: 16px; right: 16px; padding: 3px 8px;
-  background: var(--c-ink); color: white; font-size: var(--fs-meta);
-}
+.print { position: relative; aspect-ratio: 5 / 4; overflow: hidden; }
+.print img { object-fit: cover; }
+.hushText blockquote { margin: 0; font-size: clamp(2rem, 3.9vw, 4.5rem); letter-spacing: -.035em; line-height: 1.08; text-wrap: balance; }
+.hushText p { border-left: 3px solid var(--c-yellow); padding-left: .9rem; margin: 2rem 0 0; line-height: 1.5; }
 @media (max-width: 767px) {
-  .hush { height: 78svh; }
+  .hush { grid-template-columns: 1fr; gap: 28px; padding: 48px 24px; }
+  .print { aspect-ratio: 3 / 2; }
+  .hushText p { margin-top: 1.4rem; }
 }

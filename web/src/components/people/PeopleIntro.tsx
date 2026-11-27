@@ -4,14 +4,17 @@ import { useEffect, useRef } from "react";
 import { useScene as useGSAP } from "@/lib/gsap/useScene";
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/gsap/setup";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
-import { PeopleRow } from "./PeopleRow";
+import Link from "next/link";
+import { getStory } from "@/content/stories";
 import styles from "./PeopleIntro.module.css";
 
-const opening =
-  "Od roku 1998 vyjelo s Erasmem do zahraničí přes 400 tisíc lidí z Česka. Domů se vraceli";
-const ending = "trochu jiní.";
-const source =
-  "https://www.dzs.cz/sites/default/files/2024-03/Infografika_20let_finalA4.pdf";
+const opening = "Co se vrací";
+const ending = "spolu s lidmi?";
+const entries = [
+  { id: "ucitelka", title: "Výuka pod širým nebem" },
+  { id: "porto-sos", title: "První zakázka v dílně" },
+  { id: "praha-in", title: "Nový domov v Praze" },
+];
 
 function words(text: string) {
   return text.split(" ").map((word, index) => (
@@ -206,16 +209,23 @@ export function PeopleIntro() {
             </span>
           </span>
         </h2>
-        <p className={styles.reach} data-note>
-          A&nbsp;s&nbsp;nimi se zkušenost dostala i&nbsp;k&nbsp;lidem, kteří nikdy
-          nevyjeli: k&nbsp;jejich studentům, kolegům a&nbsp;rodinám.
-        </p>
-        <p className={styles.note} data-note>
-          Podle DZS za výzvy 1998–&#8288;2023, stav k&nbsp;31.&nbsp;12.&nbsp;2023. Přesné číslo najdeš v&nbsp;kapitole 07. <a href={source}>Infografika DZS (PDF)</a>
-        </p>
-      </div>
-      <div className={styles.transition}>
-        <PeopleRow reduced={reduced} />
+        <div className={styles.index}>
+          <p className={styles.reach} data-note>Tři modelové příběhy ukazují, co může jeden pobyt změnit ve třídě, v práci i mezi lidmi.</p>
+          <ul>
+            {entries.map(({ id, title }) => {
+              const story = getStory(id);
+              if (!story) return null;
+              return (
+                <li key={id}>
+                  <Link href={`/pribehy/${id}`}>
+                    <span>{story.from} – {story.to}</span>
+                    <strong>{title}</strong>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </section>
   );
