@@ -2,9 +2,10 @@
   position: relative;
   color: var(--c-ink, #0b1b33);
   background: var(--c-paper, white);
-  padding: clamp(4.75rem, 12vh, 8rem) 0 clamp(3rem, 8vh, 6rem);
+  padding: clamp(5rem, 15vh, 12rem) 0 0;
 }
-.body {
+.body,
+.transition {
   max-width: 1440px;
   margin-inline: auto;
   padding-inline: clamp(24px, 6vw, 92px);
@@ -35,7 +36,7 @@
   background: var(--c-eplus);
   transform-origin: left center;
 }
-/* Spec 016: on desktop the key phrase starts the last line, so the route
+/* Spec 016: on desktop „trochu jiní.“ starts the last line, so the route
    can turn from the margin into its underline without underlining other
    words. Where the route is drawn, it is the underline. */
 @media (min-width: 1024px) {
@@ -76,28 +77,81 @@
   }
 }
 .reach {
-  max-width: 25ch;
-  margin: 1.25rem 0 0;
-  font-size: clamp(1.125rem, 2.25vw, 1.9rem);
-  line-height: 1.38;
-  color: var(--c-ink);
+  max-width: 34ch;
+  margin-block: clamp(28px, 4.5vh, 52px) 0;
+  font-size: var(--fs-lead);
+  line-height: 1.4;
+  color: var(--c-ink, #0b1b33);
 }
-@media (min-width: 1024px) {
-  .body {
-    display: grid;
-    grid-template-columns: 1.1fr .9fr;
-    align-items: center;
-    gap: 2rem;
-  }
-  .reach {
-    margin: 0;
-  }
+.reach + .note {
+  margin-top: 20px;
+}
+.note {
+  margin-block: clamp(28px, 4.5vh, 52px) 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--c-mute, #4f5b6e);
+}
+.note a {
+  color: var(--c-eplus-ink, #006ba8);
+  text-underline-offset: 0.18em;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+.transition {
+  position: relative;
+  padding-top: clamp(42px, 6.5vw, 100px);
+}
+.sequence {
+  margin: 0;
+  position: relative;
+}
+.window {
+  position: relative;
+  aspect-ratio: 3.45;
+  width: 100%;
+  background: var(--c-sky, #eaf3fa);
+  overflow: hidden;
+}
+.window img,
+.window canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sequence figcaption {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 0.25rem 0.55rem;
+  background: rgba(11, 27, 51, 0.55);
+  color: white;
+  font-size: 0.875rem;
 }
 @media (max-width: 1023px) {
-  .body {
+  .prolog {
+    padding-top: clamp(68px, 10vh, 110px);
+  }
+  .body,
+  .transition {
     padding-inline: 16px;
   }
   .body h2 {
-    font-size: clamp(2.6rem, 9vw, 5rem);
+    max-width: 20ch;
+    font-size: clamp(2.75rem, 8.3vw, 5rem);
+  }
+  .window {
+    aspect-ratio: 2;
+  }
+  .note {
+    max-width: 52ch;
+  }
+}
+/* Five lines at 360 px; larger sizes break the sentence into six to eight. */
+@media (max-width: 767px) {
+  .body h2 {
+    font-size: clamp(2.15rem, 1rem + 5vw, 3rem);
   }
 }

@@ -421,7 +421,7 @@ export function HistoryTimeline() {
       id="historie"
       className={styles.history}
       aria-labelledby="history-title"
-      data-chapter="04"
+      data-chapter="03"
       data-section="historie"
     >
       <h2 id="history-title" className={styles.srTitle}>
